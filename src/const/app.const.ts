@@ -1,6 +1,8 @@
 export const KEY_TOKEN = "token";
 export const COOKIE_EXPIRED_DATE = 7;
 
+export const APP_TITLE = "Kiki Friend";
+
 export const NOT_HAVE_VALUE_LABEL = "- -";
 export const NOT_AVAILABLE_VALUE = "N/A";
 
