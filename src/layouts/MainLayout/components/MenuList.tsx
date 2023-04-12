@@ -132,6 +132,9 @@ const useStyle = makeStyles((theme: ThemeProps) => ({
   },
   linkDropdown: {
     position: "relative",
+    "&:hover $link": {
+      color: "#603DBF",
+    },
 
     "&:hover $menuBox": {
       display: "block",
