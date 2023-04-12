@@ -1,45 +1,39 @@
 const white = "#FFFFFF";
-const black = "#172123";
+const black = "#000000";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type TPalette = Record<string, any> & { mode: "light" | "dark" };
 
 const palette: TPalette = {
-  mode: "dark",
+  mode: "light",
   common: {
     black,
     white,
   },
   primary: {
-    main: "#2960B0",
-    light: "#9FC7FF",
-    dark: "#102A7D",
-    contrastText: white,
+    main: "#CAACF2",
+    light: "#FFD6FF",
+    dark: "#B8C0FF",
+    contrastText: black,
   },
   secondary: {
-    main: "#F3C917",
-    light: "#F8DC7E",
-    dark: "#D3951B",
-    contrastText: white,
+    main: "#B8C0FF",
+    light: "#BBD0FF",
+    dark: "#756CBF",
+    contrastText: black,
   },
   error: {
     dark: "#A93131",
     light: "#FF9F9F",
     main: "#FF6F6F",
-    contrastText: white,
+    contrastText: black,
   },
   warning: {
     main: "#FCFF62",
     light: "",
     dark: "#D3B239",
-    contrastText: white,
+    contrastText: black,
   },
-  // info: {
-  //   main: "",
-  //   light: "",
-  //   dark: "",
-  //   contrastText: "",
-  // },
   success: {
     main: "#6AD74F",
     light: "",
@@ -62,24 +56,31 @@ const palette: TPalette = {
     700: "rgba(255, 255, 255, 0.1)",
     800: "rgba(255, 255, 255, 0.08)",
     900: "linear-gradient(180deg, rgba(255, 255, 255, 0.0798) 85.21%, rgba(255, 255, 255, 0.1) 100%)",
-    A100: "#081129",
+    A100: "#B5B5B5",
     A200: "rgba(8, 17, 41, 0.8)",
     A400: "rgba(8, 17, 41, 0.4)",
     A700: "rgba(8, 17, 41, 0.3)",
   },
   text: {
-    primary: white,
+    primary: black,
     secondary: "rgba(255, 255, 255, 0.4)",
     disabled: "rgba(255, 255, 255, 0.6)",
     icon: "",
   },
   divider: "",
   background: {
-    default: "linear-gradient(90deg, #09245B 0%, #1B3271 36.25%, #1B3271 59.17%, #09245B 100%)",
+    default: white,
     paper: "#152E86",
   },
-  action: {},
-  gradient: {},
+  gradient: {
+    main: "linear-gradient(90deg, #756CBF 0%, #CAACF2 100%)",
+  },
+  light: {
+    light1: "#E7C6FF",
+    light2: "#F1C3F2",
+    light3: "#FFD6FF",
+    light4: "#FFC8DD",
+  },
   shadow: {
     disabled: "#565861",
     primary: "#2D49A0",

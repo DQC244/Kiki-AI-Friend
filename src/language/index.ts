@@ -3,11 +3,13 @@ import { initReactI18next } from "react-i18next";
 import { AppConstant, LangConstant } from "const";
 import { FormatUtils } from "utils";
 import enLang from "./resources/en";
+import vnLang from "./resources/vn";
 
 i18next.use(initReactI18next).init(
   {
     resources: {
       en: enLang,
+      vn: vnLang,
     },
     lng: LangConstant.DEFAULT_LANG_CODE,
     fallbackLng: LangConstant.DEFAULT_LANG_CODE,

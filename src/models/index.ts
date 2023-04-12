@@ -2,7 +2,7 @@
 import AccountClass, { IAccountProperties } from "./classes/Account";
 
 // Defined type
-import IProps from "./types/IProps";
+import { IProps, ObjectMultiLanguageProps } from "./types";
 
 export { AccountClass };
-export type { IAccountProperties, IProps };
+export type { IAccountProperties, IProps, ObjectMultiLanguageProps };

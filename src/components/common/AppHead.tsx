@@ -1,5 +1,5 @@
 import React from "react";
-import { LinkConstant } from "const";
+import { AppConstant, LinkConstant } from "const";
 import { ImageAssets } from "assets";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
@@ -37,8 +37,8 @@ export type AppHeadProps = {
 };
 
 AppHead.defaultProps = {
-  title: "React App",
-  description: "React Application",
+  title: AppConstant.APP_TITLE,
+  description: "description",
 };
 
 export default AppHead;

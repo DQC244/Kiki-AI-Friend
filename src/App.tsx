@@ -1,7 +1,17 @@
 import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { EnvConstant, PathConstant } from "const";
-import { HomePage, LoginPage, ProfilePage, UIDemoPage } from "pages";
+import { PathConstant } from "const";
+import {
+  DownloadPage,
+  HomePage,
+  LoginPage,
+  ShopPage,
+  BirthChartPage,
+  SynastryChartPage,
+  TransitChartPage,
+  DailyTarotPage,
+  TarotCardMeaningPage,
+} from "pages";
 import { AuthenticationRoute } from "components/common";
 import MainLayout from "layouts/MainLayout";
 
@@ -12,9 +22,14 @@ const App = () => {
         <Route path={PathConstant.LOGIN} element={<LoginPage />} />
         <Route path={PathConstant.ROOT} element={<AuthenticationRoute element={<MainLayout />} />}>
           <Route path={PathConstant.ROOT} element={<HomePage />} />
-          <Route path={PathConstant.PROFILE} element={<ProfilePage />} />
+          <Route path={PathConstant.DOWNLOAD} element={<DownloadPage />} />
+          <Route path={PathConstant.SHOP} element={<ShopPage />} />
+          <Route path={PathConstant.BIRTH_CHART} element={<BirthChartPage />} />
+          <Route path={PathConstant.SYNASTRY_CHART} element={<SynastryChartPage />} />
+          <Route path={PathConstant.TRANSIT_CHART} element={<TransitChartPage />} />
+          <Route path={PathConstant.DAILY_TAROT} element={<DailyTarotPage />} />
+          <Route path={PathConstant.TAROT_CARD_MEANING} element={<TarotCardMeaningPage />} />
         </Route>
-        {EnvConstant.IS_DEV && <Route path={PathConstant.UI_DEMO} element={<UIDemoPage />} />}
       </Routes>
     </BrowserRouter>
   );

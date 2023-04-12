@@ -7,6 +7,7 @@ import { AppHead } from "components/common";
 import { IProps } from "models";
 import MLHeader, { HEADER_HEIGHT_IN_PX } from "./components/MLHeader";
 import { makeStyles } from "@mui/styles";
+import Footer from "./components/Footer";
 
 const MainLayout = ({ className, ...otherProps }: MainLayoutProps): JSX.Element => {
   const classesDefault = useStyles();
@@ -18,6 +19,7 @@ const MainLayout = ({ className, ...otherProps }: MainLayoutProps): JSX.Element 
       <Box className={clsx(classesDefault.main, className)} {...otherProps}>
         <Outlet />
       </Box>
+      <Footer />
     </>
   );
 };

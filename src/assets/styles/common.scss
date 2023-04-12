@@ -8,7 +8,7 @@ body {
   width: 100vw;
   height: 100vh;
   margin: 0;
-  font-family: "NotoSans", sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
@@ -19,7 +19,20 @@ body {
   // Root element
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: hidden scroll;
+  &::-webkit-scrollbar {
+    // width: 6px;
+    display: none;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #b5b5b5;
+    border-radius: 4px;
+  }
 }
 
 .center-root {
