@@ -14,7 +14,9 @@ const Footer = () => {
   return (
     <Box className={clsx("center-root", classes.root)}>
       <Typography className={classes.title}>{getLabel("lComingSoonQ3")}</Typography>
-      <Typography className={classes.followUs}>{getLabel("lFollowUsOn")}</Typography>
+      <Typography className={classes.followUs} mt={2}>
+        {getLabel("lFollowUsOn")}
+      </Typography>
       <Stack direction="row" spacing={1} mt={1}>
         <Link href={LinkConstant.TIKTOK_URL} target="_blank">
           <Box
