@@ -7,7 +7,7 @@ import { AppHead } from "components/common";
 import { IProps } from "models";
 import MLHeader, { HEADER_HEIGHT_IN_PX } from "./components/MLHeader";
 import { makeStyles } from "@mui/styles";
-import Footer from "./components/Footer";
+import Footer, { FOOTER_HEIGHT_IN_PX } from "./components/Footer";
 
 const MainLayout = ({ className, ...otherProps }: MainLayoutProps): JSX.Element => {
   const classesDefault = useStyles();
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   main: {
     position: "relative",
     width: "100vw",
-    minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX}px)`,
+    minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
     marginTop: HEADER_HEIGHT_IN_PX,
     background: theme.palette.background.default,
     overflow: "hidden",
