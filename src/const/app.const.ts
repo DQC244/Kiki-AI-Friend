@@ -20,5 +20,5 @@ export const SORT_DIRECTION = {
 
 // Date, Time Format
 export const DATE_FORMAT = "dd/MM/yy";
-export const FULL_DATE_FORMAT = "dd/MM/yyyy";
-export const TIME_FORMAT = "HH:mm";
+export const FULL_DATE_FORMAT = "dd / mm / yyyy";
+export const TIME_FORMAT = "hh : mm";

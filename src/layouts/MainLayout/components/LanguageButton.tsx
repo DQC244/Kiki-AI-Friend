@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     height: 30,
     margin: "0 7px",
     borderRadius: "50%",
-    background: "linear-gradient(90deg, #756CBF 0%, #CAACF2 100%)",
+    background: theme.palette.gradient.main,
     transition: "all 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
   },
   isEn: {
