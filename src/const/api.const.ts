@@ -19,3 +19,6 @@ export const STT_NOT_MODIFIED = 304;
 // API
 export const POST_LOGIN = "/login";
 export const GET_PROFILE = "/profile";
+
+export const BASE_URL_NINJAS = "https://api.api-ninjas.com/v1";
+export const GET_CITY = "/city";

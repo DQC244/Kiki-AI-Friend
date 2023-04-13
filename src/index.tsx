@@ -5,6 +5,8 @@ import { CacheProvider } from "@emotion/react";
 import reportWebVitals from "./reportWebVitals";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import theme, { createEmotionCache } from "assets/material";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import store from "redux-store";
 import "language";
 import "assets/styles";
@@ -17,12 +19,14 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
   <React.StrictMode>
     <CacheProvider value={clientSideEmotionCache}>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <App />
-        </ThemeProvider>
-      </Provider>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <App />
+          </ThemeProvider>
+        </Provider>
+      </LocalizationProvider>
     </CacheProvider>
   </React.StrictMode>,
 );

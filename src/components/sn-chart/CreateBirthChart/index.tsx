@@ -4,9 +4,9 @@ import { useTranslation } from "react-i18next";
 import { Box, Stack } from "@mui/material";
 import { ImageAssets } from "assets";
 import { makeStyles } from "@mui/styles";
-import CreateForm from "./CreateForm";
+import CreateForm, { CreateFormProps } from "./CreateForm";
 
-const CreateBirthChart = () => {
+const CreateBirthChart = ({ onCreateBirthChart }: CreateFormProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
 
@@ -14,7 +14,7 @@ const CreateBirthChart = () => {
     <Stack alignItems="center" spacing={15.5} direction="row" width="100%">
       <Stack flex={1} spacing={3}>
         <TitleChart title={getLabel("lCreateYourOwnBirth")} textAlign="center" />
-        <CreateForm />
+        <CreateForm onCreateBirthChart={onCreateBirthChart} />
       </Stack>
       <Box
         flex={1}
