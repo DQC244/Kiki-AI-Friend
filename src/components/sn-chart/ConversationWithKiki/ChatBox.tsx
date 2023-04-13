@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     padding: "10px 13px",
     border: "1px solid #8861E4",
     borderRadius: 15,
+    backgroundColor: theme.palette.common.white,
   },
   message: {
     fontWeight: 400,

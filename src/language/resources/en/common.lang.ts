@@ -24,6 +24,15 @@ export default {
     lWhatBringYouHereToday: "What bring you here today?",
   },
 
+  objQuestionStep1: {
+    lLove: "Love",
+    lMoney: "Money",
+    lSelf: "Self",
+    lWorkStudy: "Work / Study",
+    lPossibilities: "Possibilities",
+    lNoImGood: "No, I’m Good.",
+  },
+
   ObjMenu: {
     lHome: "Home",
     lChart: "Chart",

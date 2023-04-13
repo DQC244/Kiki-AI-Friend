@@ -1,10 +1,16 @@
 import { ReactNode } from "react";
 import { Theme } from "@mui/system";
+import { SvgIconProps } from "@mui/material";
 
 export interface IProps {
   children?: ReactNode;
   className?: string;
   classes?: object;
+}
+
+export interface IIconProps extends SvgIconProps {
+  sx?: object;
+  className?: string;
 }
 
 export interface ThemeProps extends Theme {
