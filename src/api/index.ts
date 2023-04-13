@@ -25,3 +25,13 @@ export interface IApiResponse {
   status: number;
   data: object;
 }
+
+const createInstance = (baseURL: string, apiKey: string) => {
+  Api.setBaseURL(baseURL);
+  Api.setHeader("X-Api-Key", apiKey);
+
+  return Api;
+};
+
+export const createNinjasApi = (apiKey: string) =>
+  createInstance(ApiConstant.BASE_URL_NINJAS, apiKey);

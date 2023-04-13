@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "@mui/material";
-import { CreateBirthChart } from "components/sn-chart";
+import { CreateBirthChart, ViewBirthChart } from "components/sn-chart";
 import { makeStyles } from "@mui/styles";
 import { HEADER_HEIGHT_IN_PX } from "layouts/MainLayout/components/MLHeader";
 import { FOOTER_HEIGHT_IN_PX } from "layouts/MainLayout/components/Footer";
 import clsx from "clsx";
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 
 const BirthChart = () => {
   const classes = useStyles();
+  const [isViewBirthChart, setIsViewBirthChart] = useState(false);
+
+  const handleCreateBirthChart = (data: any) => {
+    // TODO: update when implement api
+    console.log(data);
+    setIsViewBirthChart(true);
+  };
 
   return (
     <Container className={clsx("center-root", classes.root)}>
-      <CreateBirthChart />
+      {isViewBirthChart ? (
+        <ViewBirthChart />
+      ) : (
+        <CreateBirthChart onCreateBirthChart={handleCreateBirthChart} />
+      )}
     </Container>
   );
 };

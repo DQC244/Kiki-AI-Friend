@@ -1,15 +1,63 @@
-import React, { memo } from "react";
+import React, { memo, useState, FormEvent, useCallback } from "react";
 import { Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { AppGradientButton } from "components/common";
-import { AppConstant } from "const";
+import { AppAutocomplete, AppDateInput, AppGradientButton, AppTimeInput } from "components/common";
 import { ThemeProps } from "models/types";
 import { useTranslation } from "react-i18next";
-import clsx from "clsx";
+import { AppService } from "services";
+import { debounce } from "lodash";
+import { ApiConstant, AppConstant, EnvConstant } from "const";
+import dayjs from "dayjs";
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 
-const CreateForm = () => {
+const CreateForm = ({ onCreateBirthChart }: CreateFormProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
+
+  const [name, setName] = useState("");
+  const [cities, setCities] = useState([]);
+  const [city, setCity] = useState("");
+  const [time, setTime] = useState("");
+  const [date, setDate] = useState("");
+  const [timeFormat, setTimeFormat] = useState("");
+
+  const handleGetCities = useCallback(
+    debounce(async (value: string) => {
+      try {
+        if (!value) return;
+        let newCities = [];
+        const response = await AppService.getCityList(value);
+        if (response.status === ApiConstant.STT_OK) {
+          const responseData: any = response.data;
+          newCities = responseData?.map((item: any) => {
+            return {
+              label: item?.name + ", " + item?.country,
+            };
+          });
+        }
+        setCities(newCities);
+      } catch (error) {
+        EnvConstant.IS_DEV && console.log(error);
+      }
+    }, AppConstant.DEBOUNCE_TIME_IN_MILLISECOND),
+    [],
+  );
+
+  const handleChangeName = (e: FormEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    if (value.length > MAX_CHARACTER_NAME) return;
+    setName(value);
+  };
+
+  const handleCreateBirthChart = () => {
+    if (!dayjs(date).isValid() || !dayjs(time).isValid() || !timeFormat || !name || !city) return;
+
+    const newDate = dayjs(date).format(AppConstant.FULL_DATE_FORMAT);
+    const newTime = dayjs(time).format(AppConstant.TIME_FORMAT);
+
+    // TODO: update when implement api
+    onCreateBirthChart({ newDate, newTime, timeFormat, name, city });
+  };
 
   return (
     <Stack alignItems="center" className={classes.root} component="form" spacing={4}>
@@ -17,33 +65,60 @@ const CreateForm = () => {
       <Stack spacing={4.25}>
         <Stack direction="row">
           <Typography className={classes.label}>{getLabel("lMyNameIs")}</Typography>
-          <input className={classes.input} />
+          <input className={classes.input} onChange={handleChangeName} value={name} />
         </Stack>
         <Stack direction="row" alignItems="center">
           <Typography className={classes.label}>{getLabel("lIWasBornOn")}</Typography>
-          <input className={classes.input} placeholder={AppConstant.FULL_DATE_FORMAT} />
+          <AppDateInput onChange={(e) => setDate(e as string)} />
           <Typography className={classes.label}>{getLabel("lAt")}</Typography>
+          <AppTimeInput className={classes.inputTime} onChange={(e) => setTime(e as string)} />
           <input
-            className={clsx(classes.input, classes.inputTime)}
-            placeholder={AppConstant.TIME_FORMAT}
+            className={classes.radioInput}
+            type="radio"
+            id="am"
+            value={TIME_FORMAT.am}
+            name="time"
+            onChange={(e) => setTimeFormat(e.currentTarget.value)}
           />
-          <input className={classes.radioInput} type="radio" id="am" name="time" />
           <label className={classes.label} htmlFor="am">
             AM
           </label>
-          <input className={classes.radioInput} type="radio" id="pm" name="time" />
+          <input
+            className={classes.radioInput}
+            type="radio"
+            id="pm"
+            name="time"
+            value={TIME_FORMAT.pm}
+            onChange={(e) => setTimeFormat(e.currentTarget.value)}
+          />
           <label className={classes.label} htmlFor="pm">
             PM
           </label>
         </Stack>
         <Stack direction="row">
           <Typography className={classes.label}>{getLabel("lIn")}</Typography>
-          <input className={classes.input} />
+          <AppAutocomplete
+            options={cities}
+            onChangeValueInput={(_, value) => handleGetCities(value)}
+            onChange={(_, value) => {
+              setCity(value?.label);
+            }}
+          />
         </Stack>
       </Stack>
-      <AppGradientButton label={getLabel("lCreateChart")} />
+      <AppGradientButton label={getLabel("lCreateChart")} onClick={handleCreateBirthChart} />
     </Stack>
   );
+};
+
+enum TIME_FORMAT {
+  am = "AM",
+  pm = "PM",
+}
+const MAX_CHARACTER_NAME = 255;
+
+export type CreateFormProps = {
+  onCreateBirthChart: (data: any) => void;
 };
 
 export default memo(CreateForm);

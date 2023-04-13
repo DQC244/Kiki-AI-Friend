@@ -1,12 +1,17 @@
+import React, { ReactNode, memo } from "react";
 import { Button, ButtonProps } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ThemeProps } from "models/types";
-import React, { ReactNode, memo } from "react";
+import clsx from "clsx";
 
-const AppGradientButton = ({ label, ...otherProps }: AppGradientButtonProps) => {
+const AppGradientButton = ({ label, classes, ...otherProps }: AppGradientButtonProps) => {
   const defaultClasses = useStyles();
+
   return (
-    <Button classes={{ root: defaultClasses.root }} {...otherProps}>
+    <Button
+      classes={{ ...classes, root: clsx(defaultClasses.root, classes?.root) }}
+      {...otherProps}
+    >
       {label}
     </Button>
   );

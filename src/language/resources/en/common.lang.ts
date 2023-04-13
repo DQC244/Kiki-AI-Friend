@@ -14,6 +14,15 @@ export default {
   lAt: "at",
   lIn: "in:",
   lCreateChart: "Create Chart",
+  lHeyIAmHere: "Hey, I’m here. Scroll down to explore more.",
+  lWantToTryHave: "Want to try having a short conversation with Kiki?",
+  lPleaseChooseTheTopic: "Please choose the topic that concerns you most right now!",
+
+  objChatContentDefault: {
+    lHiThere: "Hi there 👋",
+    lMyNameIsKiki: "My name is Kiki",
+    lWhatBringYouHereToday: "What bring you here today?",
+  },
 
   ObjMenu: {
     lHome: "Home",

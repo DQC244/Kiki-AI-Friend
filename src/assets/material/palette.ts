@@ -70,7 +70,7 @@ const palette: TPalette = {
   divider: "",
   background: {
     default: white,
-    paper: "#152E86",
+    paper: white,
   },
   gradient: {
     main: "linear-gradient(90deg, #756CBF 0%, #CAACF2 100%)",
