@@ -13,6 +13,7 @@ import BackgroundChatTopRight from "./img-background-chat-top-right.svg";
 import BackgroundFooterChat from "./img-footer-chat.svg";
 import BackgroundBirthChart from "./img-background-birth-chart.png";
 import BackgroundBirthChartChat from "./img-conversation-chat.png";
+import UserLogo from "./img-user-logo.png";
 
 export {
   LogoImage,
@@ -30,4 +31,5 @@ export {
   BackgroundFooterChat,
   BackgroundBirthChart,
   BackgroundBirthChartChat,
+  UserLogo,
 };
