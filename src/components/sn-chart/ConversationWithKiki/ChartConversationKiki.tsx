@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { Box, Grid, Stack } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
@@ -22,6 +22,8 @@ const ChartConversationKiki = () => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
 
+  const [messageUser, setMessageUser] = useState("");
+
   const messageDefault = useMemo(() => getDefaultMessage(getLabel), [getLabel]);
   const questionList = useMemo(() => getListQuestion(getLabel), [getLabel]);
 
@@ -31,12 +33,19 @@ const ChartConversationKiki = () => {
         {messageDefault.map((item, index) => (
           <ChatBox key={index} message={item} />
         ))}
+        {messageUser && <ChatBox imageSrc={ImageAssets.UserLogo} message={messageUser} />}
       </Stack>
       <Box className={classes.footer}>
         <Grid container rowSpacing={3} columnSpacing={9}>
           {questionList.map((item, index) => (
             <Grid item xs={4} className="center-root" key={index}>
-              <QuestionBoxButton startIcon={item.icon}>{item.label}</QuestionBoxButton>
+              <QuestionBoxButton
+                onClickQuestionButton={() => setMessageUser(item.label)}
+                startIcon={item.icon}
+                isActive={messageUser === item.label}
+              >
+                {item.label}
+              </QuestionBoxButton>
             </Grid>
           ))}
         </Grid>

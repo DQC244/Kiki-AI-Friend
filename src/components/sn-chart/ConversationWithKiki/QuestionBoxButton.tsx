@@ -1,22 +1,26 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import { Button, ButtonProps, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ThemeProps } from "models/types";
 import clsx from "clsx";
 
-const QuestionBoxButton = ({ children, ...otherProps }: ButtonProps) => {
+const QuestionBoxButton = ({
+  children,
+  isActive,
+  onClickQuestionButton,
+  ...otherProps
+}: QuestionBoxButton) => {
   const defaultClasses = useStyles();
-  const [isActiveIcon, setIsActiveIcon] = useState(false);
 
   const handleClick = () => {
-    setIsActiveIcon(!isActiveIcon);
+    onClickQuestionButton();
   };
 
   return (
     <Button
       onClick={handleClick}
       classes={{
-        root: clsx(defaultClasses.root, isActiveIcon && defaultClasses.activeRoot),
+        root: clsx(defaultClasses.root, isActive && defaultClasses.activeRoot),
         startIcon: defaultClasses.startIcon,
       }}
       variant="contained"
@@ -25,6 +29,11 @@ const QuestionBoxButton = ({ children, ...otherProps }: ButtonProps) => {
       <Typography className={defaultClasses.text}>{children}</Typography>
     </Button>
   );
+};
+
+type QuestionBoxButton = ButtonProps & {
+  isActive: boolean;
+  onClickQuestionButton: () => void;
 };
 
 export default memo(QuestionBoxButton);
