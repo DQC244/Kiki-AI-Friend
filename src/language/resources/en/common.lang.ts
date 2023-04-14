@@ -33,6 +33,7 @@ export default {
   lFindOutWho: "Find out who matches your spiritual energy",
   lViewSynastryChart: "View Synastry Chart",
   lLetSeeYourHarmony: "Let’s see your harmony and how well you two get on. Try our app now!",
+  lPleaseEnterAllRequiredFields: "Please enter all required fields",
 
   objChatContentDefault: {
     lHiThere: "Hi there 👋",

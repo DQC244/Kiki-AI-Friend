@@ -22,6 +22,7 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
   const [date, setDate] = useState("");
   const [timeFormat, setTimeFormat] = useState("");
   const [currentCity, setCurrentCity] = useState("");
+  const [isError, setIsError] = useState(false);
 
   const handleGetCities = useCallback(
     debounce(async (value: string) => {
@@ -48,20 +49,25 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
 
   const handleChangeName = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
-    if (value.length > MAX_CHARACTER_NAME) return;
+    if (value.length > AppConstant.MAX_CHARACTER_NAME) return;
     setName(value);
   };
 
   const handleCreateBirthChart = () => {
-    if (!dayjs(date).isValid() || !dayjs(time).isValid() || !timeFormat || !name || !city) return;
+    if (!dayjs(date).isValid() || !dayjs(time).isValid() || !timeFormat || !name || !city) {
+      setIsError(true);
+      return;
+    }
 
     const newDate = dayjs(date).format(AppConstant.FULL_DATE_FORMAT);
     const newTime = dayjs(time).format(AppConstant.TIME_FORMAT);
 
     let data: ObjectMultiLanguageProps = { newDate, newTime, timeFormat, name, city };
     // TODO: update when implement api
-    if (isTransitChart && !currentCity) return;
-    else data = { ...data, currentCity };
+    if (isTransitChart && !currentCity) {
+      setIsError(true);
+      return;
+    } else data = { ...data, currentCity };
 
     onCreateChart(data);
   };
@@ -130,15 +136,20 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
           </Stack>
         )}
       </Stack>
-      <AppGradientButton
-        label={submitLabel || getLabel("lCreateChart")}
-        onClick={handleCreateBirthChart}
-      />
+      <Stack>
+        <AppGradientButton
+          label={submitLabel || getLabel("lCreateChart")}
+          onClick={handleCreateBirthChart}
+        />
+        {isError && (
+          <Typography textAlign="center" color="error.main">
+            {getLabel("lPleaseEnterAllRequiredFields")}
+          </Typography>
+        )}
+      </Stack>
     </Stack>
   );
 };
-
-const MAX_CHARACTER_NAME = 255;
 
 export type CreateFormProps = {
   className?: string;
