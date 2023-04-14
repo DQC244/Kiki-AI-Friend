@@ -1,27 +1,32 @@
-import React, { memo, useState, FormEvent, useCallback } from "react";
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+import React, { useCallback, useState, memo, useEffect } from "react";
 import { Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { AppAutocomplete, AppDateInput, AppGradientButton, AppTimeInput } from "components/common";
-import { ObjectMultiLanguageProps, ThemeProps } from "models/types";
 import { useTranslation } from "react-i18next";
-import { AppService } from "services";
+import { AppAutocomplete, AppDateInput, AppTimeInput } from "components/common";
 import { debounce } from "lodash";
+import { AppService } from "services";
 import { ApiConstant, AppConstant, EnvConstant } from "const";
-import dayjs from "dayjs";
-import clsx from "clsx";
-/* eslint-disable  @typescript-eslint/no-explicit-any */
+import { ThemeProps } from "models/types";
 
-const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: CreateFormProps) => {
+const CommonCreateFromSynastry = ({
+  onChangeValue,
+  title,
+  nameLabel,
+  dateLabel,
+  placeLabel,
+}: CommonCreateFromSynastryProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
 
-  const [name, setName] = useState("");
   const [cities, setCities] = useState([]);
   const [city, setCity] = useState("");
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
-  const [timeFormat, setTimeFormat] = useState("");
-  const [currentCity, setCurrentCity] = useState("");
+
+  useEffect(() => {
+    onChangeValue(city, date, time);
+  }, [city, date, time]);
 
   const handleGetCities = useCallback(
     debounce(async (value: string) => {
@@ -46,41 +51,16 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
     [],
   );
 
-  const handleChangeName = (e: FormEvent<HTMLInputElement>) => {
-    const value = e.currentTarget.value;
-    if (value.length > MAX_CHARACTER_NAME) return;
-    setName(value);
-  };
-
-  const handleCreateBirthChart = () => {
-    if (!dayjs(date).isValid() || !dayjs(time).isValid() || !timeFormat || !name || !city) return;
-
-    const newDate = dayjs(date).format(AppConstant.FULL_DATE_FORMAT);
-    const newTime = dayjs(time).format(AppConstant.TIME_FORMAT);
-
-    let data: ObjectMultiLanguageProps = { newDate, newTime, timeFormat, name, city };
-    // TODO: update when implement api
-    if (isTransitChart && !currentCity) return;
-    else data = { ...data, currentCity };
-
-    onCreateChart(data);
-  };
-
   return (
-    <Stack
-      alignItems="center"
-      className={clsx(classes.root, className)}
-      component="form"
-      spacing={4}
-    >
-      <Typography className={classes.text}>{getLabel("lTellUsALittle")}</Typography>
-      <Stack spacing={4.25} width="100%">
+    <Stack className={classes.root} spacing={4}>
+      <Typography className={classes.title}>{title || getLabel("lTellUsALittle")}</Typography>
+      <Stack spacing={4.5} width="100%">
         <Stack direction="row">
-          <Typography className={classes.label}>{getLabel("lMyNameIs")}</Typography>
-          <input className={classes.input} onChange={handleChangeName} value={name} />
+          <Typography className={classes.label}>{nameLabel || getLabel("lMyNameIs")}</Typography>
+          <input className={classes.input} />
         </Stack>
         <Stack direction="row" alignItems="center">
-          <Typography className={classes.label}>{getLabel("lIWasBornOn")}</Typography>
+          <Typography className={classes.label}>{dateLabel || getLabel("lIWasBornOn")}</Typography>
           <AppDateInput className={classes.dateInput} onChange={(e) => setDate(e as string)} />
           <Typography className={classes.label}>{getLabel("lAt")}</Typography>
           <AppTimeInput className={classes.inputTime} onChange={(e) => setTime(e as string)} />
@@ -90,7 +70,6 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
             id="am"
             value={AppConstant.TIME_FORMAT_ENUM.am}
             name="time"
-            onChange={(e) => setTimeFormat(e.currentTarget.value)}
           />
           <label className={classes.label} htmlFor="am">
             AM
@@ -101,14 +80,13 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
             id="pm"
             name="time"
             value={AppConstant.TIME_FORMAT_ENUM.pm}
-            onChange={(e) => setTimeFormat(e.currentTarget.value)}
           />
           <label className={classes.label} htmlFor="pm">
             PM
           </label>
         </Stack>
         <Stack direction="row">
-          <Typography className={classes.label}>{getLabel("lIn")}</Typography>
+          <Typography className={classes.label}>{placeLabel || getLabel("lIn")}</Typography>
           <AppAutocomplete
             options={cities}
             onChangeValueInput={(_, value) => handleGetCities(value)}
@@ -117,63 +95,35 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
             }}
           />
         </Stack>
-        {isTransitChart && (
-          <Stack direction="row">
-            <Typography className={classes.label}>{getLabel("lYourCurrentLocation")}</Typography>
-            <AppAutocomplete
-              options={cities}
-              onChangeValueInput={(_, value) => handleGetCities(value)}
-              onChange={(_, value) => {
-                setCurrentCity(value?.label);
-              }}
-            />
-          </Stack>
-        )}
       </Stack>
-      <AppGradientButton
-        label={submitLabel || getLabel("lCreateChart")}
-        onClick={handleCreateBirthChart}
-      />
     </Stack>
   );
 };
 
-const MAX_CHARACTER_NAME = 255;
-
-export type CreateFormProps = {
-  className?: string;
-  onCreateChart: (data: any) => void;
-  isTransitChart?: boolean;
-  submitLabel?: string;
+type CommonCreateFromSynastryProps = {
+  title?: string;
+  dateLabel?: string;
+  placeLabel?: string;
+  nameLabel?: string;
+  onChangeValue: (city: string, date: string, time: string) => void;
 };
 
-export default memo(CreateForm);
+export default memo(CommonCreateFromSynastry);
 
 const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
-    position: "relative",
-    width: 549,
-    maxWidth: "100%",
-    padding: "14px 31px",
+    width: 514,
+    padding: "32px 16px",
+    background: "linear-gradient(293.7deg, #FFFFFF -3.9%, rgba(255, 255, 255, 0) 111.17%)",
+    filter: "drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25))",
+    backdropFilter: "blur(10px)",
     borderRadius: 20,
-    background: "linear-gradient(25deg, #CAACF2 0%, #9AA2FF 44%, #BBD0FF 100%)",
-    zIndex: 0,
-
-    "&:before": {
-      content: '""',
-      position: "absolute",
-      inset: 1,
-      width: "calc(100% - 2px)",
-      height: "calc(100% - 2px)",
-      background: "white",
-      borderRadius: 19,
-      zIndex: -1,
-    },
   },
-  text: {
+  title: {
     fontWeight: 700,
     fontSize: 24,
     lineHeight: "63px",
+    textAlign: "center",
   },
   label: {
     fontFamily: "Montserrat",
@@ -183,6 +133,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   input: {
     "&,&:focus": {
+      backgroundColor: "transparent",
       border: "unset",
       borderBottom: `1px solid ${theme.palette.common.black}`,
       outline: "none",

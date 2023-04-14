@@ -22,3 +22,8 @@ export const SORT_DIRECTION = {
 export const DATE_FORMAT = "dd/MM/yy";
 export const FULL_DATE_FORMAT = "DD/MM/YYYY";
 export const TIME_FORMAT = "hh:mm";
+
+export enum TIME_FORMAT_ENUM {
+  am = "AM",
+  pm = "PM",
+}

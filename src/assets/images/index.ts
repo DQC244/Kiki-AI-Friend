@@ -17,6 +17,7 @@ import UserLogo from "./img-user-logo.png";
 import TransitChartGalaxyImage from "./img-transit-chart-galaxy.png";
 import MoonTransitImage from "./img-moon-transit.png";
 import ChatTransitChartImage from "./img-chat-transit-chart.png";
+import CreateSynastryChartImage from "./img-create-synastry-chart.png";
 
 export {
   LogoImage,
@@ -38,4 +39,5 @@ export {
   TransitChartGalaxyImage,
   MoonTransitImage,
   ChatTransitChartImage,
+  CreateSynastryChartImage,
 };
