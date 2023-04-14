@@ -14,7 +14,7 @@ import BackgroundFooterChat from "./img-footer-chat.svg";
 import BackgroundBirthChart from "./img-background-birth-chart.png";
 import BackgroundBirthChartChat from "./img-conversation-chat.png";
 import UserLogo from "./img-user-logo.png";
-import TransitChartGalaxyImage from "./img-transit-chart-galaxy.svg";
+import TransitChartGalaxyImage from "./img-transit-chart-galaxy.png";
 import MoonTransitImage from "./img-moon-transit.png";
 import ChatTransitChartImage from "./img-chat-transit-chart.png";
 

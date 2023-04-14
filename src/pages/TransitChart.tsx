@@ -39,6 +39,8 @@ const useStyles = makeStyles(() => ({
     minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
   },
   background: {
-    background: `no-repeat center right / 690px auto url(${ImageAssets.TransitChartGalaxyImage})`,
+    backgroundPosition: "right -590px center",
+    backgroundSize: "1274px auto",
+    background: `no-repeat url(${ImageAssets.TransitChartGalaxyImage})`,
   },
 }));

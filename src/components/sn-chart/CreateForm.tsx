@@ -157,6 +157,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     position: "relative",
     width: 549,
+    maxWidth: "100%",
     padding: "14px 31px",
     borderRadius: 20,
     background: "linear-gradient(25deg, #CAACF2 0%, #9AA2FF 44%, #BBD0FF 100%)",
