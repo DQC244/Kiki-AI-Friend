@@ -5,7 +5,7 @@ import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import { HEADER_HEIGHT_IN_PX } from "layouts/MainLayout/components/MLHeader";
 import { FOOTER_HEIGHT_IN_PX } from "layouts/MainLayout/components/Footer";
-import { CreateSynastryChart, ViewTransitChart } from "components/sn-chart";
+import { CreateSynastryChart, ViewSynastryChart } from "components/sn-chart";
 import clsx from "clsx";
 
 const SynastryChart = () => {
@@ -18,10 +18,15 @@ const SynastryChart = () => {
   };
 
   return (
-    <Box className={clsx(classes.root, !isViewTransitChart && classes.background)}>
+    <Box
+      className={clsx(
+        classes.root,
+        isViewTransitChart ? classes.viewBackground : classes.background,
+      )}
+    >
       <Container>
         {isViewTransitChart ? (
-          <ViewTransitChart />
+          <ViewSynastryChart />
         ) : (
           <CreateSynastryChart onViewSynastryChart={handleCreateChart} />
         )}
@@ -34,13 +39,14 @@ export default SynastryChart;
 
 const useStyles = makeStyles(() => ({
   root: {
-    paddingTop: 80,
-    paddingBottom: 80,
     minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
   },
   background: {
     backgroundPosition: "left calc(50% + 40px) top 220px",
     backgroundSize: "1368px auto",
     background: `no-repeat url(${ImageAssets.TransitChartGalaxyImage})`,
+  },
+  viewBackground: {
+    background: `no-repeat center center / 1590px auto url(${ImageAssets.ViewSynastryChartBackground})`,
   },
 }));

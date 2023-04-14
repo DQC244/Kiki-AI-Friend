@@ -4,6 +4,7 @@ import ViewBirthChart from "./ViewBirthChart";
 import CreateTransitChart from "./CreateTransitChart";
 import ViewTransitChart from "./ViewTransitChart";
 import { CommonCreateFromSynastry, CreateSynastryChart } from "./synastry-chart";
+import ViewSynastryChart from "./ViewSynastryChart";
 
 export {
   CreateBirthChart,
@@ -13,4 +14,5 @@ export {
   ViewTransitChart,
   CommonCreateFromSynastry,
   CreateSynastryChart,
+  ViewSynastryChart,
 };
