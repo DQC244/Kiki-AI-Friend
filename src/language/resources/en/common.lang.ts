@@ -9,6 +9,7 @@ export default {
   // Chart
   lCreateYourOwnBirth: "Create your own birth chart. It’s free!",
   lTellUsALittle: "Tell us a little bit about yourself",
+  lAndAboutYourPersonOfInterest: "And about your person of interest",
   lMyNameIs: "My name is:",
   lIWasBornOn: "I was born on:",
   lAt: "at",
@@ -26,6 +27,11 @@ export default {
   lUniversalTime: "Universal time:",
   lHouseSystem: "House system:",
   lCityCountry: "City, Country:",
+  lName: "Name:",
+  lDateOfBirth: "Date of birth:",
+  lPlaceOfBirth: "Place of birth:",
+  lFindOutWho: "Find out who matches your spiritual energy",
+  lViewSynastryChart: "View Synastry Chart",
 
   objChatContentDefault: {
     lHiThere: "Hi there 👋",
