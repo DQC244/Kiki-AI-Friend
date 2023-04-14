@@ -1,5 +1,5 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-import React, { useCallback, useState, memo, useEffect } from "react";
+import React, { useCallback, useState, memo, useEffect, FormEvent } from "react";
 import { Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useTranslation } from "react-i18next";
@@ -20,13 +20,17 @@ const CommonCreateFromSynastry = ({
   const { t: getLabel } = useTranslation();
 
   const [cities, setCities] = useState([]);
+  const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
+  const [timeFormat, setTimeFormat] = useState("");
 
-  useEffect(() => {
-    onChangeValue(city, date, time);
-  }, [city, date, time]);
+  const handleChangeName = (e: FormEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    if (value.length > AppConstant.MAX_CHARACTER_NAME) return;
+    setName(value);
+  };
 
   const handleGetCities = useCallback(
     debounce(async (value: string) => {
@@ -51,13 +55,17 @@ const CommonCreateFromSynastry = ({
     [],
   );
 
+  useEffect(() => {
+    onChangeValue(name, city, date, time, timeFormat);
+  }, [name, city, date, time, timeFormat]);
+
   return (
-    <Stack className={classes.root} spacing={4}>
+    <Stack className={classes.root} spacing={4} component="form">
       <Typography className={classes.title}>{title || getLabel("lTellUsALittle")}</Typography>
       <Stack spacing={4.5} width="100%">
         <Stack direction="row">
           <Typography className={classes.label}>{nameLabel || getLabel("lMyNameIs")}</Typography>
-          <input className={classes.input} />
+          <input className={classes.input} onChange={handleChangeName} />
         </Stack>
         <Stack direction="row" alignItems="center">
           <Typography className={classes.label}>{dateLabel || getLabel("lIWasBornOn")}</Typography>
@@ -70,6 +78,7 @@ const CommonCreateFromSynastry = ({
             id="am"
             value={AppConstant.TIME_FORMAT_ENUM.am}
             name="time"
+            onChange={(e) => setTimeFormat(e.currentTarget.value)}
           />
           <label className={classes.label} htmlFor="am">
             AM
@@ -80,6 +89,7 @@ const CommonCreateFromSynastry = ({
             id="pm"
             name="time"
             value={AppConstant.TIME_FORMAT_ENUM.pm}
+            onChange={(e) => setTimeFormat(e.currentTarget.value)}
           />
           <label className={classes.label} htmlFor="pm">
             PM
@@ -105,7 +115,13 @@ type CommonCreateFromSynastryProps = {
   dateLabel?: string;
   placeLabel?: string;
   nameLabel?: string;
-  onChangeValue: (city: string, date: string, time: string) => void;
+  onChangeValue: (
+    name: string,
+    city: string,
+    date: string,
+    time: string,
+    timeFormat: string,
+  ) => void;
 };
 
 export default memo(CommonCreateFromSynastry);
@@ -114,10 +130,10 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     width: 514,
     padding: "32px 16px",
-    background: "linear-gradient(293.7deg, #FFFFFF -3.9%, rgba(255, 255, 255, 0) 111.17%)",
     filter: "drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25))",
-    backdropFilter: "blur(10px)",
+    backdropFilter: "blur(20px)",
     borderRadius: 20,
+    border: "0.5px solid #a1a4fe",
   },
   title: {
     fontWeight: 700,

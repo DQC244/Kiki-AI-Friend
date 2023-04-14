@@ -27,3 +27,5 @@ export enum TIME_FORMAT_ENUM {
   am = "AM",
   pm = "PM",
 }
+
+export const MAX_CHARACTER_NAME = 255;
