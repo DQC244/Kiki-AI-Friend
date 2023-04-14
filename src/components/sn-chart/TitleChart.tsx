@@ -1,7 +1,7 @@
+import React, { memo } from "react";
 import { Typography, TypographyProps } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import clsx from "clsx";
-import React, { memo } from "react";
 
 const TitleChart = ({ title, className, ...otherProps }: TitleChartProps) => {
   const classes = useStyles();

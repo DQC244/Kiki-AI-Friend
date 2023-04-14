@@ -22,7 +22,7 @@ const BirthChart = () => {
       {isViewBirthChart ? (
         <ViewBirthChart />
       ) : (
-        <CreateBirthChart onCreateBirthChart={handleCreateBirthChart} />
+        <CreateBirthChart onCreateChart={handleCreateBirthChart} />
       )}
     </Container>
   );

@@ -6,7 +6,7 @@ import ChartConversationKiki from "./ChartConversationKiki";
 import { ImageAssets } from "assets";
 import clsx from "clsx";
 
-const ConversationWithKiki = () => {
+const ConversationWithKiki = ({ imageProps, labelClassName }: ConversationWithKikiProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
 
@@ -16,19 +16,27 @@ const ConversationWithKiki = () => {
       <Stack mt={4} direction="row" spacing={18.25} alignItems="flex-end">
         <ChartConversationKiki />
         <Box position="relative">
-          <Box className={clsx("center-root", classes.labelWrapper)}>
+          <Box className={clsx("center-root", classes.labelWrapper, labelClassName)}>
             <Typography className={classes.label}>{getLabel("lPleaseChooseTheTopic")}</Typography>
           </Box>
           <Box
             component="img"
-            src={ImageAssets.BackgroundBirthChartChat}
-            className={classes.img}
+            src={imageProps?.imageSrc || ImageAssets.BackgroundBirthChartChat}
+            className={clsx(classes.img, imageProps?.className)}
             draggable="false"
           />
         </Box>
       </Stack>
     </Stack>
   );
+};
+
+type ConversationWithKikiProps = {
+  labelClassName?: string;
+  imageProps?: {
+    className?: string;
+    imageSrc?: string;
+  };
 };
 
 export default memo(ConversationWithKiki);

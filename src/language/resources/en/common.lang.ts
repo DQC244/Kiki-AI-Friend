@@ -17,6 +17,15 @@ export default {
   lHeyIAmHere: "Hey, I’m here. Scroll down to explore more.",
   lWantToTryHave: "Want to try having a short conversation with Kiki?",
   lPleaseChooseTheTopic: "Please choose the topic that concerns you most right now!",
+  lYourCurrentLocation: "Your current location:",
+  lLookAheadInto: "Look ahead into the coming days, weeks and years with Transit chart",
+  lCalculateTransit: "Calculate Transit",
+  lBirth: "Birth",
+  lTransit: "Transit",
+  lLocalTime: "Local time:",
+  lUniversalTime: "Universal time:",
+  lHouseSystem: "House system:",
+  lCityCountry: "City, Country:",
 
   objChatContentDefault: {
     lHiThere: "Hi there 👋",

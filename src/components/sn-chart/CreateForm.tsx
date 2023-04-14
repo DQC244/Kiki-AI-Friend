@@ -2,15 +2,16 @@ import React, { memo, useState, FormEvent, useCallback } from "react";
 import { Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { AppAutocomplete, AppDateInput, AppGradientButton, AppTimeInput } from "components/common";
-import { ThemeProps } from "models/types";
+import { ObjectMultiLanguageProps, ThemeProps } from "models/types";
 import { useTranslation } from "react-i18next";
 import { AppService } from "services";
 import { debounce } from "lodash";
 import { ApiConstant, AppConstant, EnvConstant } from "const";
 import dayjs from "dayjs";
+import clsx from "clsx";
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 
-const CreateForm = ({ onCreateBirthChart }: CreateFormProps) => {
+const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: CreateFormProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
 
@@ -20,6 +21,7 @@ const CreateForm = ({ onCreateBirthChart }: CreateFormProps) => {
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
   const [timeFormat, setTimeFormat] = useState("");
+  const [currentCity, setCurrentCity] = useState("");
 
   const handleGetCities = useCallback(
     debounce(async (value: string) => {
@@ -55,21 +57,30 @@ const CreateForm = ({ onCreateBirthChart }: CreateFormProps) => {
     const newDate = dayjs(date).format(AppConstant.FULL_DATE_FORMAT);
     const newTime = dayjs(time).format(AppConstant.TIME_FORMAT);
 
+    let data: ObjectMultiLanguageProps = { newDate, newTime, timeFormat, name, city };
     // TODO: update when implement api
-    onCreateBirthChart({ newDate, newTime, timeFormat, name, city });
+    if (isTransitChart && !currentCity) return;
+    else data = { ...data, currentCity };
+
+    onCreateChart(data);
   };
 
   return (
-    <Stack alignItems="center" className={classes.root} component="form" spacing={4}>
+    <Stack
+      alignItems="center"
+      className={clsx(classes.root, className)}
+      component="form"
+      spacing={4}
+    >
       <Typography className={classes.text}>{getLabel("lTellUsALittle")}</Typography>
-      <Stack spacing={4.25}>
+      <Stack spacing={4.25} width="100%">
         <Stack direction="row">
           <Typography className={classes.label}>{getLabel("lMyNameIs")}</Typography>
           <input className={classes.input} onChange={handleChangeName} value={name} />
         </Stack>
         <Stack direction="row" alignItems="center">
           <Typography className={classes.label}>{getLabel("lIWasBornOn")}</Typography>
-          <AppDateInput onChange={(e) => setDate(e as string)} />
+          <AppDateInput className={classes.dateInput} onChange={(e) => setDate(e as string)} />
           <Typography className={classes.label}>{getLabel("lAt")}</Typography>
           <AppTimeInput className={classes.inputTime} onChange={(e) => setTime(e as string)} />
           <input
@@ -105,8 +116,23 @@ const CreateForm = ({ onCreateBirthChart }: CreateFormProps) => {
             }}
           />
         </Stack>
+        {isTransitChart && (
+          <Stack direction="row">
+            <Typography className={classes.label}>{getLabel("lYourCurrentLocation")}</Typography>
+            <AppAutocomplete
+              options={cities}
+              onChangeValueInput={(_, value) => handleGetCities(value)}
+              onChange={(_, value) => {
+                setCurrentCity(value?.label);
+              }}
+            />
+          </Stack>
+        )}
       </Stack>
-      <AppGradientButton label={getLabel("lCreateChart")} onClick={handleCreateBirthChart} />
+      <AppGradientButton
+        label={submitLabel || getLabel("lCreateChart")}
+        onClick={handleCreateBirthChart}
+      />
     </Stack>
   );
 };
@@ -118,7 +144,10 @@ enum TIME_FORMAT {
 const MAX_CHARACTER_NAME = 255;
 
 export type CreateFormProps = {
-  onCreateBirthChart: (data: any) => void;
+  className?: string;
+  onCreateChart: (data: any) => void;
+  isTransitChart?: boolean;
+  submitLabel?: string;
 };
 
 export default memo(CreateForm);
@@ -197,5 +226,8 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   inputTime: {
     width: 70,
+  },
+  dateInput: {
+    flex: 1,
   },
 }));
