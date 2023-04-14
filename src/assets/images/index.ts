@@ -18,6 +18,9 @@ import TransitChartGalaxyImage from "./img-transit-chart-galaxy.png";
 import MoonTransitImage from "./img-moon-transit.png";
 import ChatTransitChartImage from "./img-chat-transit-chart.png";
 import CreateSynastryChartImage from "./img-create-synastry-chart.png";
+import ViewSynastryChart from "./img-view-synastry-chart.png";
+import WhaleChatSynastryChart from "./img-whale-chat-synastry-chart.png";
+import ViewSynastryChartBackground from "./img-view-synastry-chart-background.svg";
 
 export {
   LogoImage,
@@ -40,4 +43,7 @@ export {
   MoonTransitImage,
   ChatTransitChartImage,
   CreateSynastryChartImage,
+  ViewSynastryChart,
+  WhaleChatSynastryChart,
+  ViewSynastryChartBackground,
 };

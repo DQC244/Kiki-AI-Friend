@@ -3,6 +3,7 @@ import { Box, Stack, StackProps, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import { ThemeProps } from "models/types";
+import clsx from "clsx";
 
 const ChatBox = ({ message, imageSrc, ...otherProps }: ChatBoxProps) => {
   const classes = useStyles();
@@ -15,7 +16,7 @@ const ChatBox = ({ message, imageSrc, ...otherProps }: ChatBoxProps) => {
         className={classes.img}
         draggable="false"
       />
-      <Box className={classes.textBox}>
+      <Box className={clsx(classes.textBox, imageSrc && classes.borderLight)}>
         <Typography className={classes.message}>{message}</Typography>
       </Box>
     </Stack>
@@ -47,5 +48,8 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     fontSize: 14,
     lineHeight: "22px",
     color: theme.palette.secondary.dark,
+  },
+  borderLight: {
+    borderColor: "#FFD488",
   },
 }));

@@ -32,6 +32,7 @@ export default {
   lPlaceOfBirth: "Place of birth:",
   lFindOutWho: "Find out who matches your spiritual energy",
   lViewSynastryChart: "View Synastry Chart",
+  lLetSeeYourHarmony: "Let’s see your harmony and how well you two get on. Try our app now!",
 
   objChatContentDefault: {
     lHiThere: "Hi there 👋",
