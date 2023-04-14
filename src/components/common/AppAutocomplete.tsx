@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       fontSize: 12,
       fontWeight: 500,
       lineHeight: "17px",
-      textTransform: "lowercase",
+      textTransform: "capitalize",
       borderBottom: `1px solid ${theme.palette.common.black}`,
       textAlign: "center",
     },
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       fontSize: 12,
       fontWeight: 500,
       lineHeight: "17px",
-      textTransform: "lowercase",
+      textTransform: "capitalize",
     },
   },
   noOptions: {

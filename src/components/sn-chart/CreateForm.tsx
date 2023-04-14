@@ -31,9 +31,10 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
         const response = await AppService.getCityList(value);
         if (response.status === ApiConstant.STT_OK) {
           const responseData: any = response.data;
+          const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
           newCities = responseData?.map((item: any) => {
             return {
-              label: item?.name + ", " + item?.country,
+              label: item?.name + ", " + regionNames.of(item?.country),
             };
           });
         }
