@@ -46,8 +46,11 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     borderRadius: 8,
     boxShadow: "unset",
     padding: "4px 8px",
-    minHeight: 42,
+    minHeight: 45,
+    height: "100%",
     minWidth: 145,
+    maxWidth: 360,
+    width: "100%",
     textTransform: "unset",
 
     "&:hover": {
@@ -68,6 +71,11 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     fontWeight: 600,
     fontSize: 13,
     lineHeight: "22px",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    display: "-webkit-box",
+    "-webkit-line-clamp": 2,
+    "-webkit-box-orient": "vertical",
   },
   activeRoot: {
     color: theme.palette.common.white,

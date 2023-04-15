@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     border: "1px solid #8861E4",
     borderRadius: 15,
     backgroundColor: theme.palette.common.white,
+    maxWidth: 300,
   },
   message: {
     fontWeight: 400,

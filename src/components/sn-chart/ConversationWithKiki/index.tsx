@@ -1,8 +1,8 @@
-import React, { memo } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "@mui/styles";
-import ChartConversationKiki from "./ChartConversationKiki";
+import ChartConversationKiki, { CHOOSE_QUESTION_STEP } from "./ChartConversationKiki";
 import { ImageAssets } from "assets";
 import clsx from "clsx";
 
@@ -10,14 +10,29 @@ const ConversationWithKiki = ({ imageProps, labelClassName }: ConversationWithKi
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
 
+  const [currentStep, setCurrentStep] = useState(CHOOSE_QUESTION_STEP.topic);
+
+  const whaleChatText = useMemo(() => {
+    switch (currentStep) {
+      case CHOOSE_QUESTION_STEP.topic:
+        return getLabel("lPleaseChooseTheTopic");
+      case CHOOSE_QUESTION_STEP.question:
+        return getLabel("lPleaseChooseQuestion");
+      case CHOOSE_QUESTION_STEP.end:
+        return getLabel("lYouCanClickOnTheArrow");
+      default:
+        return getLabel("lPleaseChooseTheTopic");
+    }
+  }, [getLabel, currentStep]);
+
   return (
     <Stack>
       <Typography className={classes.title}>{getLabel("lWantToTryHave")}</Typography>
       <Stack mt={4} direction="row" spacing={18.25} alignItems="flex-end">
-        <ChartConversationKiki />
+        <ChartConversationKiki currentStep={currentStep} setCurrentStep={setCurrentStep} />
         <Box position="relative">
           <Box className={clsx("center-root", classes.labelWrapper, labelClassName)}>
-            <Typography className={classes.label}>{getLabel("lPleaseChooseTheTopic")}</Typography>
+            <Typography className={classes.label}>{whaleChatText}</Typography>
           </Box>
           <Box
             component="img"
