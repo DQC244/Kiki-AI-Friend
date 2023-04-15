@@ -18,6 +18,8 @@ export default {
   lHeyIAmHere: "Hey, I’m here. Scroll down to explore more.",
   lWantToTryHave: "Want to try having a short conversation with Kiki?",
   lPleaseChooseTheTopic: "Please choose the topic that concerns you most right now!",
+  lPleaseChooseQuestion: "Great! Now choose a question you want to ask!",
+  lYouCanClickOnTheArrow: "You can click on the arrow button to hide or show the topics panel.",
   lYourCurrentLocation: "Your current location:",
   lLookAheadInto: "Look ahead into the coming days, weeks and years with Transit chart",
   lCalculateTransit: "Calculate Transit",
@@ -61,5 +63,36 @@ export default {
     lSynastryChart: "Synastry Chart",
     lDailyTarot: "Daily Tarot",
     lTarotCardMeaning: "Tarot Card Meaning",
+  },
+  // Chat
+  lIveChangedMyMind: "I’ve changed my mind.Can I change topics?",
+
+  objWorkTopic: {
+    lWhatCareersSuitMeTheMost: "What careers suit me the most?",
+    lAnyNewOpportunity: "Any new opportunity for my job/ study?",
+    lShouldIStart: "Should I start a Start-up?",
+    lShouldIPursue: "Should I pursue a higher education?",
+  },
+
+  objLoveTopic: {
+    lTellMeAbout: "Tell me about my marriage life.",
+    lSignOfMyNextLove: "Sign of my next love/romantic relationship?",
+    lWhatIsMyIdealization: "What is my idealization of love and beauty?",
+  },
+
+  objSelfTopic: {
+    lWhatIsMyNutritionalAdvice: "What is my nutritional advice?",
+    lWhatIsMyStressManagementTips: "What is my stress management tips?",
+    lCanYouTellMyPersonality: "Can you tell my personality?",
+  },
+
+  objMoneyTopic: {
+    lWhereCanIGrow: "Where can I grow or find my good fortune from?",
+  },
+
+  objEndTopic: {
+    lAskAnotherQuestion: "Ask another question in the same topics.",
+    lBackToOtherMainTopics: "Back to other main topics.",
+    lEndConversation: "End Conversation.",
   },
 };
