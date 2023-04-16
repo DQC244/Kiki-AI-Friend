@@ -4,6 +4,7 @@ import AIFriendSection from "./AIFriendSection";
 import MysticZoneSection from "./MysticZoneSection";
 import SeeHarmonySection from "./SeeHarmonySection";
 import AppDemoSection from "./AppDemoSection";
+import GenerateBirthChart from "./GenerateBirthChart";
 
 export {
   IntroduceSection,
@@ -12,4 +13,5 @@ export {
   MysticZoneSection,
   SeeHarmonySection,
   AppDemoSection,
+  GenerateBirthChart,
 };

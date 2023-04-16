@@ -18,7 +18,8 @@ const AppDateInput = ({ InputProps, ...otherProps }: DateFieldProps<unknown>) =>
           input: clsx(defaultClasses.input, InputProps?.classes?.input),
           focused: clsx(defaultClasses.focused, InputProps?.classes?.focused),
           error: clsx(defaultClasses.error, InputProps?.classes?.error),
-          notchedOutline: defaultClasses.notchedOutline,
+          // Fix TS not exist notchedOutline
+          notchedOutline: clsx(defaultClasses.notchedOutline, InputProps?.classes?.colorSecondary),
         },
       }}
       {...otherProps}
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   notchedOutline: {
     border: "unset",
-    borderBottom: `1px solid ${theme.palette.common.black}`,
+    borderBottom: `1.5px solid ${theme.palette.common.black}`,
     borderRadius: 0,
   },
   focused: {

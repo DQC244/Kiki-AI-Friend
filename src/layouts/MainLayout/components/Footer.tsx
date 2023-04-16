@@ -4,50 +4,56 @@ import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
-import { LinkConstant } from "const";
+import { LinkConstant, PathConstant } from "const";
 import { ThemeProps } from "models/types";
+import { useLocation } from "react-router-dom";
+import { GenerateBirthChart } from "components/sn-home";
 
 const Footer = () => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
+  const location = useLocation();
 
   return (
-    <Box className={clsx("center-root", classes.root)}>
-      <Typography className={classes.title}>{getLabel("lComingSoonQ3")}</Typography>
-      <Typography className={classes.followUs} mt={2}>
-        {getLabel("lFollowUsOn")}
-      </Typography>
-      <Stack direction="row" spacing={1} mt={1}>
-        <Link href={LinkConstant.TIKTOK_URL} target="_blank">
-          <Box
-            draggable="false"
-            className={classes.logo}
-            component="img"
-            src={ImageAssets.TiktokImage}
-          />
-        </Link>
-        <Link href={LinkConstant.INSTAGRAM_URL} target="_blank">
-          <Box
-            draggable="false"
-            className={classes.logo}
-            component="img"
-            src={ImageAssets.InstagramImage}
-          />
-        </Link>
-      </Stack>
-      <Stack direction="row" spacing={1} mt={2}>
-        <Typography
-          className={classes.text}
-          component={Link}
-          target="_blank"
-          href={LinkConstant.TERMS_CONDITION}
-        >
-          {getLabel("lTermsConditions")}
+    <Stack>
+      <Box className={clsx("center-root", classes.root)}>
+        {location.pathname === PathConstant.ROOT && <GenerateBirthChart mt={20} mb={10} />}
+        <Typography className={classes.title}>{getLabel("lComingSoonQ3")}</Typography>
+        <Typography className={classes.followUs} mt={2}>
+          {getLabel("lFollowUsOn")}
         </Typography>
-        <Typography className={classes.text}>-</Typography>
-        <Typography className={classes.text}>{getLabel("lAllRightsReserved")}</Typography>
-      </Stack>
-    </Box>
+        <Stack direction="row" spacing={1} mt={1}>
+          <Link href={LinkConstant.TIKTOK_URL} target="_blank">
+            <Box
+              draggable="false"
+              className={classes.logo}
+              component="img"
+              src={ImageAssets.TiktokImage}
+            />
+          </Link>
+          <Link href={LinkConstant.INSTAGRAM_URL} target="_blank">
+            <Box
+              draggable="false"
+              className={classes.logo}
+              component="img"
+              src={ImageAssets.InstagramImage}
+            />
+          </Link>
+        </Stack>
+        <Stack direction="row" spacing={1} mt={2}>
+          <Typography
+            className={classes.text}
+            component={Link}
+            target="_blank"
+            href={LinkConstant.TERMS_CONDITION}
+          >
+            {getLabel("lTermsConditions")}
+          </Typography>
+          <Typography className={classes.text}>-</Typography>
+          <Typography className={classes.text}>{getLabel("lAllRightsReserved")}</Typography>
+        </Stack>
+      </Box>
+    </Stack>
   );
 };
 
@@ -59,7 +65,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     position: "relative",
     width: "100vw",
-    height: FOOTER_HEIGHT_IN_PX,
+    minHeight: FOOTER_HEIGHT_IN_PX,
     flexDirection: "column",
     boxShadow: "unset",
     background: `linear-gradient(180deg, #FFFFFF 16.15%, rgba(255, 255, 255, 0) 100%), no-repeat bottom left / 100% auto url(${ImageAssets.BackgroundFooterImage})`,

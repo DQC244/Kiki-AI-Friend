@@ -21,6 +21,10 @@ export default {
   lSeeHarmonyDesc:
     "Wonder whether you and your crush is a perfect match? Or simply just want to know how well you get along with a specific person?",
   lLetSeeYourHarmonyWith: "Let’s see your harmony with your person of interest!",
+  lGenerateMyBirthChart: "Generate my Birth Chart",
+  lIWasBornIn: "I was born in:",
+  lOn: "on",
+  lCity: "city",
 
   // Chart
   lCreateYourOwnBirth: "Create your own birth chart. It’s free!",

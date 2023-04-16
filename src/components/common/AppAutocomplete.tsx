@@ -1,10 +1,17 @@
 import React, { memo } from "react";
-import { Autocomplete, TextField, TextFieldProps } from "@mui/material";
+import { Autocomplete, AutocompleteClasses, TextField, TextFieldProps } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ThemeProps } from "models/types";
+import clsx from "clsx";
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 
-const AppAutocomplete = ({ options, onChangeValueInput, onChange }: AppAutocompleteProps) => {
+const AppAutocomplete = ({
+  classes,
+  placeholder,
+  options,
+  onChangeValueInput,
+  onChange,
+}: AppAutocompleteProps) => {
   const defaultClasses = useStyles();
 
   return (
@@ -14,15 +21,16 @@ const AppAutocomplete = ({ options, onChangeValueInput, onChange }: AppAutocompl
       disablePortal
       fullWidth
       classes={{
-        root: defaultClasses.root,
-        input: defaultClasses.input,
+        ...classes,
+        root: clsx(defaultClasses.root, classes?.root),
+        input: clsx(defaultClasses.input, classes?.input),
         popper: defaultClasses.popper,
         listbox: defaultClasses.listbox,
         option: defaultClasses.option,
         noOptions: defaultClasses.noOptions,
       }}
       options={options}
-      renderInput={(params: TextFieldProps) => <TextField {...params} />}
+      renderInput={(params: TextFieldProps) => <TextField placeholder={placeholder} {...params} />}
     />
   );
 };
@@ -33,6 +41,8 @@ type OptionType = {
 };
 
 type AppAutocompleteProps = {
+  classes?: AutocompleteClasses;
+  placeholder?: string;
   options: Array<OptionType>;
   onChangeValueInput: (event: React.SyntheticEvent, value: string, reason: string) => void;
   onChange: (event: React.SyntheticEvent, value: any | Array<any>, reason: string) => void;
@@ -49,8 +59,14 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       fontWeight: 500,
       lineHeight: "17px",
       textTransform: "capitalize",
-      borderBottom: `1px solid ${theme.palette.common.black}`,
+      borderBottom: `1.5px solid ${theme.palette.common.black}`,
       textAlign: "center",
+
+      "&::placeholder": {
+        color: theme.palette.common.black,
+        textTransform: "lowercase",
+        opacity: 1,
+      },
     },
   },
   listbox: {
