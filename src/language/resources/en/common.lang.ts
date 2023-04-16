@@ -6,6 +6,22 @@ export default {
   lTermsConditions: "Terms & Conditions",
   lAllRightsReserved: "All Rights Reserved.",
 
+  // Home
+  lWelcomeToTheFantasyWorld:
+    "Welcome to the fantasy world, where you can find your true self and support in your spiritual, mental and emotional health​.",
+  lAIFriend: "AI Friend",
+  lAIFriendDesc:
+    "Kiki is your very own personal AI friend, always there to listen and provide insights to help you navigate through life.<br/>Kiki’s always available and he takes care of you from day to night. He’s the perfect companion to provide practical solutions, and positive outlooks, or if you just want to talk to someone.",
+  lWannaSayHello: "Wanna say “Hello” to Kiki?",
+  lMysticZone: "Mystic Zone",
+  lMysticZoneDesc:
+    "A place where you can find the answer to your strugglings. If you are feeling concerned, try to ask for an answer from the universe.",
+  lWantToKnowWhatTheUniverse: "Want to know what the universe wants to tell you? Try now!",
+  lSeeHarmony: "See Harmony",
+  lSeeHarmonyDesc:
+    "Wonder whether you and your crush is a perfect match? Or simply just want to know how well you get along with a specific person?",
+  lLetSeeYourHarmonyWith: "Let’s see your harmony with your person of interest!",
+
   // Chart
   lCreateYourOwnBirth: "Create your own birth chart. It’s free!",
   lTellUsALittle: "Tell us a little bit about yourself",
