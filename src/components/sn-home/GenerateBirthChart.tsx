@@ -74,6 +74,7 @@ const GenerateBirthChart = (props: StackProps) => {
           placeholder={getLabel("lCity")}
           onChangeValueInput={(_, value) => handleGetCities(value)}
           onChange={(_, value) => {
+            setIsErrorCity(false);
             setCity(value?.label);
           }}
         />
@@ -86,7 +87,10 @@ const GenerateBirthChart = (props: StackProps) => {
               colorSecondary: clsx(isErrorDate && classes.error),
             },
           }}
-          onChange={(e) => setDate(e as string)}
+          onChange={(e) => {
+            setIsErrorDate(false);
+            setDate(e as string);
+          }}
         />
         <Typography className={classes.label}>{getLabel("lAt")}</Typography>
         <AppTimeInput
@@ -98,7 +102,10 @@ const GenerateBirthChart = (props: StackProps) => {
               colorSecondary: clsx(isErrorTime && classes.error),
             },
           }}
-          onChange={(e) => setTime(e as string)}
+          onChange={(e) => {
+            setIsErrorTime(false);
+            setTime(e as string);
+          }}
         />
       </Stack>
       <AppGradientButton
