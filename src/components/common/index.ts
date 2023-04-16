@@ -5,6 +5,7 @@ import AppGradientButton from "./AppGradientButton";
 import AppDateInput from "./AppDateInput";
 import AppTimeInput from "./AppTimeInput";
 import AppAutocomplete from "./AppAutocomplete";
+import AppTrans from "./AppTrans";
 
 export {
   AppHead,
@@ -14,6 +15,7 @@ export {
   AppDateInput,
   AppTimeInput,
   AppAutocomplete,
+  AppTrans,
 };
 
 export type { AppHeadProps };

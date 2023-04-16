@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material";
 import breakpoints from "../breakpoints";
 const customBreakpoints = createTheme({ breakpoints }).breakpoints;
-const maxWidth = 1330;
+const maxWidth = 1480;
 
 export default {
   styleOverrides: {
