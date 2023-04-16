@@ -19,7 +19,7 @@ const TransitChart = () => {
 
   return (
     <Box className={clsx(classes.root, !isViewTransitChart && classes.background)}>
-      <Container>
+      <Container className={classes.container}>
         {isViewTransitChart ? (
           <ViewTransitChart />
         ) : (
@@ -34,13 +34,18 @@ export default TransitChart;
 
 const useStyles = makeStyles(() => ({
   root: {
-    paddingTop: 80,
-    paddingBottom: 80,
     minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
   },
   background: {
     backgroundPosition: "right -590px center",
     backgroundSize: "1274px auto",
     background: `no-repeat url(${ImageAssets.TransitChartGalaxyImage})`,
+  },
+  container: {
+    paddingTop: 80,
+    paddingBottom: 80,
+    alignItems: "center",
+    display: "flex",
+    minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
   },
 }));
