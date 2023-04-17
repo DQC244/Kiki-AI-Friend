@@ -1,25 +1,15 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import React, { memo, useMemo, useRef, useState } from "react";
-import { Box, Grid, IconButton, Stack } from "@mui/material";
+import { Box, IconButton, Stack } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import { useTranslation } from "react-i18next";
 import { ObjectMultiLanguageProps } from "models";
+import { ArrowIcon, ShowIcon } from "components/icons";
+import { ThemeProps } from "models/types";
+import QuestionList from "./QuestionList";
 import ChatBox from "./ChatBox";
 import clsx from "clsx";
-import QuestionBoxButton from "./QuestionBoxButton";
-import {
-  ArrowIcon,
-  BagIcon,
-  BallIcon,
-  CrownIcon,
-  HandIcon,
-  HeartIcon,
-  PigActiveIcon,
-  PigIcon,
-  ShowIcon,
-} from "components/icons";
-import { ThemeProps } from "models/types";
 
 const ChartConversationKiki = ({ currentStep, setCurrentStep }: ChartConversationKikiProps) => {
   const classes = useStyles();
@@ -29,78 +19,46 @@ const ChartConversationKiki = ({ currentStep, setCurrentStep }: ChartConversatio
 
   const [lastMessage, setLastMessage] = useState("");
   const [message, setMessage] = useState<Array<MessageType>>([]);
-  const [isShowPanel, setIsShowPanel] = useState(true);
   const [currentTopic, setCurrentTopic] = useState<TOPIC_TYPE>();
+  const [isShowPanel, setIsShowPanel] = useState(true);
 
-  const {
-    messageDefault,
-    questionListTopic,
-    workTopic,
-    loveTopic,
-    selfTopic,
-    moneyTopic,
-    endTopic,
-  } = useMemo(() => {
-    return {
-      messageDefault: getDefaultMessage(getLabel),
-      questionListTopic: getListQuestion(getLabel),
-      workTopic: getWorkTopic(getLabel),
-      loveTopic: getLoveTopic(getLabel),
-      selfTopic: getSelfTopic(getLabel),
-      moneyTopic: getMoneyTopic(getLabel),
-      endTopic: getEndTopic(getLabel),
-    };
-  }, [getLabel]);
+  const messageDefault = useMemo(() => getDefaultMessage(getLabel), [getLabel]);
 
-  const getQuestionOfTopic = (type?: TOPIC_TYPE) => {
-    switch (type) {
-      case TOPIC_TYPE.love:
-        return loveTopic;
-      case TOPIC_TYPE.money:
-        return moneyTopic;
-      case TOPIC_TYPE.self:
-        return selfTopic;
-      case TOPIC_TYPE.work:
-        return workTopic;
-      case TOPIC_TYPE.no:
-        return endTopic;
-      // case TOPIC_TYPE.possibilities:
-      //   return ;
-      // TODO:update later
-      default:
-        return [];
-    }
-  };
-
-  const [questionList, setQuestionList] = useState<any>(questionListTopic);
-
-  const onClickQuestion = (label: string, index: number, type?: TOPIC_TYPE) => {
+  const onClickQuestion = (
+    label: string,
+    type: TOPIC_TYPE,
+    isBackTopic?: boolean,
+    isBackQuestion?: boolean,
+  ) => {
     switch (currentStep) {
       case CHOOSE_QUESTION_STEP.topic:
         if (type === TOPIC_TYPE.no) {
+          // TODO: handle logic choose no im good
           setIsShowPanel(false);
         } else {
           setCurrentTopic(type);
           setCurrentStep(CHOOSE_QUESTION_STEP.question);
-          setQuestionList(getQuestionOfTopic(type));
         }
         break;
 
       case CHOOSE_QUESTION_STEP.question:
-        setIsShowPanel(false);
-        setCurrentStep(CHOOSE_QUESTION_STEP.end);
-        setQuestionList(endTopic);
+        if (isBackTopic) {
+          setCurrentTopic(undefined);
+          setCurrentStep(CHOOSE_QUESTION_STEP.topic);
+        } else {
+          setIsShowPanel(false);
+          setCurrentStep(CHOOSE_QUESTION_STEP.end);
 
-        // TODO:call api in here
+          // TODO:call api in here
+        }
         break;
 
       case CHOOSE_QUESTION_STEP.end:
-        if (index === 0) {
+        if (isBackQuestion) {
           setCurrentStep(CHOOSE_QUESTION_STEP.question);
-          setQuestionList(getQuestionOfTopic(currentTopic));
-        } else if (index === 1) {
+        } else if (isBackTopic) {
+          setCurrentTopic(undefined);
           setCurrentStep(CHOOSE_QUESTION_STEP.topic);
-          setQuestionList(questionListTopic);
         } else {
           setIsShowPanel(false);
         }
@@ -121,58 +79,48 @@ const ChartConversationKiki = ({ currentStep, setCurrentStep }: ChartConversatio
 
   return (
     <Box className={classes.root}>
-      <Stack
-        className={clsx("custom-scrollbar", classes.conversation)}
-        spacing={3.75}
-        ref={listMessageRef}
-      >
-        {messageDefault.map((item, index) => (
-          <ChatBox key={index} message={item} />
-        ))}
-        {message?.map((item, index) => (
-          <ChatBox
-            key={index}
-            imageSrc={item.isMyQuestion ? ImageAssets.UserLogo : ""}
-            message={item.label}
-          />
-        ))}
-      </Stack>
-      <Stack className={clsx(classes.footerContainer, !isShowPanel && classes.hidden)}>
-        <Box className={clsx("center-root", classes.footer)}>
-          <IconButton
-            className={classes.arrowButton}
-            size="small"
-            onClick={() => setIsShowPanel(false)}
-          >
-            <ArrowIcon />
-          </IconButton>
-          <IconButton
-            className={classes.showButton}
-            size="small"
-            onClick={() => setIsShowPanel(true)}
-          >
-            <ShowIcon />
-          </IconButton>
-          <Grid container rowSpacing={2} columnSpacing={1}>
-            {questionList.map((item: any, index: number) => (
-              <Grid
-                className="center-root"
-                item
-                xs={getLargeEleRatio(questionList.length)}
-                key={index}
-              >
-                <QuestionBoxButton
-                  onClickQuestionButton={() => onClickQuestion(item.label, index, item?.type)}
-                  startIcon={item?.icon}
-                  isActive={lastMessage === item.label}
-                >
-                  {item.label}
-                </QuestionBoxButton>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Stack>
+      <Box className={clsx(classes.wrapper, isShowPanel && classes.smallWrapper)}>
+        <Stack
+          className={clsx("custom-scrollbar", classes.conversation)}
+          spacing={3.75}
+          ref={listMessageRef}
+        >
+          {messageDefault.map((item, index) => (
+            <ChatBox key={index} message={item} />
+          ))}
+          {message?.map((item, index) => (
+            <ChatBox
+              key={index}
+              imageSrc={item.isMyQuestion ? ImageAssets.UserLogo : ""}
+              message={item.label}
+            />
+          ))}
+        </Stack>
+        <Stack className={clsx(classes.footerContainer, !isShowPanel && classes.hidden)}>
+          <Box className={clsx("center-root", classes.footer)}>
+            <IconButton
+              className={classes.arrowButton}
+              size="small"
+              onClick={() => setIsShowPanel(false)}
+            >
+              <ArrowIcon />
+            </IconButton>
+            <IconButton
+              className={classes.showButton}
+              size="small"
+              onClick={() => setIsShowPanel(true)}
+            >
+              <ShowIcon />
+            </IconButton>
+            <QuestionList
+              typeTopic={currentTopic}
+              lastMessage={lastMessage}
+              onClickQuestion={onClickQuestion}
+              currentStep={currentStep}
+            />
+          </Box>
+        </Stack>
+      </Box>
     </Box>
   );
 };
@@ -183,7 +131,7 @@ export enum CHOOSE_QUESTION_STEP {
   end,
 }
 
-enum TOPIC_TYPE {
+export enum TOPIC_TYPE {
   work,
   love,
   self,
@@ -204,156 +152,53 @@ type ChartConversationKikiProps = {
 
 export default memo(ChartConversationKiki);
 
-const getLargeEleRatio = (total: number) => {
-  if (total > 4) return 4;
-  if (total === 4) return 6;
-  if (total < 4) return 12;
-};
-
-const getListQuestion = (getLabel: (key: string, obj: object) => ObjectMultiLanguageProps) => {
-  const objContent = getLabel("objQuestionStep1", { returnObjects: true });
-
-  return [
-    {
-      label: objContent.lLove,
-      icon: <HeartIcon />,
-      activeIcon: <HeartIcon />,
-      step: CHOOSE_QUESTION_STEP.topic,
-      type: TOPIC_TYPE.love,
-    },
-    {
-      label: objContent.lMoney,
-      icon: <PigIcon />,
-      activeIcon: <PigActiveIcon />,
-      step: CHOOSE_QUESTION_STEP.topic,
-      type: TOPIC_TYPE.money,
-    },
-    {
-      label: objContent.lSelf,
-      icon: <CrownIcon />,
-      activeIcon: <CrownIcon />,
-      step: CHOOSE_QUESTION_STEP.topic,
-      type: TOPIC_TYPE.self,
-    },
-    {
-      label: objContent.lWorkStudy,
-      icon: <BagIcon />,
-      activeIcon: <BagIcon />,
-      step: CHOOSE_QUESTION_STEP.topic,
-      type: TOPIC_TYPE.work,
-    },
-    {
-      label: objContent.lPossibilities,
-      icon: <BallIcon />,
-      activeIcon: <BallIcon />,
-      step: CHOOSE_QUESTION_STEP.topic,
-      type: TOPIC_TYPE.possibilities,
-    },
-    {
-      label: objContent.lNoImGood,
-      icon: <HandIcon />,
-      activeIcon: <HandIcon />,
-      step: CHOOSE_QUESTION_STEP.topic,
-      type: TOPIC_TYPE.no,
-    },
-  ];
-};
-
-const getWorkTopic = (getLabel: (key: string, obj?: object) => ObjectMultiLanguageProps) => {
-  const workTopicObj = getLabel("objWorkTopic", { returnObjects: true });
-
-  return [
-    { label: workTopicObj.lWhatCareersSuitMeTheMost, step: CHOOSE_QUESTION_STEP.question },
-    { label: workTopicObj.lAnyNewOpportunity, step: CHOOSE_QUESTION_STEP.question },
-    {
-      label: workTopicObj.lShouldIStart,
-
-      step: CHOOSE_QUESTION_STEP.question,
-    },
-    { label: workTopicObj.lShouldIPursue, step: CHOOSE_QUESTION_STEP.question },
-    { label: getLabel("lIveChangedMyMind"), step: CHOOSE_QUESTION_STEP.question },
-  ];
-};
-
-const getLoveTopic = (getLabel: (key: string, obj?: object) => ObjectMultiLanguageProps) => {
-  const loveTopicObj = getLabel("objLoveTopic", { returnObjects: true });
-
-  return [
-    { label: loveTopicObj.lTellMeAbout, step: CHOOSE_QUESTION_STEP.question },
-    { label: loveTopicObj.lSignOfMyNextLove, step: CHOOSE_QUESTION_STEP.question },
-    { label: loveTopicObj.lWhatIsMyIdealization, step: CHOOSE_QUESTION_STEP.question },
-    { label: getLabel("lIveChangedMyMind"), step: CHOOSE_QUESTION_STEP.question },
-  ];
-};
-
-const getSelfTopic = (getLabel: (key: string, obj?: object) => ObjectMultiLanguageProps) => {
-  const selfTopicObj = getLabel("objSelfTopic", { returnObjects: true });
-
-  return [
-    { label: selfTopicObj.lWhatIsMyNutritionalAdvice, step: CHOOSE_QUESTION_STEP.question },
-    { label: selfTopicObj.lWhatIsMyStressManagementTips, step: CHOOSE_QUESTION_STEP.question },
-    { label: selfTopicObj.lCanYouTellMyPersonality, step: CHOOSE_QUESTION_STEP.question },
-    { label: getLabel("lIveChangedMyMind"), step: CHOOSE_QUESTION_STEP.question },
-  ];
-};
-
-const getMoneyTopic = (getLabel: (key: string, obj?: object) => ObjectMultiLanguageProps) => {
-  const moneyTopicObj = getLabel("objMoneyTopic", { returnObjects: true });
-
-  return [
-    { label: moneyTopicObj.lWhereCanIGrow, step: CHOOSE_QUESTION_STEP.question },
-    { label: getLabel("lIveChangedMyMind"), step: CHOOSE_QUESTION_STEP.question },
-  ];
-};
-
-const getEndTopic = (getLabel: (key: string, obj?: object) => ObjectMultiLanguageProps) => {
-  const topicObj = getLabel("objEndTopic", { returnObjects: true });
-
-  return [
-    {
-      label: topicObj.lAskAnotherQuestion,
-      step: CHOOSE_QUESTION_STEP.end,
-    },
-    { label: topicObj.lBackToOtherMainTopics, step: CHOOSE_QUESTION_STEP.end },
-    { label: topicObj.lEndConversation, step: CHOOSE_QUESTION_STEP.end },
-  ];
-};
-
 const getDefaultMessage = (getLabel: (key: string, obj: object) => ObjectMultiLanguageProps) => {
   const objContent = getLabel("objChatContentDefault", { returnObjects: true });
 
   return [objContent.lHiThere, objContent.lMyNameIsKiki, objContent.lWhatBringYouHereToday];
 };
 
+const HEIGHT_FOOTER_IN_PX = 206;
+const HEIGHT_IN_PX = 940;
+
 const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     width: 719,
-    background: "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
+    height: HEIGHT_IN_PX,
+    background: "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), white",
     filter:
       "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(4px 0px 10px rgba(0, 0, 0, 0.25))",
     borderRadius: 28,
     overflow: "hidden",
   },
+  wrapper: {
+    width: "100%",
+    height: "100%",
+    background: `no-repeat top 14px right 40px / 155px auto url(${ImageAssets.DolphinImage}), no-repeat bottom 6px left 70px / 155px auto url(${ImageAssets.SealBalloonsImage})`,
+    transition: "height 0.75s ease-in-out",
+  },
+  smallWrapper: {
+    height: `calc(100% - ${HEIGHT_FOOTER_IN_PX}px)`,
+  },
   conversation: {
-    height: 940,
+    height: "100%",
     padding: "54px 70px",
     overflow: "hidden scroll",
-    background: `no-repeat top right / 100% 725px url(${ImageAssets.BackgroundChatTopRight}), white`,
   },
   footerContainer: {
     position: "absolute",
     bottom: 0,
     left: 0,
     width: "100%",
-    height: 206,
+    height: HEIGHT_FOOTER_IN_PX,
     backgroundColor: theme.palette.common.white,
     overflow: "hidden",
-    transition: "all 0.25s ease-in-out",
+    transition: "all 0.75s ease-in-out",
     borderRadius: "0 0 28px 28px",
   },
   footer: {
     position: "relative",
-    height: 206,
+    height: HEIGHT_FOOTER_IN_PX,
     width: "100%",
     padding: "0 44px",
     background: `no-repeat center center/ auto url(${ImageAssets.BackgroundFooterChat}), rgba(202, 172, 242, 0.7)`,

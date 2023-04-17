@@ -85,7 +85,7 @@ export default {
     lTarotCardMeaning: "Tarot Card Meaning",
   },
   // Chat
-  lIveChangedMyMind: "I’ve changed my mind.Can I change topics?",
+  lIveChangedMyMind: "I’ve changed my mind. Can I change topics?",
 
   objWorkTopic: {
     lWhatCareersSuitMeTheMost: "What careers suit me the most?",

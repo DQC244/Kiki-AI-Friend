@@ -1,3 +1,4 @@
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 import React, { memo } from "react";
 import { Button, ButtonProps, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -7,6 +8,8 @@ import clsx from "clsx";
 const QuestionBoxButton = ({
   children,
   isActive,
+  isItalic,
+  isBlack,
   onClickQuestionButton,
   ...otherProps
 }: QuestionBoxButton) => {
@@ -20,19 +23,29 @@ const QuestionBoxButton = ({
     <Button
       onClick={handleClick}
       classes={{
-        root: clsx(defaultClasses.root, isActive && defaultClasses.activeRoot),
+        root: clsx(
+          defaultClasses.root,
+          isActive && defaultClasses.activeRoot,
+          isItalic && defaultClasses.italic,
+        ),
         startIcon: defaultClasses.startIcon,
       }}
       variant="contained"
       {...otherProps}
     >
-      <Typography className={defaultClasses.text}>{children}</Typography>
+      <Typography
+        className={clsx(defaultClasses.text, isBlack && !isActive && defaultClasses.black)}
+      >
+        {children}
+      </Typography>
     </Button>
   );
 };
 
 type QuestionBoxButton = ButtonProps & {
   isActive: boolean;
+  isItalic?: boolean;
+  isBlack?: boolean;
   onClickQuestionButton: () => void;
 };
 
@@ -85,5 +98,12 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       backgroundColor: theme.palette.secondary.dark,
       borderColor: theme.palette.secondary.dark,
     },
+  },
+  italic: {
+    fontStyle: "italic",
+  },
+  black: {
+    fontWeight: 400,
+    color: theme.palette.common.black,
   },
 }));

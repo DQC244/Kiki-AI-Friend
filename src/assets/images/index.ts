@@ -9,7 +9,6 @@ import ZodiacDemo from "./img-m-chart.png";
 import DotZodiacDemo from "./img-dot-chart.png";
 import WhaleChatImage from "./whale-chat.png";
 import BackgroundChatBottomLeft from "./img-background-chat-bottom-left.svg";
-import BackgroundChatTopRight from "./img-background-chat-top-right.svg";
 import BackgroundFooterChat from "./img-footer-chat.svg";
 import BackgroundBirthChart from "./img-background-birth-chart.png";
 import BackgroundBirthChartChat from "./img-conversation-chat.png";
@@ -30,6 +29,8 @@ import PhoneMysticHomeBackground from "./img-phone-mystic-home.png";
 import PhoneHarmonyHomeBackground from "./img-phone-see-harmony-home.png";
 import AppDemoHomeBackground from "./img-app-demo-background.png";
 import AppDemoHomeBackgroundSection from "./img-background-app-demo-section.png";
+import DolphinImage from "./img-dolphin.png";
+import SealBalloonsImage from "./img-seal-balloons.png";
 
 export {
   LogoImage,
@@ -43,7 +44,6 @@ export {
   DotZodiacDemo,
   WhaleChatImage,
   BackgroundChatBottomLeft,
-  BackgroundChatTopRight,
   BackgroundFooterChat,
   BackgroundBirthChart,
   BackgroundBirthChartChat,
@@ -64,4 +64,6 @@ export {
   PhoneHarmonyHomeBackground,
   AppDemoHomeBackground,
   AppDemoHomeBackgroundSection,
+  DolphinImage,
+  SealBalloonsImage,
 };
