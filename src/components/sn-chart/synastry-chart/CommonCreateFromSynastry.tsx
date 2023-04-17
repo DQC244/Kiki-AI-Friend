@@ -1,6 +1,6 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import React, { useCallback, useState, memo, useEffect, FormEvent } from "react";
-import { Stack, Typography } from "@mui/material";
+import { AutocompleteClasses, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useTranslation } from "react-i18next";
 import { AppAutocomplete, AppDateInput, AppTimeInput } from "components/common";
@@ -8,6 +8,7 @@ import { debounce } from "lodash";
 import { AppService } from "services";
 import { ApiConstant, AppConstant, EnvConstant } from "const";
 import { ThemeProps } from "models/types";
+import clsx from "clsx";
 
 const CommonCreateFromSynastry = ({
   onChangeValue,
@@ -15,6 +16,7 @@ const CommonCreateFromSynastry = ({
   nameLabel,
   dateLabel,
   placeLabel,
+  error,
 }: CommonCreateFromSynastryProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
@@ -28,7 +30,9 @@ const CommonCreateFromSynastry = ({
 
   const handleChangeName = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
-    if (value.length > AppConstant.MAX_CHARACTER_NAME) return;
+    if (value.length > AppConstant.MAX_CHARACTER_NAME) {
+      return;
+    }
     setName(value);
   };
 
@@ -65,13 +69,36 @@ const CommonCreateFromSynastry = ({
       <Stack spacing={4.5} width="100%">
         <Stack direction="row">
           <Typography className={classes.label}>{nameLabel || getLabel("lMyNameIs")}</Typography>
-          <input className={classes.input} onChange={handleChangeName} />
+          <input
+            className={clsx(classes.input, error.isErrorName && classes.error)}
+            onChange={handleChangeName}
+          />
         </Stack>
         <Stack direction="row" alignItems="center">
           <Typography className={classes.label}>{dateLabel || getLabel("lIWasBornOn")}</Typography>
-          <AppDateInput className={classes.dateInput} onChange={(e) => setDate(e as string)} />
+          <AppDateInput
+            className={classes.dateInput}
+            InputProps={{
+              classes: {
+                colorSecondary: clsx(error.isErrorDate && classes.error),
+              },
+            }}
+            onChange={(e) => {
+              setDate(e as string);
+            }}
+          />
           <Typography className={classes.label}>{getLabel("lAt")}</Typography>
-          <AppTimeInput className={classes.inputTime} onChange={(e) => setTime(e as string)} />
+          <AppTimeInput
+            className={classes.inputTime}
+            InputProps={{
+              classes: {
+                colorSecondary: clsx(error.isErrorTime && classes.error),
+              },
+            }}
+            onChange={(e) => {
+              setTime(e as string);
+            }}
+          />
           <input
             className={classes.radioInput}
             type="radio"
@@ -103,6 +130,11 @@ const CommonCreateFromSynastry = ({
             onChange={(_, value) => {
               setCity(value?.label);
             }}
+            classes={
+              {
+                input: clsx(error.isErrorCity && classes.error),
+              } as AutocompleteClasses
+            }
           />
         </Stack>
       </Stack>
@@ -115,6 +147,13 @@ type CommonCreateFromSynastryProps = {
   dateLabel?: string;
   placeLabel?: string;
   nameLabel?: string;
+  error: {
+    isErrorName: boolean;
+    isErrorCity: boolean;
+    isErrorDate: boolean;
+    isErrorTime: boolean;
+  };
+
   onChangeValue: (
     name: string,
     city: string,
@@ -194,5 +233,10 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   dateInput: {
     flex: 1,
+  },
+  error: {
+    "&$error&$error": {
+      borderColor: theme.palette.error.main,
+    },
   },
 }));

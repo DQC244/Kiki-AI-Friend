@@ -1,5 +1,5 @@
 import React, { memo, useState, FormEvent, useCallback } from "react";
-import { Stack, Typography } from "@mui/material";
+import { AutocompleteClasses, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { AppAutocomplete, AppDateInput, AppGradientButton, AppTimeInput } from "components/common";
 import { ObjectMultiLanguageProps, ThemeProps } from "models/types";
@@ -22,7 +22,12 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
   const [date, setDate] = useState("");
   const [timeFormat, setTimeFormat] = useState("");
   const [currentCity, setCurrentCity] = useState("");
-  const [isError, setIsError] = useState(false);
+
+  const [isErrorName, setIsErrorName] = useState(false);
+  const [isErrorCity, setIsErrorCity] = useState(false);
+  const [isErrorCurrentCity, setIsErrorCurrentCity] = useState(false);
+  const [isErrorDate, setIsErrorDate] = useState(false);
+  const [isErrorTime, setIsErrorTime] = useState(false);
 
   const handleGetCities = useCallback(
     debounce(async (value: string) => {
@@ -49,13 +54,22 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
 
   const handleChangeName = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
-    if (value.length > AppConstant.MAX_CHARACTER_NAME) return;
+    if (value.length > AppConstant.MAX_CHARACTER_NAME || !value) {
+      setIsErrorName(true);
+      return;
+    }
+    setIsErrorName(false);
     setName(value);
   };
 
   const handleCreateBirthChart = () => {
+    if (isTransitChart && !currentCity) setIsErrorCurrentCity(true);
+
     if (!dayjs(date).isValid() || !dayjs(time).isValid() || !timeFormat || !name || !city) {
-      setIsError(true);
+      if (!dayjs(date).isValid()) setIsErrorDate(true);
+      if (!dayjs(time).isValid()) setIsErrorTime(true);
+      if (!name) setIsErrorName(true);
+      if (!city) setIsErrorCity(true);
       return;
     }
 
@@ -64,10 +78,9 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
 
     let data: ObjectMultiLanguageProps = { newDate, newTime, timeFormat, name, city };
     // TODO: update when implement api
-    if (isTransitChart && !currentCity) {
-      setIsError(true);
-      return;
-    } else data = { ...data, currentCity };
+    if (isTransitChart) {
+      data = { ...data, currentCity };
+    }
 
     onCreateChart(data);
   };
@@ -83,13 +96,39 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
       <Stack spacing={4.25} width="100%">
         <Stack direction="row">
           <Typography className={classes.label}>{getLabel("lMyNameIs")}</Typography>
-          <input className={classes.input} onChange={handleChangeName} value={name} />
+          <input
+            className={clsx(classes.input, isErrorName && classes.error)}
+            onChange={handleChangeName}
+            value={name}
+          />
         </Stack>
         <Stack direction="row" alignItems="center">
           <Typography className={classes.label}>{getLabel("lIWasBornOn")}</Typography>
-          <AppDateInput className={classes.dateInput} onChange={(e) => setDate(e as string)} />
+          <AppDateInput
+            className={classes.dateInput}
+            InputProps={{
+              classes: {
+                colorSecondary: clsx(isErrorDate && classes.error),
+              },
+            }}
+            onChange={(e) => {
+              setIsErrorDate(false);
+              setDate(e as string);
+            }}
+          />
           <Typography className={classes.label}>{getLabel("lAt")}</Typography>
-          <AppTimeInput className={classes.inputTime} onChange={(e) => setTime(e as string)} />
+          <AppTimeInput
+            className={classes.inputTime}
+            InputProps={{
+              classes: {
+                colorSecondary: clsx(isErrorTime && classes.error),
+              },
+            }}
+            onChange={(e) => {
+              setIsErrorTime(false);
+              setTime(e as string);
+            }}
+          />
           <input
             className={classes.radioInput}
             type="radio"
@@ -119,8 +158,14 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
             options={cities}
             onChangeValueInput={(_, value) => handleGetCities(value)}
             onChange={(_, value) => {
+              setIsErrorCity(false);
               setCity(value?.label);
             }}
+            classes={
+              {
+                input: clsx(isErrorCity && classes.error),
+              } as AutocompleteClasses
+            }
           />
         </Stack>
         {isTransitChart && (
@@ -130,8 +175,14 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
               options={cities}
               onChangeValueInput={(_, value) => handleGetCities(value)}
               onChange={(_, value) => {
+                setIsErrorCurrentCity(false);
                 setCurrentCity(value?.label);
               }}
+              classes={
+                {
+                  input: clsx(isErrorCurrentCity && classes.error),
+                } as AutocompleteClasses
+              }
             />
           </Stack>
         )}
@@ -141,11 +192,6 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
           label={submitLabel || getLabel("lCreateChart")}
           onClick={handleCreateBirthChart}
         />
-        {isError && (
-          <Typography textAlign="center" color="error.main">
-            {getLabel("lPleaseEnterAllRequiredFields")}
-          </Typography>
-        )}
       </Stack>
     </Stack>
   );
@@ -238,5 +284,10 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   dateInput: {
     flex: 1,
+  },
+  error: {
+    "&$error&$error": {
+      borderColor: theme.palette.error.main,
+    },
   },
 }));
