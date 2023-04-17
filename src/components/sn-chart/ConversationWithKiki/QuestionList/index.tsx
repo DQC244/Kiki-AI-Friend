@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
 import { CHOOSE_QUESTION_STEP, TOPIC_TYPE } from "../ChartConversationKiki";
 import QuestionLove from "./QuestionLove";
 import QuestionMoney from "./QuestionMoney";
@@ -53,6 +53,7 @@ export type OnClickQuestionProps = (
   type: TOPIC_TYPE,
   isBackTopic?: boolean,
   isBackQuestion?: boolean,
+  icon?: ReactNode,
 ) => void;
 
 type QuestionListProps = {

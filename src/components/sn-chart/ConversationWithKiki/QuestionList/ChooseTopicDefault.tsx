@@ -26,7 +26,9 @@ const ChooseTopicDefault = ({ onClickQuestion, lastMessage }: QuestionWorkProps)
       {topicList.map((item: any, index: number) => (
         <Grid className="center-root" item key={index} xs={4}>
           <QuestionBoxButton
-            onClickQuestionButton={() => onClickQuestion(item.label, item?.type)}
+            onClickQuestionButton={() =>
+              onClickQuestion(item.label, item?.type, false, false, item.icon)
+            }
             startIcon={item?.icon}
             isActive={lastMessage === item.label}
           >

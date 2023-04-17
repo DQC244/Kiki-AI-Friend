@@ -1,5 +1,5 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-import React, { memo, useMemo, useRef, useState } from "react";
+import React, { ReactNode, memo, useMemo, useRef, useState } from "react";
 import { Box, IconButton, Stack } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
@@ -29,7 +29,9 @@ const ChartConversationKiki = ({ currentStep, setCurrentStep }: ChartConversatio
     type: TOPIC_TYPE,
     isBackTopic?: boolean,
     isBackQuestion?: boolean,
+    icon?: ReactNode,
   ) => {
+    let newMessage: MessageType = { label, isMyQuestion: true };
     switch (currentStep) {
       case CHOOSE_QUESTION_STEP.topic:
         if (type === TOPIC_TYPE.no) {
@@ -39,6 +41,7 @@ const ChartConversationKiki = ({ currentStep, setCurrentStep }: ChartConversatio
           setCurrentTopic(type);
           setCurrentStep(CHOOSE_QUESTION_STEP.question);
         }
+        newMessage = { ...newMessage, icon };
         break;
 
       case CHOOSE_QUESTION_STEP.question:
@@ -67,7 +70,7 @@ const ChartConversationKiki = ({ currentStep, setCurrentStep }: ChartConversatio
       default:
         break;
     }
-    setMessage([...message, { label, isMyQuestion: true }]);
+    setMessage([...message, newMessage]);
     setLastMessage(label);
 
     setTimeout(() => {
@@ -93,6 +96,7 @@ const ChartConversationKiki = ({ currentStep, setCurrentStep }: ChartConversatio
               key={index}
               imageSrc={item.isMyQuestion ? ImageAssets.UserLogo : ""}
               message={item.label}
+              startIcon={item?.icon}
             />
           ))}
         </Stack>
@@ -142,6 +146,7 @@ export enum TOPIC_TYPE {
 
 type MessageType = {
   label: string;
+  icon?: ReactNode;
   isMyQuestion?: boolean;
 };
 
