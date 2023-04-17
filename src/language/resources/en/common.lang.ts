@@ -72,6 +72,11 @@ export default {
   lYouCanThinkAboutAnotherPossibility:
     "You can think about another possibility or slide the topic bar to ask another question.",
   lGreatClickOnTheButton: "Great! Click on the button if you’re ready!",
+  lInsteadDoYouWantToTryOut:
+    "Instead, do you want to try out the Mystic Zone? Download our app to explore more!",
+
+  // No EN
+  lImSorryITryImprove: "Tôi xin lỗi, tôi sẽ cố gắng cải thiện hơn trong tương lai.",
 
   objChatContentDefault: {
     lHiThere: "Hi there 👋",

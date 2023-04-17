@@ -12,6 +12,7 @@ import ChatBox from "./ChatBox";
 import clsx from "clsx";
 import PossibilityMessage from "./PossibilityMessage";
 import { AppConstant } from "const";
+import NoImGoodTopic from "./NoImGoodTopic";
 
 const ChartConversationKiki = ({
   currentStep,
@@ -38,6 +39,12 @@ const ChartConversationKiki = ({
     }, debounce || AppConstant.DEBOUNCE_TIME_IN_MILLISECOND);
   };
 
+  const handleRefreshChatTopic = () => {
+    setLastMessage("");
+    setIsShowPanel(false);
+    scrollTopElement(10);
+  };
+
   const handleChoosePossibilityTopic = () => {
     setTimeout(() => {
       setMessage((preMessage) => [
@@ -52,10 +59,16 @@ const ChartConversationKiki = ({
           ),
         },
       ]);
-      setLastMessage("");
-      setIsShowPanel(false);
-      scrollTopElement(10);
       onSetContentDolphin(getLabel("lGreatClickOnTheButton"));
+      handleRefreshChatTopic();
+    }, AppConstant.DEBOUNCE_TIME_IN_MILLISECOND);
+  };
+
+  const handleChooseNoGood = () => {
+    setTimeout(() => {
+      setMessage((preMessage) => [...preMessage, { label: "", contentHOC: <NoImGoodTopic /> }]);
+      onSetContentDolphin(getLabel("lDownloadOurAppIfYouWant"));
+      handleRefreshChatTopic();
     }, AppConstant.DEBOUNCE_TIME_IN_MILLISECOND);
   };
 
@@ -71,8 +84,7 @@ const ChartConversationKiki = ({
       case CHOOSE_QUESTION_STEP.topic:
         newMessageObj = { ...newMessageObj, icon };
         if (type === TOPIC_TYPE.no) {
-          // TODO: handle logic choose no im good
-          setIsShowPanel(false);
+          handleChooseNoGood();
         } else if (type === TOPIC_TYPE.possibilities) {
           handleChoosePossibilityTopic();
         } else {

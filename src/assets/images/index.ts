@@ -34,6 +34,7 @@ import SealBalloonsImage from "./img-seal-balloons.png";
 import PopupBackground from "./img-popup-background.png";
 import YesPopupBackground from "./img-yes-popup-background.png";
 import MaybePopupBackground from "./img-maybe-popup-background.png";
+import ImSorryImage from "./img-im-sorry.png";
 
 export {
   LogoImage,
@@ -72,4 +73,5 @@ export {
   PopupBackground,
   YesPopupBackground,
   MaybePopupBackground,
+  ImSorryImage,
 };

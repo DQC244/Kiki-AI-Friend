@@ -5,7 +5,14 @@ import { ImageAssets } from "assets";
 import { ThemeProps } from "models/types";
 import clsx from "clsx";
 
-const ChatBox = ({ message, messageCustom, startIcon, imageSrc, ...otherProps }: ChatBoxProps) => {
+const ChatBox = ({
+  message,
+  messageCustom,
+  startIcon,
+  imageSrc,
+  contentCustom,
+  ...otherProps
+}: ChatBoxProps) => {
   const classes = useStyles();
 
   return (
@@ -16,10 +23,12 @@ const ChatBox = ({ message, messageCustom, startIcon, imageSrc, ...otherProps }:
         className={classes.img}
         draggable="false"
       />
-      <Box className={clsx(classes.textBox, imageSrc && classes.borderLight)}>
-        {startIcon}
-        {messageCustom || <Typography className={classes.message}>{message}</Typography>}
-      </Box>
+      {contentCustom ?? (
+        <Box className={clsx(classes.textBox, imageSrc && classes.borderLight)}>
+          {startIcon}
+          {messageCustom || <Typography className={classes.message}>{message}</Typography>}
+        </Box>
+      )}
     </Stack>
   );
 };
@@ -29,6 +38,7 @@ type ChatBoxProps = StackProps & {
   messageCustom?: ReactNode;
   imageSrc?: string;
   startIcon?: ReactNode;
+  contentCustom?: ReactNode;
 };
 
 export default memo(ChatBox);
