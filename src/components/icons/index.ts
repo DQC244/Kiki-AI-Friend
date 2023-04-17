@@ -7,6 +7,7 @@ import PigIcon from "./PigIcon";
 import PigActiveIcon from "./PigActiveIcon";
 import ArrowIcon from "./ArrowIcon";
 import ShowIcon from "./ShowIcon";
+import CloseIcon from "./CloseIcon";
 
 export {
   HeartIcon,
@@ -18,4 +19,5 @@ export {
   PigActiveIcon,
   ArrowIcon,
   ShowIcon,
+  CloseIcon,
 };

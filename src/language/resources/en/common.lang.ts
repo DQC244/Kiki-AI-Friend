@@ -56,6 +56,22 @@ export default {
   lViewSynastryChart: "View Synastry Chart",
   lLetSeeYourHarmony: "Let’s see your harmony and how well you two get on. Try our app now!",
   lPleaseEnterAllRequiredFields: "Please enter all required fields",
+  lThinkAboutTheQuestionYouAsk: "Think about the question you wanna ask.",
+  lWhenYouAreDone:
+    "When you’re done, click on the button below and I’ll get your answer from the universe.",
+  lImReady: "I’m ready",
+  lThinkAboutAnotherPossibility: "Think about another possibility",
+  lJustADayDream: "It’s just a daydream! Wake up honey.",
+  lJustGoIt: "Just go for it!",
+  lItNotRightTime: "It’s not the right time.",
+  lKeepThinkingAboutAnother: "Keep thinking about another possibility you wanna ask me!",
+  lPingMeAgainWhenYouAreReady: "Ping me again when you’re ready!",
+  lJustComeBackAnytimeWith:
+    "Just come back anytime with a fish or download our app to explore more and receive many more messages from the universe.",
+  lDownloadOurAppIfYouWant: "Download our app if you want to have more conversation with me!",
+  lYouCanThinkAboutAnotherPossibility:
+    "You can think about another possibility or slide the topic bar to ask another question.",
+  lGreatClickOnTheButton: "Great! Click on the button if you’re ready!",
 
   objChatContentDefault: {
     lHiThere: "Hi there 👋",

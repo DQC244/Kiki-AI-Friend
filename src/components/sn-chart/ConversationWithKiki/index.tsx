@@ -11,8 +11,10 @@ const ConversationWithKiki = ({ imageProps, labelClassName }: ConversationWithKi
   const { t: getLabel } = useTranslation();
 
   const [currentStep, setCurrentStep] = useState(CHOOSE_QUESTION_STEP.topic);
+  const [contentDolphin, setContentDolphin] = useState("");
 
   const whaleChatText = useMemo(() => {
+    setContentDolphin("");
     switch (currentStep) {
       case CHOOSE_QUESTION_STEP.topic:
         return getLabel("lPleaseChooseTheTopic");
@@ -29,10 +31,14 @@ const ConversationWithKiki = ({ imageProps, labelClassName }: ConversationWithKi
     <Stack>
       <Typography className={classes.title}>{getLabel("lWantToTryHave")}</Typography>
       <Stack mt={4} direction="row" spacing={18.25} alignItems="flex-end">
-        <ChartConversationKiki currentStep={currentStep} setCurrentStep={setCurrentStep} />
+        <ChartConversationKiki
+          onSetContentDolphin={setContentDolphin}
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+        />
         <Box position="relative">
           <Box className={clsx("center-root", classes.labelWrapper, labelClassName)}>
-            <Typography className={classes.label}>{whaleChatText}</Typography>
+            <Typography className={classes.label}>{contentDolphin || whaleChatText}</Typography>
           </Box>
           <Box
             component="img"

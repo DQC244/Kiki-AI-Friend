@@ -10,8 +10,14 @@ import { ThemeProps } from "models/types";
 import QuestionList from "./QuestionList";
 import ChatBox from "./ChatBox";
 import clsx from "clsx";
+import PossibilityMessage from "./PossibilityMessage";
+import { AppConstant } from "const";
 
-const ChartConversationKiki = ({ currentStep, setCurrentStep }: ChartConversationKikiProps) => {
+const ChartConversationKiki = ({
+  currentStep,
+  setCurrentStep,
+  onSetContentDolphin,
+}: ChartConversationKikiProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
 
@@ -24,6 +30,35 @@ const ChartConversationKiki = ({ currentStep, setCurrentStep }: ChartConversatio
 
   const messageDefault = useMemo(() => getDefaultMessage(getLabel), [getLabel]);
 
+  const scrollTopElement = (debounce?: number) => {
+    setTimeout(() => {
+      if (listMessageRef?.current) {
+        listMessageRef.current.scrollTop = listMessageRef.current.scrollHeight;
+      }
+    }, debounce || AppConstant.DEBOUNCE_TIME_IN_MILLISECOND);
+  };
+
+  const handleChoosePossibilityTopic = () => {
+    setTimeout(() => {
+      setMessage((preMessage) => [
+        ...preMessage,
+        {
+          label: "",
+          contentHOC: (
+            <PossibilityMessage
+              onSetContentDolphin={onSetContentDolphin}
+              refEl={listMessageRef.current}
+            />
+          ),
+        },
+      ]);
+      setLastMessage("");
+      setIsShowPanel(false);
+      scrollTopElement(10);
+      onSetContentDolphin(getLabel("lGreatClickOnTheButton"));
+    }, AppConstant.DEBOUNCE_TIME_IN_MILLISECOND);
+  };
+
   const onClickQuestion = (
     label: string,
     type: TOPIC_TYPE,
@@ -31,17 +66,19 @@ const ChartConversationKiki = ({ currentStep, setCurrentStep }: ChartConversatio
     isBackQuestion?: boolean,
     icon?: ReactNode,
   ) => {
-    let newMessage: MessageType = { label, isMyQuestion: true };
+    let newMessageObj: MessageType = { label, isMyQuestion: true };
     switch (currentStep) {
       case CHOOSE_QUESTION_STEP.topic:
+        newMessageObj = { ...newMessageObj, icon };
         if (type === TOPIC_TYPE.no) {
           // TODO: handle logic choose no im good
           setIsShowPanel(false);
+        } else if (type === TOPIC_TYPE.possibilities) {
+          handleChoosePossibilityTopic();
         } else {
-          setCurrentTopic(type);
           setCurrentStep(CHOOSE_QUESTION_STEP.question);
+          setCurrentTopic(type);
         }
-        newMessage = { ...newMessage, icon };
         break;
 
       case CHOOSE_QUESTION_STEP.question:
@@ -70,14 +107,11 @@ const ChartConversationKiki = ({ currentStep, setCurrentStep }: ChartConversatio
       default:
         break;
     }
-    setMessage([...message, newMessage]);
+
+    setMessage([...message, newMessageObj]);
     setLastMessage(label);
 
-    setTimeout(() => {
-      if (listMessageRef?.current) {
-        listMessageRef.current.scrollTop = listMessageRef.current.scrollHeight;
-      }
-    }, 20);
+    scrollTopElement(10);
   };
 
   return (
@@ -91,14 +125,19 @@ const ChartConversationKiki = ({ currentStep, setCurrentStep }: ChartConversatio
           {messageDefault.map((item, index) => (
             <ChatBox key={index} message={item} />
           ))}
-          {message?.map((item, index) => (
-            <ChatBox
-              key={index}
-              imageSrc={item.isMyQuestion ? ImageAssets.UserLogo : ""}
-              message={item.label}
-              startIcon={item?.icon}
-            />
-          ))}
+          {message?.map((item, index) => {
+            if (item.contentHOC) {
+              return item.contentHOC;
+            }
+            return (
+              <ChatBox
+                key={index}
+                imageSrc={item.isMyQuestion ? ImageAssets.UserLogo : ""}
+                message={item.label}
+                startIcon={item?.icon}
+              />
+            );
+          })}
         </Stack>
         <Stack className={clsx(classes.footerContainer, !isShowPanel && classes.hidden)}>
           <Box className={clsx("center-root", classes.footer)}>
@@ -148,11 +187,13 @@ type MessageType = {
   label: string;
   icon?: ReactNode;
   isMyQuestion?: boolean;
+  contentHOC?: ReactNode;
 };
 
 type ChartConversationKikiProps = {
   currentStep: CHOOSE_QUESTION_STEP;
   setCurrentStep: (step: CHOOSE_QUESTION_STEP) => void;
+  onSetContentDolphin: (message: string) => void;
 };
 
 export default memo(ChartConversationKiki);
@@ -168,6 +209,7 @@ const HEIGHT_IN_PX = 940;
 
 const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
+    position: "relative",
     width: 719,
     height: HEIGHT_IN_PX,
     background: "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), white",

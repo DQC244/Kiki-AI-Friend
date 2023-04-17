@@ -5,7 +5,7 @@ import { ImageAssets } from "assets";
 import { ThemeProps } from "models/types";
 import clsx from "clsx";
 
-const ChatBox = ({ message, startIcon, imageSrc, ...otherProps }: ChatBoxProps) => {
+const ChatBox = ({ message, messageCustom, startIcon, imageSrc, ...otherProps }: ChatBoxProps) => {
   const classes = useStyles();
 
   return (
@@ -18,7 +18,7 @@ const ChatBox = ({ message, startIcon, imageSrc, ...otherProps }: ChatBoxProps) 
       />
       <Box className={clsx(classes.textBox, imageSrc && classes.borderLight)}>
         {startIcon}
-        <Typography className={classes.message}>{message}</Typography>
+        {messageCustom || <Typography className={classes.message}>{message}</Typography>}
       </Box>
     </Stack>
   );
@@ -26,6 +26,7 @@ const ChatBox = ({ message, startIcon, imageSrc, ...otherProps }: ChatBoxProps) 
 
 type ChatBoxProps = StackProps & {
   message?: string;
+  messageCustom?: ReactNode;
   imageSrc?: string;
   startIcon?: ReactNode;
 };
@@ -46,7 +47,6 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     border: "1px solid #8861E4",
     borderRadius: 15,
     backgroundColor: theme.palette.common.white,
-    maxWidth: 300,
     fontSize: 24,
     color: theme.palette.secondary.dark,
 

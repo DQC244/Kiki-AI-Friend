@@ -31,6 +31,9 @@ import AppDemoHomeBackground from "./img-app-demo-background.png";
 import AppDemoHomeBackgroundSection from "./img-background-app-demo-section.png";
 import DolphinImage from "./img-dolphin.png";
 import SealBalloonsImage from "./img-seal-balloons.png";
+import PopupBackground from "./img-popup-background.png";
+import YesPopupBackground from "./img-yes-popup-background.png";
+import MaybePopupBackground from "./img-maybe-popup-background.png";
 
 export {
   LogoImage,
@@ -66,4 +69,7 @@ export {
   AppDemoHomeBackgroundSection,
   DolphinImage,
   SealBalloonsImage,
+  PopupBackground,
+  YesPopupBackground,
+  MaybePopupBackground,
 };
