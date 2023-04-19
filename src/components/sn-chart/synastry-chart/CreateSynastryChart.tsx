@@ -3,12 +3,15 @@ import React, { memo, useState } from "react";
 import { Stack } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { ObjectMultiLanguageProps } from "models";
+import { makeStyles } from "@mui/styles";
 import CommonCreateFromSynastry from "./CommonCreateFromSynastry";
 import TitleChart from "../TitleChart";
 import SealBackGroundButton from "../../common/SealBackGroundButton";
 import dayjs from "dayjs";
 
 const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) => {
+  const classes = useStyles();
+
   const { t: getLabel } = useTranslation();
   const [data, setData] = useState<ObjectMultiLanguageProps>({});
 
@@ -58,7 +61,7 @@ const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) 
     if (!data?.name) setIsErrorName(true);
     if (!data?.city) setIsErrorCity(true);
     if (!data?.myDate || !dayjs(data?.myDate).isValid()) setIsMyErrorDate(true);
-    if (data?.myTime || !dayjs(data?.myTime).isValid()) setIsMyErrorTime(true);
+    if (!data?.myTime || !dayjs(data?.myTime).isValid()) setIsMyErrorTime(true);
     if (!data?.myName) setIsMyErrorName(true);
     if (!data?.myCity) setIsMyErrorCity(true);
     if (
@@ -84,6 +87,7 @@ const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) 
       <TitleChart title={getLabel("lFindOutWho")} />
       <Stack direction="row" spacing={4} justifyContent="center">
         <CommonCreateFromSynastry
+          className={classes.form}
           onChangeValue={handleChangeMyValue}
           error={{
             isErrorName: isMyErrorName,
@@ -113,3 +117,9 @@ type CreateSynastryChartProps = {
 };
 
 export default memo(CreateSynastryChart);
+
+const useStyles = makeStyles(() => ({
+  form: {
+    // background: "linear-gradient(293.7deg, #FFFFFF -3.9%, rgba(255, 255, 255, 0) 111.17%)",
+  },
+}));

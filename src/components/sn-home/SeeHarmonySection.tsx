@@ -40,14 +40,11 @@ export default memo(SeeHarmonySection);
 
 const useStyles = makeStyles(() => ({
   title: {
-    fontFamily: "Montserrat",
     fontWeight: 700,
     fontSize: 64,
     lineHeight: "71px",
   },
-  text: {
-    fontFamily: "Montserrat",
-  },
+  text: {},
   wrapperImage: {
     position: "relative",
   },

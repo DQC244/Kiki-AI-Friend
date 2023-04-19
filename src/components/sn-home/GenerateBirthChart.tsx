@@ -128,7 +128,6 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     whiteSpace: "nowrap",
     fontWeight: 700,
     fontSize: 24,
-    fontFamily: "Montserrat",
   },
   autoCompleteRoot: {
     height: 43,

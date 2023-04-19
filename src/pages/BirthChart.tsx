@@ -9,7 +9,7 @@ import clsx from "clsx";
 
 const BirthChart = () => {
   const classes = useStyles();
-  const [isViewBirthChart, setIsViewBirthChart] = useState(false);
+  const [isViewBirthChart, setIsViewBirthChart] = useState(true);
 
   const handleCreateBirthChart = (data: any) => {
     // TODO: update when implement api

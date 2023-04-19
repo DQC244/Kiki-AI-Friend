@@ -47,13 +47,11 @@ const useStyles = makeStyles(() => ({
     height: 709,
   },
   title: {
-    fontFamily: "Montserrat",
     fontWeight: 700,
     fontSize: 64,
     lineHeight: "71px",
   },
   text: {
-    fontFamily: "Montserrat",
     textAlign: "end",
   },
   imageWrapper: {

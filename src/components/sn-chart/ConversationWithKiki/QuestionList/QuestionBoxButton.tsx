@@ -104,6 +104,6 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   black: {
     fontWeight: 400,
-    color: theme.palette.common.black,
+    color: "#59518C",
   },
 }));

@@ -1,6 +1,6 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import React, { useCallback, useState, memo, useEffect, FormEvent } from "react";
-import { AutocompleteClasses, Stack, Typography } from "@mui/material";
+import { AutocompleteClasses, Stack, StackProps, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useTranslation } from "react-i18next";
 import { AppAutocomplete, AppDateInput, AppTimeInput } from "components/common";
@@ -12,6 +12,7 @@ import clsx from "clsx";
 
 const CommonCreateFromSynastry = ({
   onChangeValue,
+  className,
   title,
   nameLabel,
   dateLabel,
@@ -64,7 +65,7 @@ const CommonCreateFromSynastry = ({
   }, [name, city, date, time, timeFormat]);
 
   return (
-    <Stack className={classes.root} spacing={4} component="form">
+    <Stack className={clsx(classes.root, className)} spacing={4} component="form">
       <Typography className={classes.title}>{title || getLabel("lTellUsALittle")}</Typography>
       <Stack spacing={4.5} width="100%">
         <Stack direction="row">
@@ -142,7 +143,7 @@ const CommonCreateFromSynastry = ({
   );
 };
 
-type CommonCreateFromSynastryProps = {
+type CommonCreateFromSynastryProps = StackProps & {
   title?: string;
   dateLabel?: string;
   placeLabel?: string;
@@ -170,7 +171,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     width: 514,
     padding: "32px 16px",
     filter: "drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25))",
-    backdropFilter: "blur(20px)",
+    backdropFilter: "blur(10px)",
     borderRadius: 20,
     border: "0.5px solid #a1a4fe",
   },

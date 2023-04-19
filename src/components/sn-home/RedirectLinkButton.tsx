@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { IconButton, Stack, Typography } from "@mui/material";
+import { IconButton, Link, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 
@@ -7,16 +7,21 @@ const RedirectLinkButton = ({ title, link, ...otherProps }: RedirectLinkButtonPr
   const classes = useStyles();
 
   return (
-    <Stack direction="row" spacing={2} {...otherProps}>
+    <Stack
+      direction="row"
+      component={Link}
+      underline="none"
+      href={link}
+      spacing={2}
+      {...otherProps}
+    >
       <Typography className={classes.text}>{title}</Typography>
       <IconButton
         classes={{
           root: classes.button,
         }}
-        href={link}
-        target="_blank"
         size="small"
-      ></IconButton>
+      />
     </Stack>
   );
 };
