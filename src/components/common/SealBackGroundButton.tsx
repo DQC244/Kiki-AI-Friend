@@ -2,15 +2,19 @@ import React, { memo } from "react";
 import { makeStyles } from "@mui/styles";
 import { useTranslation } from "react-i18next";
 import { AppGradientButton } from "components/common";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, StackProps } from "@mui/material";
 import { ImageAssets } from "assets";
 
-const CreateSynastryButton = ({ onClickButtonView }: CreateSynastryButtonProps) => {
+const SealBackGroundButton = ({
+  onClickAction,
+  labelButton,
+  ...otherProps
+}: SealBackGroundButtonProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
 
   return (
-    <Stack>
+    <Stack {...otherProps}>
       <Box
         className={classes.img}
         component="img"
@@ -18,19 +22,20 @@ const CreateSynastryButton = ({ onClickButtonView }: CreateSynastryButtonProps) 
         draggable="false"
       />
       <AppGradientButton
-        onClick={onClickButtonView}
+        onClick={onClickAction}
         classes={{ root: classes.rootBtn }}
-        label={getLabel("lViewSynastryChart")}
+        label={labelButton || getLabel("lViewSynastryChart")}
       />
     </Stack>
   );
 };
 
-type CreateSynastryButtonProps = {
-  onClickButtonView?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+type SealBackGroundButtonProps = StackProps & {
+  labelButton?: string;
+  onClickAction?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-export default memo(CreateSynastryButton);
+export default memo(SealBackGroundButton);
 
 const useStyles = makeStyles(() => ({
   img: {

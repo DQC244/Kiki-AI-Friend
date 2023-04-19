@@ -35,6 +35,10 @@ import PopupBackground from "./img-popup-background.png";
 import YesPopupBackground from "./img-yes-popup-background.png";
 import MaybePopupBackground from "./img-maybe-popup-background.png";
 import ImSorryImage from "./img-im-sorry.png";
+import TitleDailyTarotImage from "./img-title-daily-tarot.png";
+import TarotCardDailyBackground from "./img-background-card-tarot-daily.png";
+import DemoDailyCard from "./demo-daily-card.png";
+import TarotCardListDailyBackground from "./img-background-card-list-tarot-daily.png";
 
 export {
   LogoImage,
@@ -74,4 +78,8 @@ export {
   YesPopupBackground,
   MaybePopupBackground,
   ImSorryImage,
+  TitleDailyTarotImage,
+  TarotCardDailyBackground,
+  DemoDailyCard,
+  TarotCardListDailyBackground,
 };

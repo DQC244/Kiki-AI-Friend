@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { ObjectMultiLanguageProps } from "models";
 import CommonCreateFromSynastry from "./CommonCreateFromSynastry";
 import TitleChart from "../TitleChart";
-import CreateSynastryButton from "./CreateSynastryButton";
+import SealBackGroundButton from "../../common/SealBackGroundButton";
 import dayjs from "dayjs";
 
 const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) => {
@@ -102,7 +102,7 @@ const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) 
         />
       </Stack>
       <Stack>
-        <CreateSynastryButton onClickButtonView={handleViewSynastryChart} />
+        <SealBackGroundButton onClickAction={handleViewSynastryChart} />
       </Stack>
     </Stack>
   );
