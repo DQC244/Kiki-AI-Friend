@@ -6,10 +6,12 @@ import { ImageAssets } from "assets";
 import { SealBackGroundButton } from "components/common";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
-import { AppConstant } from "const";
+import { AppConstant, PathConstant } from "const";
+import { useNavigate } from "react-router-dom";
 
 const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const { t: getLabel } = useTranslation();
 
   const [itemSelected, setItemSelected] = useState("");
@@ -17,6 +19,7 @@ const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
 
   const handleViewTarot = () => {
     // TODO: update redirect card detail
+    navigate(PathConstant.DAILY_TAROT + "/1");
     return;
   };
 

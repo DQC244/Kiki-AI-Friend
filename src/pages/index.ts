@@ -9,6 +9,7 @@ import SynastryChartPage from "./SynastryChart";
 import TransitChartPage from "./TransitChart";
 import DailyTarotPage from "./DailyTarot";
 import TarotCardMeaningPage from "./TarotCardMeaning";
+import DailyTarotDetail from "./DailyTarotDetail";
 
 export {
   UIDemoPage,
@@ -22,4 +23,5 @@ export {
   TransitChartPage,
   DailyTarotPage,
   TarotCardMeaningPage,
+  DailyTarotDetail,
 };

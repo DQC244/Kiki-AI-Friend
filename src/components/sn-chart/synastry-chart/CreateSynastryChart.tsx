@@ -120,6 +120,6 @@ export default memo(CreateSynastryChart);
 
 const useStyles = makeStyles(() => ({
   form: {
-    // background: "linear-gradient(293.7deg, #FFFFFF -3.9%, rgba(255, 255, 255, 0) 111.17%)",
+    background: "linear-gradient(293.7deg, #FFFFFF -3.9%, rgba(255, 255, 255, 0) 111.17%)",
   },
 }));

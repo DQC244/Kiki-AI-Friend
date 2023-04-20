@@ -170,10 +170,10 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     width: 514,
     padding: "32px 16px",
-    filter: "drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25))",
     backdropFilter: "blur(10px)",
     borderRadius: 20,
     border: "0.5px solid #a1a4fe",
+    background: "linear-gradient(302.01deg, #FFFFFF 5.23%, rgba(255, 255, 255, 0) 115.76%)",
   },
   title: {
     fontWeight: 700,

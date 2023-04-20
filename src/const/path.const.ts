@@ -11,4 +11,5 @@ export const SYNASTRY_CHART = "/synastry-chart";
 export const TRANSIT_CHART = "/transit-chart";
 
 export const DAILY_TAROT = "/daily-tarot";
+export const DAILY_TAROT_DETAIL = `${DAILY_TAROT}/:id`;
 export const TAROT_CARD_MEANING = "/tarot-card-meaning";

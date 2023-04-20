@@ -39,6 +39,9 @@ import TitleDailyTarotImage from "./img-title-daily-tarot.png";
 import TarotCardDailyBackground from "./img-background-card-tarot-daily.png";
 import DemoDailyCard from "./demo-daily-card.png";
 import TarotCardListDailyBackground from "./img-background-card-list-tarot-daily.png";
+import SealDrinkTeaBackground from "./img-seal-drink-tea.png";
+import DemoReadCardBackground from "./img-demo-read-card.png";
+import DailyTarotBackground from "./img-daily-tarot-background.svg";
 
 export {
   LogoImage,
@@ -82,4 +85,7 @@ export {
   TarotCardDailyBackground,
   DemoDailyCard,
   TarotCardListDailyBackground,
+  SealDrinkTeaBackground,
+  DemoReadCardBackground,
+  DailyTarotBackground,
 };

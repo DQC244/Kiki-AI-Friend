@@ -19,7 +19,12 @@ const TarotCard = ({ isShowFront, cardBackground, className, ...otherProps }: Ta
           />
         </Box>
         <Box className={classes.frontCard}>
-          <Box component="img" className={classes.img} src={ImageAssets.DemoDailyCard} />
+          <Box
+            component="img"
+            className={classes.img}
+            src={ImageAssets.DemoDailyCard}
+            draggable="false"
+          />
         </Box>
       </Box>
     </Box>
