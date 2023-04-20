@@ -82,6 +82,8 @@ export default {
   lGetMyReading: "Get my reading",
   lRedrawACard: "Redraw a card",
   lDownloadOurAppToTryReading: "Download our app to try the two-card reading!",
+  lTarotCardMeaning: "Tarot Card Meaning",
+  lViewCards: "View cards",
 
   // No EN
   lImSorryITryImprove: "Tôi xin lỗi, tôi sẽ cố gắng cải thiện hơn trong tương lai.",
@@ -143,5 +145,13 @@ export default {
     lAskAnotherQuestion: "Ask another question in the same topics.",
     lBackToOtherMainTopics: "Back to other main topics.",
     lEndConversation: "End Conversation.",
+  },
+
+  objCardName: {
+    lTheMajorArcana: "The Major Arcana",
+    lTheSuitOfCups: "The Suit of Cups",
+    lTheSuitOfWands: "The Suit of Wands",
+    lTheSuitOfSwords: "The Suit of Swords",
+    lTheSuitOfPentacles: "The Suit of Pentacles",
   },
 };
