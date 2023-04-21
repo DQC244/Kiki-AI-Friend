@@ -21,7 +21,7 @@ export default TarotCardMeaning;
 const useStyles = makeStyles(() => ({
   root: {
     paddingBottom: 120,
-    background: `no-repeat top left / 100% auto url(${ImageAssets.CardMeaningBackground})`,
+    background: `top left / 100% auto url(${ImageAssets.CardMeaningBackground})`,
   },
   container: {
     display: "flex",

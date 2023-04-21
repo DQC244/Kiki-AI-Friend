@@ -4,7 +4,13 @@ import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import clsx from "clsx";
 
-const TarotCard = ({ isShowFront, cardBackground, className, ...otherProps }: TarotCardProps) => {
+const TarotCard = ({
+  isShowFront,
+  cardFront,
+  cardBackground,
+  className,
+  ...otherProps
+}: TarotCardProps) => {
   const classes = useStyles();
 
   return (
@@ -22,7 +28,7 @@ const TarotCard = ({ isShowFront, cardBackground, className, ...otherProps }: Ta
           <Box
             component="img"
             className={classes.img}
-            src={ImageAssets.DemoDailyCard}
+            src={cardFront || ImageAssets.DemoDailyCard}
             draggable="false"
           />
         </Box>
@@ -34,6 +40,7 @@ const TarotCard = ({ isShowFront, cardBackground, className, ...otherProps }: Ta
 type TarotCardProps = BoxProps & {
   isShowFront?: boolean;
   cardBackground?: string;
+  cardFront?: string;
 };
 
 export default memo(TarotCard);

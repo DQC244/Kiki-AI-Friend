@@ -85,6 +85,16 @@ export default {
   lTarotCardMeaning: "Tarot Card Meaning",
   lViewCards: "View cards",
   lReadTheMeaning: "Read the meaning",
+  lKeyMeaning: "Key meaning:",
+  lSign: "Sign",
+  lPlanet: "Planet",
+  lElement: "Element",
+  lAquarius: "Aquarius",
+  lUranus: "Uranus",
+  lAir: "Air",
+  lTheFoolOverview: "The Fool Overview:",
+  lMessageFromTheFool: "Message from The Fool:",
+  lPickTodayTarotCard: "Pick Today's Tarot Card",
 
   // No EN
   lImSorryITryImprove: "Tôi xin lỗi, tôi sẽ cố gắng cải thiện hơn trong tương lai.",

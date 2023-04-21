@@ -44,6 +44,9 @@ import DemoReadCardBackground from "./img-demo-read-card.png";
 import DailyTarotBackground from "./img-daily-tarot-background.svg";
 import CardMeaningBackground from "./img-card-meaning-background.png";
 import CardMeaningLogo from "./img-desk-card-logo.png";
+import SignImage from "./img-sign.png";
+import PlanetImage from "./img-plant.png";
+import ElementImage from "./img-element.png";
 
 export {
   LogoImage,
@@ -92,4 +95,7 @@ export {
   DailyTarotBackground,
   CardMeaningBackground,
   CardMeaningLogo,
+  SignImage,
+  PlanetImage,
+  ElementImage,
 };
