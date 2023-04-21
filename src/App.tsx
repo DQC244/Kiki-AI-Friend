@@ -12,6 +12,8 @@ import {
   DailyTarotPage,
   TarotCardMeaningPage,
   DailyTarotDetail,
+  TarotDeskCardMeaningDetail,
+  TarotCardMeaningDetail,
 } from "pages";
 import { AuthenticationRoute } from "components/common";
 import MainLayout from "layouts/MainLayout";
@@ -29,10 +31,16 @@ const App = () => {
           <Route path={PathConstant.SYNASTRY_CHART} element={<SynastryChartPage />} />
           <Route path={PathConstant.TRANSIT_CHART} element={<TransitChartPage />} />
           <Route path={PathConstant.DAILY_TAROT}>
-            <Route path=":id" element={<DailyTarotDetail />} />
             <Route index element={<DailyTarotPage />} />
+            <Route path=":id" element={<DailyTarotDetail />} />
           </Route>
-          <Route path={PathConstant.TAROT_CARD_MEANING} element={<TarotCardMeaningPage />} />
+          <Route path={PathConstant.TAROT_CARD_MEANING}>
+            <Route index element={<TarotCardMeaningPage />} />
+            <Route path=":id">
+              <Route index element={<TarotDeskCardMeaningDetail />} />
+              <Route path=":id" element={<TarotCardMeaningDetail />} />
+            </Route>
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

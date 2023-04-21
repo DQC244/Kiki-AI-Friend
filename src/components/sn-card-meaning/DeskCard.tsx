@@ -5,7 +5,7 @@ import { ImageAssets } from "assets";
 import { AppGradientButton } from "components/common";
 import { useTranslation } from "react-i18next";
 
-const DeskCard = ({ name, ...otherProps }: DeskCardProps) => {
+const DeskCard = ({ name, onClickView, ...otherProps }: DeskCardProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
 
@@ -28,13 +28,18 @@ const DeskCard = ({ name, ...otherProps }: DeskCardProps) => {
       </Stack>
 
       <Typography className={classes.name}>{name}</Typography>
-      <AppGradientButton className={classes.button} label={getLabel("lViewCards")} />
+      <AppGradientButton
+        onClick={onClickView}
+        className={classes.button}
+        label={getLabel("lViewCards")}
+      />
     </Stack>
   );
 };
 
 type DeskCardProps = StackProps & {
   name?: string;
+  onClickView: () => void;
 };
 
 export default memo(DeskCard);
@@ -50,26 +55,32 @@ const useStyles = makeStyles(() => ({
     "&:hover": {
       "& $img:nth-child(1)": {
         transform: "translate(-80%,35px) rotate(-21.875deg)",
+        zIndex: 1,
       },
 
       "& $img:nth-child(2)": {
         transform: "translate(-48%,15px) rotate(-13.125deg)",
+        zIndex: 2,
       },
 
       "& $img:nth-child(3)": {
         transform: "translate(-16%,5px) rotate(-4.375deg)",
+        zIndex: 3,
       },
 
       "& $img:nth-child(4)": {
         transform: "translate(16%,5px) rotate(4.375deg)",
+        zIndex: 4,
       },
 
       "& $img:nth-child(5)": {
         transform: "translate(48%,15px) rotate(13.125deg)",
+        zIndex: 5,
       },
 
       "& $img:nth-child(6)": {
         transform: "translate(80%,35px) rotate(21.875deg)",
+        zIndex: 6,
       },
     },
   },
@@ -84,6 +95,7 @@ const useStyles = makeStyles(() => ({
   name: {
     fontWeight: 700,
     fontSize: 24,
+    textAlign: "center",
   },
   button: {
     height: 50,

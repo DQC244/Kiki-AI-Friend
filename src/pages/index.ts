@@ -10,6 +10,8 @@ import TransitChartPage from "./TransitChart";
 import DailyTarotPage from "./DailyTarot";
 import TarotCardMeaningPage from "./TarotCardMeaning";
 import DailyTarotDetail from "./DailyTarotDetail";
+import TarotDeskCardMeaningDetail from "./TarotDeskCardMeaningDetail";
+import TarotCardMeaningDetail from "./TarotCardMeaningDetail";
 
 export {
   UIDemoPage,
@@ -24,4 +26,6 @@ export {
   DailyTarotPage,
   TarotCardMeaningPage,
   DailyTarotDetail,
+  TarotDeskCardMeaningDetail,
+  TarotCardMeaningDetail,
 };

@@ -1,4 +1,5 @@
 import DeskCard from "./DeskCard";
 import DeskCardList from "./DeskCardList";
+import MeaningDeskCardList from "./MeaningDeskCardList";
 
-export { DeskCard, DeskCardList };
+export { DeskCard, DeskCardList, MeaningDeskCardList };

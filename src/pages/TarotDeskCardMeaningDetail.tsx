@@ -1,19 +1,16 @@
 import React from "react";
-import { Box, Container, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import { Box, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { DeskCardList } from "components/sn-card-meaning";
+import { MeaningDeskCardList } from "components/sn-card-meaning";
 import { ImageAssets } from "assets";
 
 const TarotCardMeaning = () => {
   const classes = useStyles();
-  const { t: getLabel } = useTranslation();
 
   return (
     <Box className={classes.root}>
       <Container className={classes.container}>
-        <Typography className={classes.title}>{getLabel("lTarotCardMeaning")}</Typography>
-        <DeskCardList mt={12} />
+        <MeaningDeskCardList />
       </Container>
     </Box>
   );

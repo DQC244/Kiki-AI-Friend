@@ -75,7 +75,7 @@ export default {
   lInsteadDoYouWantToTryOut:
     "Instead, do you want to try out the Mystic Zone? Download our app to explore more!",
 
-  // Daily tarot
+  // Daily tarot, meaning
   lOneCardTarotReading: "One Card Tarot Reading",
   lGetYourDailyMessage:
     "Get your daily message from the universe to help you focus on every aspect of your day.",
@@ -84,6 +84,7 @@ export default {
   lDownloadOurAppToTryReading: "Download our app to try the two-card reading!",
   lTarotCardMeaning: "Tarot Card Meaning",
   lViewCards: "View cards",
+  lReadTheMeaning: "Read the meaning",
 
   // No EN
   lImSorryITryImprove: "Tôi xin lỗi, tôi sẽ cố gắng cải thiện hơn trong tương lai.",

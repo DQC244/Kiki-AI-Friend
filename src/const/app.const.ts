@@ -30,3 +30,11 @@ export enum TIME_FORMAT_ENUM {
 }
 
 export const MAX_CHARACTER_NAME = 255;
+
+export enum DESK_CARD {
+  lTheMajorArcana = "lTheMajorArcana",
+  lTheSuitOfCups = "lTheSuitOfCups",
+  lTheSuitOfWands = "lTheSuitOfWands",
+  lTheSuitOfSwords = "lTheSuitOfSwords",
+  lTheSuitOfPentacles = "lTheSuitOfPentacles",
+}
