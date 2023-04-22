@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Container, IconButton, Input, Stack, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import { HEADER_HEIGHT_IN_PX } from "layouts/MainLayout/components/MLHeader";
@@ -7,6 +7,7 @@ import { FOOTER_HEIGHT_IN_PX } from "layouts/MainLayout/components/Footer";
 import { useTranslation } from "react-i18next";
 import { AppConstant } from "const";
 import { ThemeProps } from "models/types";
+import { AppInput } from "components/common";
 
 const Download = () => {
   const classes = useStyles();
@@ -29,19 +30,10 @@ const Download = () => {
           </Typography>
           <Stack spacing={2} alignItems="center" maxWidth="100%">
             <Typography fontWeight={500}>{getLabel("lDoYouWantToBeTheFirstPerson")}</Typography>
-            <Input
+            <AppInput
+              onSubmit={handleSubmit}
               value={email}
               onChange={(e) => setEmail(e.currentTarget.value)}
-              classes={{ root: classes.inputRoot, input: classes.input }}
-              endAdornment={
-                <IconButton
-                  onClick={handleSubmit}
-                  classes={{
-                    root: classes.button,
-                  }}
-                  size="small"
-                />
-              }
               placeholder={getLabel("lYourMail")}
             />
           </Stack>
