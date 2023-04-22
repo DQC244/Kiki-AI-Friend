@@ -1,6 +1,7 @@
+import React, { memo } from "react";
 import { Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import React, { memo } from "react";
+import { AppConstant } from "const";
 import { useTranslation } from "react-i18next";
 
 const IntroduceSection = () => {
@@ -9,13 +10,11 @@ const IntroduceSection = () => {
 
   return (
     <Stack spacing={4} className={classes.root} alignItems="center">
-      <Typography className={classes.title}>{TITLE}</Typography>
+      <Typography className={classes.title}>{AppConstant.TITLE}</Typography>
       <Typography className={classes.desc}>{getLabel("lWelcomeToTheFantasyWorld")}</Typography>
     </Stack>
   );
 };
-
-const TITLE = "Kiki AI Friend";
 
 export default memo(IntroduceSection);
 

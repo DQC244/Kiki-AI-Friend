@@ -96,6 +96,12 @@ export default {
   lMessageFromTheFool: "Message from The Fool:",
   lPickTodayTarotCard: "Pick Today's Tarot Card",
 
+  // Download
+  lComingSoonAppStoreAndGooglePlay: "Coming soon on App Store and Google Play in Q3 2023",
+  lDoYouWantToBeTheFirstPerson:
+    "Do you want to be the first person to experience our app? Leave your email below and we will notify you when the app releases!",
+  lYourMail: "Your email",
+
   // No EN
   lImSorryITryImprove: "Tôi xin lỗi, tôi sẽ cố gắng cải thiện hơn trong tương lai.",
 
