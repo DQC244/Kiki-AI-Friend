@@ -90,3 +90,10 @@ export const checkEmailFormat = (email: string): boolean => {
 export const removeUnnecessarySpace = (str: string): string => {
   return (str || "").replace(/\s+/g, "").trim();
 };
+
+/**
+ * Determine if a variable is 'undefined' or 'null'
+ */
+export const isUndefinedOrNull = (value: number) => {
+  return value === null || value === undefined;
+};

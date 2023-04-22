@@ -38,3 +38,7 @@ export enum DESK_CARD {
   lTheSuitOfSwords = "lTheSuitOfSwords",
   lTheSuitOfPentacles = "lTheSuitOfPentacles",
 }
+
+export const KEY_TIME_POPUP = "timePop";
+
+export const COOL_DOWN_TIME = 5000;

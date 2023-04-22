@@ -47,6 +47,10 @@ import CardMeaningLogo from "./img-desk-card-logo.png";
 import SignImage from "./img-sign.png";
 import PlanetImage from "./img-plant.png";
 import ElementImage from "./img-element.png";
+import OrderPopup from "./img-order-bg.png";
+import PopupBG from "./popup-bg.png";
+import PopupBGRight from "./img-right-popup.png";
+import PopupBGLeft from "./img-left-popup.png";
 
 export {
   LogoImage,
@@ -98,4 +102,8 @@ export {
   SignImage,
   PlanetImage,
   ElementImage,
+  OrderPopup,
+  PopupBG,
+  PopupBGRight,
+  PopupBGLeft,
 };

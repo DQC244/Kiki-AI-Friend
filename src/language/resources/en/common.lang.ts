@@ -96,6 +96,8 @@ export default {
   lMessageFromTheFool: "Message from The Fool:",
   lPickTodayTarotCard: "Pick Today's Tarot Card",
 
+  lOrderNow: "Order Now",
+
   // No EN
   lImSorryITryImprove: "Tôi xin lỗi, tôi sẽ cố gắng cải thiện hơn trong tương lai.",
 
