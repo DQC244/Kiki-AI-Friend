@@ -10,35 +10,42 @@ import {
 } from "components/sn-home";
 import { HomeBackground } from "assets/images";
 import { ImageAssets } from "assets";
-// import { StartAnimation } from "assets/animations";
-// import Lottie from "lottie-react";
+import AnimationRightToLeft from "components/sn-home/AnimationRightToLeft";
 
 const Home = () => {
   const classes = useStyles();
 
   return (
     <Box className={classes.root}>
-      {/* <Lottie animationData={StartAnimation} loop={false} autoplay={true} /> */}
       <Box className={classes.background} />
       <Container className={classes.container}>
         <Stack spacing={20}>
           <IntroduceSection />
           <AIFriendSection
-            star={
-              <Box
-                className={classes.star}
-                draggable="false"
-                component="img"
-                src={ImageAssets.StarList}
-              />
-            }
+            // star={
+            //   <Box
+            //     className={classes.star}
+            //     draggable="false"
+            //     component="img"
+            //     src={ImageAssets.StarList}
+            //   />
+            // }
             spaceship={
-              <Box
-                className={classes.spaceship}
-                draggable="false"
-                component="img"
-                src={ImageAssets.Spaceship}
-              />
+              // <Box
+              //   className={classes.spaceship}
+              //   draggable="false"
+              //   component="img"
+              //   src={ImageAssets.Spaceship}
+              // />
+              // <Lottie
+              //   className={classes.animation}
+              //   animationData={StartAnimation}
+              //   loop={false}
+              //   autoplay={true}
+              // />
+              <Box className={classes.animation}>
+                <AnimationRightToLeft />
+              </Box>
             }
           />
           <MysticZoneSection
@@ -76,6 +83,15 @@ export default Home;
 const useStyles = makeStyles(() => ({
   root: {
     position: "relative",
+  },
+  animation: {
+    // width: 250,
+    // height: 188,
+    position: "absolute",
+    width: 680,
+    bottom: -243,
+    left: 40,
+    transform: "translateX(-100%)",
   },
   background: {
     position: "absolute",
