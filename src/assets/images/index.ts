@@ -51,6 +51,7 @@ import OrderPopup from "./img-order-bg.png";
 import PopupBG from "./popup-bg.png";
 import PopupBGRight from "./img-right-popup.png";
 import PopupBGLeft from "./img-left-popup.png";
+import SealDownLoadImage from "./img-seal-download.svg";
 
 export {
   LogoImage,
@@ -106,4 +107,5 @@ export {
   PopupBG,
   PopupBGRight,
   PopupBGLeft,
+  SealDownLoadImage,
 };

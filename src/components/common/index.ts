@@ -8,6 +8,7 @@ import AppAutocomplete from "./AppAutocomplete";
 import AppTrans from "./AppTrans";
 import SealBackGroundButton from "./SealBackGroundButton";
 import OrderPopup from "./OrderPopup";
+import AppInput from "./AppInput";
 
 export {
   AppHead,
@@ -20,6 +21,7 @@ export {
   AppTrans,
   SealBackGroundButton,
   OrderPopup,
+  AppInput,
 };
 
 export type { AppHeadProps };
