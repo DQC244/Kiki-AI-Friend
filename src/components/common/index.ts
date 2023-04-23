@@ -7,6 +7,7 @@ import AppTimeInput from "./AppTimeInput";
 import AppAutocomplete from "./AppAutocomplete";
 import AppTrans from "./AppTrans";
 import SealBackGroundButton from "./SealBackGroundButton";
+import OrderPopup from "./OrderPopup";
 import AppInput from "./AppInput";
 
 export {
@@ -19,6 +20,7 @@ export {
   AppAutocomplete,
   AppTrans,
   SealBackGroundButton,
+  OrderPopup,
   AppInput,
 };
 

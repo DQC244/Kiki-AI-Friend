@@ -95,6 +95,7 @@ export default {
   lTheFoolOverview: "The Fool Overview:",
   lMessageFromTheFool: "Message from The Fool:",
   lPickTodayTarotCard: "Pick Today's Tarot Card",
+  lOrderNow: "Order Now",
 
   // Download
   lComingSoonAppStoreAndGooglePlay: "Coming soon on App Store and Google Play in Q3 2023",
