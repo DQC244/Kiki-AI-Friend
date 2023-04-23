@@ -1,33 +1,26 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { MeaningDeskCardList } from "components/sn-card-meaning";
 import { ImageAssets } from "assets";
 import { OrderPopup } from "components/common";
-import { AppConstant } from "const";
 import Cookies from "js-cookie";
-import { useCountdownByTimestamp } from "hooks";
+import { AppConstant } from "const";
 
 const TarotCardMeaning = () => {
   const classes = useStyles();
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleClose = useCallback(() => {
-    setIsOpen(false);
-  }, []);
-
-  const m = useCountdownByTimestamp(Number(2), () => setIsOpen(true));
-  console.log(m);
+  const [timer, setTimer] = useState<number>(0);
 
   const handleShowPopup = () => {
     const timeCookie = Cookies.get(AppConstant.KEY_TIME_POPUP);
     if (timeCookie) {
-      console.log("csd");
+      setTimer(Number(timeCookie));
     } else {
       const now = Math.floor(Date.now() / 1000);
-      const minute = (AppConstant.COOL_DOWN_TIME + now).toString();
-      Cookies.set(AppConstant.KEY_TIME_POPUP, minute);
+      const minute = AppConstant.COOL_DOWN_TIME + now;
+      setTimer(minute);
+      Cookies.set(AppConstant.KEY_TIME_POPUP, minute.toString());
     }
   };
 
@@ -45,7 +38,7 @@ const TarotCardMeaning = () => {
         <MeaningDeskCardList />
       </Container>
 
-      <OrderPopup isOpen={isOpen} onClose={handleClose} />
+      <OrderPopup timer={timer} />
     </Box>
   );
 };

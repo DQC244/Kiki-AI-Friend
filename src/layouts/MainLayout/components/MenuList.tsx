@@ -22,8 +22,9 @@ const MenuList = () => {
       {menuList.map((item, index) => {
         const isSelected = [item.path].includes(location.pathname);
         if (item.isDropDown) {
-          const isSelected = item.path.includes(location.pathname);
-
+          const isSelected = Boolean(
+            item.path.filter((path) => location.pathname.startsWith(path)).length,
+          );
           return (
             <Box key={index} className={classes.linkDropdown}>
               <Typography className={clsx(classes.link, isSelected && classes.selected)}>

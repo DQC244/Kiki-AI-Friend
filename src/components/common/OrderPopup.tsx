@@ -1,4 +1,4 @@
-import React, { Fragment, memo } from "react";
+import React, { Fragment, memo, useState } from "react";
 import { Box, Button, IconButton } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
@@ -6,15 +6,24 @@ import { useTranslation } from "react-i18next";
 import { ThemeProps } from "models/types";
 import { CloseIcon } from "components/icons";
 import { PathConstant } from "const";
+import { useCountdownByTimestamp } from "hooks";
 
-const OrderPopup = ({ isOpen, onClose }: OrderPopupProps) => {
-  const { t: getLabel } = useTranslation();
+const OrderPopup = ({ timer }: OrderPopupProps) => {
   const classes = useStyles();
+  const { t: getLabel } = useTranslation();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const m = useCountdownByTimestamp(timer, () => {
+    setIsOpen(true);
+  });
+
+  console.log(m);
 
   return isOpen ? (
     <Box className={classes.root}>
       <Box className={classes.popup}>
-        <IconButton className={classes.closeBtn} onClick={onClose}>
+        <IconButton className={classes.closeBtn} onClick={() => setIsOpen(false)}>
           <CloseIcon />
         </IconButton>
         <Button href={PathConstant.DOWNLOAD} target="_blank" className={classes.orderBtn}>
@@ -28,8 +37,7 @@ const OrderPopup = ({ isOpen, onClose }: OrderPopupProps) => {
 };
 
 type OrderPopupProps = {
-  isOpen: boolean;
-  onClose: () => void;
+  timer: number;
 };
 
 export default memo(OrderPopup);
@@ -47,7 +55,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     left: 0,
     width: "100%",
     height: 634,
-    background: `no-repeat center center / auto 632px url(${ImageAssets.PopupBGRight}), no-repeat center center / 100% 634px url(${ImageAssets.PopupBG})`,
+    background: `no-repeat center center / auto 634px url(${ImageAssets.PopupBGRight}), no-repeat center center / 100% 100% url(${ImageAssets.PopupBG})`,
     zIndex: 2001,
   },
   orderBtn: {
