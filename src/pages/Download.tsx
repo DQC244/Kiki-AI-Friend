@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { AppConstant } from "const";
 import { ThemeProps } from "models/types";
 import { AppInput } from "components/common";
+import clsx from "clsx";
 
 const Download = () => {
   const classes = useStyles();
@@ -22,8 +23,8 @@ const Download = () => {
   return (
     <Box className={classes.root}>
       <Box className={classes.background} />
-      <Container className={classes.container}>
-        <Stack alignItems="center" spacing={6}>
+      <Container className={clsx("center-root", classes.container)}>
+        <Stack alignItems="center" spacing={6} height="100%">
           <Typography className={classes.title}>{AppConstant.TITLE}</Typography>
           <Typography className={classes.subtitle}>
             {getLabel("lComingSoonAppStoreAndGooglePlay")}
@@ -55,11 +56,11 @@ export default Download;
 const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     position: "relative",
-    minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
   },
   container: {
     position: "relative",
     maxWidth: 1360,
+    minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
   },
   background: {
     position: "absolute",

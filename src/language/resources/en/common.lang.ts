@@ -102,6 +102,14 @@ export default {
     "Do you want to be the first person to experience our app? Leave your email below and we will notify you when the app releases!",
   lYourMail: "Your email",
 
+  // Shop
+  lDescription: "Description:",
+  lBuyOnTikTokShop: "Buy on TikTok shop",
+  lInquireViaInstagram: "Inquire via Instagram",
+  lJoinOurNewsLetters: "Join Our News Letters",
+  lDoYouWantFirstPersonToExperience:
+    "Do you want to be the first person to experience our app and buy our latest product about Kiki? Leave your email below and we will notify you when there’s something new in town!",
+
   // No EN
   lImSorryITryImprove: "Tôi xin lỗi, tôi sẽ cố gắng cải thiện hơn trong tương lai.",
 

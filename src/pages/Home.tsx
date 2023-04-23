@@ -10,12 +10,15 @@ import {
 } from "components/sn-home";
 import { HomeBackground } from "assets/images";
 import { ImageAssets } from "assets";
+// import { StartAnimation } from "assets/animations";
+// import Lottie from "lottie-react";
 
 const Home = () => {
   const classes = useStyles();
 
   return (
     <Box className={classes.root}>
+      {/* <Lottie animationData={StartAnimation} loop={false} autoplay={true} /> */}
       <Box className={classes.background} />
       <Container className={classes.container}>
         <Stack spacing={20}>
