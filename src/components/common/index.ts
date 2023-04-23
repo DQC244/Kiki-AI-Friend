@@ -9,6 +9,8 @@ import AppTrans from "./AppTrans";
 import SealBackGroundButton from "./SealBackGroundButton";
 import OrderPopup from "./OrderPopup";
 import AppInput from "./AppInput";
+import CookiePopup from "./CookiePopup";
+import AppSwitch from "./AppSwitch";
 
 export {
   AppHead,
@@ -22,6 +24,8 @@ export {
   SealBackGroundButton,
   OrderPopup,
   AppInput,
+  CookiePopup,
+  AppSwitch,
 };
 
 export type { AppHeadProps };

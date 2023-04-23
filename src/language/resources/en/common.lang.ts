@@ -5,6 +5,27 @@ export default {
   lFollowUsOn: "Follow us on",
   lTermsConditions: "Terms & Conditions",
   lAllRightsReserved: "All Rights Reserved.",
+  lAcceptAll: "Accept All",
+  lPreferences: "Preferences",
+  lRejectAll: "Reject All",
+  lHaveACookie: "Have a cookie",
+  lCookiesDesc:
+    "We use cookies to ensure that we give you the best experience on our website. We also use cookies to ensure we show you advertising that is relevant to you. You can change your cookie settings at anytime.",
+  lAllowAll: "Allow All",
+  lOnlyNecessary: "Only Necessary",
+  lOnlyNecessaryDesc:
+    "here cookies are strictly necessary to provide services that you have requested.",
+  lFunctionalityCookies: "Functionality Cookies",
+  lFunctionalityCookiesDesc:
+    "These cookies allow us to remember choices you make (such as your user name, language or the region you are in) and provide enhanced, more relevant features.",
+  lAdvertisingCookies: "Advertising cookies",
+  lAdvertisingCookiesDesc:
+    "Advertisement cookies help us provide our visitors with relevant ads and marketing campaigns.",
+  lPerformanceCookies: "Performance Cookies",
+  lPerformanceCookiesDesc:
+    "These cookies collect information about how visitors use our website. The information collected is anonymous and is only used to improve the way our website works.",
+  lBack: "Back",
+  lFinish: "Finish",
 
   // Home
   lWelcomeToTheFantasyWorld:

@@ -50,6 +50,7 @@ import ElementImage from "./img-element.png";
 import PopupBG from "./popup-bg.png";
 import PopupBGRight from "./img-right-popup.png";
 import SealDownLoadImage from "./img-seal-download.svg";
+import CookieIcon from "./img-cookie-popup.png";
 
 export {
   LogoImage,
@@ -104,4 +105,5 @@ export {
   PopupBG,
   PopupBGRight,
   SealDownLoadImage,
+  CookieIcon,
 };

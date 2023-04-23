@@ -1,16 +1,38 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { Theme } from "@mui/system";
 import clsx from "clsx";
 import { Outlet } from "react-router-dom";
-import { AppHead } from "components/common";
+import { AppHead, CookiePopup } from "components/common";
 import { IProps } from "models";
 import MLHeader, { HEADER_HEIGHT_IN_PX } from "./components/MLHeader";
 import { makeStyles } from "@mui/styles";
 import Footer, { FOOTER_HEIGHT_IN_PX } from "./components/Footer";
+import { AppConstant } from "const";
 
 const MainLayout = ({ className, ...otherProps }: MainLayoutProps): JSX.Element => {
   const classesDefault = useStyles();
+
+  const [isShowSettingCookie, setIsShowSettingCookie] = useState(false);
+  const [isUSA, setIsUSA] = useState(false);
+
+  const handleShowPopUp = () => {
+    if (localStorage.getItem(AppConstant.COOKIES_SETTING_KEY) === null) {
+      setIsShowSettingCookie(true);
+    } else {
+      setIsShowSettingCookie(false);
+    }
+  };
+
+  useEffect(() => {
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (timeZone.startsWith(AppConstant.USA_TIME_ZONE)) {
+      setIsUSA(true);
+    } else {
+      setIsUSA(false);
+    }
+    handleShowPopUp();
+  }, []);
 
   return (
     <>
@@ -19,6 +41,9 @@ const MainLayout = ({ className, ...otherProps }: MainLayoutProps): JSX.Element 
       <Box className={clsx(classesDefault.main, className)} {...otherProps}>
         <Outlet />
       </Box>
+      {isShowSettingCookie && (
+        <CookiePopup isUSA={isUSA} onClose={() => setIsShowSettingCookie(false)} />
+      )}
       <Footer />
     </>
   );

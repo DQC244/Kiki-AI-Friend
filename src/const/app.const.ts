@@ -44,3 +44,7 @@ export const KEY_TIME_POPUP = "timePop";
 
 // Seconds
 export const COOL_DOWN_TIME = 300;
+
+export const COOKIES_SETTING_KEY = "options-cookie";
+
+export const USA_TIME_ZONE = "America";
