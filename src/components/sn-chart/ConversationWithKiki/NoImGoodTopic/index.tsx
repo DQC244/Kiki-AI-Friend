@@ -3,7 +3,9 @@ import { useTranslation } from "react-i18next";
 import { Box } from "@mui/material";
 import { ImageAssets } from "assets";
 import { makeStyles } from "@mui/styles";
+import { AppConstant } from "const";
 import ChatBox from "../ChatBox";
+import DelayMessage from "../QuestionList/DelayMessage";
 
 const NoImGoodTopic = () => {
   const classes = useStyles();
@@ -26,9 +28,23 @@ const NoImGoodTopic = () => {
     <>
       {chatList.map((item, index) => {
         if (item.imageContent) {
-          return <ChatBox key={index} contentCustom={item.imageContent} />;
+          return (
+            <DelayMessage
+              key={index}
+              waitBeforeShow={AppConstant.DEBOUNCE_TIME_IN_MILLISECOND * index}
+            >
+              <ChatBox key={index} contentCustom={item.imageContent} />;
+            </DelayMessage>
+          );
         }
-        return <ChatBox key={index} message={item.label} />;
+        return (
+          <DelayMessage
+            key={index}
+            waitBeforeShow={AppConstant.DEBOUNCE_TIME_IN_MILLISECOND * index}
+          >
+            <ChatBox key={index} message={item.label} />;
+          </DelayMessage>
+        );
       })}
     </>
   );

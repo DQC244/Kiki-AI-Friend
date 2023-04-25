@@ -20,16 +20,12 @@ const TarotCardMeaning = () => {
       const now = Math.floor(Date.now() / 1000);
       const minute = AppConstant.COOL_DOWN_TIME + now;
       setTimer(minute);
-      Cookies.set(AppConstant.KEY_TIME_POPUP, minute.toString());
+      Cookies.set(AppConstant.KEY_TIME_POPUP, minute.toString(), { expires: (1 / 1440) * 5.5 });
     }
   };
 
   useEffect(() => {
     handleShowPopup();
-
-    return () => {
-      Cookies.remove(AppConstant.KEY_TIME_POPUP);
-    };
   }, []);
 
   return (
