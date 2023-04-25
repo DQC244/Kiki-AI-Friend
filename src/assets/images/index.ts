@@ -35,6 +35,7 @@ import PopupBackground from "./img-popup-background.png";
 import YesPopupBackground from "./img-yes-popup-background.png";
 import MaybePopupBackground from "./img-maybe-popup-background.png";
 import ImSorryImage from "./img-im-sorry.png";
+import ImSorryImageEN from "./img-im-sorry-en.png";
 import TitleDailyTarotImage from "./img-title-daily-tarot.png";
 import TarotCardDailyBackground from "./img-background-card-tarot-daily.png";
 import DemoDailyCard from "./demo-daily-card.png";
@@ -106,4 +107,5 @@ export {
   PopupBGRight,
   SealDownLoadImage,
   CookieIcon,
+  ImSorryImageEN,
 };

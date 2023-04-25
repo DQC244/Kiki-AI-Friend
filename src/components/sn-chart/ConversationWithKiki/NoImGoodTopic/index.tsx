@@ -3,13 +3,13 @@ import { useTranslation } from "react-i18next";
 import { Box } from "@mui/material";
 import { ImageAssets } from "assets";
 import { makeStyles } from "@mui/styles";
-import { AppConstant } from "const";
+import { AppConstant, LangConstant } from "const";
 import ChatBox from "../ChatBox";
 import DelayMessage from "../QuestionList/DelayMessage";
 
 const NoImGoodTopic = () => {
   const classes = useStyles();
-  const { t: getLabel } = useTranslation();
+  const { t: getLabel, i18n } = useTranslation();
 
   const [chatList, setChatList] = useState<Array<ChatType>>([]);
 
@@ -18,7 +18,15 @@ const NoImGoodTopic = () => {
       { label: getLabel("lImSorryITryImprove") },
       {
         imageContent: (
-          <Box className={classes.image} component="img" src={ImageAssets.ImSorryImage} />
+          <Box
+            className={classes.image}
+            component="img"
+            src={
+              i18n.language === LangConstant.DEFAULT_LANG_CODE
+                ? ImageAssets.ImSorryImageEN
+                : ImageAssets.ImSorryImage
+            }
+          />
         ),
       },
       { label: getLabel("lInsteadDoYouWantToTryOut") },

@@ -133,7 +133,7 @@ export default {
     "Do you want to be the first person to experience our app and buy our latest product about Kiki? Leave your email below and we will notify you when there’s something new in town!",
 
   // No EN
-  lImSorryITryImprove: "Tôi xin lỗi, tôi sẽ cố gắng cải thiện hơn trong tương lai.",
+  lImSorryITryImprove: "I’m sorry buddy. I’ll try my best to improve.",
 
   objChatContentDefault: {
     lHiThere: "Hi there 👋",
