@@ -51,7 +51,7 @@ const GenerateBirthChart = (props: StackProps) => {
   const handleCreateBirthChart = () => {
     if (dayjs(date).isValid() || dayjs(time).isValid() || city) {
       // TODO: Call api here
-      navigate(PathConstant.BIRTH_CHART);
+      navigate(PathConstant.BIRTH_CHART, { state: { date, time, city } });
     } else {
       if (false === Boolean(city)) setIsErrorCity(true);
       if (!dayjs(date).isValid()) setIsErrorDate(true);

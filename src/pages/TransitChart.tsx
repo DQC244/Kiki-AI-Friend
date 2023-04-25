@@ -10,7 +10,8 @@ import clsx from "clsx";
 
 const TransitChart = () => {
   const classes = useStyles();
-  const [isViewTransitChart, setIsViewTransitChart] = useState(true);
+
+  const [isViewTransitChart, setIsViewTransitChart] = useState(false);
 
   const handleCreateChart = (data: any) => {
     setIsViewTransitChart(true);
