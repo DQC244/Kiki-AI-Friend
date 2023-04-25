@@ -2,16 +2,18 @@ import React, { memo, useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { Theme } from "@mui/system";
 import clsx from "clsx";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { AppHead, CookiePopup } from "components/common";
 import { IProps } from "models";
 import MLHeader, { HEADER_HEIGHT_IN_PX } from "./components/MLHeader";
 import { makeStyles } from "@mui/styles";
 import Footer, { FOOTER_HEIGHT_IN_PX } from "./components/Footer";
-import { AppConstant } from "const";
+import { AppConstant, PathConstant } from "const";
 
 const MainLayout = ({ className, ...otherProps }: MainLayoutProps): JSX.Element => {
   const classesDefault = useStyles();
+
+  const location = useLocation();
 
   const [isShowSettingCookie, setIsShowSettingCookie] = useState(false);
   const [isUSA, setIsUSA] = useState(false);
@@ -24,6 +26,17 @@ const MainLayout = ({ className, ...otherProps }: MainLayoutProps): JSX.Element 
     }
   };
 
+  const handleToggleScroll = () => {
+    const rootEl = document.getElementById("root");
+    if (rootEl) {
+      if (location.pathname === PathConstant.ROOT) {
+        rootEl.style.overflow = "visible";
+      } else {
+        rootEl.style.overflow = "hidden scroll";
+      }
+    }
+  };
+
   useEffect(() => {
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     if (timeZone.startsWith(AppConstant.USA_TIME_ZONE)) {
@@ -33,6 +46,10 @@ const MainLayout = ({ className, ...otherProps }: MainLayoutProps): JSX.Element 
     }
     handleShowPopUp();
   }, []);
+
+  useEffect(() => {
+    handleToggleScroll();
+  }, [location.pathname]);
 
   return (
     <>

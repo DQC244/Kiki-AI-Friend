@@ -13,14 +13,14 @@ const AnimationRightToLeft = () => {
     mode: "scroll",
     actions: [
       {
-        visibility: [0, 0.3],
+        visibility: [0, 0.2],
         type: "stop",
-        frames: [0],
+        frames: [1],
       },
       {
-        visibility: [0.3, 1],
+        visibility: [0.2, 0.5],
         type: "seek",
-        frames: [0, 200],
+        frames: [1, 60],
       },
     ],
   });
