@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ImageAssets } from "assets";
 import { AppConstant } from "const";
 import ChatBoxButton from "./ChatBoxButton";
+import DelayMessage from "../QuestionList/DelayMessage";
 
 const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessageProps) => {
   const { t: getLabel } = useTranslation();
@@ -19,7 +20,7 @@ const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessagePr
 
   const handleClose = () => {
     setChatList((preChat) => [...preChat, { message: getLabel("lJustComeBackAnytimeWith") }]);
-    scrollTopElement(10);
+    scrollTopElement(100);
     onSetContentDolphin(getLabel("lDownloadOurAppIfYouWant"));
   };
 
@@ -35,14 +36,14 @@ const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessagePr
     onSetContentDolphin(getLabel("lGreatClickOnTheButton"));
 
     setChatList((preChat) => [...preChat, { message: getLabel("lKeepThinkingAboutAnother") }]);
-    scrollTopElement(10);
+    scrollTopElement(100);
 
     setTimeout(() => {
       setChatList((preChat) => [
         ...preChat,
         { message: getLabel("lPingMeAgainWhenYouAreReady"), isAction: true },
       ]);
-      scrollTopElement(10);
+      scrollTopElement(100);
     }, AppConstant.DEBOUNCE_TIME_IN_MILLISECOND);
   };
 
@@ -55,38 +56,28 @@ const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessagePr
       {chatList.map((item, index) => {
         if (item.isAction) {
           return (
-            <ChatBox
-              key={index}
-              messageCustom={
-                // <Stack spacing={1} justifyContent="flex-start">
-                //   {isOpenPopup && (
-                //     <ThinkPopup
-                //       onClickAnother={handleClickAnother}
-                //       message={contentList[randomIndex].label}
-                //       imageSrc={contentList[randomIndex].image}
-                //       onClose={handleClose}
-                //     />
-                //   )}
-                //   <Typography className={classes.text}>{item.message}</Typography>
-                //   <Box>
-                //     <Button onClick={handleReadyClick} className={classes.button}>
-                //       {getLabel("lImReady")}
-                //     </Button>
-                //   </Box>
-                // </Stack>
-                <ChatBoxButton
-                  label={contentList[randomIndex].label}
-                  imageSrc={contentList[randomIndex].image}
-                  message={item.message}
-                  onClickAnother={handleClickAnother}
-                  onClose={handleClose}
-                  onReadyClick={handleReadyClick}
-                />
-              }
-            />
+            <DelayMessage key={index} waitBeforeShow={AppConstant.DEBOUNCE_TIME_IN_MILLISECOND}>
+              <ChatBox
+                key={index}
+                messageCustom={
+                  <ChatBoxButton
+                    label={contentList[randomIndex].label}
+                    imageSrc={contentList[randomIndex].image}
+                    message={item.message}
+                    onClickAnother={handleClickAnother}
+                    onClose={handleClose}
+                    onReadyClick={handleReadyClick}
+                  />
+                }
+              />
+            </DelayMessage>
           );
         }
-        return <ChatBox key={index} message={item.message} />;
+        return (
+          <DelayMessage key={index} waitBeforeShow={0}>
+            <ChatBox key={index} message={item.message} />;
+          </DelayMessage>
+        );
       })}
     </>
   );

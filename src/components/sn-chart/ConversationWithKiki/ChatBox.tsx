@@ -1,4 +1,4 @@
-import React, { ReactNode, memo } from "react";
+import React, { ReactNode, memo, useEffect, useState } from "react";
 import { Box, Stack, StackProps, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
@@ -15,6 +15,14 @@ const ChatBox = ({
 }: ChatBoxProps) => {
   const classes = useStyles();
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
   return (
     <Stack spacing={1.75} direction={imageSrc ? "row-reverse" : "row"} {...otherProps}>
       <Box
@@ -23,11 +31,17 @@ const ChatBox = ({
         className={classes.img}
         draggable="false"
       />
-      {contentCustom ?? (
-        <Box className={clsx(classes.textBox, imageSrc && classes.borderLight)}>
-          {startIcon}
-          {messageCustom || <Typography className={classes.message}>{message}</Typography>}
-        </Box>
+      {!imageSrc && isLoading ? (
+        <LoadingAnimation />
+      ) : (
+        <>
+          {contentCustom ?? (
+            <Box className={clsx(classes.textBox, imageSrc && classes.borderLight)}>
+              {startIcon}
+              {messageCustom || <Typography className={classes.message}>{message}</Typography>}
+            </Box>
+          )}
+        </>
       )}
     </Stack>
   );
@@ -41,6 +55,16 @@ type ChatBoxProps = StackProps & {
   contentCustom?: ReactNode;
 };
 
+const LoadingAnimation = () => {
+  const classes = useStyles();
+
+  return (
+    <Box className={clsx(classes.textBox, classes.textBoxLoading)}>
+      <div className="dot-pulse"></div>
+    </Box>
+  );
+};
+
 export default memo(ChatBox);
 
 const useStyles = makeStyles((theme: ThemeProps) => ({
@@ -51,6 +75,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     borderRadius: "50%",
   },
   textBox: {
+    minWidth: 76,
     display: "flex",
     alignItems: "center",
     padding: "10px 13px",
@@ -72,5 +97,8 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   borderLight: {
     borderColor: "#FFD488",
+  },
+  textBoxLoading: {
+    paddingLeft: 33,
   },
 }));
