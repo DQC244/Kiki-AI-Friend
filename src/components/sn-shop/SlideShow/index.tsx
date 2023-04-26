@@ -54,7 +54,7 @@ const SlideShow = () => {
         onNextImg={handleNextImage}
         onPreImg={handlePreImage}
       />
-      <Stack spacing={2}>
+      <Stack spacing={2} zIndex={1}>
         <Typography className={classes.name}>{data?.name}</Typography>
         <Box className={classes.borderBox} />
         <Typography className={classes.price}>{data?.price}</Typography>
@@ -131,16 +131,19 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     fontWeight: 700,
     fontSize: 24,
     lineHeight: "32px",
+    zIndex: 1,
   },
   borderBox: {
     background: theme.palette.gradient.main,
     height: 3,
     width: 133,
+    zIndex: 1,
   },
   price: {
     fontWeight: 700,
     fontSize: 22,
     lineHeight: "30px",
+    zIndex: 1,
   },
   tiktokButton: {
     "&,&:hover": {

@@ -17,32 +17,12 @@ const Home = () => {
 
   return (
     <Box className={classes.root}>
-      <Box className={classes.background} />
       <Container className={classes.container}>
         <Stack spacing={20}>
+          <Box className={classes.background} />
           <IntroduceSection />
           <AIFriendSection
-            // star={
-            //   <Box
-            //     className={classes.star}
-            //     draggable="false"
-            //     component="img"
-            //     src={ImageAssets.StarList}
-            //   />
-            // }
             spaceship={
-              // <Box
-              //   className={classes.spaceship}
-              //   draggable="false"
-              //   component="img"
-              //   src={ImageAssets.Spaceship}
-              // />
-              // <Lottie
-              //   className={classes.animation}
-              //   animationData={StartAnimation}
-              //   loop={false}
-              //   autoplay={true}
-              // />
               <Box className={classes.animation}>
                 <AnimationRightToLeft />
               </Box>
@@ -85,8 +65,6 @@ const useStyles = makeStyles(() => ({
     position: "relative",
   },
   animation: {
-    // width: 250,
-    // height: 188,
     position: "absolute",
     width: 680,
     bottom: -243,
@@ -101,12 +79,12 @@ const useStyles = makeStyles(() => ({
     background: `no-repeat top left / 100% auto url(${HomeBackground})`,
     animation: "zoom-in-zoom-out-home 10s linear infinite",
     animationPlayState: "paused",
+    zIndex: 0,
     "&:hover": {
       animationPlayState: "running",
     },
   },
   container: {
-    position: "relative",
     maxWidth: 1360,
   },
   star: {

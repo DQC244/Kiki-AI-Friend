@@ -26,11 +26,13 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontSize: 90,
     lineHeight: "98px",
+    zIndex: 1,
   },
   desc: {
     fontWeight: 600,
     fontSize: 30,
     lineHeight: "38px",
     textAlign: "center",
+    zIndex: 1,
   },
 }));

@@ -46,12 +46,15 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontSize: 64,
     lineHeight: "71px",
+    zIndex: 1,
   },
   wrapperImage: {
     position: "relative",
+    zIndex: 1,
   },
   image: {
     width: 327,
     height: 709,
+    zIndex: 1,
   },
 }));

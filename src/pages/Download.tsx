@@ -22,9 +22,9 @@ const Download = () => {
 
   return (
     <Box className={classes.root}>
-      <Box className={classes.background} />
       <Container className={clsx("center-root", classes.container)}>
         <Stack alignItems="center" spacing={6} height="100%">
+          <Box className={classes.background} />
           <Typography className={classes.title}>{AppConstant.TITLE}</Typography>
           <Typography className={classes.subtitle}>
             {getLabel("lComingSoonAppStoreAndGooglePlay")}
@@ -58,13 +58,13 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     position: "relative",
   },
   container: {
-    position: "relative",
     maxWidth: 1360,
     minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
   },
   background: {
     position: "absolute",
     inset: 0,
+    zIndex: 0,
     width: "100%",
     height: "100%",
     background: `no-repeat top left / 100% auto url(${ImageAssets.HomeBackground})`,
@@ -79,11 +79,13 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     fontWeight: 700,
     fontSize: 90,
     lineHeight: "98px",
+    zIndex: 1,
   },
   subtitle: {
     textAlign: "center",
     fontWeight: 600,
     fontSize: 30,
+    zIndex: 1,
     lineHeight: "38px",
     background: "linear-gradient(83.8deg, #CAACF2 -0.96%, #9AA2FF 47.01%, #BBD0FF 98.49%)",
     "-webkit-background-clip": "text",
@@ -110,16 +112,9 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     borderRadius: 15,
     padding: "4px 24px",
   },
-  button: {
-    width: 34,
-    height: 34,
-    borderRadius: "50%",
-    background: `no-repeat top left / 100% 100% url(${ImageAssets.ArrowButtonBackground})`,
-    position: "absolute",
-    right: 25,
-  },
   img: {
     width: 175,
     height: 157,
+    zIndex: 1,
   },
 }));

@@ -9,6 +9,7 @@ const DailyTarot = () => {
 
   return (
     <Box className={classes.root}>
+      <Box className={classes.background} />
       <Container>
         <Stack>
           <TitleDaily />
@@ -24,9 +25,20 @@ export default DailyTarot;
 const useStyles = makeStyles(() => ({
   root: {
     padding: "60px 0",
+  },
+  background: {
+    position: "absolute",
+    inset: 0,
     backgroundPosition: "top 400px left ",
     backgroundSize: "100% auto",
-    background: `no-repeat url(${ImageAssets.DailyTarotBackground})`,
+    background: `url(${ImageAssets.DailyTarotBackground})`,
+
+    animation: "zoom-in-zoom-out 7s linear infinite",
+    animationPlayState: "paused",
+
+    "&:hover": {
+      animationPlayState: "running",
+    },
   },
   cardList: {
     marginTop: 104,
