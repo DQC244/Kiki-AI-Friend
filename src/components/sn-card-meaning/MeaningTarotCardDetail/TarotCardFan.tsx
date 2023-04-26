@@ -5,7 +5,10 @@ import { TarotCard } from "components/sn-daily-tarot";
 import { useTranslation } from "react-i18next";
 import { ThemeProps } from "models/types";
 import { useNavigate } from "react-router-dom";
-import { PathConstant } from "const";
+import { ApiConstant, PathConstant } from "const";
+import { useSelector } from "react-redux";
+import { AppSelector } from "redux-store";
+import StringFormat from "string-format";
 let timer: ReturnType<typeof setInterval> = setInterval(() => "", 2000);
 
 const TarotCardFan = () => {
@@ -15,6 +18,8 @@ const TarotCardFan = () => {
 
   const [order, setOrder] = useState(1);
   const [idCard, setIdCard] = useState<Array<number>>([]);
+
+  const cardList = useSelector(AppSelector.getSuitList);
 
   useEffect(() => {
     const idCardClone = [...idCard];
@@ -50,15 +55,17 @@ const TarotCardFan = () => {
         {getLabel("lPickTodayTarotCard")}
       </Button>
       <Box className={classes.wrapper}>
-        {CARD_LIST.map((item, index) => (
-          <Box className={classes.card} key={index}>
-            <TarotCard
-              isShowFront={idCard.includes(item.id)}
-              className={classes.innerCard}
-              key={index}
-            />
-          </Box>
-        ))}
+        {cardList.length === 8 &&
+          cardList.map((item, index) => (
+            <Box className={classes.card} key={index}>
+              <TarotCard
+                isShowFront={idCard.includes(index + 1)}
+                className={classes.innerCard}
+                key={index}
+                cardFront={StringFormat(ApiConstant.URL_IMAGE_ID, { id: item?.id })}
+              />
+            </Box>
+          ))}
       </Box>
     </Box>
   );
@@ -76,17 +83,6 @@ enum CARD_ID {
 }
 
 export default memo(TarotCardFan);
-
-const CARD_LIST = [
-  { id: CARD_ID.first },
-  { id: CARD_ID.second },
-  { id: CARD_ID.third },
-  { id: CARD_ID.fourth },
-  { id: CARD_ID.fifth },
-  { id: CARD_ID.sixth },
-  { id: CARD_ID.seventh },
-  { id: CARD_ID.eighth },
-];
 
 const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {

@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import { TitleDaily, CardInfoHead } from "components/sn-daily-tarot";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppActions } from "redux-store";
 
 const DailyTarotDetail = () => {
+  const dispatch = useDispatch();
   const { t: getLabel } = useTranslation();
   const classes = useStyles();
+  const params = useParams();
+  const id = params?.id;
+
+  useEffect(() => {
+    if (id) {
+      dispatch(AppActions.getTarotCardDetail(id));
+    }
+
+    return () => {
+      dispatch(AppActions.appReset());
+    };
+  }, [id]);
 
   return (
     <Box className={classes.root}>

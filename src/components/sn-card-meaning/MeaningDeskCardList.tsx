@@ -1,19 +1,23 @@
 import React, { useMemo } from "react";
 import MeaningCard from "./MeaningCard";
 import { Box, Stack } from "@mui/material";
-import { ImageAssets } from "assets";
 import { makeStyles } from "@mui/styles";
 import MeaningDeskCardListTitle from "./MeaningDeskCardListTitle";
 import { useNavigate, useParams } from "react-router-dom";
-import { PathConstant } from "const";
+import { ApiConstant, PathConstant } from "const";
 import { useTranslation } from "react-i18next";
 import { ObjectMultiLanguageProps } from "models";
+import { useSelector } from "react-redux";
+import { AppSelector } from "redux-store";
+import StringFormat from "string-format";
 
 const MeaningDeskCardList = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const params = useParams();
   const { t: getLabel } = useTranslation();
+
+  const cardList = useSelector(AppSelector.getSuitList);
 
   const title = useMemo(() => {
     const contentObj: ObjectMultiLanguageProps = getLabel("objCardName", { returnObjects: true });
@@ -31,92 +35,33 @@ const MeaningDeskCardList = () => {
   return (
     <Stack alignItems="center">
       <MeaningDeskCardListTitle title={title} />
-      <Stack mt={11.5} direction="row" justifyContent="center" spacing={17}>
-        {CARD_ARR.slice(0, 2).map((item, index) => (
-          <MeaningCard
-            onReadMeaning={() => handleReadMeaning(item.id)}
-            key={index}
-            description={item.description}
-            cardBackground={item.url}
-          />
-        ))}
-      </Stack>
-      <Box className={classes.wrapper}>
-        {CARD_ARR.slice(2).map((item, index) => (
-          <MeaningCard
-            onReadMeaning={() => handleReadMeaning(item.id)}
-            key={index}
-            description={item.description}
-            cardBackground={item.url}
-          />
-        ))}
-      </Box>
+      {cardList.length > 2 && (
+        <>
+          <Stack mt={11.5} direction="row" justifyContent="center" spacing={17}>
+            {cardList.slice(0, 2).map((item, index) => (
+              <MeaningCard
+                onReadMeaning={() => handleReadMeaning(item?.id)}
+                key={index}
+                description={item?.meaning}
+                cardBackground={StringFormat(ApiConstant.URL_IMAGE_ID, { id: item?.id })}
+              />
+            ))}
+          </Stack>
+          <Box className={classes.wrapper}>
+            {cardList.slice(2).map((item, index) => (
+              <MeaningCard
+                onReadMeaning={() => handleReadMeaning(item?.id)}
+                key={index}
+                description={item?.meaning}
+                cardBackground={StringFormat(ApiConstant.URL_IMAGE_ID, { id: item?.id })}
+              />
+            ))}
+          </Box>
+        </>
+      )}
     </Stack>
   );
 };
-
-const CARD_ARR = [
-  {
-    id: 1,
-    url: ImageAssets.DemoDailyCard,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque.",
-  },
-  {
-    id: 1,
-    url: ImageAssets.DemoDailyCard,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque.",
-  },
-  {
-    id: 1,
-    url: ImageAssets.DemoDailyCard,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque.",
-  },
-  {
-    id: 1,
-    url: ImageAssets.DemoDailyCard,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque.",
-  },
-  {
-    id: 1,
-    url: ImageAssets.DemoDailyCard,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque.",
-  },
-  {
-    id: 1,
-    url: ImageAssets.DemoDailyCard,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque.",
-  },
-  {
-    id: 1,
-    url: ImageAssets.DemoDailyCard,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque.",
-  },
-  {
-    id: 1,
-    url: ImageAssets.DemoDailyCard,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque.",
-  },
-  {
-    id: 1,
-    url: ImageAssets.DemoDailyCard,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque.",
-  },
-  {
-    id: 1,
-    url: ImageAssets.DemoDailyCard,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque.",
-  },
-];
 
 export default MeaningDeskCardList;
 

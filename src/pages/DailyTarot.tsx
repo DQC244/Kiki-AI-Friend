@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Container, Stack } from "@mui/material";
 import { TarotCardList, TitleDaily } from "components/sn-daily-tarot";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
+import { useDispatch } from "react-redux";
+import { AppActions } from "redux-store";
 
 const DailyTarot = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(AppActions.getTarotCardRandom(16));
+
+    return () => {
+      dispatch(AppActions.appReset());
+    };
+  }, []);
 
   return (
     <Box className={classes.root}>

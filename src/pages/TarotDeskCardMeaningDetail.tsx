@@ -27,7 +27,7 @@ const TarotCardMeaning = () => {
       const now = Math.floor(Date.now() / 1000);
       const minute = AppConstant.COOL_DOWN_TIME + now;
       setTimer(minute);
-      Cookies.set(AppConstant.KEY_TIME_POPUP, minute.toString(), { expires: (1 / 1440) * 5.5 });
+      Cookies.set(AppConstant.KEY_TIME_POPUP, minute.toString(), { expires: (1 / 1440) * 5.05 });
     }
   };
 
@@ -39,6 +39,9 @@ const TarotCardMeaning = () => {
     if (idSuit) {
       dispatch(AppActions.getTarotCard(idSuit));
     }
+    return () => {
+      dispatch(AppActions.appReset());
+    };
   }, [idSuit]);
 
   return (

@@ -2536,6 +2536,11 @@
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.1.tgz#20f18294f797f2209b5f65c8e3b5c8e8261d127c"
   integrity sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==
 
+"@types/string-format@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/string-format/-/string-format-2.0.0.tgz#c1588f507be7b8ef5eb5074a41e48e4538f3f6d5"
+  integrity sha512-mMwtmgN0ureESnJ3SuMM4W9lsi4CgOxs43YxNo14SDHgzJ+OPYO3yM7nOTJTh8x5YICseBdtrySUbvxnpb+NYQ==
+
 "@types/testing-library__jest-dom@^5.9.1":
   version "5.14.5"
   resolved "https://registry.yarnpkg.com/@types/testing-library__jest-dom/-/testing-library__jest-dom-5.14.5.tgz#d113709c90b3c75fdb127ec338dad7d5f86c974f"
@@ -9108,6 +9113,11 @@ stop-iteration-iterator@^1.0.0:
   integrity sha512-iCGQj+0l0HOdZ2AEeBADlsRC+vsnDsZsbdSiH1yNSjcfKM7fdpCMfqAL/dwF5BLiw/XhRft/Wax6zQbhq2BcjQ==
   dependencies:
     internal-slot "^1.0.4"
+
+string-format@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/string-format/-/string-format-2.0.0.tgz#f2df2e7097440d3b65de31b6d40d54c96eaffb9b"
+  integrity sha512-bbEs3scLeYNXLecRRuk6uJxdXUSj6le/8rNPHChIJTn2V79aXVTR1EH2OH5zLKKoz0V02fOUKZZcw01pLUShZA==
 
 string-length@^4.0.1:
   version "4.0.2"

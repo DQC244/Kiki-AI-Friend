@@ -12,6 +12,8 @@ import { IAppReduxState } from "redux-store";
 /* ------------- Types and Action Creators ------------- */
 export const { Types, Creators } = createActions({
   getTarotCard: ["data"],
+  getTarotCardDetail: ["data"],
+  getTarotCardRandom: ["data"],
 
   appSuccess: ["data"],
   appFailure: ["error", "data"],
@@ -23,11 +25,13 @@ export const { Types, Creators } = createActions({
 export interface IAppRedux extends IReduxStateCommon {
   //
   cardListSuit: Array<any>;
+  cardDetail: any;
 }
 export const INITIAL_STATE: IAppRedux = {
   ...REDUX_STATE,
 
   cardListSuit: [],
+  cardDetail: {},
 };
 
 /* ------------- Selector ------------- */
@@ -35,6 +39,7 @@ export const Selector = {
   // Get suit info
 
   getSuitList: (state: IAppReduxState) => state.appRedux.cardListSuit,
+  getCardDetail: (state: IAppReduxState) => state.appRedux.cardDetail,
 };
 
 /* ------------- Reducers ------------- */
@@ -49,6 +54,8 @@ const reset = () => resetReducerFunc(INITIAL_STATE);
 /* ------------- Mapping ------------- */
 const HANDLERS = {
   [Types.GET_TAROT_CARD]: request,
+  [Types.GET_TAROT_CARD_RANDOM]: request,
+  [Types.GET_TAROT_CARD_DETAIL]: request,
 
   [Types.APP_SUCCESS]: success,
   [Types.APP_FAILURE]: failure,

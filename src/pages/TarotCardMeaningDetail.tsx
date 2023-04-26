@@ -6,9 +6,17 @@ import { ImageAssets } from "assets";
 import { OrderPopup } from "components/common";
 import { AppConstant } from "const";
 import Cookies from "js-cookie";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppActions } from "redux-store";
 
 const TarotCardMeaning = () => {
   const classes = useStyles();
+
+  const params = useParams();
+  const dispatch = useDispatch();
+
+  const id = params?.id;
 
   const [timer, setTimer] = useState<number>(0);
 
@@ -20,13 +28,25 @@ const TarotCardMeaning = () => {
       const now = Math.floor(Date.now() / 1000);
       const minute = AppConstant.COOL_DOWN_TIME + now;
       setTimer(minute);
-      Cookies.set(AppConstant.KEY_TIME_POPUP, minute.toString(), { expires: (1 / 1440) * 5.5 });
+      Cookies.set(AppConstant.KEY_TIME_POPUP, minute.toString(), { expires: (1 / 1440) * 5.05 });
     }
   };
 
   useEffect(() => {
     handleShowPopup();
   }, []);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(AppActions.getTarotCardDetail(id));
+      dispatch(AppActions.getTarotCardRandom(8));
+
+      // dispatch(AppActions.getTarotCardRandom(8));
+    }
+    return () => {
+      dispatch(AppActions.appReset());
+    };
+  }, [id]);
 
   return (
     <Box className={classes.root}>

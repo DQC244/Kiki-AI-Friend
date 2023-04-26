@@ -1,13 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useTranslation } from "react-i18next";
-import { ImageAssets } from "assets";
 
 const KeyMeaning = ({ data }: KeyMeaningProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
+
+  const keyArr = useMemo(() => {
+    const stringFormat = data?.keywords;
+    if (stringFormat) {
+      return stringFormat.split("\n");
+    }
+    return [];
+  }, [data?.keywords]);
 
   return (
     <Box className={classes.root}>
@@ -16,39 +23,53 @@ const KeyMeaning = ({ data }: KeyMeaningProps) => {
           <Typography width="100%" className={classes.title}>
             {getLabel("lKeyMeaning")}
           </Typography>
-          <Typography width="100%">{data?.desc}</Typography>
-          <Typography width="100%">{getLabel("lKeyMeaning")}</Typography>
-          <Typography width="100%">{getLabel("lKeyMeaning")}</Typography>
+          {keyArr.map((item: any, index: number) => (
+            <Typography display="list-item" ml={4.5} key={index} width="100%">
+              {item}
+            </Typography>
+          ))}
         </Grid>
         <Grid item className={classes.item}>
           <Typography className={classes.title}>{getLabel("lSign")}</Typography>
-          <Box
-            component="img"
-            className={classes.img}
-            draggable="false"
-            src={ImageAssets.SignImage}
-          />
-          <Typography>{getLabel("lAquarius")}</Typography>
+          {data.zodiac_sign && (
+            <>
+              <Box
+                component="img"
+                className={classes.img}
+                draggable="false"
+                src={`data:image/svg+xml;base64,${data?.zodiac_sign?.zodiac_sign_image}`}
+              />
+              <Typography>{data?.zodiac_sign?.zodiac_sign_name}</Typography>
+            </>
+          )}
         </Grid>
         <Grid item className={classes.item}>
           <Typography className={classes.title}>{getLabel("lPlanet")}</Typography>
-          <Box
-            component="img"
-            className={classes.img}
-            draggable="false"
-            src={ImageAssets.PlanetImage}
-          />
-          <Typography>{getLabel("lUranus")}</Typography>
+          {data?.planet && (
+            <>
+              <Box
+                component="img"
+                className={classes.img}
+                draggable="false"
+                src={`data:image/svg+xml;base64,${data?.planet?.planet_image}`}
+              />
+              <Typography>{data?.planet?.planet_name}</Typography>
+            </>
+          )}
         </Grid>
         <Grid item className={classes.item}>
           <Typography className={classes.title}>{getLabel("lElement")}</Typography>
-          <Box
-            component="img"
-            className={classes.img}
-            draggable="false"
-            src={ImageAssets.ElementImage}
-          />
-          <Typography>{getLabel("lAir")}</Typography>
+          {data?.element && (
+            <>
+              <Box
+                component="img"
+                className={classes.img}
+                draggable="false"
+                src={`data:image/svg+xml;base64,${data?.element?.element_image}`}
+              />
+              <Typography>{data?.element?.element_name}</Typography>
+            </>
+          )}
         </Grid>
       </Grid>
     </Box>

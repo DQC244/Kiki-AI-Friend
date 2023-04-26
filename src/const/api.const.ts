@@ -25,4 +25,8 @@ export const GET_PROFILE = "/profile";
 export const BASE_URL_NINJAS = "https://api.api-ninjas.com/v1";
 export const GET_CITY = "/city";
 
+export const TAROT_RANDOM = "/tarot_card_random_multiple";
 export const TAROT_CARD_FILTER = "/tarot_card_filter";
+export const TAROT_CARD_DETAIL = "/tarot_card/{id}";
+
+export const URL_IMAGE_ID = `${BASE_URL}/tarot_card/{id}/image`;
