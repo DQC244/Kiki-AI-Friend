@@ -1,9 +1,9 @@
 import { JSXElementConstructor, ReactElement } from "react";
 import { useLottie, useLottieInteractivity } from "lottie-react";
-import { StartAnimation } from "assets/animations";
+import { StarsAnimation } from 'assets/animations';
 
 const options = {
-  animationData: StartAnimation,
+  animationData: StarsAnimation,
 };
 
 const AnimationRightToLeft = () => {

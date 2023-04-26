@@ -1,3 +1,3 @@
-import StartAnimation from "./stars.json";
+import StarsAnimation from "./stars.json";
 
-export { StartAnimation };
+export { StarsAnimation };

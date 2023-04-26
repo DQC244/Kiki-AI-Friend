@@ -76,24 +76,24 @@ export default {
   lViewSynastryChart: "Xem bản đồ Synastry",
   lLetSeeYourHarmony: "Tải ứng dụng ngay để xem mức độ hòa hợp của hai bạn đến đâu nhé!",
   lPleaseEnterAllRequiredFields: "Please enter all required fields",
-  lThinkAboutTheQuestionYouAsk: "Think about the question you wanna ask.",
+  lThinkAboutTheQuestionYouAsk: "Hãy nghĩ về một khả năng mà bạn muốn hỏi.",
   lWhenYouAreDone:
-      "When you’re done, click on the button below and I’ll get your answer from the universe.",
-  lImReady: "I’m ready",
-  lThinkAboutAnotherPossibility: "Think about another possibility",
-  lJustADayDream: "It’s just a daydream! Wake up honey.",
-  lJustGoIt: "Just go for it!",
-  lItNotRightTime: "It’s not the right time.",
-  lKeepThinkingAboutAnother: "Keep thinking about another possibility you wanna ask me!",
-  lPingMeAgainWhenYouAreReady: "Ping me again when you’re ready!",
+      "Khi nào sẵn sàng, hãy bấm nút ở bên dưới để đón nhận thông điệp từ vũ trụ nhé!",
+  lImReady: "Tôi đã sẵn sàng",
+  lThinkAboutAnotherPossibility: "Nghĩ về một khả năng khác",
+  lJustADayDream: "Chỉ là mơ mộng hão huyền thôi, tỉnh dậy đi bé cưng!",
+  lJustGoIt: "Chiến!",
+  lItNotRightTime: "Hay là đợi lúc nào đó thích hợp hơn nhé!",
+  lKeepThinkingAboutAnother: "Hãy tiếp tục nghĩ về 1 khả năng mà bạn muốn hỏi tôi.",
+  lPingMeAgainWhenYouAreReady: "Hãy nói với tôi khi nào bạn sẵn sàng nhé!",
   lJustComeBackAnytimeWith:
-      "Just come back anytime with a fish or download our app to explore more and receive many more messages from the universe.",
-  lDownloadOurAppIfYouWant: "Download our app if you want to have more conversation with me!",
+      "Hãy quay lại bất cứ lúc nào nếu bạn muốn nhận thông điệp từ vũ trụ, nhớ mang theo cá nữa Duong nhé!",
+  lDownloadOurAppIfYouWant: "Hãy tải ứng dụng nếu bạn muốn nói chuyện với Kiki nhiều hơn!",
   lYouCanThinkAboutAnotherPossibility:
-      "You can think about another possibility or slide the topic bar to ask another question.",
-  lGreatClickOnTheButton: "Great! Click on the button if you’re ready!",
+      "Bạn có thể chọn nghĩ về một khả năng khác, hoặc chọn câu hỏi từ chủ đề khác bằng cách kéo thanh chủ đề ở phía dưới.",
+  lGreatClickOnTheButton: "Tuyệt vời! Hãy ấn nút bên dưới khi bạn đã sẵn sàng để nghe thông điệp nhé!",
   lInsteadDoYouWantToTryOut:
-      "Instead, do you want to try out the Mystic Zone? Download our app to explore more!",
+      "Thay vào đó, bạn có muốn tải ứng dụng để khám phá thêm những điều mới lạ khác không?",
 
   // Daily tarot, meaning
   lOneCardTarotReading: "Trải bài một lá",
@@ -106,9 +106,9 @@ export default {
   lViewCards: "Xem lá bài",
   lReadTheMeaning: "Xem ý nghĩa",
   lKeyMeaning: "Key meaning:",
-  lSign: "Sign",
-  lPlanet: "Planet",
-  lElement: "Element",
+  lSign: "Cung",
+  lPlanet: "Hành tinh",
+  lElement: "Nguyên tố",
   lAquarius: "Aquarius",
   lUranus: "Uranus",
   lAir: "Air",
@@ -141,12 +141,12 @@ export default {
   },
 
   objQuestionStep1: {
-    lLove: "Love",
-    lMoney: "Money",
-    lSelf: "Self",
-    lWorkStudy: "Work / Study",
-    lPossibilities: "Possibilities",
-    lNoImGood: "No, I’m Good.",
+    lLove: "Tình yêu",
+    lMoney: "Tài chính",
+    lSelf: "Bản thân",
+    lWorkStudy: "Công việc / Học tập",
+    lPossibilities: "Khả năng",
+    lNoImGood: "Không có gì",
   },
 
   ObjMenu: {
@@ -163,42 +163,42 @@ export default {
   },
 
   // Chat
-  lIveChangedMyMind: "I’ve changed my mind. Can I change topics?",
+  lIveChangedMyMind: "Tôi đổi ý rồi. Tôi chọn chủ đề khác được không?",
 
   objWorkTopic: {
-    lWhatCareersSuitMeTheMost: "What careers suit me the most?",
-    lAnyNewOpportunity: "Any new opportunity for my job/ study?",
-    lShouldIStart: "Should I start a Start-up?",
-    lShouldIPursue: "Should I pursue a higher education?",
+    lWhatCareersSuitMeTheMost: "Nghề nghiệp nào phù hợp với tôi nhất?",
+    lAnyNewOpportunity: "Có cơ hội nào mới với công việc/học tập của tôi?",
+    lShouldIStart: "Liệu tôi có nên khởi nghiệp không?",
+    lShouldIPursue: "Tôi có nên học lên cao hơn không?",
   },
 
   objLoveTopic: {
-    lTellMeAbout: "Tell me about my marriage life.",
-    lSignOfMyNextLove: "Sign of my next love/romantic relationship?",
-    lWhatIsMyIdealization: "What is my idealization of love and beauty?",
+    lTellMeAbout: "Hãy kể tôi nghe về đời sống hôn nhân của tôi đi.",
+    lSignOfMyNextLove: "Mối quan hệ tình cảm sắp tới của tôi ra sao?",
+    lWhatIsMyIdealization: "Lý tưởng về tình yêu và cái đẹp của tôi là gì?",
   },
 
   objSelfTopic: {
-    lWhatIsMyNutritionalAdvice: "What is my nutritional advice?",
-    lWhatIsMyStressManagementTips: "What is my stress management tips?",
-    lCanYouTellMyPersonality: "Can you tell my personality?",
+    lWhatIsMyNutritionalAdvice: "Lời khuyên về dinh dưỡng của tôi là gì?",
+    lWhatIsMyStressManagementTips: "Các mẹo giúp quản lý sự căng thẳng của tôi là gì?",
+    lCanYouTellMyPersonality: "Bạn có thể nói tôi nghe về tính cách của tôi không?",
   },
 
   objMoneyTopic: {
-    lWhereCanIGrow: "Where can I grow or find my good fortune from?",
+    lWhereCanIGrow: "Tôi có thể làm gì để cải thiện tình hình tài chính của mình?",
   },
 
   objEndTopic: {
-    lAskAnotherQuestion: "Ask another question in the same topics.",
-    lBackToOtherMainTopics: "Back to other main topics.",
-    lEndConversation: "End Conversation.",
+    lAskAnotherQuestion: "Hỏi câu hỏi khác cùng chủ đề.",
+    lBackToOtherMainTopics: "Trở lại các chủ đề chính.",
+    lEndConversation: "Kết thúc cuộc trò chuyện.",
   },
 
   objCardName: {
-    lTheMajorArcana: "The Major Arcana",
-    lTheSuitOfCups: "The Suit of Cups",
-    lTheSuitOfWands: "The Suit of Wands",
-    lTheSuitOfSwords: "The Suit of Swords",
-    lTheSuitOfPentacles: "The Suit of Pentacles",
+    lTheMajorArcana: "Bộ ẩn chính",
+    lTheSuitOfCups: "Bộ Ly",
+    lTheSuitOfWands: "Bộ Gậy",
+    lTheSuitOfSwords: "Bộ Kiếm",
+    lTheSuitOfPentacles: "Bộ Xu",
   },
 };
