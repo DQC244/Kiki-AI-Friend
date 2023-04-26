@@ -7,10 +7,12 @@ import { ThemeProps } from "models/types";
 import { AppConstant } from "const";
 import AppGradientButton from "../AppGradientButton";
 import Setting from "./Setting";
+import { useMobile } from "hooks";
 
 const CookiePopup = ({ onClose, isUSA }: CookiePopupProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
+  const isMobile = useMobile();
 
   const [isSetting, setIsSetting] = useState(false);
   const [options, setOptions] = useState<OptionProps>(OPTIONS);
@@ -59,30 +61,38 @@ const CookiePopup = ({ onClose, isUSA }: CookiePopupProps) => {
         />
       ) : (
         <Box className={classes.container}>
-          <Box
-            component="img"
-            src={ImageAssets.CookieIcon}
-            draggable="false"
-            className={classes.imgCookie}
-          />
-          <Stack spacing={4} direction="row" alignItems="center">
+          {!isMobile && (
+            <Box
+              component="img"
+              src={ImageAssets.CookieIcon}
+              draggable="false"
+              className={classes.imgCookie}
+            />
+          )}
+          <Stack
+            spacing={4}
+            direction={{ xs: "column", lg: "row" }}
+            alignItems={{ xs: "center", sm: "flex-start", lg: "center" }}
+          >
             <Box>
               <Typography className={classes.title}>{getLabel("lHaveACookie")}</Typography>
               <Typography>{getLabel("lCookiesDesc")}</Typography>
             </Box>
-            <Button className={classes.outlinedButton} onClick={() => setIsSetting(true)}>
-              <Typography className={classes.textButton}>{getLabel("lPreferences")}</Typography>
-            </Button>
-            {!isUSA && (
-              <Button className={classes.outlinedButton} onClick={handleRejectOption}>
-                <Typography className={classes.textButton}>{getLabel("lRejectAll")}</Typography>
+            <Stack spacing={{ xs: 1.25, sm: 4 }} direction="row">
+              <Button className={classes.outlinedButton} onClick={() => setIsSetting(true)}>
+                <Typography className={classes.textButton}>{getLabel("lPreferences")}</Typography>
               </Button>
-            )}
-            <AppGradientButton
-              className={classes.gradientButton}
-              label={getLabel("lAcceptAll")}
-              onClick={handleAcceptOption}
-            />
+              {!isUSA && (
+                <Button className={classes.outlinedButton} onClick={handleRejectOption}>
+                  <Typography className={classes.textButton}>{getLabel("lRejectAll")}</Typography>
+                </Button>
+              )}
+              <AppGradientButton
+                className={classes.gradientButton}
+                label={getLabel("lAcceptAll")}
+                onClick={handleAcceptOption}
+              />
+            </Stack>
           </Stack>
         </Box>
       )}
@@ -141,6 +151,14 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     padding: "54px 320px",
     background: theme.palette.common.white,
     borderRadius: "30px 30px 0px 0px",
+
+    [theme.breakpoints.down("lg")]: {
+      padding: "34px 260px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      padding: 16,
+      borderRadius: 30,
+    },
   },
   imgCookie: {
     position: "absolute",
