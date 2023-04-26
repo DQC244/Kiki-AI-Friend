@@ -4,6 +4,8 @@ export const HEADER_DEFAULT = {
   "Content-Type": "application/json",
 };
 
+export const BASE_URL = "http://13.212.69.53:8000/api/v1.0";
+
 export const TIMEOUT = 30000;
 
 // HTTP Status
@@ -22,3 +24,5 @@ export const GET_PROFILE = "/profile";
 
 export const BASE_URL_NINJAS = "https://api.api-ninjas.com/v1";
 export const GET_CITY = "/city";
+
+export const TAROT_CARD_FILTER = "/tarot_card_filter";

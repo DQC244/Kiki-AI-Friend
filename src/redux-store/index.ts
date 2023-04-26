@@ -5,16 +5,16 @@ import createSagaMiddleware from "redux-saga";
 import rootSaga from "sagas";
 
 import {
-  Creators as AccountActions,
-  Types as AccountTypes,
-  reducer as AccountReducer,
-  Selector as AccountSelector,
-  IAccountRedux,
-} from "./account.redux";
+  Creators as AppActions,
+  Types as AppTypes,
+  reducer as AppReducer,
+  Selector as AppSelector,
+  IAppRedux,
+} from "./app.redux";
 
 /* ------------- Assemble The Reducers ------------- */
 const appReducer = combineReducers({
-  accountRedux: AccountReducer,
+  appRedux: AppReducer,
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,11 +36,11 @@ const store = EnvConstant.IS_DEV
 sagaMiddleware.run(rootSaga);
 
 interface IAppReduxState {
-  accountRedux: IAccountRedux;
+  appRedux: IAppRedux;
 }
 
 /* ------------- Redux Actions ------------- */
-export { AccountActions, AccountTypes, AccountSelector };
-export type { IAppReduxState, IAccountRedux };
+export { AppActions, AppTypes, AppSelector };
+export type { IAppReduxState, IAppRedux };
 
 export default store;

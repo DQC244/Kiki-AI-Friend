@@ -14,11 +14,9 @@ const OrderPopup = ({ timer }: OrderPopupProps) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const m = useCountdownByTimestamp(timer, () => {
+  useCountdownByTimestamp(timer, () => {
     setIsOpen(true);
   });
-
-  console.log(m);
 
   return isOpen ? (
     <Box className={classes.root}>

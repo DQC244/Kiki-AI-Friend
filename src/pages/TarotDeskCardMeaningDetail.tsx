@@ -6,11 +6,18 @@ import { ImageAssets } from "assets";
 import { OrderPopup } from "components/common";
 import Cookies from "js-cookie";
 import { AppConstant } from "const";
+import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppActions } from "redux-store";
 
 const TarotCardMeaning = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const location = useLocation();
 
   const [timer, setTimer] = useState<number>(0);
+
+  const idSuit = location?.state?.id;
 
   const handleShowPopup = () => {
     const timeCookie = Cookies.get(AppConstant.KEY_TIME_POPUP);
@@ -27,6 +34,12 @@ const TarotCardMeaning = () => {
   useEffect(() => {
     handleShowPopup();
   }, []);
+
+  useEffect(() => {
+    if (idSuit) {
+      dispatch(AppActions.getTarotCard(idSuit));
+    }
+  }, [idSuit]);
 
   return (
     <Box className={classes.root}>

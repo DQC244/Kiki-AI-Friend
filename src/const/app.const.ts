@@ -48,3 +48,11 @@ export const COOL_DOWN_TIME = 300;
 export const COOKIES_SETTING_KEY = "options-cookie";
 
 export const USA_TIME_ZONE = "America";
+
+export enum SUIT_TYPE {
+  cups = "cups",
+  majorArcana = "Major-arcana",
+  pentacles = "Pentacles",
+  wands = "Wands",
+  swords = "Swords",
+}

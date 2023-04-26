@@ -2,7 +2,7 @@ import apisauce, { ApiResponse, ApisauceConfig } from "apisauce";
 import { ApiConstant } from "const";
 
 const DEFAULT_CONFIG: ApisauceConfig = {
-  baseURL: "",
+  baseURL: ApiConstant.BASE_URL,
   headers: { ...ApiConstant.HEADER_DEFAULT },
   timeout: ApiConstant.TIMEOUT,
 };

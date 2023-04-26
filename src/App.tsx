@@ -15,7 +15,6 @@ import {
   TarotDeskCardMeaningDetail,
   TarotCardMeaningDetail,
 } from "pages";
-import { AuthenticationRoute } from "components/common";
 import MainLayout from "layouts/MainLayout";
 
 const App = () => {
@@ -23,7 +22,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path={PathConstant.LOGIN} element={<LoginPage />} />
-        <Route path={PathConstant.ROOT} element={<AuthenticationRoute element={<MainLayout />} />}>
+        <Route path={PathConstant.ROOT} element={<MainLayout />}>
           <Route path={PathConstant.ROOT} element={<HomePage />} />
           <Route path={PathConstant.DOWNLOAD} element={<DownloadPage />} />
           <Route path={PathConstant.SHOP} element={<ShopPage />} />

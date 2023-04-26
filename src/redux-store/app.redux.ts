@@ -1,4 +1,3 @@
-import { IAppReduxState } from "./index";
 import { createActions, createReducer } from "reduxsauce";
 import {
   IReduxStateCommon,
@@ -8,32 +7,34 @@ import {
   successReducerFunc,
   resetReducerFunc,
 } from "./redux-structure";
-import { AccountClass, IAccountProperties } from "models";
+import { IAppReduxState } from "redux-store";
 
 /* ------------- Types and Action Creators ------------- */
 export const { Types, Creators } = createActions({
-  getAccount: ["data"],
+  getTarotCard: ["data"],
 
-  accountSuccess: ["data"],
-  accountFailure: ["error", "data"],
-  accountSet: ["data"],
-  accountReset: [],
+  appSuccess: ["data"],
+  appFailure: ["error", "data"],
+  appSet: ["data"],
+  appReset: [],
 });
 
 /* ------------- Initial State ------------- */
-export interface IAccountRedux extends IReduxStateCommon {
-  account: IAccountProperties;
+export interface IAppRedux extends IReduxStateCommon {
+  //
+  cardListSuit: Array<any>;
 }
-export const INITIAL_STATE: IAccountRedux = {
+export const INITIAL_STATE: IAppRedux = {
   ...REDUX_STATE,
 
-  account: new AccountClass({ email: "chien@gmail.com", name: "chien" }),
+  cardListSuit: [],
 };
 
 /* ------------- Selector ------------- */
 export const Selector = {
-  // Get Account info
-  getAccountInfo: (state: IAppReduxState) => state.accountRedux.account,
+  // Get suit info
+
+  getSuitList: (state: IAppReduxState) => state.appRedux.cardListSuit,
 };
 
 /* ------------- Reducers ------------- */
@@ -47,12 +48,12 @@ const reset = () => resetReducerFunc(INITIAL_STATE);
 
 /* ------------- Mapping ------------- */
 const HANDLERS = {
-  [Types.GET_ACCOUNT]: request,
+  [Types.GET_TAROT_CARD]: request,
 
-  [Types.ACCOUNT_SUCCESS]: success,
-  [Types.ACCOUNT_FAILURE]: failure,
-  [Types.ACCOUNT_SET]: success,
-  [Types.ACCOUNT_RESET]: reset,
+  [Types.APP_SUCCESS]: success,
+  [Types.APP_FAILURE]: failure,
+  [Types.APP_SET]: success,
+  [Types.APP_RESET]: reset,
 };
 
 /* ------------- Hookup Reducers To Types ------------- */
