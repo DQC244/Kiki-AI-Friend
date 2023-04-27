@@ -88,6 +88,10 @@ const ChartConversationKiki = ({
         } else if (type === TOPIC_TYPE.possibilities) {
           handleChoosePossibilityTopic();
         } else {
+          setTimeout(() => {
+            setMessage((pre) => [...pre, { label: getLabel("lHereAreSomeTopicsThat") }]);
+            scrollTopElement(10);
+          }, 1000);
           setCurrentStep(CHOOSE_QUESTION_STEP.question);
           setCurrentTopic(type);
         }

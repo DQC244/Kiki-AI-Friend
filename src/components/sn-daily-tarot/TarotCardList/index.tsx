@@ -68,7 +68,7 @@ const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
                 className={classes.cardWrapper}
                 sx={{
                   zIndex: index + 1,
-                  marginLeft: index && "calc(-200px)",
+                  marginLeft: index && "calc(-220px)",
                 }}
                 onClick={() => setItemSelected(item)}
               >

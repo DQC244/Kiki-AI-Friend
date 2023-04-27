@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import { Box, Stack, StackProps, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
@@ -17,17 +17,9 @@ const MeaningCard = ({
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
 
-  const [isOpenCard, setIsOpenCard] = useState(false);
-
   return (
-    <Stack
-      className={clsx(classes.root, className)}
-      spacing={4}
-      onClick={() => setIsOpenCard(true)}
-      onMouseOver={() => setIsOpenCard(true)}
-      {...otherProps}
-    >
-      <Box className={clsx(classes.inner, isOpenCard && classes.rotate)}>
+    <Stack className={clsx(classes.root, className)} spacing={4} {...otherProps}>
+      <Box className={clsx(classes.inner)}>
         <Box className={classes.imgBackCard}>
           <Box
             className={classes.img}
@@ -70,6 +62,10 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     width: 230,
     height: 422,
     cursor: "pointer",
+
+    "&:hover $inner": {
+      transform: "rotateY(180deg)",
+    },
   },
   img: {
     width: "100%",

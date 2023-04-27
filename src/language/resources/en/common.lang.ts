@@ -95,6 +95,8 @@ export default {
   lGreatClickOnTheButton: "Great! Click on the button if you’re ready!",
   lInsteadDoYouWantToTryOut:
     "Instead, do you want to try out the Mystic Zone? Download our app to explore more!",
+  lHereAreSomeTopicsThat:
+    "Here are some topics that I came up with. I hope they’re helpful to you!",
 
   // Daily tarot, meaning
   lOneCardTarotReading: "One Card Tarot Reading",

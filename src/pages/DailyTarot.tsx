@@ -11,7 +11,7 @@ const DailyTarot = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(AppActions.getTarotCardRandom(16));
+    dispatch(AppActions.getTarotCardRandom(24));
 
     return () => {
       dispatch(AppActions.appReset());
