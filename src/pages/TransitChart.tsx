@@ -35,7 +35,7 @@ const TransitChart = () => {
     if (lottieRef.current) {
       lottieRef.current.setSpeed(0.2);
     }
-  });
+  }, []);
 
   return (
     <Box className={clsx(classes.root, !isViewTransitChart && classes.background)}>
