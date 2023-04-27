@@ -18,3 +18,10 @@ export const getCardDetailService = (id: number) => {
 export const getCardRandomService = (seed: number) => {
   return Api.get(ApiConstant.TAROT_RANDOM, { seed });
 };
+
+export const getBirthChart = (data: any) => Api.post(ApiConstant.BIRTH_CHART, data);
+
+export const getBirthChartImage = (data: any) => {
+  // Api.get(ApiConstant.BIRTH_CHART_IMAGE, data).url;
+  return Api.link(ApiConstant.BIRTH_CHART_IMAGE, data);
+};

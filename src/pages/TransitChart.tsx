@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef, useState } from "react";
 import { Box, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -7,7 +9,6 @@ import { CreateTransitChart, ViewTransitChart } from "components/sn-chart";
 import clsx from "clsx";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { MovePlantAnimation } from "assets/animations";
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 
 const TransitChart = () => {
   const classes = useStyles();
@@ -16,8 +17,9 @@ const TransitChart = () => {
   const [isViewTransitChart, setIsViewTransitChart] = useState(false);
 
   const handleCreateChart = (data: any) => {
-    setIsViewTransitChart(true);
     console.log(data);
+
+    setIsViewTransitChart(true);
   };
 
   const handleOverPlant = () => {

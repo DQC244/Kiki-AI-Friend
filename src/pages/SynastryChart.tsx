@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { Box, Container } from "@mui/material";
@@ -13,8 +14,9 @@ const SynastryChart = () => {
   const [isViewTransitChart, setIsViewTransitChart] = useState(false);
 
   const handleCreateChart = (data: any) => {
-    setIsViewTransitChart(true);
     console.log(data);
+
+    setIsViewTransitChart(true);
   };
 
   return (

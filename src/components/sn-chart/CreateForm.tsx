@@ -40,6 +40,7 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
           const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
           newCities = responseData?.map((item: any) => {
             return {
+              code: item?.country,
               label: item?.name + ", " + regionNames.of(item?.country),
             };
           });

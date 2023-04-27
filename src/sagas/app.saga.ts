@@ -54,3 +54,35 @@ export function* getCardRandomSaga(action: { type: string; data: number }) {
     yield put(AppActions.appFailure(error));
   }
 }
+
+export function* getBirthChartSaga(action: { type: string; data: any }) {
+  try {
+    const data = action.data;
+    const response: ApiResponse<any> = yield call(AppService.getBirthChart, data);
+    const responseData = response.data;
+
+    if (response.status === ApiConstant.STT_OK) {
+      yield put(AppActions.appSuccess({ birthChart: responseData.data }));
+    } else {
+      yield put(AppActions.appFailure(responseData));
+    }
+  } catch (error) {
+    EnvConstant.IS_DEV && console.log(error);
+    yield put(AppActions.appFailure(error));
+  }
+}
+export function* getBirthChartImageSaga(action: { type: string; data: any }) {
+  try {
+    const data = action.data;
+    const response: ApiResponse<any> = yield call(AppService.getBirthChartImage, data);
+
+    if (response.status === ApiConstant.STT_OK) {
+      yield put(AppActions.appSuccess({ birthChartImage: response }));
+    } else {
+      yield put(AppActions.appFailure(response));
+    }
+  } catch (error) {
+    EnvConstant.IS_DEV && console.log(error);
+    yield put(AppActions.appFailure(error));
+  }
+}

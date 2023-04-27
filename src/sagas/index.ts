@@ -8,7 +8,13 @@ import { takeLatest, all } from "redux-saga/effects";
 import { AppTypes } from "redux-store";
 
 /* ------------- Sagas ------------- */
-import { getCardDetailSaga, getCardListSaga, getCardRandomSaga } from "./app.saga";
+import {
+  getBirthChartImageSaga,
+  getBirthChartSaga,
+  getCardDetailSaga,
+  getCardListSaga,
+  getCardRandomSaga,
+} from "./app.saga";
 
 /* ------------- Connect Types To Sagas ------------- */
 function* rootSaga() {
@@ -17,6 +23,9 @@ function* rootSaga() {
     takeLatest(AppTypes.GET_TAROT_CARD, getCardListSaga),
     takeLatest(AppTypes.GET_TAROT_CARD_RANDOM, getCardRandomSaga),
     takeLatest(AppTypes.GET_TAROT_CARD_DETAIL, getCardDetailSaga),
+
+    takeLatest(AppTypes.GET_BIRTH_CHART, getBirthChartSaga),
+    takeLatest(AppTypes.GET_BIRTH_CHART_IMAGE, getBirthChartImageSaga),
   ]);
 }
 

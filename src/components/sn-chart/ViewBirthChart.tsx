@@ -4,9 +4,15 @@ import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import WhaleImageChat from "./WhaleImageChat";
 import ConversationWithKiki from "./ConversationWithKiki";
+import { useSelector } from "react-redux";
+import { AppSelector } from "redux-store";
+import dayjs from "dayjs";
 
 const ViewBirthChart = () => {
   const classes = useStyles();
+
+  const birthChart = useSelector(AppSelector.getBirthChart);
+  const birthChartImage = useSelector(AppSelector.getBirthChartImage);
 
   return (
     <Stack spacing={9.625}>
@@ -16,9 +22,13 @@ const ViewBirthChart = () => {
           <Stack className={classes.formInfo} spacing={2.5}>
             <Stack direction="row" justifyContent="space-between">
               <Box>
-                <Typography className={classes.boldText}>Lan Anh</Typography>
-                <Typography className={classes.infoUSer}>Hoan Kiem, Hanoi, Vietnam</Typography>
-                <Typography className={classes.infoUSer}>Sept. 15, 1999, 10:40 p.m</Typography>
+                <Typography className={classes.boldText}>{birthChart?.full_name}</Typography>
+                <Typography
+                  className={classes.infoUSer}
+                >{`${birthChart?.city_of_birth}, ${birthChart?.nation_of_birth}`}</Typography>
+                <Typography className={classes.infoUSer}>
+                  {dayjs(birthChart?.date_of_birth).format("DD/MM/YYYY, HH:mm a")}
+                </Typography>
               </Box>
               <Stack alignItems="center">
                 <Stack direction="row" alignItems="center">
@@ -28,7 +38,7 @@ const ViewBirthChart = () => {
                     src={ImageAssets.DotZodiacDemo}
                     className={classes.zodiacImage}
                   />
-                  <Typography className={classes.boldText}>Sun in Virgo</Typography>
+                  <Typography className={classes.boldText}>{birthChart?.sun_sign_name}</Typography>
                   <Box
                     component="img"
                     draggable="false"
@@ -36,26 +46,23 @@ const ViewBirthChart = () => {
                     className={classes.zodiacImage}
                   />
                 </Stack>
-                <Typography className={classes.location}>{`22° 21' Virgo`}</Typography>
+                <Typography className={classes.location}>{birthChart?.sun_position}</Typography>
               </Stack>
             </Stack>
-            <Typography className={classes.location}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et
-              velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora
-              torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis
-              condimentum lobortis. Ut commodo efficitur neque. Ut diam quam, semper iaculis
-              condimentum ac, vestibulum eu nisl. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.
-            </Typography>
+            <Typography className={classes.location}>{birthChart?.sun_content}</Typography>
           </Stack>
           <WhaleImageChat />
         </Stack>
-        <Box
-          component="img"
-          src={ImageAssets.ViewBirthChartDemo}
-          className={classes.chartImg}
-          draggable="false"
-        />
+        {birthChartImage ? (
+          <Box
+            component="img"
+            src={ImageAssets.ViewBirthChartDemo}
+            className={classes.chartImg}
+            draggable="false"
+          />
+        ) : (
+          <Box className={classes.chartImg} />
+        )}
       </Stack>
       <ConversationWithKiki />
     </Stack>

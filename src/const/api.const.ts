@@ -29,4 +29,7 @@ export const TAROT_RANDOM = "/tarot_card_random_multiple";
 export const TAROT_CARD_FILTER = "/tarot_card_filter";
 export const TAROT_CARD_DETAIL = "/tarot_card/{id}";
 
+export const BIRTH_CHART = "/natal-chart/meaning";
+export const BIRTH_CHART_IMAGE = "/natal-chart/image";
+
 export const URL_IMAGE_ID = `${BASE_URL}/tarot_card/{id}/image`;

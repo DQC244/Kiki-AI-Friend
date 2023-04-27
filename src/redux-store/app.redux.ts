@@ -11,9 +11,14 @@ import { IAppReduxState } from "redux-store";
 
 /* ------------- Types and Action Creators ------------- */
 export const { Types, Creators } = createActions({
+  // tarot
   getTarotCard: ["data"],
   getTarotCardDetail: ["data"],
   getTarotCardRandom: ["data"],
+
+  // birth chart
+  getBirthChart: ["data"],
+  getBirthChartImage: ["data"],
 
   appSuccess: ["data"],
   appFailure: ["error", "data"],
@@ -23,23 +28,33 @@ export const { Types, Creators } = createActions({
 
 /* ------------- Initial State ------------- */
 export interface IAppRedux extends IReduxStateCommon {
-  //
+  // tarot
   cardListSuit: Array<any>;
   cardDetail: any;
+
+  // birth Chart
+  birthChart: any;
+  birthChartImage: any;
 }
 export const INITIAL_STATE: IAppRedux = {
   ...REDUX_STATE,
 
   cardListSuit: [],
   cardDetail: {},
+
+  birthChart: {},
+  birthChartImage: "",
 };
 
 /* ------------- Selector ------------- */
 export const Selector = {
   // Get suit info
-
   getSuitList: (state: IAppReduxState) => state.appRedux.cardListSuit,
   getCardDetail: (state: IAppReduxState) => state.appRedux.cardDetail,
+
+  // get birth
+  getBirthChart: (state: IAppReduxState) => state.appRedux.birthChart,
+  getBirthChartImage: (state: IAppReduxState) => state.appRedux.birthChartImage,
 };
 
 /* ------------- Reducers ------------- */
@@ -56,6 +71,9 @@ const HANDLERS = {
   [Types.GET_TAROT_CARD]: request,
   [Types.GET_TAROT_CARD_RANDOM]: request,
   [Types.GET_TAROT_CARD_DETAIL]: request,
+
+  [Types.GET_BIRTH_CHART]: request,
+  [Types.GET_BIRTH_CHART_IMAGE]: request,
 
   [Types.APP_SUCCESS]: success,
   [Types.APP_FAILURE]: failure,
