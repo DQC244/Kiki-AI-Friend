@@ -1,12 +1,12 @@
 import { JSXElementConstructor, ReactElement } from "react";
 import { useLottie, useLottieInteractivity } from "lottie-react";
-import { StarsAnimation } from "assets/animations";
+import { StarsLeftToRightAnimation } from "assets/animations";
 
 const options = {
-  animationData: StarsAnimation,
+  animationData: StarsLeftToRightAnimation,
 };
 
-const AnimationRightToLeft = () => {
+const AnimationLeftToRight = () => {
   const lottieObj = useLottie(options);
   const Animation: ReactElement<any, string | JSXElementConstructor<any>> = useLottieInteractivity({
     lottieObj,
@@ -28,4 +28,4 @@ const AnimationRightToLeft = () => {
   return Animation;
 };
 
-export default AnimationRightToLeft;
+export default AnimationLeftToRight;

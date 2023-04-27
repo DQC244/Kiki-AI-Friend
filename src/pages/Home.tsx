@@ -3,6 +3,8 @@ import { Box, Container, Stack } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import {
   AIFriendSection,
+  AnimationLeftToRight,
+  AnimationRightToLeft,
   AppDemoSection,
   IntroduceSection,
   MysticZoneSection,
@@ -10,7 +12,6 @@ import {
 } from "components/sn-home";
 import { HomeBackground } from "assets/images";
 import { ImageAssets } from "assets";
-import AnimationRightToLeft from "components/sn-home/AnimationRightToLeft";
 
 const Home = () => {
   const classes = useStyles();
@@ -29,21 +30,10 @@ const Home = () => {
             }
           />
           <MysticZoneSection
-            star={
-              <Box
-                className={classes.starMystic}
-                draggable="false"
-                component="img"
-                src={ImageAssets.StarList}
-              />
-            }
             spaceship={
-              <Box
-                className={classes.spaceshipMystic}
-                draggable="false"
-                component="img"
-                src={ImageAssets.Spaceship}
-              />
+              <Box className={classes.animationRightToLeft}>
+                <AnimationLeftToRight />
+              </Box>
             }
           />
           <SeeHarmonySection />
@@ -107,13 +97,13 @@ const useStyles = makeStyles(() => ({
     right: 0,
     transform: "translate(100%, 100%) rotate(185deg) scaleX(-1)",
   },
-  spaceshipMystic: {
+  animationRightToLeft: {
     position: "absolute",
-    width: 250,
-    height: 188,
-    bottom: -30,
-    right: -20,
-    transform: "translateX(100%) scaleX(-1)",
+    width: 680,
+    bottom: -300,
+    right: 8,
+    transform: "translateX(100%)",
+    zIndex: 1,
   },
   demo: {
     marginTop: 160,

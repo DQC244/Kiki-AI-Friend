@@ -1,14 +1,31 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import TitleChart from "./TitleChart";
 import { useTranslation } from "react-i18next";
-import { Box, Stack } from "@mui/material";
-import { ImageAssets } from "assets";
-import { makeStyles } from "@mui/styles";
+import { Stack } from "@mui/material";
 import CreateForm, { CreateFormProps } from "./CreateForm";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
+import { MovePlantBirthAnimation } from "assets/animations";
 
 const CreateBirthChart = ({ onCreateChart }: CreateFormProps) => {
-  const classes = useStyles();
+  const lottieRef = useRef<LottieRefCurrentProps>(null);
   const { t: getLabel } = useTranslation();
+
+  const handleOverPlant = () => {
+    if (lottieRef.current) {
+      lottieRef.current.play();
+    }
+  };
+  const handleBlurPlant = () => {
+    if (lottieRef.current) {
+      lottieRef.current.pause();
+    }
+  };
+
+  useEffect(() => {
+    if (lottieRef.current) {
+      lottieRef.current.setSpeed(0.4);
+    }
+  }, []);
 
   return (
     <Stack alignItems="center" spacing={15.5} direction="row" width="100%">
@@ -16,22 +33,18 @@ const CreateBirthChart = ({ onCreateChart }: CreateFormProps) => {
         <TitleChart title={getLabel("lCreateYourOwnBirth")} textAlign="center" />
         <CreateForm onCreateChart={onCreateChart} />
       </Stack>
-      <Box
-        flex={1}
-        className={classes.img}
-        component="img"
-        draggable="false"
-        src={ImageAssets.BirthChartBackgroundImage}
+      <Lottie
+        animationData={MovePlantBirthAnimation}
+        onMouseOver={handleOverPlant}
+        onMouseLeave={handleBlurPlant}
+        lottieRef={lottieRef}
+        style={{
+          width: 670,
+        }}
+        autoplay={false}
       />
     </Stack>
   );
 };
 
 export default memo(CreateBirthChart);
-
-const useStyles = makeStyles(() => ({
-  img: {
-    width: 664,
-    height: 334,
-  },
-}));
