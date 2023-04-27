@@ -27,6 +27,7 @@ export default CreateTransitChart;
 const useStyles = makeStyles(() => ({
   root: {
     marginLeft: 48,
+    zIndex: 1,
   },
   form: {
     width: 764,
