@@ -11,7 +11,7 @@ const CreateTransitChart = ({ onCreateChart }: CreateFormProps) => {
 
   return (
     <Stack className={classes.root} spacing={1.5}>
-      <TitleChart title={getLabel("lLookAheadInto")} />
+      <TitleChart title={getLabel("lLookAheadInto")} textAlign="center" />
       <CreateForm
         className={classes.form}
         onCreateChart={onCreateChart}
