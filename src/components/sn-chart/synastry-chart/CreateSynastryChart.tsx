@@ -1,5 +1,5 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { Stack } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { ObjectMultiLanguageProps } from "models";
@@ -8,9 +8,13 @@ import CommonCreateFromSynastry from "./CommonCreateFromSynastry";
 import TitleChart from "../TitleChart";
 import SealBackGroundButton from "../../common/SealBackGroundButton";
 import dayjs from "dayjs";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
+import { MovePlantAnimation } from "assets/animations";
 
 const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) => {
   const classes = useStyles();
+
+  const lottieRef = useRef<LottieRefCurrentProps>(null);
 
   const { t: getLabel } = useTranslation();
   const [data, setData] = useState<ObjectMultiLanguageProps>({});
@@ -82,11 +86,29 @@ const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) 
     onViewSynastryChart(data);
   };
 
+  const handleOverPlant = () => {
+    if (lottieRef.current) {
+      lottieRef.current.play();
+    }
+  };
+  const handleBlurPlant = () => {
+    if (lottieRef.current) {
+      lottieRef.current.pause();
+    }
+  };
+
+  useEffect(() => {
+    if (lottieRef.current) {
+      lottieRef.current.setSpeed(0.2);
+    }
+  }, []);
+
   return (
     <Stack alignItems="center" spacing={8}>
       <TitleChart title={getLabel("lFindOutWho")} />
       <Stack direction="row" spacing={4} justifyContent="center">
         <CommonCreateFromSynastry
+          zIndex={1}
           className={classes.form}
           onChangeValue={handleChangeMyValue}
           error={{
@@ -97,12 +119,29 @@ const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) 
           }}
         />
         <CommonCreateFromSynastry
+          zIndex={1}
           onChangeValue={handleChangeValue}
           title={getLabel("lAndAboutYourPersonOfInterest")}
           nameLabel={getLabel("lName")}
           dateLabel={getLabel("lDateOfBirth")}
           placeLabel={getLabel("lPlaceOfBirth")}
           error={{ isErrorName, isErrorCity, isErrorDate, isErrorTime }}
+        />
+        <Lottie
+          animationData={MovePlantAnimation}
+          onMouseOver={handleOverPlant}
+          onMouseLeave={handleBlurPlant}
+          lottieRef={lottieRef}
+          style={{
+            width: 1368,
+            height: "auto",
+            position: "absolute",
+            top: 220,
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 0,
+          }}
+          autoplay={false}
         />
       </Stack>
       <Stack>

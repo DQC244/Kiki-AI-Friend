@@ -23,5 +23,9 @@ export const getBirthChart = (data: any) => Api.post(ApiConstant.BIRTH_CHART, da
 
 export const getBirthChartImage = (data: any) => {
   // Api.get(ApiConstant.BIRTH_CHART_IMAGE, data).url;
-  return Api.link(ApiConstant.BIRTH_CHART_IMAGE, data);
+  return Api.get(ApiConstant.BIRTH_CHART_IMAGE, data);
+  // const endpoint = ApiConstant.BASE_URL;
+  // const params = { ...data };
+  // const queryString = new URLSearchParams(params).toString();
+  // return `${endpoint}?${queryString}`;
 };

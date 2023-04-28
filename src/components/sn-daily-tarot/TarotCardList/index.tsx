@@ -32,7 +32,7 @@ const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
     if (itemSelected) {
       setTimeout(() => {
         setIsShowTarot(true);
-      }, AppConstant.DEBOUNCE_TIME_IN_MILLISECOND * 6);
+      }, AppConstant.DEBOUNCE_TIME_IN_MILLISECOND * 3);
     } else setIsShowTarot(false);
   }, [itemSelected]);
 

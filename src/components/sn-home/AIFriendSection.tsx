@@ -13,7 +13,7 @@ const AIFriendSection = ({ star, spaceship }: AIFriendSectionProps) => {
 
   return (
     <Stack direction="row" spacing={27.5}>
-      <Stack spacing={2.25}>
+      <Stack spacing={2.25} zIndex={1}>
         <Typography className={classes.title}>{getLabel("lAIFriend")}</Typography>
         <Typography>
           <AppTrans i18nKey={getLabel("lAIFriendDesc")} />
@@ -46,15 +46,15 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     fontSize: 64,
     lineHeight: "71px",
-    zIndex: 1,
+    zIndex: 2,
   },
   wrapperImage: {
     position: "relative",
-    zIndex: 1,
+    zIndex: 2,
   },
   image: {
     width: 327,
     height: 709,
-    zIndex: 1,
+    zIndex: 2,
   },
 }));

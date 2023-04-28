@@ -77,7 +77,11 @@ export function* getBirthChartImageSaga(action: { type: string; data: any }) {
     const response: ApiResponse<any> = yield call(AppService.getBirthChartImage, data);
 
     if (response.status === ApiConstant.STT_OK) {
-      yield put(AppActions.appSuccess({ birthChartImage: response }));
+      const endpoint = ApiConstant.BASE_URL + ApiConstant.BIRTH_CHART_IMAGE;
+      const params = { ...data };
+      const queryString = new URLSearchParams(params).toString();
+      const fullEndpoint = `${endpoint}?${queryString}`;
+      yield put(AppActions.appSuccess({ birthChartImage: fullEndpoint }));
     } else {
       yield put(AppActions.appFailure(response));
     }

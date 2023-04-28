@@ -45,7 +45,7 @@ const useStyles = makeStyles(() => ({
     inset: 0,
     backgroundPosition: "left calc(50% + 40px) top 220px",
     backgroundSize: "1368px auto",
-    background: `no-repeat url(${ImageAssets.TransitChartGalaxyImage})`,
+    // background: `no-repeat url(${ImageAssets.TransitChartGalaxyImage})`,
   },
   viewBackground: {
     position: "absolute",

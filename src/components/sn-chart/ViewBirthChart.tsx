@@ -56,7 +56,7 @@ const ViewBirthChart = () => {
         {birthChartImage ? (
           <Box
             component="img"
-            src={ImageAssets.ViewBirthChartDemo}
+            src={birthChartImage}
             className={classes.chartImg}
             draggable="false"
           />

@@ -12,8 +12,9 @@ import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { useDispatch } from "react-redux";
-import { AppActions } from "redux-store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppActions, AppSelector } from "redux-store";
+import { LangConstant } from "const";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -25,6 +26,9 @@ const BirthChart = () => {
   const { i18n } = useTranslation();
 
   const [isViewBirthChart, setIsViewBirthChart] = useState(false);
+
+  const birthChart = useSelector(AppSelector.getBirthChart);
+  const birthChartImage = useSelector(AppSelector.getBirthChartImage);
 
   const handleCreateBirthChart = (data: any) => {
     try {
@@ -40,7 +44,8 @@ const BirthChart = () => {
 
       const newData = {
         full_name: data.name,
-        language: i18n.language,
+        language:
+          i18n.language === LangConstant.DEFAULT_LANG_CODE ? LangConstant.DEFAULT_LANG_CODE : "vi",
         city_of_birth: placeArr[0],
         nation_of_birth: placeArr[1],
         date_of_birth: parsedDate.toJSON(),
@@ -63,9 +68,19 @@ const BirthChart = () => {
   };
 
   useEffect(() => {
-    if (location.state) {
+    if (birthChartImage && birthChart) {
       setIsViewBirthChart(true);
     }
+  }, [birthChartImage, birthChart]);
+
+  useEffect(() => {
+    if (location.state) {
+      console.log(location.state);
+      setIsViewBirthChart(true);
+    }
+    return () => {
+      dispatch(AppActions.appReset());
+    };
   }, []);
 
   return (

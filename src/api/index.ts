@@ -26,11 +26,13 @@ export interface IApiResponse {
   data: object;
 }
 
-const createInstance = (baseURL: string, apiKey: string) => {
-  Api.setBaseURL(baseURL);
-  Api.setHeader("X-Api-Key", apiKey);
+const NinjasApi = apisauce.create(DEFAULT_CONFIG);
 
-  return Api;
+const createInstance = (baseURL: string, apiKey: string) => {
+  NinjasApi.setBaseURL(baseURL);
+  NinjasApi.setHeader("X-Api-Key", apiKey);
+
+  return NinjasApi;
 };
 
 export const createNinjasApi = (apiKey: string) =>
