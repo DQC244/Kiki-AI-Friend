@@ -1,14 +1,31 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
-import React, { ReactNode, memo } from "react";
+import React, { ReactNode, memo, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import RedirectLinkButton from "./RedirectLinkButton";
-import { PathConstant } from "const";
+import { LangConstant, PathConstant } from "const";
 
 const MysticZoneSection = ({ star, spaceship }: MysticZoneProps) => {
   const classes = useStyles();
-  const { t: getLabel } = useTranslation();
+  const { t: getLabel, i18n } = useTranslation();
+
+  const [imgSrc, imgSrcHover] = useMemo(() => {
+    switch (i18n.language) {
+      case LangConstant.DEFAULT_LANG_CODE:
+        return [ImageAssets.PhoneMysticHomeBackground, ImageAssets.PhoneMysticHomeBackgroundHover];
+      case LangConstant.DEFAULT_LANG_VN_CODE:
+        return [
+          ImageAssets.PhoneMysticHomeBackgroundVI,
+          ImageAssets.PhoneMysticHomeBackgroundVIHover,
+        ];
+      default:
+        return [
+          ImageAssets.PhoneMysticHomeBackgroundVI,
+          ImageAssets.PhoneMysticHomeBackgroundHover,
+        ];
+    }
+  }, [i18n.language]);
 
   return (
     <Stack direction="row" spacing={27.5}>
@@ -17,9 +34,12 @@ const MysticZoneSection = ({ star, spaceship }: MysticZoneProps) => {
         {spaceship}
         <Box
           className={classes.image}
-          component="img"
-          src={ImageAssets.PhoneMysticHomeBackground}
-          draggable="false"
+          sx={{
+            background: `no-repeat top left / 100% 100% url(${imgSrc})`,
+            "&:hover": {
+              backgroundImage: `url(${imgSrcHover})`,
+            },
+          }}
         />
       </Box>
       <Stack spacing={4.5} alignItems="flex-end">

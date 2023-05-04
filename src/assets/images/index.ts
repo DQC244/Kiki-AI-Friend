@@ -22,11 +22,20 @@ import WhaleChatSynastryChart from "./img-whale-chat-synastry-chart.png";
 import ViewSynastryChartBackground from "./img-view-synastry-chart-background.svg";
 import HomeBackground from "./img-home-background.png";
 import PhoneAIFriendHomeBackground from "./img-phone-ai-friend-home.png";
+import PhoneAIFriendHomeBackgroundVI from "./img-phone-ai-friend-home-vi.png";
+import PhoneAIFriendHomeBackgroundVIHover from "./img-phone-ai-friend-home-vi-hover.png";
+import PhoneAIFriendHomeBackgroundHover from "./img-phone-ai-friend-home-hover.png";
 import ArrowButtonBackground from "./img-arrow-button.png";
 import StarList from "./img-star-list.svg";
 import Spaceship from "./img-spaceship.png";
 import PhoneMysticHomeBackground from "./img-phone-mystic-home.png";
+import PhoneMysticHomeBackgroundVI from "./img-phone-mystic-home-vi.png";
+import PhoneMysticHomeBackgroundVIHover from "./img-phone-mystic-home-vi-hover.png";
+import PhoneMysticHomeBackgroundHover from "./img-phone-mystic-home-hover.png";
 import PhoneHarmonyHomeBackground from "./img-phone-see-harmony-home.png";
+import PhoneHarmonyHomeBackgroundVI from "./img-phone-see-harmony-home-vi.png";
+import PhoneHarmonyHomeBackgroundVIHover from "./img-phone-see-harmony-home-vi-hover.png";
+import PhoneHarmonyHomeBackgroundHover from "./img-phone-see-harmony-home-hover.png";
 import AppDemoHomeBackground from "./img-app-demo-background.png";
 import AppDemoHomeBackgroundSection from "./img-background-app-demo-section.png";
 import DolphinImage from "./img-dolphin.png";
@@ -97,6 +106,7 @@ export {
   TitleDailyTarotImage,
   TarotCardDailyBackground,
   DemoDailyCard,
+  PhoneAIFriendHomeBackgroundVI,
   TarotCardListDailyBackground,
   SealDrinkTeaBackground,
   DemoReadCardBackground,
@@ -114,4 +124,12 @@ export {
   TwitterLogo,
   YoutubeLogo,
   TitleHome,
+  PhoneAIFriendHomeBackgroundVIHover,
+  PhoneAIFriendHomeBackgroundHover,
+  PhoneMysticHomeBackgroundVI,
+  PhoneMysticHomeBackgroundVIHover,
+  PhoneMysticHomeBackgroundHover,
+  PhoneHarmonyHomeBackgroundVI,
+  PhoneHarmonyHomeBackgroundVIHover,
+  PhoneHarmonyHomeBackgroundHover,
 };
