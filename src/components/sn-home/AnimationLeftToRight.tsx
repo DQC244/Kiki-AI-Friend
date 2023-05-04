@@ -20,7 +20,7 @@ const AnimationLeftToRight = () => {
       {
         visibility: [0.4, 0.6],
         type: "seek",
-        frames: [1, 60],
+        frames: [1, 50],
       },
     ],
   });

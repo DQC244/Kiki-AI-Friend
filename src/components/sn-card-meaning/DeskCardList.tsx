@@ -75,6 +75,6 @@ const useStyles = makeStyles(() => ({
     display: "grid",
     gridTemplateColumns: "repeat(2,1fr)",
     rowGap: 160,
-    columnGap: 212,
+    columnGap: 250,
   },
 }));

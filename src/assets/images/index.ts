@@ -54,6 +54,7 @@ import SealDownLoadImage from "./img-seal-download.svg";
 import CookieIcon from "./img-cookie-popup.png";
 import TwitterLogo from "./img-logo-twitter.png";
 import YoutubeLogo from "./img-logo-youtube.png";
+import TitleHome from "./img-title-home.png";
 
 export {
   LogoImage,
@@ -112,4 +113,5 @@ export {
   ImSorryImageEN,
   TwitterLogo,
   YoutubeLogo,
+  TitleHome,
 };

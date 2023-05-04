@@ -75,7 +75,7 @@ const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessagePr
         }
         return (
           <DelayMessage key={index} waitBeforeShow={0}>
-            <ChatBox key={index} message={item.message} />;
+            <ChatBox key={index} message={item.message} />
           </DelayMessage>
         );
       })}

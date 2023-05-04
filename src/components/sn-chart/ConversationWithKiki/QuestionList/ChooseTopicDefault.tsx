@@ -6,13 +6,13 @@ import { useTranslation } from "react-i18next";
 import { Grid } from "@mui/material";
 import { QuestionWorkProps } from "./QuestionWork";
 import {
-  BagIcon,
+  // BagIcon,
   BallIcon,
   CrownIcon,
   HandIcon,
-  HeartIcon,
-  PigActiveIcon,
-  PigIcon,
+  // HeartIcon,
+  // PigActiveIcon,
+  // PigIcon,
 } from "components/icons";
 import QuestionBoxButton from "./QuestionBoxButton";
 
@@ -46,20 +46,20 @@ const getListQuestion = (getLabel: (key: string, obj: object) => ObjectMultiLang
   const objContent = getLabel("objQuestionStep1", { returnObjects: true });
 
   return [
-    {
-      label: objContent.lLove,
-      icon: <HeartIcon />,
-      activeIcon: <HeartIcon />,
-      step: CHOOSE_QUESTION_STEP.topic,
-      type: TOPIC_TYPE.love,
-    },
-    {
-      label: objContent.lMoney,
-      icon: <PigIcon />,
-      activeIcon: <PigActiveIcon />,
-      step: CHOOSE_QUESTION_STEP.topic,
-      type: TOPIC_TYPE.money,
-    },
+    // {
+    //   label: objContent.lLove,
+    //   icon: <HeartIcon />,
+    //   activeIcon: <HeartIcon />,
+    //   step: CHOOSE_QUESTION_STEP.topic,
+    //   type: TOPIC_TYPE.love,
+    // },
+    // {
+    //   label: objContent.lMoney,
+    //   icon: <PigIcon />,
+    //   activeIcon: <PigActiveIcon />,
+    //   step: CHOOSE_QUESTION_STEP.topic,
+    //   type: TOPIC_TYPE.money,
+    // },
     {
       label: objContent.lSelf,
       icon: <CrownIcon />,
@@ -67,13 +67,13 @@ const getListQuestion = (getLabel: (key: string, obj: object) => ObjectMultiLang
       step: CHOOSE_QUESTION_STEP.topic,
       type: TOPIC_TYPE.self,
     },
-    {
-      label: objContent.lWorkStudy,
-      icon: <BagIcon />,
-      activeIcon: <BagIcon />,
-      step: CHOOSE_QUESTION_STEP.topic,
-      type: TOPIC_TYPE.work,
-    },
+    // {
+    //   label: objContent.lWorkStudy,
+    //   icon: <BagIcon />,
+    //   activeIcon: <BagIcon />,
+    //   step: CHOOSE_QUESTION_STEP.topic,
+    //   type: TOPIC_TYPE.work,
+    // },
     {
       label: objContent.lPossibilities,
       icon: <BallIcon />,
