@@ -105,7 +105,7 @@ const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) 
 
   return (
     <Stack alignItems="center" spacing={8}>
-      <TitleChart title={getLabel("lFindOutWho")} />
+      <TitleChart className={classes.title} title={getLabel("lFindOutWho")} />
       <Stack direction="row" spacing={4} justifyContent="center">
         <CommonCreateFromSynastry
           zIndex={1}
@@ -160,5 +160,10 @@ export default memo(CreateSynastryChart);
 const useStyles = makeStyles(() => ({
   form: {
     background: "linear-gradient(293.7deg, #FFFFFF -3.9%, rgba(255, 255, 255, 0) 111.17%)",
+  },
+  title: {
+    background: "linear-gradient(83.8deg, #59518C -0.96%, #8861E4 -0.95%, #756CBF 98.49%)",
+    "-webkit-background-clip": "text",
+    "-webkit-text-fill-color": "transparent",
   },
 }));

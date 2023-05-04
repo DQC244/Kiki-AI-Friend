@@ -190,6 +190,8 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   input: {
     "&,&:focus": {
+      fontFamily: "Montserrat",
+      fontSize: 16,
       backgroundColor: "transparent",
       border: "unset",
       borderBottom: `1px solid ${theme.palette.common.black}`,

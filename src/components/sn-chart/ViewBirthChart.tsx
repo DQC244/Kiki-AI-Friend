@@ -16,53 +16,57 @@ const ViewBirthChart = () => {
 
   return (
     <Stack spacing={9.625}>
-      <Stack direction="row" spacing={5.25} position="relative" zIndex={0}>
+      <Stack direction="row" position="relative" zIndex={0}>
         <Box className={classes.background} />
-        <Stack>
-          <Stack className={classes.formInfo} spacing={2.5}>
-            <Stack direction="row" justifyContent="space-between">
-              <Box>
-                <Typography className={classes.boldText}>{birthChart?.full_name}</Typography>
-                <Typography
-                  className={classes.infoUSer}
-                >{`${birthChart?.city_of_birth}, ${birthChart?.nation_of_birth}`}</Typography>
-                <Typography className={classes.infoUSer}>
-                  {dayjs(birthChart?.date_of_birth).format("DD/MM/YYYY, HH:mm a")}
-                </Typography>
-              </Box>
-              <Stack alignItems="center">
-                <Stack direction="row" alignItems="center">
-                  <Box
-                    component="img"
-                    draggable="false"
-                    src={ImageAssets.DotZodiacDemo}
-                    className={classes.zodiacImage}
-                  />
-                  <Typography className={classes.boldText}>{birthChart?.sun_sign_name}</Typography>
-                  <Box
-                    component="img"
-                    draggable="false"
-                    src={ImageAssets.ZodiacDemo}
-                    className={classes.zodiacImage}
-                  />
+        <Stack direction="row" spacing={19.5}>
+          <Stack>
+            <Stack className={classes.formInfo} spacing={2.5}>
+              <Stack direction="row" justifyContent="space-between">
+                <Box>
+                  <Typography className={classes.boldText}>{birthChart?.full_name}</Typography>
+                  <Typography
+                    className={classes.infoUSer}
+                  >{`${birthChart?.city_of_birth}, ${birthChart?.nation_of_birth}`}</Typography>
+                  <Typography className={classes.infoUSer}>
+                    {dayjs(birthChart?.date_of_birth).format("DD/MM/YYYY, HH:mm a")}
+                  </Typography>
+                </Box>
+                <Stack alignItems="center">
+                  <Stack direction="row" alignItems="center">
+                    <Box
+                      component="img"
+                      draggable="false"
+                      src={ImageAssets.DotZodiacDemo}
+                      className={classes.zodiacImage}
+                    />
+                    <Typography className={classes.boldText}>
+                      {birthChart?.sun_sign_name}
+                    </Typography>
+                    <Box
+                      component="img"
+                      draggable="false"
+                      src={ImageAssets.ZodiacDemo}
+                      className={classes.zodiacImage}
+                    />
+                  </Stack>
+                  <Typography className={classes.location}>{birthChart?.sun_position}</Typography>
                 </Stack>
-                <Typography className={classes.location}>{birthChart?.sun_position}</Typography>
               </Stack>
+              <Typography className={classes.location}>{birthChart?.sun_content}</Typography>
             </Stack>
-            <Typography className={classes.location}>{birthChart?.sun_content}</Typography>
+            <WhaleImageChat />
           </Stack>
-          <WhaleImageChat />
+          {birthChartImage ? (
+            <Box
+              component="img"
+              src={birthChartImage}
+              className={classes.chartImg}
+              draggable="false"
+            />
+          ) : (
+            <Box className={classes.chartImg} />
+          )}
         </Stack>
-        {birthChartImage ? (
-          <Box
-            component="img"
-            src={birthChartImage}
-            className={classes.chartImg}
-            draggable="false"
-          />
-        ) : (
-          <Box className={classes.chartImg} />
-        )}
       </Stack>
       <ConversationWithKiki />
     </Stack>

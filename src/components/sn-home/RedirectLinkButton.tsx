@@ -13,6 +13,7 @@ const RedirectLinkButton = ({ title, link, ...otherProps }: RedirectLinkButtonPr
       underline="none"
       href={link}
       spacing={2}
+      zIndex={1}
       {...otherProps}
     >
       <Typography className={classes.text}>{title}</Typography>

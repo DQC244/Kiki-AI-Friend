@@ -55,11 +55,12 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     "&$input$input": {
       marginTop: 3,
       padding: 0,
-      fontSize: 12,
+      fontSize: 16,
+      fontFamily: "Montserrat",
       fontWeight: 500,
       lineHeight: "17px",
       textTransform: "capitalize",
-      borderBottom: `1.5px solid ${theme.palette.common.black}`,
+      borderBottom: `1px solid ${theme.palette.common.black}`,
       textAlign: "center",
 
       "&::placeholder": {

@@ -4,7 +4,7 @@ export const HEADER_DEFAULT = {
   "Content-Type": "application/json",
 };
 
-export const BASE_URL = "http://13.212.69.53:8000/api/v1.0";
+export const BASE_URL = "https://astro-dev.taureau.ai/api/v1.0";
 
 export const TIMEOUT = 30000;
 

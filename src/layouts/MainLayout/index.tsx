@@ -77,7 +77,7 @@ export const MAIN_ID = "MAIN_ID";
 const useStyles = makeStyles((theme: Theme) => ({
   main: {
     position: "relative",
-    width: "100vw",
+    width: "100%",
     minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
     marginTop: HEADER_HEIGHT_IN_PX,
     background: theme.palette.background.default,

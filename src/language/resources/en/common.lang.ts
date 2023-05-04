@@ -1,7 +1,7 @@
 export default {
   lKeyLang: "EN",
   lLogin: "Login",
-  lComingSoonQ3: "Coming soon on Q3 2023",
+  lComingSoonQ3: "Coming soon on Q4 2023",
   lFollowUsOn: "Follow us on",
   lTermsConditions: "Terms & Conditions",
   lAllRightsReserved: "All Rights Reserved.",
@@ -124,7 +124,7 @@ export default {
   lComingSoonAppStoreAndGooglePlay: "Coming soon on App Store and Google Play in Q3 2023",
   lDoYouWantToBeTheFirstPerson:
     "Do you want to be the first person to experience our app? Leave your email below and we will notify you when the app releases!",
-  lYourMail: "Your email",
+  lYourMail: "Enter your email to receive latest news from Kiki",
 
   // Shop
   lDescription: "Description:",

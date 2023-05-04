@@ -1,9 +1,10 @@
+/* eslint-disable camelcase */
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-import React, { memo, useCallback, useState } from "react";
+import React, { FormEvent, memo, useCallback, useState } from "react";
 import { AutocompleteClasses, Stack, StackProps, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { AppAutocomplete, AppDateInput, AppGradientButton, AppTimeInput } from "components/common";
-import { ApiConstant, AppConstant, EnvConstant, PathConstant } from "const";
+import { ApiConstant, AppConstant, EnvConstant, LangConstant, PathConstant } from "const";
 import { debounce } from "lodash";
 import { useTranslation } from "react-i18next";
 import { AppService } from "services";
@@ -11,12 +12,17 @@ import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import { ThemeProps } from "models/types";
+import { useDispatch } from "react-redux";
+import { AppActions } from "redux-store";
 
 const GenerateBirthChart = (props: StackProps) => {
   const classes = useStyles();
-  const { t: getLabel } = useTranslation();
-  const navigate = useNavigate();
+  const { t: getLabel, i18n } = useTranslation();
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [cities, setCities] = useState([]);
@@ -24,6 +30,17 @@ const GenerateBirthChart = (props: StackProps) => {
   const [isErrorCity, setIsErrorCity] = useState(false);
   const [isErrorDate, setIsErrorDate] = useState(false);
   const [isErrorTime, setIsErrorTime] = useState(false);
+  const [isErrorName, setIsErrorName] = useState(false);
+
+  const handleChangeName = (e: FormEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    if (value.length > AppConstant.MAX_CHARACTER_NAME || !value) {
+      setIsErrorName(true);
+      return;
+    }
+    setIsErrorName(false);
+    setName(value);
+  };
 
   const handleGetCities = useCallback(
     debounce(async (value: string) => {
@@ -49,19 +66,55 @@ const GenerateBirthChart = (props: StackProps) => {
   );
 
   const handleCreateBirthChart = () => {
-    if (dayjs(date).isValid() || dayjs(time).isValid() || city) {
+    if (dayjs(date).isValid() || dayjs(time).isValid() || city || name) {
       // TODO: Call api here
+
+      const placeArr = city?.split(", ");
+
+      const dateTimeString = `${date} ${time}`;
+      const parsedDate = dayjs.tz(
+        dateTimeString,
+        "DD/MM/YYYY HH:mm",
+        Intl.DateTimeFormat().resolvedOptions().timeZone,
+      );
+
+      const newData = {
+        full_name: name,
+        language:
+          i18n.language === LangConstant.DEFAULT_LANG_CODE ? LangConstant.DEFAULT_LANG_CODE : "vi",
+        city_of_birth: placeArr[0],
+        nation_of_birth: placeArr[1],
+        date_of_birth: parsedDate.toJSON(),
+      };
+
+      dispatch(AppActions.getBirthChart(newData));
+
+      const dataImage = {
+        full_name: name,
+        city_of_birth: placeArr[0],
+        nation_of_birth: placeArr[1],
+        date_of_birth: parsedDate.toJSON(),
+      };
+      dispatch(AppActions.getBirthChartImage(dataImage));
+
       navigate(PathConstant.BIRTH_CHART, { state: { date, time, city } });
     } else {
       if (false === Boolean(city)) setIsErrorCity(true);
       if (!dayjs(date).isValid()) setIsErrorDate(true);
       if (!dayjs(time).isValid()) setIsErrorTime(true);
+      if (!name) setIsErrorName(true);
     }
   };
 
   return (
     <Stack spacing={5} alignItems="center" {...props}>
       <Stack direction="row" className={classes.inputWrapper}>
+        <Typography className={classes.label}>{getLabel("lMyNameIs")}</Typography>
+        <input
+          className={clsx(classes.input, isErrorName && classes.error)}
+          onChange={handleChangeName}
+          value={name}
+        />
         <Typography className={classes.label}>{getLabel("lIWasBornIn")}</Typography>
         <AppAutocomplete
           classes={
@@ -120,8 +173,23 @@ const GenerateBirthChart = (props: StackProps) => {
 export default memo(GenerateBirthChart);
 
 const useStyles = makeStyles((theme: ThemeProps) => ({
+  input: {
+    "&,&:focus": {
+      minWidth: 280,
+      background: "transparent",
+      fontSize: 24,
+      border: "unset",
+      borderBottom: `1px solid ${theme.palette.common.black}`,
+      outline: "none",
+      flex: 1,
+      textAlign: "center",
+      "&::placeholder": {
+        color: theme.palette.common.black,
+      },
+    },
+  },
   inputWrapper: {
-    width: 750,
+    width: 1200,
     alignItems: "center",
   },
   label: {
@@ -131,9 +199,11 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   autoCompleteRoot: {
     height: 43,
+    fontFamily: "Roboto",
   },
   autoCompleteInput: {
     "&$autoCompleteInput&$autoCompleteInput": {
+      fontFamily: "Roboto",
       fontSize: 24,
       fontWeight: 400,
     },
@@ -142,11 +212,13 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     minWidth: 200,
     fontSize: 24,
     fontWeight: 400,
+    fontFamily: "Roboto",
   },
   timeInput: {
     fontSize: 24,
     minWidth: 105,
     fontWeight: 400,
+    fontFamily: "Roboto",
   },
   button: {
     height: 94,

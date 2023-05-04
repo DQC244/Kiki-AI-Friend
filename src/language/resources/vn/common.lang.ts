@@ -1,7 +1,7 @@
 export default {
   lKeyLang: "VI",
   lLogin: "Login",
-  lComingSoonQ3: "Sắp ra mắt vào Quý 3 năm 2023",
+  lComingSoonQ3: "Sắp ra mắt vào Quý 4 năm 2023",
   lFollowUsOn: "Theo dõi bọn mình trên",
   lTermsConditions: "Điều khoản & Điều kiện",
   lAllRightsReserved: "All Rights Reserved.",
@@ -10,37 +10,37 @@ export default {
   lRejectAll: "Reject All",
   lHaveACookie: "Have a cookie",
   lCookiesDesc:
-      "We use cookies to ensure that we give you the best experience on our website. We also use cookies to ensure we show you advertising that is relevant to you. You can change your cookie settings at anytime.",
+    "We use cookies to ensure that we give you the best experience on our website. We also use cookies to ensure we show you advertising that is relevant to you. You can change your cookie settings at anytime.",
   lAllowAll: "Allow All",
   lOnlyNecessary: "Only Necessary",
   lOnlyNecessaryDesc:
-      "here cookies are strictly necessary to provide services that you have requested.",
+    "here cookies are strictly necessary to provide services that you have requested.",
   lFunctionalityCookies: "Functionality Cookies",
   lFunctionalityCookiesDesc:
-      "These cookies allow us to remember choices you make (such as your user name, language or the region you are in) and provide enhanced, more relevant features.",
+    "These cookies allow us to remember choices you make (such as your user name, language or the region you are in) and provide enhanced, more relevant features.",
   lAdvertisingCookies: "Advertising cookies",
   lAdvertisingCookiesDesc:
-      "Advertisement cookies help us provide our visitors with relevant ads and marketing campaigns.",
+    "Advertisement cookies help us provide our visitors with relevant ads and marketing campaigns.",
   lPerformanceCookies: "Performance Cookies",
   lPerformanceCookiesDesc:
-      "These cookies collect information about how visitors use our website. The information collected is anonymous and is only used to improve the way our website works.",
+    "These cookies collect information about how visitors use our website. The information collected is anonymous and is only used to improve the way our website works.",
   lBack: "Back",
   lFinish: "Finish",
 
   // Home
   lWelcomeToTheFantasyWorld:
-      "Chào mừng đến với xứ sở diệu kỳ - nơi bạn được là chính mình và được hỗ trợ về mặt tâm linh và sức khỏe tinh thần.",
+    "Chào mừng đến với xứ sở diệu kỳ - nơi bạn được là chính mình và được hỗ trợ về mặt tâm linh và sức khỏe tinh thần.",
   lAIFriend: "Người bạn AI",
   lAIFriendDesc:
-      "Là người bạn của riêng bạn, Kiki luôn lắng nghe và đưa ra những báo cáo chi tiết nhất để cuộc sống của bạn dễ dàng hơn.<br/>Kiki luôn có mặt bất cứ khi nào, quan tâm đến bạn từ lúc thức dậy tới khi bạn say giấc. Kiki - một người bạn đồng hành tuyệt vời, người đưa ra cho bạn những giải pháp thiết thực, cái nhìn lạc quan, hay chỉ đơn giản là cùng trò chuyện với bạn.",
+    "Là người bạn của riêng bạn, Kiki luôn lắng nghe và đưa ra những báo cáo chi tiết nhất để cuộc sống của bạn dễ dàng hơn.<br/>Kiki luôn có mặt bất cứ khi nào, quan tâm đến bạn từ lúc thức dậy tới khi bạn say giấc. Kiki - một người bạn đồng hành tuyệt vời, người đưa ra cho bạn những giải pháp thiết thực, cái nhìn lạc quan, hay chỉ đơn giản là cùng trò chuyện với bạn.",
   lWannaSayHello: "Bạn muốn ghé qua chào Kiki chứ?",
   lMysticZone: "Vùng đất huyền bí",
   lMysticZoneDesc:
-      "Nơi bạn tìm thấy câu trả lời cho những khó khăn đang gặp phải. Nếu bạn đang băn khoăn, hãy nhờ vũ trụ giải đáp.",
+    "Nơi bạn tìm thấy câu trả lời cho những khó khăn đang gặp phải. Nếu bạn đang băn khoăn, hãy nhờ vũ trụ giải đáp.",
   lWantToKnowWhatTheUniverse: "Muốn biết vũ trụ đang có gì muốn nhắn nhủ với bạn? Thử ngay thôi!",
   lSeeHarmony: "Xem mức độ hòa hợp",
   lSeeHarmonyDesc:
-      "Thắc mắc liệu bạn và người ấy có phải là hai mảnh ghép hoàn hảo? Hay đơn giản chỉ là bạn có hợp với ai đó hay không?",
+    "Thắc mắc liệu bạn và người ấy có phải là hai mảnh ghép hoàn hảo? Hay đơn giản chỉ là bạn có hợp với ai đó hay không?",
   lLetSeeYourHarmonyWith: "Cùng xem độ hòa hợp của bạn và người ấy thôi!",
   lGenerateMyBirthChart: "Tạo bản đồ sao của tôi",
   lIWasBornIn: "Tôi sinh ra tại:",
@@ -77,8 +77,7 @@ export default {
   lLetSeeYourHarmony: "Tải ứng dụng ngay để xem mức độ hòa hợp của hai bạn đến đâu nhé!",
   lPleaseEnterAllRequiredFields: "Please enter all required fields",
   lThinkAboutTheQuestionYouAsk: "Hãy nghĩ về một khả năng mà bạn muốn hỏi.",
-  lWhenYouAreDone:
-      "Khi nào sẵn sàng, hãy bấm nút ở bên dưới để đón nhận thông điệp từ vũ trụ nhé!",
+  lWhenYouAreDone: "Khi nào sẵn sàng, hãy bấm nút ở bên dưới để đón nhận thông điệp từ vũ trụ nhé!",
   lImReady: "Tôi đã sẵn sàng",
   lThinkAboutAnotherPossibility: "Nghĩ về một khả năng khác",
   lJustADayDream: "Chỉ là mơ mộng hão huyền thôi, tỉnh dậy đi bé cưng!",
@@ -87,18 +86,19 @@ export default {
   lKeepThinkingAboutAnother: "Hãy tiếp tục nghĩ về 1 khả năng mà bạn muốn hỏi tôi.",
   lPingMeAgainWhenYouAreReady: "Hãy nói với tôi khi nào bạn sẵn sàng nhé!",
   lJustComeBackAnytimeWith:
-      "Hãy quay lại bất cứ lúc nào nếu bạn muốn nhận thông điệp từ vũ trụ, nhớ mang theo cá nữa Duong nhé!",
+    "Hãy quay lại bất cứ lúc nào nếu bạn muốn nhận thông điệp từ vũ trụ, nhớ mang theo cá nữa Duong nhé!",
   lDownloadOurAppIfYouWant: "Hãy tải ứng dụng nếu bạn muốn nói chuyện với Kiki nhiều hơn!",
   lYouCanThinkAboutAnotherPossibility:
-      "Bạn có thể chọn nghĩ về một khả năng khác, hoặc chọn câu hỏi từ chủ đề khác bằng cách kéo thanh chủ đề ở phía dưới.",
-  lGreatClickOnTheButton: "Tuyệt vời! Hãy ấn nút bên dưới khi bạn đã sẵn sàng để nghe thông điệp nhé!",
+    "Bạn có thể chọn nghĩ về một khả năng khác, hoặc chọn câu hỏi từ chủ đề khác bằng cách kéo thanh chủ đề ở phía dưới.",
+  lGreatClickOnTheButton:
+    "Tuyệt vời! Hãy ấn nút bên dưới khi bạn đã sẵn sàng để nghe thông điệp nhé!",
   lInsteadDoYouWantToTryOut:
-      "Thay vào đó, bạn có muốn tải ứng dụng để khám phá thêm những điều mới lạ khác không?",
+    "Thay vào đó, bạn có muốn tải ứng dụng để khám phá thêm những điều mới lạ khác không?",
 
   // Daily tarot, meaning
   lOneCardTarotReading: "Trải bài một lá",
   lGetYourDailyMessage:
-      "Nhận thông điệp hàng ngày từ vũ trụ để có thể tận hưởng một ngày thật trọn vẹn.",
+    "Nhận thông điệp hàng ngày từ vũ trụ để có thể tận hưởng một ngày thật trọn vẹn.",
   lGetMyReading: "Xem trải bài",
   lRedrawACard: "Rút lại trải bài",
   lDownloadOurAppToTryReading: "Hãy tải ứng dụng để trải nghiệm trải bài hai lá!",
@@ -120,8 +120,8 @@ export default {
   // Download
   lComingSoonAppStoreAndGooglePlay: "Sắp ra mắt trên Apple Store và Google Play vào Quý 3 năm 2023",
   lDoYouWantToBeTheFirstPerson:
-      "Bạn có muốn trở thành người đầu tiên trải nghiệm ứng dụng của chúng tôi? Hãy để lại email phía bên dưới và chúng tôi sẽ gửi thông báo đến bạn khi ứng dụng được ra mắt!",
-  lYourMail: "Email của bạn",
+    "Bạn có muốn trở thành người đầu tiên trải nghiệm ứng dụng của chúng tôi? Hãy để lại email phía bên dưới và chúng tôi sẽ gửi thông báo đến bạn khi ứng dụng được ra mắt!",
+  lYourMail: "Hãy nhập email của bạn ở đây để cập nhật những tin tức mới nhất từ Kiki nhé",
 
   // Shop
   lDescription: "Mô tả:",
@@ -129,7 +129,7 @@ export default {
   lInquireViaInstagram: "Đặt hàng qua Instagram",
   lJoinOurNewsLetters: "Tham gia bản tin của chúng tôi",
   lDoYouWantFirstPersonToExperience:
-      "Bạn muốn là một trong những người đầu tiên trải nghiệm ứng dụng và cầm trên tay các sản phẩm mới nhất của Kiki chứ? Hãy để lại email bên dưới và chúng tôi sẽ thông báo cho bạn khi có thông tin mới!",
+    "Bạn muốn là một trong những người đầu tiên trải nghiệm ứng dụng và cầm trên tay các sản phẩm mới nhất của Kiki chứ? Hãy để lại email bên dưới và chúng tôi sẽ thông báo cho bạn khi có thông tin mới!",
 
   // No EN
   lImSorryITryImprove: "Tôi xin lỗi, tôi sẽ cố gắng cải thiện hơn trong tương lai.",

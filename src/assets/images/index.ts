@@ -52,6 +52,8 @@ import PopupBG from "./popup-bg.png";
 import PopupBGRight from "./img-right-popup.png";
 import SealDownLoadImage from "./img-seal-download.svg";
 import CookieIcon from "./img-cookie-popup.png";
+import TwitterLogo from "./img-logo-twitter.png";
+import YoutubeLogo from "./img-logo-youtube.png";
 
 export {
   LogoImage,
@@ -108,4 +110,6 @@ export {
   SealDownLoadImage,
   CookieIcon,
   ImSorryImageEN,
+  TwitterLogo,
+  YoutubeLogo,
 };

@@ -39,6 +39,22 @@ const Footer = () => {
               src={ImageAssets.InstagramImage}
             />
           </Link>
+          <Link href={LinkConstant.YOUTUBE_URL} target="_blank">
+            <Box
+              draggable="false"
+              className={classes.logo}
+              component="img"
+              src={ImageAssets.YoutubeLogo}
+            />
+          </Link>
+          <Link href={LinkConstant.TWITTER_URL} target="_blank">
+            <Box
+              draggable="false"
+              className={classes.logo}
+              component="img"
+              src={ImageAssets.TwitterLogo}
+            />
+          </Link>
         </Stack>
         <Stack direction="row" spacing={1} mt={2}>
           <Typography
@@ -64,7 +80,7 @@ export const FOOTER_HEIGHT_IN_PX = 195;
 const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     position: "relative",
-    width: "100vw",
+    width: "100%",
     minHeight: FOOTER_HEIGHT_IN_PX,
     flexDirection: "column",
     boxShadow: "unset",

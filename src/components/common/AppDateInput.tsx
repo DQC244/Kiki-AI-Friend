@@ -32,7 +32,8 @@ export default memo(AppDateInput);
 const useStyles = makeStyles((theme: ThemeProps) => ({
   input: {
     padding: 0,
-    fontSize: 12,
+    fontSize: 16,
+    fontFamily: "Montserrat",
     fontWeight: 500,
     lineHeight: "15px",
     textTransform: "lowercase",
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   notchedOutline: {
     border: "unset",
-    borderBottom: `1.5px solid ${theme.palette.common.black}`,
+    borderBottom: `1px solid ${theme.palette.common.black}`,
     borderRadius: 0,
   },
   focused: {

@@ -41,7 +41,7 @@ const NoImGoodTopic = () => {
               key={index}
               waitBeforeShow={AppConstant.DEBOUNCE_TIME_IN_MILLISECOND * index}
             >
-              <ChatBox key={index} contentCustom={item.imageContent} />;
+              <ChatBox key={index} contentCustom={item.imageContent} />
             </DelayMessage>
           );
         }
@@ -50,7 +50,7 @@ const NoImGoodTopic = () => {
             key={index}
             waitBeforeShow={AppConstant.DEBOUNCE_TIME_IN_MILLISECOND * index}
           >
-            <ChatBox key={index} message={item.label} />;
+            <ChatBox key={index} message={item.label} />
           </DelayMessage>
         );
       })}
