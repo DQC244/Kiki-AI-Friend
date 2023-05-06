@@ -41,6 +41,11 @@ import AppDemoHomeBackground1 from "./img-app-demo-background-1.png";
 import AppDemoHomeBackground2 from "./img-app-demo-background-2.png";
 import AppDemoHomeBackground3 from "./img-app-demo-background-3.png";
 import AppDemoHomeBackground4 from "./img-app-demo-background-4.png";
+import AppDemoHomeBackgroundVI from "./img-app-demo-background-vi.png";
+import AppDemoHomeBackground1VI from "./img-app-demo-background-1-vi.png";
+import AppDemoHomeBackground2VI from "./img-app-demo-background-2-vi.png";
+import AppDemoHomeBackground3VI from "./img-app-demo-background-3-vi.png";
+import AppDemoHomeBackground4VI from "./img-app-demo-background-4-vi.png";
 import AppDemoHomeBackgroundSection from "./img-background-app-demo-section.png";
 import DolphinImage from "./img-dolphin.png";
 import SealBalloonsImage from "./img-seal-balloons.png";
@@ -104,6 +109,11 @@ export {
   AppDemoHomeBackground2,
   AppDemoHomeBackground3,
   AppDemoHomeBackground4,
+  AppDemoHomeBackgroundVI,
+  AppDemoHomeBackground1VI,
+  AppDemoHomeBackground2VI,
+  AppDemoHomeBackground3VI,
+  AppDemoHomeBackground4VI,
   AppDemoHomeBackgroundSection,
   DolphinImage,
   SealBalloonsImage,
