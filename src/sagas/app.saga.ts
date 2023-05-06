@@ -1,5 +1,5 @@
 import { ApiResponse } from "apisauce";
-import { put, call } from "redux-saga/effects";
+import { put, call, all } from "redux-saga/effects";
 import { AppService } from "services";
 import { ApiConstant, AppConstant, EnvConstant } from "const";
 import { AppActions } from "redux-store";
@@ -119,11 +119,43 @@ export function* getSynastryChartImageSaga(action: { type: string; data: any }) 
       const params = { ...data };
       const queryString = new URLSearchParams(params).toString();
       const fullEndpoint = `${endpoint}?${queryString}`;
-      yield put(
-        AppActions.appSuccess({ synastryChartImage: fullEndpoint, synastryChartData: data }),
-      );
+      yield put(AppActions.appSuccess({ synastryChartImage: fullEndpoint }));
     } else {
       yield put(AppActions.appFailure(response));
+    }
+  } catch (error) {
+    EnvConstant.IS_DEV && console.log(error);
+    yield put(AppActions.appFailure(error));
+  }
+}
+
+export function* getSynastryChartSaga(action: {
+  type: string;
+  data: {
+    myInfo: any;
+    partnerInfo: any;
+  };
+}) {
+  try {
+    const data = action.data;
+    const [myResponse, partnerResponse]: [ApiResponse<any>, ApiResponse<any>] = yield all([
+      call(AppService.getBirthChart, data.myInfo),
+      call(AppService.getBirthChart, data.partnerInfo),
+    ]);
+    const myResponseData = myResponse.data;
+    const partnerResponseData = partnerResponse.data;
+
+    if (myResponse.status === ApiConstant.STT_OK && partnerResponse.status === ApiConstant.STT_OK) {
+      yield put(
+        AppActions.appSuccess({
+          synastryChartData: {
+            myInfo: myResponseData.data,
+            partnerInfo: partnerResponseData.data,
+          },
+        }),
+      );
+    } else {
+      yield put(AppActions.appFailure(myResponseData));
     }
   } catch (error) {
     EnvConstant.IS_DEV && console.log(error);

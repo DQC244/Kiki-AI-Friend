@@ -15,6 +15,7 @@ const ViewTransitChart = () => {
   const { t: getLabel } = useTranslation();
   const transitChartImage = useSelector(AppSelector.getTransitChartImage);
   const transitChartData = useSelector(AppSelector.getTransitChartData);
+  const chartData = useSelector(AppSelector.getBirthChart);
 
   return (
     <Stack spacing={9.625}>
@@ -32,7 +33,7 @@ const ViewTransitChart = () => {
                     component="img"
                     src={ImageAssets.DotZodiacDemo}
                   />
-                  <Typography className={classes.zodiacText}>Virgo</Typography>
+                  <Typography className={classes.zodiacText}>{chartData?.sun_sign_name}</Typography>
                 </Stack>
                 <Stack direction="row" alignItems="center">
                   <Box
@@ -41,21 +42,21 @@ const ViewTransitChart = () => {
                     component="img"
                     src={ImageAssets.MoonTransitImage}
                   />
-                  <Typography className={classes.zodiacText}>Scorpio</Typography>
+                  {/* <Typography className={classes.zodiacText}>Scorpio</Typography> */}
                 </Stack>
               </Stack>
               <Box>
                 <RowInfo
                   label={getLabel("lLocalTime")}
-                  content={dayjs(transitChartData.date_of_birth).format(
+                  content={dayjs(chartData.date_of_birth).format(
                     AppConstant.FULL_DATE_CHART_FORMAT,
                   )}
                 />
                 <RowInfo
                   label={getLabel("lUniversalTime")}
-                  content={dayjs(transitChartData.date_of_birth).format(
-                    AppConstant.FULL_DATE_CHART_FORMAT,
-                  )}
+                  content={dayjs(chartData.date_of_birth)
+                    .subtract(7, "hour")
+                    .format(AppConstant.FULL_DATE_CHART_FORMAT)}
                 />
                 <RowInfo label={getLabel("lHouseSystem")} content="Placidus System" />
                 <RowInfo
@@ -78,9 +79,9 @@ const ViewTransitChart = () => {
               />
               <RowInfo
                 label={getLabel("lUniversalTime")}
-                content={dayjs(transitChartData.current_date).format(
-                  AppConstant.FULL_DATE_CHART_FORMAT,
-                )}
+                content={dayjs(transitChartData.current_date)
+                  .subtract(7, "hour")
+                  .format(AppConstant.FULL_DATE_CHART_FORMAT)}
               />
               <RowInfo
                 label={getLabel("lCityCountry")}

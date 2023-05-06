@@ -12,14 +12,19 @@ import { MovePlantAnimation } from "assets/animations";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { AppActions, AppSelector } from "redux-store";
+import { useTranslation } from "react-i18next";
+import { LangConstant } from "const";
 
 const TransitChart = () => {
   const classes = useStyles();
   const lottieRef = useRef<LottieRefCurrentProps>(null);
   const dispatch = useDispatch();
 
+  const { i18n } = useTranslation();
+
   const transitChartImage = useSelector(AppSelector.getTransitChartImage);
   const transitChartData = useSelector(AppSelector.getTransitChartData);
+  const chartData = useSelector(AppSelector.getBirthChart);
 
   const [isViewTransitChart, setIsViewTransitChart] = useState(false);
 
@@ -37,14 +42,16 @@ const TransitChart = () => {
         Intl.DateTimeFormat().resolvedOptions().timeZone,
       );
 
-      // const newData = {
-      //   full_name: data.name,
-      //   language:
-      //     i18n.language === LangConstant.DEFAULT_LANG_CODE ? LangConstant.DEFAULT_LANG_CODE : "vi",
-      //   city_of_birth: placeArr[0],
-      //   nation_of_birth: placeArr[1],
-      //   date_of_birth: parsedDate.toJSON(),
-      // };
+      const newData = {
+        full_name: data.name,
+        language:
+          i18n.language === LangConstant.DEFAULT_LANG_CODE ? LangConstant.DEFAULT_LANG_CODE : "vi",
+        city_of_birth: placeArr[0],
+        nation_of_birth: placeArr[1],
+        date_of_birth: parsedDate.toJSON(),
+      };
+
+      dispatch(AppActions.getBirthChart(newData));
 
       const dataImage = {
         full_name: data.name,
@@ -74,10 +81,14 @@ const TransitChart = () => {
   };
 
   useEffect(() => {
-    if (transitChartImage && Object.keys(transitChartData).length) {
+    if (
+      transitChartImage &&
+      Object.keys(transitChartData).length &&
+      Object.keys(chartData).length
+    ) {
       setIsViewTransitChart(true);
     }
-  }, [transitChartImage, transitChartData]);
+  }, [transitChartImage, transitChartData, chartData]);
 
   useEffect(() => {
     if (lottieRef.current) {

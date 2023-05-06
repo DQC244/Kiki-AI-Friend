@@ -4,34 +4,52 @@ import { ImageAssets } from "assets";
 import { makeStyles } from "@mui/styles";
 import InfoPanel from "./InfoPanel";
 import WhaleChat from "./WhaleChat";
+import { useSelector } from "react-redux";
+import { AppSelector } from "redux-store";
+import dayjs from "dayjs";
+import { AppConstant } from "const";
 
 const ViewSynastryChart = () => {
   const classes = useStyles();
+
+  const synastryChartData = useSelector(AppSelector.getSynastryChartData);
+  const synastryChartImage = useSelector(AppSelector.getSynastryChartImage);
 
   return (
     <Stack alignItems="center">
       <Stack direction="row" alignItems="center" spacing={4.25}>
         <InfoPanel
-          name={MOCK.name}
-          localTime={MOCK.localTime}
-          universalTime={MOCK.universalTime}
-          place={MOCK.place}
-          zodiac={MOCK.zodiac}
-          zodiacSecond={MOCK.zodiacSecond}
+          name={synastryChartData.myInfo?.full_name}
+          localTime={dayjs(synastryChartData.myInfo?.date_of_birth).format(
+            AppConstant.FULL_DATE_CHART_FORMAT,
+          )}
+          universalTime={dayjs(synastryChartData.myInfo?.date_of_birth)
+            .subtract(7, "hour")
+            .format(AppConstant.FULL_DATE_CHART_FORMAT)}
+          place={
+            synastryChartData.myInfo?.city_of_birth +
+            ", " +
+            synastryChartData.myInfo?.nation_of_birth
+          }
+          zodiac={synastryChartData.myInfo?.sun_sign_name}
         />
-        <Box
-          className={classes.img}
-          component="img"
-          src={ImageAssets.ViewBirthChartDemo}
-          draggable="false"
-        />
+        {synastryChartImage && (
+          <Box className={classes.img} component="img" src={synastryChartImage} draggable="false" />
+        )}
         <InfoPanel
-          name={MOCK.name}
-          localTime={MOCK.localTime}
-          universalTime={MOCK.universalTime}
-          place={MOCK.place}
-          zodiac={MOCK.zodiac}
-          zodiacSecond={MOCK.zodiacSecond}
+          name={synastryChartData.partnerInfo?.full_name}
+          localTime={dayjs(synastryChartData.partnerInfo?.date_of_birth).format(
+            AppConstant.FULL_DATE_CHART_FORMAT,
+          )}
+          universalTime={dayjs(synastryChartData.partnerInfo?.date_of_birth)
+            .subtract(7, "hour")
+            .format(AppConstant.FULL_DATE_CHART_FORMAT)}
+          place={
+            synastryChartData.partnerInfo?.city_of_birth +
+            ", " +
+            synastryChartData.partnerInfo?.nation_of_birth
+          }
+          zodiac={synastryChartData.partnerInfo?.sun_sign_name}
         />
       </Stack>
       <Box
@@ -43,15 +61,6 @@ const ViewSynastryChart = () => {
       <WhaleChat mt={3.5} />
     </Stack>
   );
-};
-
-const MOCK = {
-  name: "Lan Anh",
-  localTime: "15 Sep 1999 - 10:40 PM",
-  universalTime: "15 Sep 1999 - 10:40 PM",
-  place: "Hanoi, Vietnam",
-  zodiac: "Virgo",
-  zodiacSecond: "Scorpio",
 };
 
 export default ViewSynastryChart;

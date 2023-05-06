@@ -15,6 +15,7 @@ import {
   getCardListSaga,
   getCardRandomSaga,
   getSynastryChartImageSaga,
+  getSynastryChartSaga,
   getTransitChartImageSaga,
 } from "./app.saga";
 
@@ -32,6 +33,7 @@ function* rootSaga() {
     takeLatest(AppTypes.GET_TRANSIT_CHART_IMAGE, getTransitChartImageSaga),
 
     takeLatest(AppTypes.GET_SYNASTRY_CHART_IMAGE, getSynastryChartImageSaga),
+    takeLatest(AppTypes.GET_SYNASTRY_CHART, getSynastryChartSaga),
   ]);
 }
 

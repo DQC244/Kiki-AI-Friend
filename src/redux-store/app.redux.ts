@@ -25,6 +25,7 @@ export const { Types, Creators } = createActions({
 
   // synastry chart
   getSynastryChartImage: ["data"],
+  getSynastryChart: ["data"],
 
   appSuccess: ["data"],
   appFailure: ["error", "data"],
@@ -46,7 +47,10 @@ export interface IAppRedux extends IReduxStateCommon {
   transitChartData: any;
 
   synastryChartImage: any;
-  synastryChartData: any;
+  synastryChartData: {
+    myInfo: any;
+    partnerInfo: any;
+  };
 }
 export const INITIAL_STATE: IAppRedux = {
   ...REDUX_STATE,
@@ -61,7 +65,10 @@ export const INITIAL_STATE: IAppRedux = {
   transitChartData: {},
 
   synastryChartImage: "",
-  synastryChartData: {},
+  synastryChartData: {
+    myInfo: {},
+    partnerInfo: {},
+  },
 };
 
 /* ------------- Selector ------------- */
@@ -102,6 +109,7 @@ const HANDLERS = {
   [Types.GET_TRANSIT_CHART_IMAGE]: request,
 
   [Types.GET_SYNASTRY_CHART_IMAGE]: request,
+  [Types.GET_SYNASTRY_CHART]: request,
 
   [Types.APP_SUCCESS]: success,
   [Types.APP_FAILURE]: failure,

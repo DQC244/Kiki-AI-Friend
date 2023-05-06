@@ -10,6 +10,7 @@ import SealBackGroundButton from "../../common/SealBackGroundButton";
 import dayjs from "dayjs";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { MovePlantAnimation } from "assets/animations";
+import { AppConstant } from "const";
 
 const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) => {
   const classes = useStyles();
@@ -83,7 +84,15 @@ const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) 
       return;
     }
 
-    onViewSynastryChart(data);
+    const newData = {
+      ...data,
+      date: dayjs(data?.date).format(AppConstant.FULL_DATE_FORMAT),
+      time: dayjs(data?.time).format(AppConstant.TIME_FORMAT),
+      myDate: dayjs(data?.myDate).format(AppConstant.FULL_DATE_FORMAT),
+      myTime: dayjs(data?.myTime).format(AppConstant.TIME_FORMAT),
+    };
+
+    onViewSynastryChart(newData);
   };
 
   const handleOverPlant = () => {
