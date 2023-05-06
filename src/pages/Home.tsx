@@ -40,7 +40,7 @@ const Home = () => {
         </Stack>
       </Container>
       <Box className={classes.demo}>
-        <Container>
+        <Container className={classes.container}>
           <AppDemoSection />
         </Container>
       </Box>
@@ -101,7 +101,7 @@ const useStyles = makeStyles(() => ({
     zIndex: 1,
   },
   demo: {
-    marginTop: 160,
+    paddingTop: 160,
     background: `no-repeat center center / 1920px auto url(${ImageAssets.AppDemoHomeBackgroundSection})`,
   },
 }));

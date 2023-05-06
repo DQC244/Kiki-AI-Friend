@@ -37,6 +37,10 @@ import PhoneHarmonyHomeBackgroundVI from "./img-phone-see-harmony-home-vi.png";
 import PhoneHarmonyHomeBackgroundVIHover from "./img-phone-see-harmony-home-vi-hover.png";
 import PhoneHarmonyHomeBackgroundHover from "./img-phone-see-harmony-home-hover.png";
 import AppDemoHomeBackground from "./img-app-demo-background.png";
+import AppDemoHomeBackground1 from "./img-app-demo-background-1.png";
+import AppDemoHomeBackground2 from "./img-app-demo-background-2.png";
+import AppDemoHomeBackground3 from "./img-app-demo-background-3.png";
+import AppDemoHomeBackground4 from "./img-app-demo-background-4.png";
 import AppDemoHomeBackgroundSection from "./img-background-app-demo-section.png";
 import DolphinImage from "./img-dolphin.png";
 import SealBalloonsImage from "./img-seal-balloons.png";
@@ -96,6 +100,10 @@ export {
   PhoneMysticHomeBackground,
   PhoneHarmonyHomeBackground,
   AppDemoHomeBackground,
+  AppDemoHomeBackground1,
+  AppDemoHomeBackground2,
+  AppDemoHomeBackground3,
+  AppDemoHomeBackground4,
   AppDemoHomeBackgroundSection,
   DolphinImage,
   SealBalloonsImage,
