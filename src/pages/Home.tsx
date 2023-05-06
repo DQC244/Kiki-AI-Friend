@@ -67,12 +67,7 @@ const useStyles = makeStyles(() => ({
     width: "100%",
     height: "100%",
     background: `no-repeat top left / 100% auto url(${HomeBackground})`,
-    animation: "zoom-in-zoom-out-home 10s linear infinite",
-    animationPlayState: "paused",
     zIndex: 0,
-    "&:hover": {
-      animationPlayState: "running",
-    },
   },
   container: {
     maxWidth: 1360,

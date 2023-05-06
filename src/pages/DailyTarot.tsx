@@ -43,13 +43,6 @@ const useStyles = makeStyles(() => ({
     backgroundPosition: "top 400px left ",
     backgroundSize: "100% auto",
     background: `url(${ImageAssets.DailyTarotBackground})`,
-
-    animation: "zoom-in-zoom-out 7s linear infinite",
-    animationPlayState: "paused",
-
-    "&:hover": {
-      animationPlayState: "running",
-    },
   },
   cardList: {
     marginTop: 104,
