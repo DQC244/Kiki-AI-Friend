@@ -35,3 +35,5 @@ export const TRANSIT_CHART_IMAGE = "/transit-chart/image";
 export const SYNASTRY_CHART_IMAGE = "/synastry-chart/image";
 
 export const URL_IMAGE_ID = `${BASE_URL}/tarot_card/{id}/image`;
+
+export const ANSWER_SELF = "/answer/self-noauth";

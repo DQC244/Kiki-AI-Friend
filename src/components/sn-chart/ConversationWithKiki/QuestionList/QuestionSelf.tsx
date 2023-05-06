@@ -21,7 +21,9 @@ const QuestionSelf = ({ onClickQuestion, lastMessage }: QuestionWorkProps) => {
         return (
           <Grid className="center-root" item key={index} xs={6}>
             <QuestionBoxButton
-              onClickQuestionButton={() => onClickQuestion(item.label, item?.type, isLastQuestion)}
+              onClickQuestionButton={() =>
+                onClickQuestion(item.label, item?.type, isLastQuestion, false, undefined, index + 1)
+              }
               startIcon={item?.icon}
               isActive={lastMessage === item.label}
               isItalic={isLastQuestion}

@@ -32,3 +32,7 @@ export const getTransitChartImage = (data: any) => {
 export const getSynastryChartImage = (data: any) => {
   return Api.get(ApiConstant.SYNASTRY_CHART_IMAGE, data);
 };
+
+export const getSelf = (data: any) => {
+  return Api.get(ApiConstant.ANSWER_SELF, data);
+};

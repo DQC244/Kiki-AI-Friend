@@ -1,4 +1,5 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
+/* eslint-disable camelcase */
 import React, { ReactNode, memo, useMemo, useRef, useState } from "react";
 import { Box, IconButton, Stack } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -11,8 +12,11 @@ import QuestionList from "./QuestionList";
 import ChatBox from "./ChatBox";
 import clsx from "clsx";
 import PossibilityMessage from "./PossibilityMessage";
-import { AppConstant } from "const";
+import { AppConstant, LangConstant } from "const";
 import NoImGoodTopic from "./NoImGoodTopic";
+import { useSelector } from "react-redux";
+import { AppSelector } from "redux-store";
+import { useHandleGetAnswerSelf } from "./hooks";
 
 const ChartConversationKiki = ({
   currentStep,
@@ -20,7 +24,11 @@ const ChartConversationKiki = ({
   onSetContentDolphin,
 }: ChartConversationKikiProps) => {
   const classes = useStyles();
-  const { t: getLabel } = useTranslation();
+  const { t: getLabel, i18n } = useTranslation();
+
+  const handleGetAnswerSelf = useHandleGetAnswerSelf();
+
+  const chartData = useSelector(AppSelector.getBirthChart);
 
   const listMessageRef = useRef<HTMLDivElement>(null);
 
@@ -64,6 +72,25 @@ const ChartConversationKiki = ({
     }, AppConstant.DEBOUNCE_TIME_IN_MILLISECOND);
   };
 
+  const handleCallQuestion = async (index?: number) => {
+    if (currentTopic === TOPIC_TYPE.self && index) {
+      const isEnglish = i18n.language === LangConstant.DEFAULT_LANG_CODE;
+
+      const data = {
+        city_of_birth: chartData?.city_of_birth,
+        date_of_birth: chartData?.date_of_birth,
+        full_name: chartData?.full_name,
+        nation_of_birth: chartData?.nation_of_birth,
+        language: isEnglish ? LangConstant.DEFAULT_LANG_CODE : "vi",
+        // stupid api
+        question: isEnglish ? index : index + 3,
+      };
+
+      const newMessage = await handleGetAnswerSelf(data);
+      setMessage((preMessage) => [...preMessage, ...newMessage]);
+    }
+  };
+
   const handleChooseNoGood = () => {
     setTimeout(() => {
       setMessage((preMessage) => [...preMessage, { label: "", contentHOC: <NoImGoodTopic /> }]);
@@ -78,6 +105,7 @@ const ChartConversationKiki = ({
     isBackTopic?: boolean,
     isBackQuestion?: boolean,
     icon?: ReactNode,
+    index?: number,
   ) => {
     let newMessageObj: MessageType = { label, isMyQuestion: true };
     switch (currentStep) {
@@ -105,6 +133,7 @@ const ChartConversationKiki = ({
           setIsShowPanel(false);
           setCurrentStep(CHOOSE_QUESTION_STEP.end);
 
+          handleCallQuestion(index);
           // TODO:call api in here
         }
         break;
