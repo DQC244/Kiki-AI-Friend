@@ -90,3 +90,43 @@ export function* getBirthChartImageSaga(action: { type: string; data: any }) {
     yield put(AppActions.appFailure(error));
   }
 }
+export function* getTransitChartImageSaga(action: { type: string; data: any }) {
+  try {
+    const data = action.data;
+    const response: ApiResponse<any> = yield call(AppService.getTransitChartImage, data);
+
+    if (response.status === ApiConstant.STT_OK) {
+      const endpoint = ApiConstant.BASE_URL + ApiConstant.TRANSIT_CHART_IMAGE;
+      const params = { ...data };
+      const queryString = new URLSearchParams(params).toString();
+      const fullEndpoint = `${endpoint}?${queryString}`;
+      yield put(AppActions.appSuccess({ transitChartImage: fullEndpoint, transitChartData: data }));
+    } else {
+      yield put(AppActions.appFailure(response));
+    }
+  } catch (error) {
+    EnvConstant.IS_DEV && console.log(error);
+    yield put(AppActions.appFailure(error));
+  }
+}
+export function* getSynastryChartImageSaga(action: { type: string; data: any }) {
+  try {
+    const data = action.data;
+    const response: ApiResponse<any> = yield call(AppService.getSynastryChartImage, data);
+
+    if (response.status === ApiConstant.STT_OK) {
+      const endpoint = ApiConstant.BASE_URL + ApiConstant.SYNASTRY_CHART_IMAGE;
+      const params = { ...data };
+      const queryString = new URLSearchParams(params).toString();
+      const fullEndpoint = `${endpoint}?${queryString}`;
+      yield put(
+        AppActions.appSuccess({ synastryChartImage: fullEndpoint, synastryChartData: data }),
+      );
+    } else {
+      yield put(AppActions.appFailure(response));
+    }
+  } catch (error) {
+    EnvConstant.IS_DEV && console.log(error);
+    yield put(AppActions.appFailure(error));
+  }
+}

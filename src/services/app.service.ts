@@ -22,10 +22,13 @@ export const getCardRandomService = (seed: number) => {
 export const getBirthChart = (data: any) => Api.post(ApiConstant.BIRTH_CHART, data);
 
 export const getBirthChartImage = (data: any) => {
-  // Api.get(ApiConstant.BIRTH_CHART_IMAGE, data).url;
   return Api.get(ApiConstant.BIRTH_CHART_IMAGE, data);
-  // const endpoint = ApiConstant.BASE_URL;
-  // const params = { ...data };
-  // const queryString = new URLSearchParams(params).toString();
-  // return `${endpoint}?${queryString}`;
+};
+
+export const getTransitChartImage = (data: any) => {
+  return Api.get(ApiConstant.TRANSIT_CHART_IMAGE, data);
+};
+
+export const getSynastryChartImage = (data: any) => {
+  return Api.get(ApiConstant.SYNASTRY_CHART_IMAGE, data);
 };

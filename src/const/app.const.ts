@@ -25,6 +25,8 @@ export const FULL_DATE_FORMAT = "DD/MM/YYYY";
 export const TIME_FORMAT = "hh:mm";
 export const FULL_TIME_FORMAT = "HH:mm";
 
+export const FULL_DATE_CHART_FORMAT = "DD/MM/YYYY - hh:mm A";
+
 export enum TIME_FORMAT_ENUM {
   am = "AM",
   pm = "PM",

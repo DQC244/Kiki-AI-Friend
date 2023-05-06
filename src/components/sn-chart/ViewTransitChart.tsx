@@ -5,10 +5,16 @@ import { ImageAssets } from "assets";
 import { useTranslation } from "react-i18next";
 import ConversationWithKiki from "./ConversationWithKiki";
 import WhaleImageChat from "./WhaleImageChat";
+import { useSelector } from "react-redux";
+import { AppSelector } from "redux-store";
+import dayjs from "dayjs";
+import { AppConstant } from "const";
 
 const ViewTransitChart = () => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
+  const transitChartImage = useSelector(AppSelector.getTransitChartImage);
+  const transitChartData = useSelector(AppSelector.getTransitChartData);
 
   return (
     <Stack spacing={9.625}>
@@ -39,30 +45,60 @@ const ViewTransitChart = () => {
                 </Stack>
               </Stack>
               <Box>
-                <RowInfo label={getLabel("lLocalTime")} content="12 Jan 2023 - 10:30 AM" />
-                <RowInfo label={getLabel("lUniversalTime")} content="12 Jan 2023 - 10:30 AM" />
+                <RowInfo
+                  label={getLabel("lLocalTime")}
+                  content={dayjs(transitChartData.date_of_birth).format(
+                    AppConstant.FULL_DATE_CHART_FORMAT,
+                  )}
+                />
+                <RowInfo
+                  label={getLabel("lUniversalTime")}
+                  content={dayjs(transitChartData.date_of_birth).format(
+                    AppConstant.FULL_DATE_CHART_FORMAT,
+                  )}
+                />
                 <RowInfo label={getLabel("lHouseSystem")} content="Placidus System" />
-                <RowInfo label={getLabel("lCityCountry")} content="Hanoi, Vietnam" />
+                <RowInfo
+                  label={getLabel("lCityCountry")}
+                  content={
+                    transitChartData?.city_of_birth + ", " + transitChartData?.nation_of_birth
+                  }
+                />
               </Box>
             </Stack>
             <Stack>
               <Typography className={classes.label} mb={6}>
                 {getLabel("lTransit")}
               </Typography>
-              <RowInfo label={getLabel("lLocalTime")} content="12 Jan 2023 - 10:30 AM" />
-              <RowInfo label={getLabel("lUniversalTime")} content="12 Jan 2023 - 10:30 AM" />
-              <RowInfo label={getLabel("lCityCountry")} content="Hanoi, Vietnam" />
+              <RowInfo
+                label={getLabel("lLocalTime")}
+                content={dayjs(transitChartData.current_date).format(
+                  AppConstant.FULL_DATE_CHART_FORMAT,
+                )}
+              />
+              <RowInfo
+                label={getLabel("lUniversalTime")}
+                content={dayjs(transitChartData.current_date).format(
+                  AppConstant.FULL_DATE_CHART_FORMAT,
+                )}
+              />
+              <RowInfo
+                label={getLabel("lCityCountry")}
+                content={transitChartData?.current_city + ", " + transitChartData?.current_nation}
+              />
             </Stack>
           </Stack>
           <WhaleImageChat />
         </Stack>
 
-        <Box
-          component="img"
-          src={ImageAssets.ViewBirthChartDemo}
-          className={classes.chartImg}
-          draggable="false"
-        />
+        {transitChartImage && (
+          <Box
+            component="img"
+            src={transitChartImage}
+            className={classes.chartImg}
+            draggable="false"
+          />
+        )}
       </Stack>
       <ConversationWithKiki
         labelClassName={classes.labelConversation}
@@ -79,7 +115,7 @@ export default ViewTransitChart;
 
 const RowInfo = ({ label, content }: RowInfoProps) => {
   return (
-    <Stack direction="row">
+    <Stack direction="row" spacing={0.5}>
       <Typography>{label}</Typography>
       <Typography>{content}</Typography>
     </Stack>

@@ -20,6 +20,12 @@ export const { Types, Creators } = createActions({
   getBirthChart: ["data"],
   getBirthChartImage: ["data"],
 
+  // transit chart
+  getTransitChartImage: ["data"],
+
+  // synastry chart
+  getSynastryChartImage: ["data"],
+
   appSuccess: ["data"],
   appFailure: ["error", "data"],
   appSet: ["data"],
@@ -35,6 +41,12 @@ export interface IAppRedux extends IReduxStateCommon {
   // birth Chart
   birthChart: any;
   birthChartImage: any;
+
+  transitChartImage: any;
+  transitChartData: any;
+
+  synastryChartImage: any;
+  synastryChartData: any;
 }
 export const INITIAL_STATE: IAppRedux = {
   ...REDUX_STATE,
@@ -44,6 +56,12 @@ export const INITIAL_STATE: IAppRedux = {
 
   birthChart: {},
   birthChartImage: "",
+
+  transitChartImage: "",
+  transitChartData: {},
+
+  synastryChartImage: "",
+  synastryChartData: {},
 };
 
 /* ------------- Selector ------------- */
@@ -55,6 +73,12 @@ export const Selector = {
   // get birth
   getBirthChart: (state: IAppReduxState) => state.appRedux.birthChart,
   getBirthChartImage: (state: IAppReduxState) => state.appRedux.birthChartImage,
+
+  getTransitChartImage: (state: IAppReduxState) => state.appRedux.transitChartImage,
+  getTransitChartData: (state: IAppReduxState) => state.appRedux.transitChartData,
+
+  getSynastryChartImage: (state: IAppReduxState) => state.appRedux.synastryChartImage,
+  getSynastryChartData: (state: IAppReduxState) => state.appRedux.synastryChartData,
 };
 
 /* ------------- Reducers ------------- */
@@ -74,6 +98,10 @@ const HANDLERS = {
 
   [Types.GET_BIRTH_CHART]: request,
   [Types.GET_BIRTH_CHART_IMAGE]: request,
+
+  [Types.GET_TRANSIT_CHART_IMAGE]: request,
+
+  [Types.GET_SYNASTRY_CHART_IMAGE]: request,
 
   [Types.APP_SUCCESS]: success,
   [Types.APP_FAILURE]: failure,

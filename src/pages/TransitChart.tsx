@@ -9,17 +9,57 @@ import { CreateTransitChart, ViewTransitChart } from "components/sn-chart";
 import clsx from "clsx";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { MovePlantAnimation } from "assets/animations";
+import { useDispatch, useSelector } from "react-redux";
+import dayjs from "dayjs";
+import { AppActions, AppSelector } from "redux-store";
 
 const TransitChart = () => {
   const classes = useStyles();
   const lottieRef = useRef<LottieRefCurrentProps>(null);
+  const dispatch = useDispatch();
+
+  const transitChartImage = useSelector(AppSelector.getTransitChartImage);
+  const transitChartData = useSelector(AppSelector.getTransitChartData);
 
   const [isViewTransitChart, setIsViewTransitChart] = useState(false);
 
   const handleCreateChart = (data: any) => {
-    console.log(data);
+    try {
+      // TODO: update when implement api
+      const placeArr = data?.city?.split(", ");
 
-    setIsViewTransitChart(true);
+      const currentPlaceArr = data?.currentCity?.split(", ");
+
+      const dateTimeString = `${data.newDate} ${data.newTime} ${data.timeFormat.charAt(0)}`;
+      const parsedDate = dayjs.tz(
+        dateTimeString,
+        "DD/MM/YYYY h:mm A",
+        Intl.DateTimeFormat().resolvedOptions().timeZone,
+      );
+
+      // const newData = {
+      //   full_name: data.name,
+      //   language:
+      //     i18n.language === LangConstant.DEFAULT_LANG_CODE ? LangConstant.DEFAULT_LANG_CODE : "vi",
+      //   city_of_birth: placeArr[0],
+      //   nation_of_birth: placeArr[1],
+      //   date_of_birth: parsedDate.toJSON(),
+      // };
+
+      const dataImage = {
+        full_name: data.name,
+        city_of_birth: placeArr[0],
+        nation_of_birth: placeArr[1],
+        date_of_birth: parsedDate.toJSON(),
+        current_date: dayjs.tz(Date.now()).toJSON(),
+        current_city: currentPlaceArr[0],
+        current_nation: currentPlaceArr[1],
+      };
+
+      dispatch(AppActions.getTransitChartImage(dataImage));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleOverPlant = () => {
@@ -34,9 +74,18 @@ const TransitChart = () => {
   };
 
   useEffect(() => {
+    if (transitChartImage && Object.keys(transitChartData).length) {
+      setIsViewTransitChart(true);
+    }
+  }, [transitChartImage, transitChartData]);
+
+  useEffect(() => {
     if (lottieRef.current) {
       lottieRef.current.setSpeed(0.2);
     }
+    return () => {
+      dispatch(AppActions.appReset());
+    };
   }, []);
 
   return (
@@ -78,7 +127,6 @@ const useStyles = makeStyles(() => ({
   background: {
     backgroundPosition: "right -590px center",
     backgroundSize: "1274px auto",
-    // background: `no-repeat url(${ImageAssets.TransitChartGalaxyImage})`,
   },
   container: {
     paddingTop: 80,

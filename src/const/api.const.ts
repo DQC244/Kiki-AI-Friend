@@ -31,5 +31,7 @@ export const TAROT_CARD_DETAIL = "/tarot_card/{id}";
 
 export const BIRTH_CHART = "/natal-chart/meaning";
 export const BIRTH_CHART_IMAGE = "/natal-chart/image";
+export const TRANSIT_CHART_IMAGE = "/transit-chart/image";
+export const SYNASTRY_CHART_IMAGE = "/synastry-chart/image";
 
 export const URL_IMAGE_ID = `${BASE_URL}/tarot_card/{id}/image`;
