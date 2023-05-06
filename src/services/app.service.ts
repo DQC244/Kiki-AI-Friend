@@ -36,3 +36,7 @@ export const getSynastryChartImage = (data: any) => {
 export const getSelf = (data: any) => {
   return Api.get(ApiConstant.ANSWER_SELF, data);
 };
+
+export const getPossibility = (data: any) => {
+  return Api.get(ApiConstant.ANSWER_POSSIBILITY, data);
+};

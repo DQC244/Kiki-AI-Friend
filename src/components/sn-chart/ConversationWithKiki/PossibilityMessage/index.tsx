@@ -5,9 +5,14 @@ import { ImageAssets } from "assets";
 import { AppConstant } from "const";
 import ChatBoxButton from "./ChatBoxButton";
 import DelayMessage from "../QuestionList/DelayMessage";
+import StringFormat from "string-format";
+import { useSelector } from "react-redux";
+import { AppSelector } from "redux-store";
 
 const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessageProps) => {
   const { t: getLabel } = useTranslation();
+
+  const chartData = useSelector(AppSelector.getBirthChart);
 
   const [chatList, setChatList] = useState<Array<ChatType>>([
     { message: getLabel("lThinkAboutTheQuestionYouAsk") },
@@ -19,7 +24,12 @@ const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessagePr
   const randomIndex = Math.floor(Math.random() * (2 - 0 + 1) + 0);
 
   const handleClose = () => {
-    setChatList((preChat) => [...preChat, { message: getLabel("lJustComeBackAnytimeWith") }]);
+    setChatList((preChat) => [
+      ...preChat,
+      {
+        message: StringFormat(getLabel("lJustComeBackAnytimeWith"), { name: chartData?.full_name }),
+      },
+    ]);
     scrollTopElement(100);
     onSetContentDolphin(getLabel("lDownloadOurAppIfYouWant"));
   };
@@ -61,6 +71,7 @@ const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessagePr
                 key={index}
                 messageCustom={
                   <ChatBoxButton
+                    randomIndex={randomIndex}
                     label={contentList[randomIndex].label}
                     imageSrc={contentList[randomIndex].image}
                     message={item.message}

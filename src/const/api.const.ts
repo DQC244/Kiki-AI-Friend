@@ -37,3 +37,4 @@ export const SYNASTRY_CHART_IMAGE = "/synastry-chart/image";
 export const URL_IMAGE_ID = `${BASE_URL}/tarot_card/{id}/image`;
 
 export const ANSWER_SELF = "/answer/self-noauth";
+export const ANSWER_POSSIBILITY = "/answer/possibility-noauth";

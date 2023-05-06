@@ -86,7 +86,7 @@ export default {
   lKeepThinkingAboutAnother: "Hãy tiếp tục nghĩ về 1 khả năng mà bạn muốn hỏi tôi.",
   lPingMeAgainWhenYouAreReady: "Hãy nói với tôi khi nào bạn sẵn sàng nhé!",
   lJustComeBackAnytimeWith:
-    "Hãy quay lại bất cứ lúc nào nếu bạn muốn nhận thông điệp từ vũ trụ, nhớ mang theo cá nữa Duong nhé!",
+    "Hãy quay lại bất cứ lúc nào nếu bạn muốn nhận thông điệp từ vũ trụ, nhớ mang theo cá nữa {name} nhé!",
   lDownloadOurAppIfYouWant: "Hãy tải ứng dụng nếu bạn muốn nói chuyện với Kiki nhiều hơn!",
   lYouCanThinkAboutAnotherPossibility:
     "Bạn có thể chọn nghĩ về một khả năng khác, hoặc chọn câu hỏi từ chủ đề khác bằng cách kéo thanh chủ đề ở phía dưới.",

@@ -4,11 +4,12 @@ import ThinkPopup from "./ThinkPopup";
 import { ThemeProps } from "models/types";
 import { makeStyles } from "@mui/styles";
 import { useTranslation } from "react-i18next";
+import { useHandleGetAnswerPossibility } from "../hooks";
 
 const ChatBoxButton = ({
-  label,
   imageSrc,
   message,
+  randomIndex,
   onClickAnother,
   onReadyClick,
   onClose,
@@ -16,15 +17,21 @@ const ChatBoxButton = ({
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
 
+  const handleGetAnswerPossibility = useHandleGetAnswerPossibility();
+
   const [isOpenPopup, setIsOpenPopup] = useState(false);
+  const [label, setLabel] = useState("");
 
   const handleClickAnother = () => {
     onClickAnother();
     setIsOpenPopup(false);
   };
 
-  const handleReadyClick = () => {
+  const handleReadyClick = async () => {
     onReadyClick();
+
+    const newLabel = await handleGetAnswerPossibility(randomIndex);
+    setLabel(newLabel);
     setIsOpenPopup(true);
   };
 
@@ -59,6 +66,7 @@ type ChatBoxButtonProps = {
   label: string;
   imageSrc: string;
   message?: string;
+  randomIndex: number;
 
   onClickAnother: () => void;
   onReadyClick: () => void;
