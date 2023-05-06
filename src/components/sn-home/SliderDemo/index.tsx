@@ -6,18 +6,41 @@ const SliderDemo = () => {
   const [checked, setChecked] = useState("s3");
   return (
     <div className="container">
-      <input type="radio" name="slider" className="d-none" id="s1" checked={checked === "s1"} />
-      <input type="radio" name="slider" className="d-none" id="s2" checked={checked === "s2"} />
+      <input
+        type="radio"
+        name="slider"
+        className="d-none"
+        id="s1"
+        defaultChecked={checked === "s1"}
+      />
+      <input
+        type="radio"
+        name="slider"
+        className="d-none"
+        id="s2"
+        defaultChecked={checked === "s2"}
+      />
       <input
         type="radio"
         name="slider"
         className="d-none"
         id="s3"
-        defaultChecked
-        checked={checked === "s3"}
+        defaultChecked={checked === "s3"}
       />
-      <input type="radio" name="slider" className="d-none" id="s4" checked={checked === "s4"} />
-      <input type="radio" name="slider" className="d-none" id="s5" checked={checked === "s5"} />
+      <input
+        type="radio"
+        name="slider"
+        className="d-none"
+        id="s4"
+        defaultChecked={checked === "s4"}
+      />
+      <input
+        type="radio"
+        name="slider"
+        className="d-none"
+        id="s5"
+        defaultChecked={checked === "s5"}
+      />
 
       <div className="cards">
         <label htmlFor="s1" id="slide1" onClick={() => setChecked("s1")}>
