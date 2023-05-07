@@ -12,6 +12,7 @@ import {
 } from "components/sn-home";
 import { HomeBackground } from "assets/images";
 import { ImageAssets } from "assets";
+import { ThemeProps } from "models/types";
 
 const Home = () => {
   const classes = useStyles();
@@ -50,7 +51,7 @@ const Home = () => {
 
 export default Home;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     position: "relative",
   },
@@ -60,6 +61,17 @@ const useStyles = makeStyles(() => ({
     bottom: -243,
     left: 40,
     transform: "translateX(-100%)",
+
+    [theme.breakpoints.down("lg")]: {
+      width: 420,
+      bottom: -180,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: 400,
+      bottom: 0,
+      left: "50%",
+      transform: "translateX(-50%) scaleX(-1)",
+    },
   },
   background: {
     position: "absolute",
@@ -71,6 +83,10 @@ const useStyles = makeStyles(() => ({
   },
   container: {
     maxWidth: 1360,
+
+    [theme.breakpoints.down("lg")]: {
+      maxWidth: 968,
+    },
   },
   star: {
     position: "absolute",
@@ -99,6 +115,17 @@ const useStyles = makeStyles(() => ({
     right: 8,
     transform: "translateX(100%)",
     zIndex: 1,
+
+    [theme.breakpoints.down("lg")]: {
+      width: 420,
+      bottom: -180,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: 400,
+      bottom: 0,
+      left: "50%",
+      transform: "translateX(-50%) scaleX(-1)",
+    },
   },
   demo: {
     paddingTop: 160,

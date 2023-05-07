@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { IconButton, Link, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
+import { ThemeProps } from "models/types";
 
 const RedirectLinkButton = ({ title, link, ...otherProps }: RedirectLinkButtonProps) => {
   const classes = useStyles();
@@ -34,12 +35,17 @@ type RedirectLinkButtonProps = {
 
 export default memo(RedirectLinkButton);
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   text: {
     color: "#9AA2FF",
     fontWeight: 700,
     fontSize: 22,
     lineHeight: "30px",
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "30px",
+    },
   },
   button: {
     width: 34,

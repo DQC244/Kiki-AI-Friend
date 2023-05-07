@@ -14,6 +14,7 @@ import clsx from "clsx";
 import { ThemeProps } from "models/types";
 import { useDispatch } from "react-redux";
 import { AppActions } from "redux-store";
+import { useResponsive } from "hooks";
 
 const GenerateBirthChart = (props: StackProps) => {
   const classes = useStyles();
@@ -21,6 +22,7 @@ const GenerateBirthChart = (props: StackProps) => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isTablet = useResponsive("between", "sm", "lg");
 
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -107,66 +109,70 @@ const GenerateBirthChart = (props: StackProps) => {
   };
 
   return (
-    <Stack spacing={5} alignItems="center" {...props}>
-      <Stack direction="row" className={classes.inputWrapper}>
-        <Typography className={classes.label}>{getLabel("lMyNameIs")}</Typography>
-        <input
-          className={clsx(classes.input, isErrorName && classes.error)}
-          onChange={handleChangeName}
-          value={name}
-        />
-        <Typography className={classes.label}>{getLabel("lIWasBornIn")}</Typography>
-        <AppAutocomplete
-          classes={
-            {
-              root: classes.autoCompleteRoot,
-              input: clsx(classes.autoCompleteInput, isErrorCity && classes.error),
-            } as AutocompleteClasses
-          }
-          options={cities}
-          placeholder={getLabel("lCity")}
-          onChangeValueInput={(_, value) => handleGetCities(value)}
-          onChange={(_, value) => {
-            setIsErrorCity(false);
-            setCity(value?.label);
-          }}
-        />
-        <Typography className={classes.label}>{getLabel("lOn")}</Typography>
-        <AppDateInput
-          className={classes.dateInput}
-          InputProps={{
-            classes: {
-              input: classes.dateInput,
-              colorSecondary: clsx(isErrorDate && classes.error),
-            },
-          }}
-          onChange={(e) => {
-            setIsErrorDate(false);
-            setDate(e as string);
-          }}
-        />
-        <Typography className={classes.label}>{getLabel("lAt")}</Typography>
-        <AppTimeInput
-          className={classes.timeInput}
-          format={AppConstant.FULL_TIME_FORMAT}
-          InputProps={{
-            classes: {
-              input: classes.timeInput,
-              colorSecondary: clsx(isErrorTime && classes.error),
-            },
-          }}
-          onChange={(e) => {
-            setIsErrorTime(false);
-            setTime(e as string);
-          }}
-        />
-      </Stack>
-      <AppGradientButton
-        className={classes.button}
-        label={getLabel("lGenerateMyBirthChart")}
-        onClick={handleCreateBirthChart}
-      />
-    </Stack>
+    <>
+      {!isTablet && (
+        <Stack spacing={5} alignItems="center" {...props}>
+          <Stack direction="row" className={classes.inputWrapper}>
+            <Typography className={classes.label}>{getLabel("lMyNameIs")}</Typography>
+            <input
+              className={clsx(classes.input, isErrorName && classes.error)}
+              onChange={handleChangeName}
+              value={name}
+            />
+            <Typography className={classes.label}>{getLabel("lIWasBornIn")}</Typography>
+            <AppAutocomplete
+              classes={
+                {
+                  root: classes.autoCompleteRoot,
+                  input: clsx(classes.autoCompleteInput, isErrorCity && classes.error),
+                } as AutocompleteClasses
+              }
+              options={cities}
+              placeholder={getLabel("lCity")}
+              onChangeValueInput={(_, value) => handleGetCities(value)}
+              onChange={(_, value) => {
+                setIsErrorCity(false);
+                setCity(value?.label);
+              }}
+            />
+            <Typography className={classes.label}>{getLabel("lOn")}</Typography>
+            <AppDateInput
+              className={classes.dateInput}
+              InputProps={{
+                classes: {
+                  input: classes.dateInput,
+                  colorSecondary: clsx(isErrorDate && classes.error),
+                },
+              }}
+              onChange={(e) => {
+                setIsErrorDate(false);
+                setDate(e as string);
+              }}
+            />
+            <Typography className={classes.label}>{getLabel("lAt")}</Typography>
+            <AppTimeInput
+              className={classes.timeInput}
+              format={AppConstant.FULL_TIME_FORMAT}
+              InputProps={{
+                classes: {
+                  input: classes.timeInput,
+                  colorSecondary: clsx(isErrorTime && classes.error),
+                },
+              }}
+              onChange={(e) => {
+                setIsErrorTime(false);
+                setTime(e as string);
+              }}
+            />
+          </Stack>
+          <AppGradientButton
+            className={classes.button}
+            label={getLabel("lGenerateMyBirthChart")}
+            onClick={handleCreateBirthChart}
+          />
+        </Stack>
+      )}
+    </>
   );
 };
 

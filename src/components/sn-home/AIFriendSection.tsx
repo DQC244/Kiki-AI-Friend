@@ -6,6 +6,7 @@ import { makeStyles } from "@mui/styles";
 import { LangConstant, PathConstant } from "const";
 import { AppTrans } from "components/common";
 import RedirectLinkButton from "./RedirectLinkButton";
+import { ThemeProps } from "models/types";
 
 const AIFriendSection = ({ star, spaceship }: AIFriendSectionProps) => {
   const classes = useStyles();
@@ -32,10 +33,10 @@ const AIFriendSection = ({ star, spaceship }: AIFriendSectionProps) => {
   }, [i18n.language]);
 
   return (
-    <Stack direction="row" spacing={27.5}>
-      <Stack spacing={2.25} zIndex={1}>
+    <Stack direction={{ xs: "column", sm: "row" }} spacing={{ xs: 4, sm: 27.5 }}>
+      <Stack spacing={{ xs: 1, sm: 2.25 }} zIndex={1}>
         <Typography className={classes.title}>{getLabel("lAIFriend")}</Typography>
-        <Typography>
+        <Typography className={classes.desc}>
           <AppTrans i18nKey={getLabel("lAIFriendDesc")} />
         </Typography>
         <RedirectLinkButton title={getLabel("lWannaSayHello")} link={PathConstant.BIRTH_CHART} />
@@ -64,20 +65,46 @@ type AIFriendSectionProps = {
 
 export default memo(AIFriendSection);
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   title: {
     fontWeight: 700,
     fontSize: 64,
     lineHeight: "71px",
     zIndex: 2,
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 22,
+      lineHeight: "30px",
+    },
   },
   wrapperImage: {
     position: "relative",
     zIndex: 2,
+
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      justifyContent: "center",
+    },
   },
   image: {
+    position: "relative",
     width: 327,
     height: 709,
     zIndex: 2,
+
+    [theme.breakpoints.down("lg")]: {
+      width: 241,
+      height: 521,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: 158,
+      height: 341,
+    },
+  },
+  desc: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "20px",
+    },
   },
 }));

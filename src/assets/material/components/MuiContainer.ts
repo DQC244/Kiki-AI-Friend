@@ -17,7 +17,7 @@ export default {
         maxWidth: maxWidth,
       },
       [customBreakpoints.down("lg")]: {
-        maxWidth: 920,
+        maxWidth: 968,
       },
     },
   },
