@@ -84,6 +84,11 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     borderRadius: 50,
     cursor: "pointer",
     color: "#FFFCFA",
+
+    [theme.breakpoints.down("lg")]: {
+      width: 55,
+      height: 25,
+    },
   },
   toggle: {
     width: 30,
@@ -92,9 +97,19 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     borderRadius: "50%",
     background: theme.palette.gradient.main,
     transition: "all 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+
+    [theme.breakpoints.down("lg")]: {
+      width: 19,
+      height: 19,
+      margin: "0 4px",
+    },
   },
   isEn: {
     transform: "translateX(46px)",
+
+    [theme.breakpoints.down("lg")]: {
+      transform: "translateX(28px)",
+    },
   },
   text: {
     fontFamily: "Open Sans",

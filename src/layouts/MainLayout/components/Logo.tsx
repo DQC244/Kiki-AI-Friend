@@ -10,7 +10,7 @@ const Logo = () => {
 
   return (
     <Stack
-      spacing={4}
+      spacing={{ xs: 1, lg: 4 }}
       direction="row"
       alignItems="center"
       component={Link}
@@ -29,11 +29,21 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   img: {
     width: 50,
     height: 50,
+
+    [theme.breakpoints.down("lg")]: {
+      width: 24,
+      height: 24,
+    },
   },
   text: {
     fontWeight: 700,
     fontSize: 24,
     lineHeight: "32px",
     color: theme.palette.common.black,
+
+    [theme.breakpoints.down("lg")]: {
+      fontSize: 14,
+      lineHeight: "22px",
+    },
   },
 }));

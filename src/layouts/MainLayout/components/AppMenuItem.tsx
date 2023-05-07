@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { MenuItem, MenuItemProps } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import clsx from "clsx";
+import { ThemeProps } from "models/types";
 
 const AppMenuItem = ({ children, classes, ...otherProps }: MenuItemProps) => {
   const defaultClasses = useStyles();
@@ -21,7 +22,7 @@ const AppMenuItem = ({ children, classes, ...otherProps }: MenuItemProps) => {
 
 export default memo(AppMenuItem);
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     marginBottom: 1,
     minWidth: 207,
@@ -32,6 +33,10 @@ const useStyles = makeStyles(() => ({
     fontSize: 16,
     lineHeight: "24px",
     background: "#ffffff",
+
+    [theme.breakpoints.down("lg")]: {
+      padding: "0 4px",
+    },
 
     "&:hover": {
       color: "#ffffff",

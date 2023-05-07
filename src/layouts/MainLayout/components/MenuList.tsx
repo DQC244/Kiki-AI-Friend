@@ -18,7 +18,7 @@ const MenuList = () => {
   const menuList = useMemo(() => getMenuList(getLabel), [getLabel]);
 
   return (
-    <Stack spacing={5} direction="row">
+    <Stack spacing={{ sm: 3, lg: 5 }} direction="row">
       {menuList.map((item, index) => {
         const isSelected = [item.path].includes(location.pathname);
         if (item.isDropDown) {
@@ -62,7 +62,7 @@ const MenuList = () => {
 
 export default memo(MenuList);
 
-const getMenuList = (getLabel: (key: string, obj: object) => ObjectMultiLanguageProps) => {
+export const getMenuList = (getLabel: (key: string, obj: object) => ObjectMultiLanguageProps) => {
   const objMenu = getLabel("ObjMenu", { returnObjects: true });
   return [
     {
@@ -110,6 +110,11 @@ const useStyle = makeStyles((theme: ThemeProps) => ({
     cursor: "pointer",
     "&:hover": {
       color: "#603DBF",
+    },
+
+    [theme.breakpoints.down("lg")]: {
+      fontSize: 16,
+      lineHeight: "24px",
     },
   },
   selected: {

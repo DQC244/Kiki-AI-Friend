@@ -9,6 +9,7 @@ import ArrowIcon from "./ArrowIcon";
 import ShowIcon from "./ShowIcon";
 import CloseIcon from "./CloseIcon";
 import CaretIcon from "./CaretIcon";
+import MenuIcon from "./MenuIcon";
 
 export {
   HeartIcon,
@@ -22,4 +23,5 @@ export {
   ShowIcon,
   CloseIcon,
   CaretIcon,
+  MenuIcon,
 };

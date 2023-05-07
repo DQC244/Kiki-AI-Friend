@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from "react";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ThemeProps } from "models/types";
 import { useTranslation } from "react-i18next";
@@ -25,43 +25,63 @@ const Setting = ({
   );
 
   return (
-    <Box className={clsx("center-root", classes.root)}>
-      <Stack spacing={4}>
-        <Stack direction="row" spacing={5} alignItems="center">
+    <Box className={clsx("center-root", "custom-scrollbar", classes.root)}>
+      <Stack>
+        <Stack direction="row" spacing={5} alignItems="center" mb={{ xs: 2, sm: 3 }}>
           <AppSwitch checked={isAllCookie} onChange={(_, value) => onToggleAll(value)} />
           <Typography className={classes.textTitle}>{getLabel("lAllowAll")}</Typography>
         </Stack>
-        <Stack direction="row" spacing={3}>
-          <OptionSetting
-            title={getLabel("lOnlyNecessary")}
-            description={getLabel("lOnlyNecessaryDesc")}
-            keyName={"onlyNecessary"}
-            isChecked={options.onlyNecessary}
-            onChangeChecked={onChangeChecked}
-          />
-          <OptionSetting
-            title={getLabel("lFunctionalityCookies")}
-            description={getLabel("lFunctionalityCookiesDesc")}
-            isChecked={options.functionality}
-            keyName="functionality"
-            onChangeChecked={onChangeChecked}
-          />
-          <OptionSetting
-            title={getLabel("lAdvertisingCookies")}
-            description={getLabel("lAdvertisingCookiesDesc")}
-            isChecked={options.advertising}
-            keyName="advertising"
-            onChangeChecked={onChangeChecked}
-          />
-          <OptionSetting
-            title={getLabel("lPerformanceCookies")}
-            description={getLabel("lPerformanceCookiesDesc")}
-            isChecked={options.performance}
-            keyName="performance"
-            onChangeChecked={onChangeChecked}
-          />
-        </Stack>
-        <Stack spacing={8} direction="row" justifyContent="center">
+        <Grid
+          container
+          direction="row"
+          alignItems="stretch"
+          columnSpacing={{ xs: 2, sm: 3 }}
+          rowSpacing={{ xs: 2, sm: 3 }}
+          ml={{ xs: -2, sm: -3 }}
+        >
+          <Grid item xs={12} sm={6} lg={3}>
+            <OptionSetting
+              title={getLabel("lOnlyNecessary")}
+              description={getLabel("lOnlyNecessaryDesc")}
+              keyName={"onlyNecessary"}
+              isChecked={options.onlyNecessary}
+              onChangeChecked={onChangeChecked}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} lg={3}>
+            <OptionSetting
+              title={getLabel("lFunctionalityCookies")}
+              description={getLabel("lFunctionalityCookiesDesc")}
+              isChecked={options.functionality}
+              keyName="functionality"
+              onChangeChecked={onChangeChecked}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} lg={3}>
+            <OptionSetting
+              title={getLabel("lAdvertisingCookies")}
+              description={getLabel("lAdvertisingCookiesDesc")}
+              isChecked={options.advertising}
+              keyName="advertising"
+              onChangeChecked={onChangeChecked}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} lg={3}>
+            <OptionSetting
+              title={getLabel("lPerformanceCookies")}
+              description={getLabel("lPerformanceCookiesDesc")}
+              isChecked={options.performance}
+              keyName="performance"
+              onChangeChecked={onChangeChecked}
+            />
+          </Grid>
+        </Grid>
+        <Stack
+          mt={{ xs: 2, sm: 4 }}
+          spacing={{ xs: 2, sm: 8 }}
+          direction={{ xs: "column", sm: "row" }}
+          justifyContent="center"
+        >
           <Button className={classes.outlinedButton} onClick={onBackSetting}>
             <Typography className={classes.textButton}>{getLabel("lBack")}</Typography>
           </Button>
@@ -94,7 +114,18 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     width: "100%",
     backgroundColor: theme.palette.common.white,
     borderRadius: "30px 30px 0 0",
-    padding: "40px 0",
+    padding: "40px 340px",
+
+    [theme.breakpoints.down("lg")]: {
+      padding: "29px 260px",
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      padding: 16,
+      maxHeight: "100%",
+      height: "fit-content",
+      overflowY: "scroll",
+    },
   },
   textTitle: {
     fontWeight: 700,
@@ -110,6 +141,10 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     borderRadius: 20,
     width: 240,
     height: 80,
+
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
 
     "&:before": {
       content: "''",
@@ -140,5 +175,9 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     fontWeight: 700,
     fontSize: 22,
     lineHeight: "30px",
+
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
 }));

@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <Box className={classes.root}>
       <Container className={classes.container}>
-        <Stack spacing={20}>
+        <Stack spacing={{ xs: 7, sm: 11, lg: 20 }}>
           <Box className={classes.background} />
           <IntroduceSection />
           <AIFriendSection

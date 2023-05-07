@@ -82,6 +82,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     objectFit: "cover",
   },
   iconButton: {
+    color: theme.palette.common.white,
     position: "absolute",
     background: theme.palette.gradient.main,
     width: 21,

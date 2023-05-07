@@ -5,7 +5,11 @@ import clsx from "clsx";
 import { Outlet, useLocation } from "react-router-dom";
 import { AppHead, CookiePopup } from "components/common";
 import { IProps } from "models";
-import MLHeader, { HEADER_HEIGHT_IN_PX } from "./components/MLHeader";
+import MLHeader, {
+  HEADER_HEIGHT_IN_PX,
+  HEADER_HEIGHT_MOBILE_IN_PX,
+  HEADER_HEIGHT_TABLET_IN_PX,
+} from "./components/MLHeader";
 import { makeStyles } from "@mui/styles";
 import Footer, { FOOTER_HEIGHT_IN_PX } from "./components/Footer";
 import { AppConstant, PathConstant } from "const";
@@ -82,5 +86,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: HEADER_HEIGHT_IN_PX,
     background: theme.palette.background.default,
     overflow: "hidden",
+
+    [theme.breakpoints.down("lg")]: {
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_TABLET_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
+      marginTop: HEADER_HEIGHT_TABLET_IN_PX,
+    },
+    [theme.breakpoints.down("sm")]: {
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_MOBILE_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
+      marginTop: HEADER_HEIGHT_MOBILE_IN_PX,
+    },
   },
 }));

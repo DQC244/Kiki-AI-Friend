@@ -15,11 +15,15 @@ const OptionSetting = ({
 
   return (
     <Stack className={classes.root} spacing={2}>
-      <Stack direction="row" alignItems="center" justifyContent="space-between">
+      <Stack
+        direction={{ xs: "row", sm: "row-reverse", lg: "row" }}
+        alignItems="center"
+        justifyContent="space-between"
+      >
         <AppSwitch checked={isChecked} onChange={(_, value) => onChangeChecked(keyName, value)} />
         <Typography className={classes.text}>{title}</Typography>
       </Stack>
-      <Typography>{description}</Typography>
+      <Typography className={classes.desc}>{description}</Typography>
     </Stack>
   );
 };
@@ -38,11 +42,15 @@ export default memo(OptionSetting);
 const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     position: "relative",
-    width: 295,
+    width: "100%",
     minHeight: 200,
     background: theme.palette.gradient.main,
     padding: 16,
     zIndex: 0,
+
+    [theme.breakpoints.between("sm", "lg")]: {
+      minHeight: 150,
+    },
 
     "&:before": {
       content: "''",
@@ -56,5 +64,14 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     fontWeight: 700,
     fontSize: 22,
     lineHeight: "30px",
+
+    [theme.breakpoints.between("sm", "lg")]: {
+      fontSize: 16,
+    },
+  },
+  desc: {
+    [theme.breakpoints.between("sm", "lg")]: {
+      fontSize: 12,
+    },
   },
 }));
