@@ -5,8 +5,12 @@ import { Stack } from "@mui/material";
 import CreateForm, { CreateFormProps } from "./CreateForm";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { MovePlantBirthAnimation } from "assets/animations";
+import { makeStyles } from "@mui/styles";
+import { ThemeProps } from "models/types";
 
 const CreateBirthChart = ({ onCreateChart }: CreateFormProps) => {
+  const classes = useStyles();
+
   const lottieRef = useRef<LottieRefCurrentProps>(null);
   const { t: getLabel } = useTranslation();
 
@@ -28,7 +32,12 @@ const CreateBirthChart = ({ onCreateChart }: CreateFormProps) => {
   }, []);
 
   return (
-    <Stack alignItems="center" spacing={15.5} direction="row" width="100%">
+    <Stack
+      alignItems="center"
+      spacing={{ xs: 0, lg: 15.5 }}
+      direction={{ xs: "column", lg: "row" }}
+      width="100%"
+    >
       <Stack flex={1} spacing={3}>
         <TitleChart title={getLabel("lCreateYourOwnBirth")} textAlign="center" />
         <CreateForm onCreateChart={onCreateChart} />
@@ -38,9 +47,7 @@ const CreateBirthChart = ({ onCreateChart }: CreateFormProps) => {
         onMouseOver={handleOverPlant}
         onMouseLeave={handleBlurPlant}
         lottieRef={lottieRef}
-        style={{
-          width: 670,
-        }}
+        className={classes.lottie}
         autoplay={false}
       />
     </Stack>
@@ -48,3 +55,16 @@ const CreateBirthChart = ({ onCreateChart }: CreateFormProps) => {
 };
 
 export default memo(CreateBirthChart);
+
+const useStyles = makeStyles((theme: ThemeProps) => ({
+  lottie: {
+    width: 670,
+
+    [theme.breakpoints.down("lg")]: {
+      width: 550,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: 360,
+    },
+  },
+}));
