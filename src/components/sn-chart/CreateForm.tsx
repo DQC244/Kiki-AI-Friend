@@ -91,10 +91,10 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
       alignItems="center"
       className={clsx(classes.root, className)}
       component="form"
-      spacing={4}
+      spacing={{ xs: 2.5, sm: 4 }}
     >
       <Typography className={classes.text}>{getLabel("lTellUsALittle")}</Typography>
-      <Stack spacing={4.25} width="100%">
+      <Stack spacing={{ xs: 1.5, sm: 4.25 }} width="100%">
         <Stack direction="row">
           <Typography className={classes.label}>{getLabel("lMyNameIs")}</Typography>
           <input
@@ -103,58 +103,70 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
             value={name}
           />
         </Stack>
-        <Stack direction="row" alignItems="center">
-          <Typography className={classes.label}>{getLabel("lIWasBornOn")}</Typography>
-          <AppDateInput
-            className={classes.dateInput}
-            InputProps={{
-              classes: {
-                colorSecondary: clsx(isErrorDate && classes.error),
-              },
-            }}
-            onChange={(e) => {
-              setIsErrorDate(false);
-              setDate(e as string);
-            }}
-          />
-          <Typography className={classes.label}>{getLabel("lAt")}</Typography>
-          <AppTimeInput
-            className={classes.inputTime}
-            InputProps={{
-              classes: {
-                colorSecondary: clsx(isErrorTime && classes.error),
-              },
-            }}
-            onChange={(e) => {
-              setIsErrorTime(false);
-              setTime(e as string);
-            }}
-          />
-          <input
-            className={classes.radioInput}
-            type="radio"
-            id="am"
-            value={AppConstant.TIME_FORMAT_ENUM.am}
-            name="time"
-            onChange={(e) => setTimeFormat(e.currentTarget.value)}
-          />
-          <label className={classes.label} htmlFor="am">
-            AM
-          </label>
-          <input
-            className={classes.radioInput}
-            type="radio"
-            id="pm"
-            name="time"
-            value={AppConstant.TIME_FORMAT_ENUM.pm}
-            onChange={(e) => setTimeFormat(e.currentTarget.value)}
-          />
-          <label className={classes.label} htmlFor="pm">
-            PM
-          </label>
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          alignItems={{ xs: "flex-start", sm: "center" }}
+          spacing={{ xs: 1.5, sm: 0 }}
+        >
+          <Stack direction="row" alignItems="center" width={{ xs: "100%", sm: "unset" }}>
+            <Typography className={classes.label}>{getLabel("lIWasBornOn")}</Typography>
+            <AppDateInput
+              className={classes.dateInput}
+              InputProps={{
+                classes: {
+                  colorSecondary: clsx(isErrorDate && classes.error),
+                },
+              }}
+              onChange={(e) => {
+                setIsErrorDate(false);
+                setDate(e as string);
+              }}
+            />
+          </Stack>
+          <Stack direction="row" alignItems="center" width={{ xs: "100%", sm: "unset" }}>
+            <Typography className={classes.label} textTransform={{ xs: "capitalize", sm: "unset" }}>
+              {getLabel("lAt")}
+            </Typography>
+            <AppTimeInput
+              className={classes.inputTime}
+              InputProps={{
+                classes: {
+                  colorSecondary: clsx(isErrorTime && classes.error),
+                },
+              }}
+              onChange={(e) => {
+                setIsErrorTime(false);
+                setTime(e as string);
+              }}
+            />
+            <input
+              className={classes.radioInput}
+              type="radio"
+              id="am"
+              value={AppConstant.TIME_FORMAT_ENUM.am}
+              name="time"
+              onChange={(e) => setTimeFormat(e.currentTarget.value)}
+            />
+            <label className={classes.label} htmlFor="am">
+              AM
+            </label>
+            <input
+              className={classes.radioInput}
+              type="radio"
+              id="pm"
+              name="time"
+              value={AppConstant.TIME_FORMAT_ENUM.pm}
+              onChange={(e) => setTimeFormat(e.currentTarget.value)}
+            />
+            <label className={classes.label} htmlFor="pm">
+              PM
+            </label>
+          </Stack>
         </Stack>
         <Stack direction="row">
-          <Typography className={classes.label}>{getLabel("lIn")}</Typography>
+          <Typography className={classes.label} textTransform={"capitalize"}>
+            {getLabel("lIn")}
+          </Typography>
           <AppAutocomplete
             options={cities}
             onChangeValueInput={(_, value) => handleGetCities(value)}
@@ -192,6 +204,7 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
         <AppGradientButton
           label={submitLabel || getLabel("lCreateChart")}
           onClick={handleCreateBirthChart}
+          className={classes.createButton}
         />
       </Stack>
     </Stack>
@@ -227,17 +240,30 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       borderRadius: 19,
       zIndex: -1,
     },
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   text: {
     fontWeight: 700,
     fontSize: 24,
     lineHeight: "63px",
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "30px",
+    },
   },
   label: {
     fontFamily: "Montserrat",
     fontWeight: 500,
     fontSize: "16px",
     whiteSpace: "nowrap",
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "20px",
+    },
   },
   input: {
     "&,&:focus": {
@@ -251,15 +277,22 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       "&::placeholder": {
         color: theme.palette.common.black,
       },
+
+      [theme.breakpoints.down("sm")]: {
+        fontSize: 12,
+        lineHeight: "20px",
+      },
     },
   },
   radioInput: {
+    width: 15,
+    height: 15,
     cursor: "pointer",
     "&:after": {
       width: 15,
       height: 15,
       borderRadius: 15,
-      top: -2,
+      top: -1,
       left: -1,
       position: "relative",
       backgroundColor: "white",
@@ -272,7 +305,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       width: 15,
       height: 15,
       borderRadius: 15,
-      top: -2,
+      top: -1,
       left: -1,
       position: "relative",
       backgroundColor: "#9AA2FF",
@@ -284,13 +317,31 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   inputTime: {
     width: 70,
+
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   dateInput: {
     flex: 1,
+
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   error: {
     "&$error&$error": {
       borderColor: theme.palette.error.main,
+    },
+  },
+  createButton: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "24px",
+      padding: "8px 16px",
+      minWidth: 112,
+      minHeight: 40,
+      borderRadius: 10,
     },
   },
 }));

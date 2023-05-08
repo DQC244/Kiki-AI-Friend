@@ -42,6 +42,11 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       color: theme.palette.common.black,
       opacity: 1,
     },
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "20px",
+    },
   },
   notchedOutline: {
     border: "unset",

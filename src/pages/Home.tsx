@@ -6,6 +6,7 @@ import {
   AnimationLeftToRight,
   AnimationRightToLeft,
   AppDemoSection,
+  GenerateBirthChart,
   IntroduceSection,
   MysticZoneSection,
   SeeHarmonySection,
@@ -13,9 +14,12 @@ import {
 import { HomeBackground } from "assets/images";
 import { ImageAssets } from "assets";
 import { ThemeProps } from "models/types";
+import { useMobile } from "hooks";
+import clsx from "clsx";
 
 const Home = () => {
   const classes = useStyles();
+  const isMobile = useMobile();
 
   return (
     <Box className={classes.root}>
@@ -41,8 +45,12 @@ const Home = () => {
         </Stack>
       </Container>
       <Box className={classes.demo}>
-        <Container className={classes.container}>
+        <Container
+          className={clsx(classes.container, classes.demoContainer)}
+          sx={{ overflow: "hidden" }}
+        >
           <AppDemoSection />
+          {isMobile && <GenerateBirthChart mt={10} mb={5} />}
         </Container>
       </Box>
     </Box>
@@ -130,5 +138,17 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   demo: {
     paddingTop: 160,
     background: `no-repeat center center / 1920px auto url(${ImageAssets.AppDemoHomeBackgroundSection})`,
+
+    [theme.breakpoints.down("lg")]: {
+      background: `no-repeat center center / 100% auto url(${ImageAssets.AppDemoHomeBackgroundSection})`,
+    },
+    [theme.breakpoints.down("sm")]: {
+      background: `no-repeat center center / 100% auto url(${ImageAssets.AppDemoHomeBackgroundSectionMobile})`,
+    },
+  },
+  demoContainer: {
+    [theme.breakpoints.between("sm", "lg")]: {
+      maxWidth: "100%",
+    },
   },
 }));

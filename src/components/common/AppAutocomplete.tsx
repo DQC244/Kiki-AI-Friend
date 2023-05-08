@@ -63,6 +63,11 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       borderBottom: `1px solid ${theme.palette.common.black}`,
       textAlign: "center",
 
+      [theme.breakpoints.down("sm")]: {
+        fontSize: 12,
+        lineHeight: "20px",
+      },
+
       "&::placeholder": {
         color: theme.palette.common.black,
         textTransform: "lowercase",

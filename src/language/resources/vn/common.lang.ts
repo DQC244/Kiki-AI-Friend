@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export default {
   lKeyLang: "VI",
   lLogin: "Login",

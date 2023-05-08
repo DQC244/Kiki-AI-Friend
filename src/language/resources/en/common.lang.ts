@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export default {
   lKeyLang: "EN",
   lLogin: "Login",
@@ -49,6 +50,10 @@ export default {
 
   // Chart
   lCreateYourOwnBirth: "Create your own birth chart. It’s free!",
+  lCreateYourOwnBirth_zero: "Create your own birth chart to see how the stars affect you",
+  lCreateYourOwnBirthDesc:
+    "Your very own birth chart powered by Kiki is ready for you. Fill in the form below and your birth chart is ready for you in a blink!",
+
   lTellUsALittle: "Tell us a little bit about yourself",
   lAndAboutYourPersonOfInterest: "And about your person of interest",
   lMyNameIs: "My name is:",

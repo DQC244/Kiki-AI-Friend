@@ -15,6 +15,7 @@ import timezone from "dayjs/plugin/timezone";
 import { useDispatch, useSelector } from "react-redux";
 import { AppActions, AppSelector } from "redux-store";
 import { LangConstant } from "const";
+import { ThemeProps } from "models/types";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -98,10 +99,15 @@ const BirthChart = () => {
 
 export default BirthChart;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     paddingTop: 80,
     paddingBottom: 80,
     minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
+
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: 32,
+      paddingBottom: 32,
+    },
   },
 }));

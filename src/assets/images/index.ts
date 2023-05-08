@@ -47,6 +47,7 @@ import AppDemoHomeBackground2VI from "./img-app-demo-background-2-vi.png";
 import AppDemoHomeBackground3VI from "./img-app-demo-background-3-vi.png";
 import AppDemoHomeBackground4VI from "./img-app-demo-background-4-vi.png";
 import AppDemoHomeBackgroundSection from "./img-background-app-demo-section.png";
+import AppDemoHomeBackgroundSectionMobile from "./img-app-demo-background-mobile.png";
 import DolphinImage from "./img-dolphin.png";
 import SealBalloonsImage from "./img-seal-balloons.png";
 import PopupBackground from "./img-popup-background.png";
@@ -115,6 +116,7 @@ export {
   AppDemoHomeBackground3VI,
   AppDemoHomeBackground4VI,
   AppDemoHomeBackgroundSection,
+  AppDemoHomeBackgroundSectionMobile,
   DolphinImage,
   SealBalloonsImage,
   PopupBackground,

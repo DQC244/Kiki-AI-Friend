@@ -14,7 +14,6 @@ import clsx from "clsx";
 import { ThemeProps } from "models/types";
 import { useDispatch } from "react-redux";
 import { AppActions } from "redux-store";
-import { useResponsive } from "hooks";
 
 const GenerateBirthChart = (props: StackProps) => {
   const classes = useStyles();
@@ -22,7 +21,6 @@ const GenerateBirthChart = (props: StackProps) => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isTablet = useResponsive("between", "sm", "lg");
 
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -110,15 +108,17 @@ const GenerateBirthChart = (props: StackProps) => {
 
   return (
     <>
-      {!isTablet && (
-        <Stack spacing={5} alignItems="center" {...props}>
-          <Stack direction="row" className={classes.inputWrapper}>
+      <Stack spacing={{ xs: 1.5, sm: 3.75, lg: 5 }} alignItems="center" {...props}>
+        <Stack direction={{ xs: "column", sm: "row" }} className={classes.inputWrapper}>
+          <Stack direction="row">
             <Typography className={classes.label}>{getLabel("lMyNameIs")}</Typography>
             <input
               className={clsx(classes.input, isErrorName && classes.error)}
               onChange={handleChangeName}
               value={name}
             />
+          </Stack>
+          <Stack direction="row" alignItems="center">
             <Typography className={classes.label}>{getLabel("lIWasBornIn")}</Typography>
             <AppAutocomplete
               classes={
@@ -149,6 +149,8 @@ const GenerateBirthChart = (props: StackProps) => {
                 setDate(e as string);
               }}
             />
+          </Stack>
+          <Stack direction="row" alignItems="center">
             <Typography className={classes.label}>{getLabel("lAt")}</Typography>
             <AppTimeInput
               className={classes.timeInput}
@@ -165,13 +167,13 @@ const GenerateBirthChart = (props: StackProps) => {
               }}
             />
           </Stack>
-          <AppGradientButton
-            className={classes.button}
-            label={getLabel("lGenerateMyBirthChart")}
-            onClick={handleCreateBirthChart}
-          />
         </Stack>
-      )}
+        <AppGradientButton
+          className={classes.button}
+          label={getLabel("lGenerateMyBirthChart")}
+          onClick={handleCreateBirthChart}
+        />
+      </Stack>
     </>
   );
 };
@@ -192,26 +194,68 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       "&::placeholder": {
         color: theme.palette.common.black,
       },
+
+      [theme.breakpoints.down("lg")]: {
+        fontSize: 16,
+        minWidth: 180,
+      },
+      [theme.breakpoints.down("sm")]: {
+        fontSize: 12,
+      },
     },
   },
   inputWrapper: {
     width: 1200,
     alignItems: "center",
+
+    [theme.breakpoints.down("lg")]: {
+      width: 700,
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   label: {
     whiteSpace: "nowrap",
     fontWeight: 700,
     fontSize: 24,
+
+    [theme.breakpoints.down("lg")]: {
+      fontSize: 16,
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+    },
   },
   autoCompleteRoot: {
     height: 43,
     fontFamily: "Roboto",
+
+    [theme.breakpoints.down("lg")]: {
+      minWidth: 180,
+
+      "& div": {
+        height: "100%",
+      },
+    },
+    [theme.breakpoints.down("sm")]: {
+      minWidth: 100,
+    },
   },
   autoCompleteInput: {
     "&$autoCompleteInput&$autoCompleteInput": {
       fontFamily: "Roboto",
       fontSize: 24,
       fontWeight: 400,
+
+      [theme.breakpoints.down("lg")]: {
+        fontSize: 16,
+        marginTop: 0,
+      },
+      [theme.breakpoints.down("sm")]: {
+        fontSize: 12,
+      },
     },
   },
   dateInput: {
@@ -219,17 +263,49 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     fontSize: 24,
     fontWeight: 400,
     fontFamily: "Roboto",
+
+    [theme.breakpoints.down("lg")]: {
+      fontSize: 16,
+      minWidth: 120,
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      minWidth: 90,
+    },
   },
   timeInput: {
     fontSize: 24,
     minWidth: 105,
     fontWeight: 400,
     fontFamily: "Roboto",
+
+    [theme.breakpoints.down("lg")]: {
+      fontSize: 16,
+      minWidth: 70,
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      minWidth: 45,
+    },
   },
   button: {
     height: 94,
     minWidth: 310,
     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+
+    [theme.breakpoints.down("lg")]: {
+      height: 70,
+      minWidth: 235,
+      fontSize: 18,
+    },
+    [theme.breakpoints.down("sm")]: {
+      minHeight: 50,
+      height: 50,
+      padding: 8,
+      minWidth: 120,
+      fontSize: 14,
+      borderRadius: 12,
+    },
   },
   error: {
     "&$error&$error": {
