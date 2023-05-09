@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
-import { HEADER_HEIGHT_IN_PX } from "layouts/MainLayout/components/MLHeader";
-import { FOOTER_HEIGHT_IN_PX } from "layouts/MainLayout/components/Footer";
+import {
+  HEADER_HEIGHT_IN_PX,
+  HEADER_HEIGHT_MOBILE_IN_PX,
+  HEADER_HEIGHT_TABLET_IN_PX,
+} from "layouts/MainLayout/components/MLHeader";
+import {
+  FOOTER_HEIGHT_IN_PX,
+  FOOTER_HEIGHT_MOBILE_IN_PX,
+  FOOTER_HEIGHT_TABLET_IN_PX,
+} from "layouts/MainLayout/components/Footer";
 import { useTranslation } from "react-i18next";
 import { AppConstant } from "const";
 import { ThemeProps } from "models/types";
@@ -60,6 +68,14 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   container: {
     maxWidth: 1360,
     minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
+
+    [theme.breakpoints.down("lg")]: {
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_TABLET_IN_PX + FOOTER_HEIGHT_TABLET_IN_PX}px)`,
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_MOBILE_IN_PX + FOOTER_HEIGHT_MOBILE_IN_PX}px)`,
+    },
   },
   background: {
     position: "absolute",

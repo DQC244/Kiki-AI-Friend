@@ -8,16 +8,26 @@ import { useSelector } from "react-redux";
 import { AppSelector } from "redux-store";
 import dayjs from "dayjs";
 import { AppConstant } from "const";
+import { ThemeProps } from "models/types";
+import { useMobile } from "hooks";
 
 const ViewSynastryChart = () => {
   const classes = useStyles();
+  const isMobile = useMobile();
 
   const synastryChartData = useSelector(AppSelector.getSynastryChartData);
   const synastryChartImage = useSelector(AppSelector.getSynastryChartImage);
 
   return (
     <Stack alignItems="center">
-      <Stack direction="row" alignItems="center" spacing={4.25}>
+      {synastryChartImage && isMobile && (
+        <Box className={classes.img} component="img" src={synastryChartImage} draggable="false" />
+      )}
+      <Stack
+        direction={{ xs: "column", md: "row" }}
+        alignItems="center"
+        spacing={{ sm: 3, lg: 4.25 }}
+      >
         <InfoPanel
           name={synastryChartData.myInfo?.full_name}
           localTime={dayjs(synastryChartData.myInfo?.date_of_birth).format(
@@ -33,7 +43,7 @@ const ViewSynastryChart = () => {
           }
           zodiac={synastryChartData.myInfo?.sun_sign_name}
         />
-        {synastryChartImage && (
+        {synastryChartImage && !isMobile && (
           <Box className={classes.img} component="img" src={synastryChartImage} draggable="false" />
         )}
         <InfoPanel
@@ -65,15 +75,33 @@ const ViewSynastryChart = () => {
 
 export default ViewSynastryChart;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   img: {
     width: 503,
     height: 503,
     objectFit: "cover",
+
+    [theme.breakpoints.down("lg")]: {
+      width: 310,
+      height: 310,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: 247,
+      height: 247,
+      margin: "24px 0 12px",
+    },
   },
   imgZodiac: {
     width: 387,
     height: 422,
     objectFit: "cover",
+
+    [theme.breakpoints.down("lg")]: {
+      marginTop: 42,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      height: "auto",
+    },
   },
 }));

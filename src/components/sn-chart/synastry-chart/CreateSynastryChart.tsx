@@ -1,6 +1,6 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import React, { memo, useEffect, useRef, useState } from "react";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { ObjectMultiLanguageProps } from "models";
 import { makeStyles } from "@mui/styles";
@@ -11,9 +11,12 @@ import dayjs from "dayjs";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { MovePlantAnimation } from "assets/animations";
 import { AppConstant } from "const";
+import { useMobile } from "hooks";
+import { ThemeProps } from "models/types";
 
 const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) => {
   const classes = useStyles();
+  const isMobile = useMobile();
 
   const lottieRef = useRef<LottieRefCurrentProps>(null);
 
@@ -113,9 +116,19 @@ const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) 
   }, []);
 
   return (
-    <Stack alignItems="center" spacing={8}>
-      <TitleChart className={classes.title} title={getLabel("lFindOutWho")} />
-      <Stack direction="row" spacing={4} justifyContent="center">
+    <Stack alignItems="center" spacing={{ xs: 4, sm: 8 }}>
+      <Stack spacing={2}>
+        <TitleChart className={classes.title} title={getLabel("lFindOutWho")} />
+        {isMobile && (
+          <Typography className={classes.descMobile}>{getLabel("lFindOutWhoDesc")}</Typography>
+        )}
+      </Stack>
+      <Stack
+        direction={{ xs: "column", md: "row" }}
+        spacing={4}
+        justifyContent="center"
+        width={{ xs: "100%", sm: "unset" }}
+      >
         <CommonCreateFromSynastry
           zIndex={1}
           className={classes.form}
@@ -136,25 +149,27 @@ const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) 
           placeLabel={getLabel("lPlaceOfBirth")}
           error={{ isErrorName, isErrorCity, isErrorDate, isErrorTime }}
         />
-        <Lottie
-          animationData={MovePlantAnimation}
-          onMouseOver={handleOverPlant}
-          onMouseLeave={handleBlurPlant}
-          lottieRef={lottieRef}
-          style={{
-            width: 1368,
-            height: "auto",
-            position: "absolute",
-            top: 220,
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 0,
-          }}
-          autoplay={false}
-        />
+        {!isMobile && (
+          <Lottie
+            animationData={MovePlantAnimation}
+            onMouseOver={handleOverPlant}
+            onMouseLeave={handleBlurPlant}
+            lottieRef={lottieRef}
+            style={{
+              width: 1368,
+              height: "auto",
+              position: "absolute",
+              top: 220,
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: 0,
+            }}
+            autoplay={false}
+          />
+        )}
       </Stack>
       <Stack>
-        <SealBackGroundButton onClickAction={handleViewSynastryChart} />
+        <SealBackGroundButton className={classes.button} onClickAction={handleViewSynastryChart} />
       </Stack>
     </Stack>
   );
@@ -166,13 +181,30 @@ type CreateSynastryChartProps = {
 
 export default memo(CreateSynastryChart);
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   form: {
     background: "linear-gradient(293.7deg, #FFFFFF -3.9%, rgba(255, 255, 255, 0) 111.17%)",
   },
   title: {
+    textAlign: "center",
     background: "linear-gradient(83.8deg, #59518C -0.96%, #8861E4 -0.95%, #756CBF 98.49%)",
     "-webkit-background-clip": "text",
     "-webkit-text-fill-color": "transparent",
+
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 32,
+    },
+  },
+  descMobile: {
+    position: "relative",
+    zIndex: 1,
+    fontSize: 12,
+    lineHeight: "20px",
+  },
+
+  button: {
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: 24,
+    },
   },
 }));

@@ -54,5 +54,9 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     height: "100%",
+
+    [theme.breakpoints.down("lg")]: {
+      maxWidth: 948,
+    },
   },
 }));

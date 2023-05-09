@@ -3,6 +3,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import { ImageAssets } from "assets";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "@mui/styles";
+import { ThemeProps } from "models/types";
 
 const InfoPanel = ({
   name,
@@ -26,7 +27,7 @@ const InfoPanel = ({
             component="img"
             src={ImageAssets.DotZodiacDemo}
           />
-          <Typography>{zodiac}</Typography>
+          <Typography className={classes.zodiac}>{zodiac}</Typography>
         </Stack>
         <Stack direction="row" alignItems="center">
           <Box
@@ -35,21 +36,21 @@ const InfoPanel = ({
             component="img"
             src={ImageAssets.MoonTransitImage}
           />
-          <Typography>{zodiacSecond}</Typography>
+          <Typography className={classes.zodiac}>{zodiacSecond}</Typography>
         </Stack>
       </Stack>
       <Stack>
         <Stack direction="row" spacing={0.5}>
           <Typography className={classes.label}>{getLabel("lLocalTime")}</Typography>
-          <Typography>{localTime}</Typography>
+          <Typography className={classes.desc}>{localTime}</Typography>
         </Stack>
         <Stack direction="row" spacing={0.5}>
           <Typography className={classes.label}>{getLabel("lUniversalTime")}</Typography>
-          <Typography>{universalTime}</Typography>
+          <Typography className={classes.desc}>{universalTime}</Typography>
         </Stack>
         <Stack direction="row" spacing={0.5}>
           <Typography className={classes.label}>{getLabel("lCityCountry")}</Typography>
-          <Typography>{place}</Typography>
+          <Typography className={classes.desc}>{place}</Typography>
         </Stack>
       </Stack>
     </Stack>
@@ -67,23 +68,65 @@ type InfoPanelProps = {
 
 export default memo(InfoPanel);
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   title: {
     fontWeight: 700,
     fontSize: 24,
     lineHeight: "32px",
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 16,
+      lineHeight: "24px",
+    },
+  },
+  zodiac: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "20px",
+    },
   },
   label: {
     fontFamily: "Montserrat",
     fontWeight: 700,
     whiteSpace: "nowrap",
+
+    [theme.breakpoints.down("lg")]: {
+      fontWeight: 400,
+      fontSize: 14,
+      lineHeight: "22px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "20px",
+    },
   },
   imgDot: {
     width: 32,
     height: 32,
+
+    [theme.breakpoints.down("sm")]: {
+      width: 22,
+      height: 22,
+    },
   },
   imgMoon: {
     width: 24,
     height: 24,
+
+    [theme.breakpoints.down("sm")]: {
+      width: 17,
+      height: 17,
+    },
+  },
+  desc: {
+    whiteSpace: "nowrap",
+    [theme.breakpoints.down("lg")]: {
+      fontSize: 14,
+      lineHeight: "22px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "20px",
+    },
   },
 }));

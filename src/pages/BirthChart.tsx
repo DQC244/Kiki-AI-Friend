@@ -4,8 +4,16 @@ import React, { useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import { CreateBirthChart, ViewBirthChart } from "components/sn-chart";
 import { makeStyles } from "@mui/styles";
-import { HEADER_HEIGHT_IN_PX } from "layouts/MainLayout/components/MLHeader";
-import { FOOTER_HEIGHT_IN_PX } from "layouts/MainLayout/components/Footer";
+import {
+  HEADER_HEIGHT_IN_PX,
+  HEADER_HEIGHT_MOBILE_IN_PX,
+  HEADER_HEIGHT_TABLET_IN_PX,
+} from "layouts/MainLayout/components/MLHeader";
+import {
+  FOOTER_HEIGHT_IN_PX,
+  FOOTER_HEIGHT_MOBILE_IN_PX,
+  FOOTER_HEIGHT_TABLET_IN_PX,
+} from "layouts/MainLayout/components/Footer";
 import { useLocation } from "react-router-dom";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
@@ -105,9 +113,14 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     paddingBottom: 80,
     minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
 
+    [theme.breakpoints.down("lg")]: {
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_TABLET_IN_PX + FOOTER_HEIGHT_TABLET_IN_PX}px)`,
+    },
+
     [theme.breakpoints.down("sm")]: {
       paddingTop: 32,
       paddingBottom: 32,
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_MOBILE_IN_PX + FOOTER_HEIGHT_MOBILE_IN_PX}px)`,
     },
   },
 }));

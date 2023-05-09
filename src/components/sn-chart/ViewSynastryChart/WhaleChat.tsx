@@ -51,19 +51,33 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   whaleImg: {
     width: 346,
     height: 321,
+
+    [theme.breakpoints.down("sm")]: {
+      width: 275,
+      height: "auto",
+    },
   },
   textHeyImHere: {
     position: "absolute",
     top: 0,
     left: 20,
     right: 20,
-    height: 94,
+    height: 96,
+
+    [theme.breakpoints.down("sm")]: {
+      height: 71,
+    },
   },
   link: {
     color: theme.palette.common.black,
     fontWeight: 400,
-    fontSize: 14,
+    fontSize: 16,
     textAlign: "center",
-    lineHeight: "22px",
+    lineHeight: "24px",
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "20px",
+    },
   },
 }));

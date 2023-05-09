@@ -81,6 +81,8 @@ export default {
   lDateOfBirth: "Date of birth:",
   lPlaceOfBirth: "Place of birth:",
   lFindOutWho: "Find out who matches your spiritual energy",
+  lFindOutWhoDesc:
+    "Please fill in the forms below to help us create your free Synastry Chart. Entering a birth time is optional, but including it will provide a more accurate Synastry Chart. When a time isn't provided, the time defaults to noon.",
   lViewSynastryChart: "View Synastry Chart",
   lLetSeeYourHarmony: "Let’s see your harmony and how well you two get on. Try our app now!",
   lPleaseEnterAllRequiredFields: "Please enter all required fields",

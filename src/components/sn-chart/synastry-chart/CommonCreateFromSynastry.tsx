@@ -67,7 +67,7 @@ const CommonCreateFromSynastry = ({
   return (
     <Stack className={clsx(classes.root, className)} spacing={4} component="form">
       <Typography className={classes.title}>{title || getLabel("lTellUsALittle")}</Typography>
-      <Stack spacing={4.5} width="100%">
+      <Stack spacing={{ xs: 2, sm: 4.5 }} width="100%">
         <Stack direction="row">
           <Typography className={classes.label}>{nameLabel || getLabel("lMyNameIs")}</Typography>
           <input
@@ -75,56 +75,76 @@ const CommonCreateFromSynastry = ({
             onChange={handleChangeName}
           />
         </Stack>
-        <Stack direction="row" alignItems="center">
-          <Typography className={classes.label}>{dateLabel || getLabel("lIWasBornOn")}</Typography>
-          <AppDateInput
-            className={classes.dateInput}
-            InputProps={{
-              classes: {
-                colorSecondary: clsx(error.isErrorDate && classes.error),
-              },
-            }}
-            onChange={(e) => {
-              setDate(e as string);
-            }}
-          />
-          <Typography className={classes.label}>{getLabel("lAt")}</Typography>
-          <AppTimeInput
-            className={classes.inputTime}
-            InputProps={{
-              classes: {
-                colorSecondary: clsx(error.isErrorTime && classes.error),
-              },
-            }}
-            onChange={(e) => {
-              setTime(e as string);
-            }}
-          />
-          <input
-            className={classes.radioInput}
-            type="radio"
-            id="am"
-            value={AppConstant.TIME_FORMAT_ENUM.am}
-            name="time"
-            onChange={(e) => setTimeFormat(e.currentTarget.value)}
-          />
-          <label className={classes.label} htmlFor="am">
-            AM
-          </label>
-          <input
-            className={classes.radioInput}
-            type="radio"
-            id="pm"
-            name="time"
-            value={AppConstant.TIME_FORMAT_ENUM.pm}
-            onChange={(e) => setTimeFormat(e.currentTarget.value)}
-          />
-          <label className={classes.label} htmlFor="pm">
-            PM
-          </label>
+        <Stack
+          alignItems="center"
+          direction={{ xs: "column", sm: "row" }}
+          width="100%"
+          spacing={{ xs: 2, sm: 0 }}
+        >
+          <Stack direction="row" alignItems="center" flex={1} width={{ xs: "100%", sm: "unset" }}>
+            <Typography className={classes.label}>
+              {dateLabel || getLabel("lIWasBornOn")}
+            </Typography>
+            <AppDateInput
+              className={classes.dateInput}
+              InputProps={{
+                classes: {
+                  colorSecondary: clsx(error.isErrorDate && classes.error),
+                },
+              }}
+              onChange={(e) => {
+                setDate(e as string);
+              }}
+            />
+          </Stack>
+          <Stack
+            direction="row"
+            alignItems="center"
+            width={{ xs: "100%", sm: "unset" }}
+            spacing={{ xs: 1, sm: 0.5 }}
+          >
+            <Typography className={classes.label} textTransform={{ xs: "capitalize", sm: "unset" }}>
+              {getLabel("lAt")}
+            </Typography>
+            <AppTimeInput
+              className={classes.inputTime}
+              InputProps={{
+                classes: {
+                  colorSecondary: clsx(error.isErrorTime && classes.error),
+                },
+              }}
+              onChange={(e) => {
+                setTime(e as string);
+              }}
+            />
+            <input
+              className={classes.radioInput}
+              type="radio"
+              id="am"
+              value={AppConstant.TIME_FORMAT_ENUM.am}
+              name="time"
+              onChange={(e) => setTimeFormat(e.currentTarget.value)}
+            />
+            <label className={classes.label} htmlFor="am">
+              AM
+            </label>
+            <input
+              className={classes.radioInput}
+              type="radio"
+              id="pm"
+              name="time"
+              value={AppConstant.TIME_FORMAT_ENUM.pm}
+              onChange={(e) => setTimeFormat(e.currentTarget.value)}
+            />
+            <label className={classes.label} htmlFor="pm">
+              PM
+            </label>
+          </Stack>
         </Stack>
         <Stack direction="row">
-          <Typography className={classes.label}>{placeLabel || getLabel("lIn")}</Typography>
+          <Typography className={classes.label} textTransform={{ xs: "capitalize", sm: "unset" }}>
+            {placeLabel || getLabel("lIn")}
+          </Typography>
           <AppAutocomplete
             options={cities}
             onChangeValueInput={(_, value) => handleGetCities(value)}
@@ -175,18 +195,33 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     border: "0.5px solid #a1a4fe",
     background: "linear-gradient(302.01deg, #FFFFFF 5.23%, rgba(255, 255, 255, 0) 115.76%)",
     zIndex: 1,
+
+    [theme.breakpoints.down("sm")]: {
+      padding: "16px 32px",
+      width: "100%",
+    },
   },
   title: {
     fontWeight: 700,
     fontSize: 24,
     lineHeight: "63px",
     textAlign: "center",
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "30px",
+    },
   },
   label: {
     fontFamily: "Montserrat",
     fontWeight: 500,
     fontSize: "16px",
     whiteSpace: "nowrap",
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "20px",
+    },
   },
   input: {
     "&,&:focus": {
@@ -198,6 +233,11 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       outline: "none",
       flex: 1,
       textAlign: "center",
+
+      [theme.breakpoints.down("sm")]: {
+        fontSize: 12,
+        lineHeight: "20px",
+      },
       "&::placeholder": {
         color: theme.palette.common.black,
       },
@@ -234,6 +274,10 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   inputTime: {
     width: 70,
+
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   dateInput: {
     flex: 1,

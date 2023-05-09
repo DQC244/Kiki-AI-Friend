@@ -3,8 +3,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Box, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { HEADER_HEIGHT_IN_PX } from "layouts/MainLayout/components/MLHeader";
-import { FOOTER_HEIGHT_IN_PX } from "layouts/MainLayout/components/Footer";
+import {
+  HEADER_HEIGHT_IN_PX,
+  HEADER_HEIGHT_MOBILE_IN_PX,
+  HEADER_HEIGHT_TABLET_IN_PX,
+} from "layouts/MainLayout/components/MLHeader";
+import {
+  FOOTER_HEIGHT_IN_PX,
+  FOOTER_HEIGHT_MOBILE_IN_PX,
+  FOOTER_HEIGHT_TABLET_IN_PX,
+} from "layouts/MainLayout/components/Footer";
 import { CreateTransitChart, ViewTransitChart } from "components/sn-chart";
 import clsx from "clsx";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
@@ -14,6 +22,7 @@ import dayjs from "dayjs";
 import { AppActions, AppSelector } from "redux-store";
 import { useTranslation } from "react-i18next";
 import { LangConstant } from "const";
+import { ThemeProps } from "models/types";
 
 const TransitChart = () => {
   const classes = useStyles();
@@ -114,12 +123,7 @@ const TransitChart = () => {
               onMouseOver={handleOverPlant}
               onMouseLeave={handleBlurPlant}
               lottieRef={lottieRef}
-              style={{
-                width: 1270,
-                height: 450,
-                position: "absolute",
-                right: -600,
-              }}
+              className={classes.animationContainer}
               autoplay={false}
             />
           </>
@@ -131,9 +135,16 @@ const TransitChart = () => {
 
 export default TransitChart;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
+
+    [theme.breakpoints.down("lg")]: {
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_TABLET_IN_PX + FOOTER_HEIGHT_TABLET_IN_PX}px)`,
+    },
+    [theme.breakpoints.down("sm")]: {
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_MOBILE_IN_PX + FOOTER_HEIGHT_MOBILE_IN_PX}px)`,
+    },
   },
   background: {
     backgroundPosition: "right -590px center",
@@ -144,6 +155,29 @@ const useStyles = makeStyles(() => ({
     paddingBottom: 80,
     alignItems: "center",
     display: "flex",
-    minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
+    minHeight: "100%",
+
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: 32,
+      paddingBottom: 32,
+    },
+  },
+  animationContainer: {
+    width: 1270,
+    height: 450,
+    position: "absolute",
+    right: -600,
+
+    [theme.breakpoints.down("lg")]: {
+      width: 1200,
+      height: 420,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: 637,
+      height: 226,
+      top: 400,
+      right: "unset",
+      left: 57,
+    },
   },
 }));

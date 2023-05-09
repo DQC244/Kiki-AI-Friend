@@ -4,8 +4,16 @@ import React, { useEffect, useState } from "react";
 import { Box, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
-import { HEADER_HEIGHT_IN_PX } from "layouts/MainLayout/components/MLHeader";
-import { FOOTER_HEIGHT_IN_PX } from "layouts/MainLayout/components/Footer";
+import {
+  HEADER_HEIGHT_IN_PX,
+  HEADER_HEIGHT_MOBILE_IN_PX,
+  HEADER_HEIGHT_TABLET_IN_PX,
+} from "layouts/MainLayout/components/MLHeader";
+import {
+  FOOTER_HEIGHT_IN_PX,
+  FOOTER_HEIGHT_MOBILE_IN_PX,
+  FOOTER_HEIGHT_TABLET_IN_PX,
+} from "layouts/MainLayout/components/Footer";
 import { CreateSynastryChart, ViewSynastryChart } from "components/sn-chart";
 import clsx from "clsx";
 import dayjs from "dayjs";
@@ -13,6 +21,7 @@ import { AppActions, AppSelector } from "redux-store";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { LangConstant } from "const";
+import { ThemeProps } from "models/types";
 
 const SynastryChart = () => {
   const classes = useStyles();
@@ -107,17 +116,28 @@ const SynastryChart = () => {
 
 export default SynastryChart;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     position: "relative",
     minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
+
+    [theme.breakpoints.down("lg")]: {
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_TABLET_IN_PX + FOOTER_HEIGHT_TABLET_IN_PX}px)`,
+    },
+    [theme.breakpoints.down("sm")]: {
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_MOBILE_IN_PX + FOOTER_HEIGHT_MOBILE_IN_PX}px)`,
+    },
   },
   background: {
     position: "absolute",
     inset: 0,
-    backgroundPosition: "left calc(50% + 40px) top 220px",
-    backgroundSize: "1368px auto",
-    // background: `no-repeat url(${ImageAssets.TransitChartGalaxyImage})`,
+    backgroundPosition: "bottom center",
+    backgroundSize: "120% auto",
+    backgroundRepeat: "no-repeat",
+
+    [theme.breakpoints.down("sm")]: {
+      backgroundImage: `url(${ImageAssets.HomeBackground})`,
+    },
   },
   viewBackground: {
     position: "absolute",
@@ -131,6 +151,10 @@ const useStyles = makeStyles(() => ({
 
     "&:hover": {
       animationPlayState: "running",
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      background: `no-repeat top center / 100% auto url(${ImageAssets.ViewSynastryChartBackground})`,
     },
   },
 }));
