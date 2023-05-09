@@ -57,6 +57,7 @@ export default {
   lIn: "Tại:",
   lCreateChart: "Tạo bản đồ sao",
   lHeyIAmHere: "Kiki đây! Bạn hãy kéo xuống để xem thêm nhé!",
+  lHeyIAmHere_zero: "Hey, Kiki’s here. Scroll down if you wanna have a small conversation with me!",
   lWantToTryHave: "Muốn tán gẫu với Kiki một lúc chứ?",
   lPleaseChooseTheTopic: "Hãy chọn chủ đề bạn đang băn khoăn nhất!",
   lPleaseChooseQuestion: "Tuyệt! Giờ thì hãy chọn một câu bạn muốn hỏi!",

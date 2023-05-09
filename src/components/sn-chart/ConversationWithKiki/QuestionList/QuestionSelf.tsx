@@ -15,7 +15,7 @@ const QuestionSelf = ({ onClickQuestion, lastMessage }: QuestionWorkProps) => {
   const selfTopic = useMemo(() => getSelfTopic(getLabel), [getLabel]);
 
   return (
-    <Grid container rowSpacing={2} columnSpacing={8.375}>
+    <Grid container rowSpacing={2} columnSpacing={{ xs: 4, lg: 8.375 }}>
       {selfTopic.map((item: any, index: number) => {
         const isLastQuestion = index === selfTopic.length - 1;
         return (

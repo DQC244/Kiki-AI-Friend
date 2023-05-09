@@ -81,6 +81,11 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     fontSize: 14,
     lineHeight: "22px",
     color: theme.palette.secondary.dark,
+
+    [theme.breakpoints.down("lg")]: {
+      fontSize: 9,
+      lineHeight: "17px",
+    },
   },
   button: {
     "&$button": {

@@ -22,9 +22,9 @@ const ChooseTopicDefault = ({ onClickQuestion, lastMessage }: QuestionWorkProps)
   const topicList = useMemo(() => getListQuestion(getLabel), [getLabel]);
 
   return (
-    <Grid container rowSpacing={2} columnSpacing={8.375}>
+    <Grid container rowSpacing={2} columnSpacing={8.375} direction={{ xs: "column", lg: "row" }}>
       {topicList.map((item: any, index: number) => (
-        <Grid className="center-root" item key={index} xs={4}>
+        <Grid className={"center-root"} item key={index} xs={4}>
           <QuestionBoxButton
             onClickQuestionButton={() =>
               onClickQuestion(item.label, item?.type, false, false, item.icon)

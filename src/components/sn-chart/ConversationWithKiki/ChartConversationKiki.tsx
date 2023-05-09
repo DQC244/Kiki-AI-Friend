@@ -164,7 +164,7 @@ const ChartConversationKiki = ({
       <Box className={clsx(classes.wrapper, isShowPanel && classes.smallWrapper)}>
         <Stack
           className={clsx("custom-scrollbar", classes.conversation)}
-          spacing={3.75}
+          spacing={{ xs: 1.5, lg: 3.75 }}
           ref={listMessageRef}
         >
           {messageDefault.map((item, index) => (
@@ -251,6 +251,7 @@ const getDefaultMessage = (getLabel: (key: string, obj: object) => ObjectMultiLa
 
 const HEIGHT_FOOTER_IN_PX = 206;
 const HEIGHT_IN_PX = 940;
+const HEIGHT_IN_TABLET_PX = 700;
 
 const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
@@ -262,12 +263,24 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(4px 0px 10px rgba(0, 0, 0, 0.25))",
     borderRadius: 28,
     overflow: "hidden",
+
+    [theme.breakpoints.down("lg")]: {
+      width: 358,
+      height: HEIGHT_IN_TABLET_PX,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   wrapper: {
     width: "100%",
     height: "100%",
     background: `no-repeat top 14px right 40px / 155px auto url(${ImageAssets.DolphinImage}), no-repeat bottom 6px left 70px / 155px auto url(${ImageAssets.SealBalloonsImage})`,
     transition: "height 0.75s ease-in-out",
+
+    [theme.breakpoints.down("lg")]: {
+      background: `no-repeat top 4px right 12px / 122px auto url(${ImageAssets.DolphinImage}), no-repeat bottom 6px left 12px / 122px auto url(${ImageAssets.SealBalloonsImage})`,
+    },
   },
   smallWrapper: {
     height: `calc(100% - ${HEIGHT_FOOTER_IN_PX}px)`,
@@ -276,6 +289,10 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     height: "100%",
     padding: "54px 70px",
     overflow: "hidden scroll",
+
+    [theme.breakpoints.down("lg")]: {
+      padding: "24px 12px",
+    },
   },
   footerContainer: {
     position: "absolute",
@@ -294,6 +311,10 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     width: "100%",
     padding: "0 44px",
     background: `no-repeat center center/ auto url(${ImageAssets.BackgroundFooterChat}), rgba(202, 172, 242, 0.7)`,
+
+    [theme.breakpoints.down("lg")]: {
+      padding: "0 40px",
+    },
   },
   arrowButton: {
     position: "absolute",
@@ -301,6 +322,11 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     right: 6,
     fontSize: 20,
     transform: "translateY(-50%)",
+
+    [theme.breakpoints.down("lg")]: {
+      right: 0,
+      fontSize: 14,
+    },
   },
   showButton: {
     position: "absolute",
@@ -308,9 +334,18 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     left: 6,
     fontSize: 20,
     transform: "translateY(-50%)",
+
+    [theme.breakpoints.down("lg")]: {
+      left: 0,
+      fontSize: 14,
+    },
   },
   hidden: {
     transform: "translateX(calc(100% - 36px))",
     borderRadius: 28,
+
+    [theme.breakpoints.down("lg")]: {
+      transform: "translateX(calc(100% - 20px))",
+    },
   },
 }));

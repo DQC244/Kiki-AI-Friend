@@ -4,10 +4,13 @@ import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
+import { ThemeProps } from "models/types";
+import { useMobile } from "hooks";
 
 const WhaleImageChat = () => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
+  const isMobile = useMobile();
 
   return (
     <Box className={classes.imageWrapper}>
@@ -18,7 +21,9 @@ const WhaleImageChat = () => {
         draggable="false"
       />
       <Box className={clsx("center-root", classes.textHeyImHere)}>
-        <Typography>{getLabel("lHeyIAmHere")}</Typography>
+        <Typography className={classes.text}>
+          {getLabel("lHeyIAmHere", { count: isMobile ? 0 : 1 })}
+        </Typography>
       </Box>
     </Box>
   );
@@ -26,7 +31,7 @@ const WhaleImageChat = () => {
 
 export default memo(WhaleImageChat);
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   imageWrapper: {
     position: "relative",
     margin: "24px 0px 0px 26px",
@@ -35,6 +40,11 @@ const useStyles = makeStyles(() => ({
   whaleImg: {
     width: 346,
     height: 406,
+
+    [theme.breakpoints.down("lg")]: {
+      width: 286,
+      height: 354,
+    },
   },
   textHeyImHere: {
     position: "absolute",
@@ -43,8 +53,19 @@ const useStyles = makeStyles(() => ({
     width: "100%",
     height: 94,
     fontWeight: 400,
+
+    [theme.breakpoints.down("lg")]: {
+      height: 82,
+    },
+  },
+  text: {
     fontSize: 14,
     textAlign: "center",
     lineHeight: "22px",
+
+    [theme.breakpoints.down("lg")]: {
+      fontSize: 12,
+      lineHeight: "20px",
+    },
   },
 }));

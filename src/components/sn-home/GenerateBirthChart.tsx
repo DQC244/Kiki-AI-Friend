@@ -110,7 +110,7 @@ const GenerateBirthChart = (props: StackProps) => {
     <>
       <Stack spacing={{ xs: 1.5, sm: 3.75, lg: 5 }} alignItems="center" {...props}>
         <Stack direction={{ xs: "column", sm: "row" }} className={classes.inputWrapper}>
-          <Stack direction="row">
+          <Stack direction="row" alignItems="center">
             <Typography className={classes.label}>{getLabel("lMyNameIs")}</Typography>
             <input
               className={clsx(classes.input, isErrorName && classes.error)}

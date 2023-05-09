@@ -73,6 +73,11 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     height: 42,
     objectFit: "cover",
     borderRadius: "50%",
+
+    [theme.breakpoints.down("lg")]: {
+      width: 34,
+      height: 34,
+    },
   },
   textBox: {
     minWidth: 76,
@@ -88,12 +93,23 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     "& svg": {
       marginRight: 8,
     },
+
+    [theme.breakpoints.down("lg")]: {
+      padding: "8px 10px",
+      borderRadius: 12,
+      fontSize: 22,
+    },
   },
   message: {
     fontWeight: 400,
     fontSize: 14,
     lineHeight: "22px",
     color: theme.palette.secondary.dark,
+
+    [theme.breakpoints.down("lg")]: {
+      fontSize: 9,
+      lineHeight: "17px",
+    },
   },
   borderLight: {
     borderColor: "#FFD488",
