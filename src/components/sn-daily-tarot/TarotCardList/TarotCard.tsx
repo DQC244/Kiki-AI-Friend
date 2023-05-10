@@ -3,6 +3,7 @@ import { Box, BoxProps } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import clsx from "clsx";
+import { ThemeProps } from "models/types";
 
 const TarotCard = ({
   isShowFront,
@@ -45,7 +46,7 @@ type TarotCardProps = BoxProps & {
 
 export default memo(TarotCard);
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   inner: {
     width: "100%",
     height: "100%",
@@ -58,6 +59,15 @@ const useStyles = makeStyles(() => ({
     width: 277,
     height: 389,
     cursor: "pointer",
+
+    [theme.breakpoints.down("lg")]: {
+      width: 180,
+      height: 253,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: 120,
+      height: 170,
+    },
   },
   img: {
     width: "100%",

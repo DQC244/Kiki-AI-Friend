@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AppActions } from "redux-store";
+import { ThemeProps } from "models/types";
 
 const TarotCardMeaning = () => {
   const classes = useStyles();
@@ -60,10 +61,17 @@ const TarotCardMeaning = () => {
 
 export default TarotCardMeaning;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     paddingBottom: 120,
     background: `top left / 100% auto url(${ImageAssets.CardMeaningBackground})`,
+
+    [theme.breakpoints.down("lg")]: {
+      // paddingBottom: 60,
+    },
+    // [theme.breakpoints.down("sm")]: {
+    //   paddingBottom: 12,
+    // },
   },
   container: {
     display: "flex",

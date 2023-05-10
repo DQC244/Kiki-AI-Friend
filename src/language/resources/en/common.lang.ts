@@ -114,7 +114,10 @@ export default {
   lGetMyReading: "Get my reading",
   lRedrawACard: "Redraw a card",
   lDownloadOurAppToTryReading: "Download our app to try the two-card reading!",
+  lWeAlsoGot: "We also got 2 cards reading. Scroll down to view more!",
   lTarotCardMeaning: "Tarot Card Meaning",
+  lTarotCardMeaningDesc:
+    "Get your daily message from the universe to help you focus on your every aspect of your day.",
   lViewCards: "View cards",
   lReadTheMeaning: "Read the meaning",
   lKeyMeaning: "Key meaning:",

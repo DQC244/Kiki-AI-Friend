@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useMemo, useState } from "react";
 import TarotCard from "./TarotCard";
 import { makeStyles } from "@mui/styles";
 import { Box, BoxProps, Stack, Typography } from "@mui/material";
@@ -11,16 +11,26 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AppSelector } from "redux-store";
 import StringFormat from "string-format";
+import { ThemeProps } from "models/types";
+import { useMobile, useResponsive } from "hooks";
 
 const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t: getLabel } = useTranslation();
+  const isTablet = useResponsive("between", "sm", "lg");
+  const isMobile = useMobile();
 
   const cardList = useSelector(AppSelector.getSuitList);
 
   const [itemSelected, setItemSelected] = useState<any>({});
   const [isShowTarot, setIsShowTarot] = useState(false);
+
+  const numberMargin = useMemo(() => {
+    if (isTablet) return -140;
+    if (isMobile) return -100;
+    return -220;
+  }, [isTablet, isMobile]);
 
   const handleViewTarot = () => {
     // TODO: update redirect card detail
@@ -55,7 +65,7 @@ const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
             </Stack>
             <Typography className={classes.cardInfo}>{itemSelected?.card_name}</Typography>
             <SealBackGroundButton
-              mt={3}
+              mt={{ xs: 0, sm: 1, lg: 3 }}
               labelButton={getLabel("lGetMyReading")}
               onClickAction={handleViewTarot}
             />
@@ -68,7 +78,7 @@ const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
                 className={classes.cardWrapper}
                 sx={{
                   zIndex: index + 1,
-                  marginLeft: index && "calc(-220px)",
+                  marginLeft: index && `${numberMargin}px`,
                 }}
                 onClick={() => setItemSelected(item)}
               >
@@ -84,7 +94,7 @@ const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
 
 export default memo(TarotCardList);
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     width: "100%",
   },
@@ -93,6 +103,13 @@ const useStyles = makeStyles(() => ({
 
     "&:hover": {
       transform: "translateY(-40px)",
+
+      [theme.breakpoints.down("lg")]: {
+        transform: "translateY(-30px)",
+      },
+      [theme.breakpoints.down("sm")]: {
+        transform: "translateY(-17px)",
+      },
     },
   },
   itemSelectedWrapper: {
@@ -105,15 +122,39 @@ const useStyles = makeStyles(() => ({
     left: 0,
     top: "50%",
     transform: "translateY(-50%)",
+
+    [theme.breakpoints.down("sm")]: {
+      width: 81,
+      height: 114,
+    },
   },
   cardSelected: {
     width: 321,
     height: 450,
+
+    [theme.breakpoints.down("lg")]: {
+      width: 200,
+      height: 300,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: 151,
+      height: 268,
+    },
   },
   cardInfo: {
     fontWeight: 700,
     fontSize: 24,
     lineHeight: "32px",
     marginTop: 12,
+
+    [theme.breakpoints.down("lg")]: {
+      fontSize: 17,
+      lineHeight: "24px",
+      marginTop: 4,
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 15,
+      lineHeight: "20px",
+    },
   },
 }));

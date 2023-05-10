@@ -5,6 +5,17 @@ import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import { useDispatch } from "react-redux";
 import { AppActions } from "redux-store";
+import { ThemeProps } from "models/types";
+import {
+  HEADER_HEIGHT_IN_PX,
+  HEADER_HEIGHT_MOBILE_IN_PX,
+  HEADER_HEIGHT_TABLET_IN_PX,
+} from "layouts/MainLayout/components/MLHeader";
+import {
+  FOOTER_HEIGHT_IN_PX,
+  FOOTER_HEIGHT_MOBILE_IN_PX,
+  FOOTER_HEIGHT_TABLET_IN_PX,
+} from "layouts/MainLayout/components/Footer";
 
 const DailyTarot = () => {
   const classes = useStyles();
@@ -33,9 +44,19 @@ const DailyTarot = () => {
 
 export default DailyTarot;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     padding: "60px 0",
+    minHeight: `calc(100vh - ${HEADER_HEIGHT_IN_PX + FOOTER_HEIGHT_IN_PX}px)`,
+
+    [theme.breakpoints.down("lg")]: {
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_TABLET_IN_PX + FOOTER_HEIGHT_TABLET_IN_PX}px)`,
+      padding: "80px 0",
+    },
+    [theme.breakpoints.down("sm")]: {
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_MOBILE_IN_PX + FOOTER_HEIGHT_MOBILE_IN_PX}px)`,
+      padding: "32px 0",
+    },
   },
   background: {
     position: "absolute",
@@ -46,5 +67,12 @@ const useStyles = makeStyles(() => ({
   },
   cardList: {
     marginTop: 104,
+
+    [theme.breakpoints.down("lg")]: {
+      marginTop: 60,
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 20,
+    },
   },
 }));
