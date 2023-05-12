@@ -89,6 +89,11 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     position: "relative",
     width: 900,
     height: 900,
+
+    [theme.breakpoints.down("sm")]: {
+      width: 360,
+      height: 360,
+    },
   },
   wrapper: {
     position: "relative",
@@ -130,6 +135,35 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     "&:nth-child(8)": {
       transform: "rotate(5deg) translateY(-300px)",
     },
+
+    [theme.breakpoints.down("sm")]: {
+      width: 60,
+      height: 97,
+      "&:nth-child(1)": {
+        transform: "rotate(50deg) translateY(-125px)",
+      },
+      "&:nth-child(2)": {
+        transform: "rotate(95deg) translateY(-125px)",
+      },
+      "&:nth-child(3)": {
+        transform: "rotate(140deg) translateY(-125px)",
+      },
+      "&:nth-child(4)": {
+        transform: "rotate(185deg) translateY(-125px)",
+      },
+      "&:nth-child(5)": {
+        transform: "rotate(230deg) translateY(-125px)",
+      },
+      "&:nth-child(6)": {
+        transform: "rotate(275deg) translateY(-125px)",
+      },
+      "&:nth-child(7)": {
+        transform: "rotate(320deg) translateY(-125px)",
+      },
+      "&:nth-child(8)": {
+        transform: "rotate(5deg) translateY(-125px)",
+      },
+    },
   },
   button: {
     "&:hover,&": {
@@ -143,6 +177,17 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       background: "#9AA2FF",
       borderRadius: 15,
       zIndex: 10,
+
+      [theme.breakpoints.down("sm")]: {
+        width: 125,
+        borderRadius: 5,
+        height: 21,
+        fontSize: 8,
+        lineHeight: "12px",
+        minHeight: "unset",
+        whiteSpace: "nowrap",
+        padding: 0,
+      },
     },
   },
 }));

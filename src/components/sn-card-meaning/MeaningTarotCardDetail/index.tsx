@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { AppSelector } from "redux-store";
 import StringFormat from "string-format";
 import { ApiConstant } from "const";
+import { ThemeProps } from "models/types";
 
 const MeaningTarotCardDetail = () => {
   const classes = useStyles();
@@ -28,7 +29,7 @@ const MeaningTarotCardDetail = () => {
           src={StringFormat(ApiConstant.URL_IMAGE_ID, { id: cardDetail?.id })}
         />
       )}
-      <Stack spacing={2} mt={4} mb={5} width="100%">
+      <Stack spacing={2} mt={{ xs: 2, sm: 4 }} mb={{ xs: 2, sm: 5 }} width="100%">
         <KeyMeaning data={cardDetail} />
         <OverView title={getLabel("lTheFoolOverview")} description={cardDetail?.overview} />
         <OverView title={getLabel("lMessageFromTheFool")} description={cardDetail?.meaning} />
@@ -40,10 +41,15 @@ const MeaningTarotCardDetail = () => {
 
 export default memo(MeaningTarotCardDetail);
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   img: {
     width: 204,
     height: 350,
     marginTop: 32,
+
+    [theme.breakpoints.down("sm")]: {
+      width: 139,
+      height: 238,
+    },
   },
 }));

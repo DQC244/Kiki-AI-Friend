@@ -9,15 +9,29 @@ import { useTranslation } from "react-i18next";
 import { ObjectMultiLanguageProps } from "models";
 import { useSelector } from "react-redux";
 import { AppSelector } from "redux-store";
+import { useResponsive } from "hooks";
 import StringFormat from "string-format";
+import { ThemeProps } from "models/types";
 
 const MeaningDeskCardList = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const params = useParams();
   const { t: getLabel } = useTranslation();
+  const isTablet = useResponsive("between", "md", "lg");
 
   const cardList = useSelector(AppSelector.getSuitList);
+
+  const [firstCardList, secondCardList] = useMemo(() => {
+    if (cardList.length) {
+      if (isTablet) {
+        return [cardList.slice(0, 1), cardList.slice(1)];
+      }
+      return [cardList.slice(0, 2), cardList.slice(2)];
+    }
+
+    return [[], []];
+  }, [cardList, isTablet]);
 
   const title = useMemo(() => {
     const contentObj: ObjectMultiLanguageProps = getLabel("objCardName", { returnObjects: true });
@@ -37,8 +51,13 @@ const MeaningDeskCardList = () => {
       <MeaningDeskCardListTitle title={title} />
       {cardList.length > 2 && (
         <>
-          <Stack mt={11.5} direction="row" justifyContent="center" spacing={17}>
-            {cardList.slice(0, 2).map((item, index) => (
+          <Stack
+            mt={{ xs: 2, sm: 11.5 }}
+            direction="row"
+            justifyContent="center"
+            spacing={{ xs: 8.25, sm: 17 }}
+          >
+            {firstCardList.map((item, index) => (
               <MeaningCard
                 onReadMeaning={() => handleReadMeaning(item?.id)}
                 key={index}
@@ -48,7 +67,7 @@ const MeaningDeskCardList = () => {
             ))}
           </Stack>
           <Box className={classes.wrapper}>
-            {cardList.slice(2).map((item, index) => (
+            {secondCardList.map((item, index) => (
               <MeaningCard
                 onReadMeaning={() => handleReadMeaning(item?.id)}
                 key={index}
@@ -65,7 +84,7 @@ const MeaningDeskCardList = () => {
 
 export default MeaningDeskCardList;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: ThemeProps) => ({
   logo: {
     width: 236,
     height: 236,
@@ -83,5 +102,16 @@ const useStyles = makeStyles(() => ({
     rowGap: 72,
     columnGap: 110,
     marginTop: 72,
+
+    [theme.breakpoints.down("lg")]: {
+      gridTemplateColumns: "repeat(3,1fr)",
+      columnGap: 36,
+    },
+    [theme.breakpoints.down("sm")]: {
+      gridTemplateColumns: "repeat(2,1fr)",
+      columnGap: 66,
+      rowGap: 16,
+      marginTop: 16,
+    },
   },
 }));

@@ -55,6 +55,15 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     height: 634,
     background: `no-repeat center center / auto 634px url(${ImageAssets.PopupBGRight}), no-repeat center center / 100% 100% url(${ImageAssets.PopupBG})`,
     zIndex: 2001,
+
+    [theme.breakpoints.down("lg")]: {
+      height: 350,
+      backgroundSize: "auto 350px, 100% 100%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      height: 150,
+      backgroundSize: "auto 150px, 100% 100%",
+    },
   },
   orderBtn: {
     "&:hover,&": {
@@ -69,6 +78,13 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       top: "50%",
       transform: "translate(-50%,-50%)",
       textTransform: "unset",
+
+      [theme.breakpoints.down("sm")]: {
+        fontSize: 16,
+        padding: 8,
+        lineHeight: "24px",
+        borderRadius: 8,
+      },
     },
   },
   closeBtn: {
@@ -78,5 +94,11 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     fontSize: 28,
     padding: 0,
     borderRadius: "50%",
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 16,
+      left: "90%",
+      top: 12,
+    },
   },
 }));

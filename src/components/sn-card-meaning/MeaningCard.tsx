@@ -66,6 +66,15 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     "&:hover $inner": {
       transform: "rotateY(180deg)",
     },
+
+    [theme.breakpoints.down("lg")]: {
+      width: 280,
+      height: 428,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: 115,
+      height: 266,
+    },
   },
   img: {
     width: "100%",
@@ -117,5 +126,14 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   button: {
     minHeight: 50,
     borderRadius: 15,
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "30px",
+      minHeight: 34,
+      padding: "0 8px",
+      minWidth: 115,
+      borderRadius: 10,
+    },
   },
 }));
