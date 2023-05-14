@@ -66,43 +66,49 @@ const GenerateBirthChart = (props: StackProps) => {
   );
 
   const handleCreateBirthChart = () => {
-    if (dayjs(date).isValid() || dayjs(time).isValid() || city || name) {
-      // TODO: Call api here
+    try {
+      if (dayjs(date).isValid() && dayjs(time).isValid() && city && name) {
+        // TODO: Call api here
 
-      const placeArr = city?.split(", ");
+        const placeArr = city?.split(", ");
 
-      const dateTimeString = `${date} ${time}`;
-      const parsedDate = dayjs.tz(
-        dateTimeString,
-        "DD/MM/YYYY HH:mm",
-        Intl.DateTimeFormat().resolvedOptions().timeZone,
-      );
+        const dateTimeString = `${date} ${time}`;
+        const parsedDate = dayjs.tz(
+          dateTimeString,
+          "DD/MM/YYYY HH:mm",
+          Intl.DateTimeFormat().resolvedOptions().timeZone,
+        );
 
-      const newData = {
-        full_name: name,
-        language:
-          i18n.language === LangConstant.DEFAULT_LANG_CODE ? LangConstant.DEFAULT_LANG_CODE : "vi",
-        city_of_birth: placeArr[0],
-        nation_of_birth: placeArr[1],
-        date_of_birth: parsedDate.toJSON(),
-      };
+        const newData = {
+          full_name: name,
+          language:
+            i18n.language === LangConstant.DEFAULT_LANG_CODE
+              ? LangConstant.DEFAULT_LANG_CODE
+              : "vi",
+          city_of_birth: placeArr[0],
+          nation_of_birth: placeArr[1],
+          date_of_birth: parsedDate.toJSON(),
+        };
 
-      dispatch(AppActions.getBirthChart(newData));
+        dispatch(AppActions.getBirthChart(newData));
 
-      const dataImage = {
-        full_name: name,
-        city_of_birth: placeArr[0],
-        nation_of_birth: placeArr[1],
-        date_of_birth: parsedDate.toJSON(),
-      };
-      dispatch(AppActions.getBirthChartImage(dataImage));
+        const dataImage = {
+          full_name: name,
+          city_of_birth: placeArr[0],
+          nation_of_birth: placeArr[1],
+          date_of_birth: parsedDate.toJSON(),
+        };
+        dispatch(AppActions.getBirthChartImage(dataImage));
 
-      navigate(PathConstant.BIRTH_CHART, { state: { date, time, city } });
-    } else {
-      if (false === Boolean(city)) setIsErrorCity(true);
-      if (!dayjs(date).isValid()) setIsErrorDate(true);
-      if (!dayjs(time).isValid()) setIsErrorTime(true);
-      if (!name) setIsErrorName(true);
+        navigate(PathConstant.BIRTH_CHART, { state: { date, time, city } });
+      } else {
+        if (false === Boolean(city)) setIsErrorCity(true);
+        if (!dayjs(date).isValid()) setIsErrorDate(true);
+        if (!dayjs(time).isValid()) setIsErrorTime(true);
+        if (!name) setIsErrorName(true);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -231,6 +237,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   autoCompleteRoot: {
     height: 43,
     fontFamily: "Roboto",
+    minWidth: 270,
 
     [theme.breakpoints.down("lg")]: {
       minWidth: 180,
