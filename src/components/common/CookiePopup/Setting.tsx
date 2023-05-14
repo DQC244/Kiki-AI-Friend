@@ -108,9 +108,6 @@ export default memo(Setting);
 
 const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
     width: "100%",
     backgroundColor: theme.palette.common.white,
     borderRadius: "30px 30px 0 0",
@@ -123,8 +120,6 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     [theme.breakpoints.down("sm")]: {
       padding: 16,
       maxHeight: "100%",
-      height: "fit-content",
-      overflowY: "scroll",
     },
   },
   textTitle: {

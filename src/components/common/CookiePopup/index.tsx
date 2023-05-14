@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Dialog, Stack, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
@@ -9,7 +9,7 @@ import AppGradientButton from "../AppGradientButton";
 import Setting from "./Setting";
 import { useMobile } from "hooks";
 
-const CookiePopup = ({ onClose, isUSA }: CookiePopupProps) => {
+const CookiePopup = ({ onClose, isUSA, isOpen }: CookiePopupProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
   const isMobile = useMobile();
@@ -50,7 +50,11 @@ const CookiePopup = ({ onClose, isUSA }: CookiePopupProps) => {
   }, [isUSA]);
 
   return (
-    <Box className={classes.root}>
+    <Dialog
+      sx={{ background: "rgba(0, 0, 0, 0.35)" }}
+      open={isOpen}
+      classes={{ paper: classes.paperRoot, container: classes.containerRoot }}
+    >
       {isSetting ? (
         <Setting
           onBackSetting={() => setIsSetting(false)}
@@ -96,7 +100,7 @@ const CookiePopup = ({ onClose, isUSA }: CookiePopupProps) => {
           </Stack>
         </Box>
       )}
-    </Box>
+    </Dialog>
   );
 };
 
@@ -131,22 +135,21 @@ const OPTIONS_REJECT = {
 type CookiePopupProps = {
   onClose: () => void;
   isUSA: boolean;
+  isOpen: boolean;
 };
 
 export default memo(CookiePopup);
 
 const useStyles = makeStyles((theme: ThemeProps) => ({
-  root: {
-    position: "fixed",
-    inset: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.35)",
-    zIndex: 2000,
+  paperRoot: {
+    margin: 0,
+    background: "transparent",
+    borderRadius: 30,
+  },
+  containerRoot: {
+    alignItems: "flex-end",
   },
   container: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
     width: "100%",
     padding: "54px 320px",
     background: theme.palette.common.white,

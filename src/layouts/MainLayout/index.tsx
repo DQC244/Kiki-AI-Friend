@@ -63,7 +63,11 @@ const MainLayout = ({ className, ...otherProps }: MainLayoutProps): JSX.Element 
         <Outlet />
       </Box>
       {isShowSettingCookie && (
-        <CookiePopup isUSA={isUSA} onClose={() => setIsShowSettingCookie(false)} />
+        <CookiePopup
+          isOpen={isShowSettingCookie}
+          isUSA={isUSA}
+          onClose={() => setIsShowSettingCookie(false)}
+        />
       )}
       <Footer />
     </>
