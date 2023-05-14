@@ -136,6 +136,8 @@ export default {
   lComingSoonAppStoreAndGooglePlay: "Coming soon on App Store and Google Play in Q3 2023",
   lDoYouWantToBeTheFirstPerson:
     "Do you want to be the first person to experience our app? Leave your email below and we will notify you when the app releases!",
+  lDoYouWantToBeTheFirstPerson_zero:
+    "Do you want to be the first person to experience our app?<br/>Leave your email below and we will notify you when the app releases!",
   lYourMail: "Enter your email to receive latest news from Kiki",
 
   // Shop

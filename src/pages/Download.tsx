@@ -15,12 +15,14 @@ import {
 import { useTranslation } from "react-i18next";
 import { AppConstant } from "const";
 import { ThemeProps } from "models/types";
-import { AppInput } from "components/common";
+import { AppInput, AppTrans } from "components/common";
 import clsx from "clsx";
+import { useMobile } from "hooks";
 
 const Download = () => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
+  const isMobile = useMobile();
 
   const [email, setEmail] = useState("");
 
@@ -31,14 +33,24 @@ const Download = () => {
   return (
     <Box className={classes.root}>
       <Container className={clsx("center-root", classes.container)}>
-        <Stack alignItems="center" spacing={6} height="100%">
+        <Stack alignItems="center" spacing={{ xs: 1, sm: 6 }} height="100%" maxWidth="100%">
           <Box className={classes.background} />
           <Typography className={classes.title}>{AppConstant.TITLE}</Typography>
-          <Typography className={classes.subtitle}>
-            {getLabel("lComingSoonAppStoreAndGooglePlay")}
-          </Typography>
-          <Stack spacing={2} alignItems="center" maxWidth="100%">
-            <Typography fontWeight={500}>{getLabel("lDoYouWantToBeTheFirstPerson")}</Typography>
+          {isMobile ? (
+            <Typography className={classes.text}>
+              {getLabel("lWelcomeToTheFantasyWorld")}
+            </Typography>
+          ) : (
+            <Typography className={classes.subtitle}>
+              {getLabel("lComingSoonAppStoreAndGooglePlay")}
+            </Typography>
+          )}
+          <Stack spacing={2} alignItems="center" maxWidth="100%" zIndex={1}>
+            <Typography className={classes.textDownload}>
+              <AppTrans
+                i18nKey={getLabel("lDoYouWantToBeTheFirstPerson", { count: isMobile ? 0 : 1 })}
+              />
+            </Typography>
             <AppInput
               onSubmit={handleSubmit}
               value={email}
@@ -96,6 +108,15 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     fontSize: 90,
     lineHeight: "98px",
     zIndex: 1,
+
+    [theme.breakpoints.down("lg")]: {
+      fontSize: 57,
+      lineHeight: "65px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 22,
+      lineHeight: "30px",
+    },
   },
   subtitle: {
     textAlign: "center",
@@ -109,17 +130,6 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     backgroundClip: "text",
     textFillColor: "transparent",
   },
-  inputRoot: {
-    width: 668,
-    maxWidth: "100%",
-    borderRadius: 15,
-    minHeight: 54,
-    background: theme.palette.gradient.main,
-
-    "&:after,&:before": {
-      display: "none",
-    },
-  },
   input: {
     background: theme.palette.common.white,
     margin: 1,
@@ -132,5 +142,27 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     width: 175,
     height: 157,
     zIndex: 1,
+
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "54px !important",
+    },
+  },
+  text: {
+    position: "relative",
+    textAlign: "center",
+    fontSize: 12,
+    lineHeight: "20px",
+    marginBottom: "48px !important",
+    zIndex: 1,
+  },
+  textDownload: {
+    fontWeight: 500,
+    textAlign: "center",
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 11,
+      lineHeight: "19px",
+      fontWeight: 400,
+    },
   },
 }));
