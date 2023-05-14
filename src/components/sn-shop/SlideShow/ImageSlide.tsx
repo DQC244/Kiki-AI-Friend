@@ -10,9 +10,17 @@ const ImageSlide = ({ dataSelected, data, onNextImg, onPreImg, onChooseData }: I
   const classes = useStyles();
 
   return (
-    <Stack spacing={2.75} className={classes.root} direction="row">
+    <Stack
+      spacing={{ xs: 2, sm: 2.75 }}
+      className={classes.root}
+      direction={{ xs: "column-reverse", lg: "row" }}
+    >
       <Stack className={clsx("custom-scrollbar", classes.wrapperSmallImg)}>
-        <Stack spacing={5}>
+        <Stack
+          spacing={{ xs: 0, lg: 5 }}
+          justifyContent={{ xs: "space-between", lg: "flex-start" }}
+          direction={{ xs: "row", lg: "column" }}
+        >
           {data?.map((item, index) => (
             <Button key={index} onClick={() => onChooseData(index)} className={classes.button}>
               <Box key={index} component="img" src={item?.url} className={classes.smallImg} />
@@ -47,6 +55,14 @@ export default memo(ImageSlide);
 const useStyles = makeStyles((theme: ThemeProps) => ({
   root: {
     minWidth: 580,
+
+    [theme.breakpoints.down("lg")]: {
+      minWidth: 500,
+    },
+
+    [theme.breakpoints.down("lg")]: {
+      minWidth: 275,
+    },
   },
   button: {
     width: 60,
@@ -55,10 +71,15 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     minHeight: 60,
     padding: 0,
     borderRadius: 15,
+
+    [theme.breakpoints.between("sm", "lg")]: {
+      width: 80,
+      height: 80,
+    },
   },
   smallImg: {
-    width: 60,
-    height: 60,
+    width: "100%",
+    height: "100%",
     background: "#B5B5B5",
     objectFit: "cover",
     borderRadius: 15,
@@ -68,17 +89,28 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     maxHeight: 360,
   },
   previewImg: {
-    flex: 1,
     position: "relative",
     background: "#D9D9D9",
     borderRadius: 30,
     maxHeight: 360,
     maxWidth: 495,
-    overflow: "hidden",
+    width: 495,
+
+    [theme.breakpoints.down("lg")]: {
+      width: 500,
+      height: 358,
+      maxWidth: 500,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: 275,
+      height: 200,
+      maxWidth: 275,
+    },
   },
   preview: {
     width: "100%",
     height: "100%",
+    borderRadius: 30,
     objectFit: "cover",
   },
   iconButton: {
@@ -94,8 +126,15 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   preButton: {
     left: 18,
+
+    [theme.breakpoints.down("sm")]: {
+      left: -32,
+    },
   },
   nextButton: {
     right: 18,
+    [theme.breakpoints.down("sm")]: {
+      right: -32,
+    },
   },
 }));

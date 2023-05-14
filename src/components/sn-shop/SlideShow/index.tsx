@@ -46,7 +46,11 @@ const SlideShow = () => {
   }, [MOCK_DATA_LIST]);
 
   return (
-    <Stack spacing={4.5} direction="row">
+    <Stack
+      spacing={{ xs: 2, sm: 6.75, lg: 4.5 }}
+      alignItems="center"
+      direction={{ xs: "column", lg: "row" }}
+    >
       <ImageSlide
         onChooseData={setDataIndex}
         dataSelected={data}
@@ -54,15 +58,17 @@ const SlideShow = () => {
         onNextImg={handleNextImage}
         onPreImg={handlePreImage}
       />
-      <Stack spacing={2} zIndex={1}>
+      <Stack
+        spacing={2}
+        zIndex={1}
+        alignItems={{ xs: "flex-start", sm: "center", lg: "flex-start" }}
+      >
         <Typography className={classes.name}>{data?.name}</Typography>
         <Box className={classes.borderBox} />
         <Typography className={classes.price}>{data?.price}</Typography>
         <Typography fontWeight={500}>{getLabel("lDescription")}</Typography>
-        <Typography fontSize={14} lineHeight="22px">
-          {data?.desc}
-        </Typography>
-        <Stack direction="row" spacing={2}>
+        <Typography className={classes.desc}>{data?.desc}</Typography>
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
           <Button
             className={classes.tiktokButton}
             startIcon={
@@ -110,18 +116,6 @@ const MOCK_DATA_LIST = [
     price: "9.000 VNĐ",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
   },
-  {
-    url: ImageAssets.BackgroundChatBottomLeft,
-    name: "The Tarot Of Kiki Friends: A 78-Card Deck and guide book",
-    price: "249.000 VNĐ",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
-  },
-  {
-    url: ImageAssets.BackgroundFooterChat,
-    name: "The Tarot Of Kiki Friends: A 78-Card Deck and guide book",
-    price: "249.000 VNĐ",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
-  },
 ];
 
 export default memo(SlideShow);
@@ -132,6 +126,11 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     fontSize: 24,
     lineHeight: "32px",
     zIndex: 1,
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 16,
+      lineHeight: "24px",
+    },
   },
   borderBox: {
     background: theme.palette.gradient.main,
@@ -144,16 +143,34 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     fontSize: 22,
     lineHeight: "30px",
     zIndex: 1,
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 14,
+      lineHeight: "22px",
+    },
+  },
+  desc: {
+    fontSize: 14,
+    lineHeight: "22px",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+      lineHeight: "20px",
+    },
   },
   tiktokButton: {
     "&,&:hover": {
       minWidth: 213,
       minHeight: 50,
+      fontSize: 16,
       padding: "4px 16px",
       backgroundColor: "#0C0C0C",
       color: theme.palette.common.white,
       borderRadius: 15,
       textTransform: "unset",
+
+      [theme.breakpoints.down("lg")]: {
+        minWidth: 230,
+      },
     },
   },
   tiktokImg: {

@@ -75,6 +75,8 @@ import CookieIcon from "./img-cookie-popup.png";
 import TwitterLogo from "./img-logo-twitter.png";
 import YoutubeLogo from "./img-logo-youtube.png";
 import TitleHome from "./img-title-home.png";
+import RightShopBackground from "./img-right-shop-background.png";
+import LeftShopBackground from "./img-left-shop-background.png";
 
 export {
   LogoImage,
@@ -154,4 +156,6 @@ export {
   PhoneHarmonyHomeBackgroundVI,
   PhoneHarmonyHomeBackgroundVIHover,
   PhoneHarmonyHomeBackgroundHover,
+  RightShopBackground,
+  LeftShopBackground,
 };
