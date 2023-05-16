@@ -11,6 +11,7 @@ import {
   FOOTER_HEIGHT_IN_PX,
   FOOTER_HEIGHT_MOBILE_IN_PX,
   FOOTER_HEIGHT_TABLET_IN_PX,
+  FOOTER_HEIGHT_TABLET_MD_IN_PX,
 } from "layouts/MainLayout/components/Footer";
 import { useTranslation } from "react-i18next";
 import { AppConstant } from "const";
@@ -83,6 +84,9 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
 
     [theme.breakpoints.down("lg")]: {
       minHeight: `calc(100vh - ${HEADER_HEIGHT_TABLET_IN_PX + FOOTER_HEIGHT_TABLET_IN_PX}px)`,
+    },
+    [theme.breakpoints.down("md")]: {
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_TABLET_IN_PX + FOOTER_HEIGHT_TABLET_MD_IN_PX}px)`,
     },
 
     [theme.breakpoints.down("sm")]: {

@@ -8,13 +8,13 @@ import { LinkConstant, PathConstant } from "const";
 import { ThemeProps } from "models/types";
 import { useLocation } from "react-router-dom";
 import { GenerateBirthChart } from "components/sn-home";
-import { useMobile } from "hooks";
+import { useResponsive } from "hooks";
 
 const Footer = () => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
   const location = useLocation();
-  const isMobile = useMobile();
+  const isMobile = useResponsive("down", "md");
 
   return (
     <Stack>
@@ -85,6 +85,7 @@ export default memo(Footer);
 
 export const FOOTER_HEIGHT_IN_PX = 195;
 export const FOOTER_HEIGHT_TABLET_IN_PX = 420;
+export const FOOTER_HEIGHT_TABLET_MD_IN_PX = 220;
 export const FOOTER_HEIGHT_MOBILE_IN_PX = 108;
 
 const useStyles = makeStyles((theme: ThemeProps) => ({
@@ -99,6 +100,9 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     [theme.breakpoints.down("lg")]: {
       background: `linear-gradient(180deg, #FFFFFF 3.95%, rgba(255, 255, 255, 0.552099) 59.52%, rgba(255, 255, 255, 0) 149.46%), no-repeat bottom left / 100% auto url(${ImageAssets.BackgroundFooterImage})`,
       minHeight: FOOTER_HEIGHT_TABLET_IN_PX,
+    },
+    [theme.breakpoints.down("md")]: {
+      minHeight: FOOTER_HEIGHT_TABLET_MD_IN_PX,
     },
     [theme.breakpoints.down("sm")]: {
       background: `linear-gradient(180deg, #FFFFFF 16.15%, rgba(255, 255, 255, 0) 100%), no-repeat bottom left / 100% auto url(${ImageAssets.BackgroundFooterImage})`,

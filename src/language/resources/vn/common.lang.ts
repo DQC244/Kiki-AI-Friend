@@ -157,11 +157,11 @@ export default {
     lTarot: "Tarot",
     lDownload: "Tải ứng dụng",
     lShop: "Cửa hàng",
-    lBirthChart: "Birth Chart",
+    lBirthChart: "Bản đồ sao",
     lTransitChart: "Transit Chart",
     lSynastryChart: "Synastry Chart",
-    lDailyTarot: "Daily Tarot",
-    lTarotCardMeaning: "Tarot Card Meaning",
+    lDailyTarot: "Trải bài hàng ngày",
+    lTarotCardMeaning: "Ý nghĩa lá bài Tarot",
   },
 
   // Chat

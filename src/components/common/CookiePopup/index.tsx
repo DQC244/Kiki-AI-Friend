@@ -5,9 +5,9 @@ import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import { ThemeProps } from "models/types";
 import { AppConstant } from "const";
+import { useMobile } from "hooks";
 import AppGradientButton from "../AppGradientButton";
 import Setting from "./Setting";
-import { useMobile } from "hooks";
 
 const CookiePopup = ({ onClose, isUSA, isOpen }: CookiePopupProps) => {
   const classes = useStyles();
@@ -54,6 +54,7 @@ const CookiePopup = ({ onClose, isUSA, isOpen }: CookiePopupProps) => {
       sx={{ background: "rgba(0, 0, 0, 0.35)" }}
       open={isOpen}
       classes={{ paper: classes.paperRoot, container: classes.containerRoot }}
+      fullWidth
     >
       {isSetting ? (
         <Setting
@@ -143,8 +144,16 @@ export default memo(CookiePopup);
 const useStyles = makeStyles((theme: ThemeProps) => ({
   paperRoot: {
     margin: 0,
-    background: "transparent",
-    borderRadius: 30,
+    maxWidth: "unset",
+    width: "100%",
+    overflow: "visible",
+    background: theme.palette.common.white,
+    borderRadius: "30px 30px 0px 0px",
+
+    [theme.breakpoints.down("sm")]: {
+      borderRadius: 30,
+      overflowY: "auto",
+    },
   },
   containerRoot: {
     alignItems: "flex-end",
@@ -152,8 +161,6 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   container: {
     width: "100%",
     padding: "54px 320px",
-    background: theme.palette.common.white,
-    borderRadius: "30px 30px 0px 0px",
 
     [theme.breakpoints.down("lg")]: {
       padding: "34px 260px",

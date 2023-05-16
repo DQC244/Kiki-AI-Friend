@@ -86,6 +86,9 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     borderRadius: 20,
     backgroundColor: "#ffffff",
 
+    [theme.breakpoints.down("lg")]: {
+      padding: "20px 16px",
+    },
     [theme.breakpoints.down("sm")]: {
       padding: 16,
     },

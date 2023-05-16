@@ -14,12 +14,12 @@ import {
 import { HomeBackground } from "assets/images";
 import { ImageAssets } from "assets";
 import { ThemeProps } from "models/types";
-import { useMobile } from "hooks";
+import { useResponsive } from "hooks";
 import clsx from "clsx";
 
 const Home = () => {
   const classes = useStyles();
-  const isMobile = useMobile();
+  const isMobile = useResponsive("down", "md");
 
   return (
     <Box className={classes.root}>

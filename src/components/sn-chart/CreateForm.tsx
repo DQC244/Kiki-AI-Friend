@@ -55,11 +55,14 @@ const CreateForm = ({ onCreateChart, isTransitChart, className, submitLabel }: C
 
   const handleChangeName = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
-    if (value.length > AppConstant.MAX_CHARACTER_NAME || !value) {
+    if (value.length > AppConstant.MAX_CHARACTER_NAME) {
       setIsErrorName(true);
       return;
+    } else if (!value) {
+      setIsErrorName(true);
+    } else {
+      setIsErrorName(false);
     }
-    setIsErrorName(false);
     setName(value);
   };
 

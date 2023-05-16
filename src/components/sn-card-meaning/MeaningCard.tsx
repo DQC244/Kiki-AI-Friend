@@ -18,7 +18,12 @@ const MeaningCard = ({
   const { t: getLabel } = useTranslation();
 
   return (
-    <Stack className={clsx(classes.root, className)} spacing={4} {...otherProps}>
+    <Stack
+      className={clsx(classes.root, className)}
+      alignItems="center"
+      spacing={4}
+      {...otherProps}
+    >
       <Box className={clsx(classes.inner)}>
         <Box className={classes.imgBackCard}>
           <Box
@@ -51,6 +56,8 @@ export default memo(MeaningCard);
 
 const useStyles = makeStyles((theme: ThemeProps) => ({
   inner: {
+    display: "flex",
+    justifyContent: "center",
     width: "100%",
     height: "100%",
     cursor: "pointer",
@@ -60,7 +67,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   root: {
     width: 230,
-    height: 422,
+    height: 475,
     cursor: "pointer",
 
     "&:hover $inner": {
@@ -88,7 +95,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     "backface-visibility": "hidden",
   },
   frontCard: {
-    width: "100%",
+    width: "calc(100% - 16px)",
     height: "100%",
     position: "absolute",
     background: theme.palette.gradient.main,
@@ -109,6 +116,16 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       borderRadius: 19.5,
       zIndex: -1,
     },
+    [theme.breakpoints.down("lg")]: {
+      width: "calc(100% - 80px)",
+    },
+    [theme.breakpoints.down("sm")]: {
+      borderRadius: 10,
+      width: "calc(100% - 8px)",
+      "&:before": {
+        borderRadius: 9.5,
+      },
+    },
   },
   rotate: {
     transform: "rotateY(180deg)",
@@ -120,8 +137,19 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     textAlign: "center",
     textOverflow: "ellipsis",
     display: "-webkit-box",
-    "-webkit-line-clamp": 15,
+    "-webkit-line-clamp": 16,
     "-webkit-box-orient": "vertical",
+
+    [theme.breakpoints.down("lg")]: {
+      "-webkit-line-clamp": 15,
+      lineHeight: "23px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      color: "#59518C",
+      fontSize: 11,
+      lineHeight: "19px",
+      "-webkit-line-clamp": 10,
+    },
   },
   button: {
     minHeight: 50,

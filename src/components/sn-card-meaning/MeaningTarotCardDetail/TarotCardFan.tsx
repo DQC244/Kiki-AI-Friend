@@ -37,7 +37,7 @@ const TarotCardFan = () => {
         if (CARD_ID.eighth === preOrder) return CARD_ID.first;
         else return preOrder + 1;
       });
-    }, 2000);
+    }, 1000);
 
     return () => {
       clearInterval(timer);

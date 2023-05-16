@@ -95,25 +95,25 @@ const MOCK_DATA_LIST = [
   {
     url: ImageAssets.ArrowButtonBackground,
     name: "The Tarot Of Kiki Friends: A 78-Card Deck and guide book",
-    price: "29.000 VNĐ",
+    price: "249.000 VNĐ",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
   },
   {
     url: ImageAssets.AppDemoHomeBackground,
     name: "The Tarot Of Kiki Friends: A 78-Card Deck and guide book",
-    price: "49.000 VNĐ",
+    price: "249.000 VNĐ",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
   },
   {
     url: ImageAssets.ViewSynastryChartBackground,
     name: "The Tarot Of Kiki Friends: A 78-Card Deck and guide book",
-    price: "24dsa9.000 VNĐ",
+    price: "249.000 VNĐ",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
   },
   {
     url: ImageAssets.ViewSynastryChartBackground,
     name: "The Tarot Of Kiki Friends: A 78-Card Deck and guide book",
-    price: "9.000 VNĐ",
+    price: "249.000 VNĐ",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
   },
 ];

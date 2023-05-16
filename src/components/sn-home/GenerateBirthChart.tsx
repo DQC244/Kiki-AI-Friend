@@ -34,11 +34,14 @@ const GenerateBirthChart = (props: StackProps) => {
 
   const handleChangeName = (e: FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
-    if (value.length > AppConstant.MAX_CHARACTER_NAME || !value) {
+    if (value.length > AppConstant.MAX_CHARACTER_NAME) {
       setIsErrorName(true);
       return;
+    } else if (!value) {
+      setIsErrorName(true);
+    } else {
+      setIsErrorName(false);
     }
-    setIsErrorName(false);
     setName(value);
   };
 
@@ -114,8 +117,14 @@ const GenerateBirthChart = (props: StackProps) => {
 
   return (
     <>
-      <Stack spacing={{ xs: 1.5, sm: 3.75, lg: 5 }} alignItems="center" {...props}>
-        <Stack direction={{ xs: "column", sm: "row" }} className={classes.inputWrapper}>
+      <Stack
+        position="relative"
+        zIndex={1}
+        spacing={{ xs: 1.5, sm: 3.75, lg: 5 }}
+        alignItems="center"
+        {...props}
+      >
+        <Stack direction={{ xs: "column", md: "row" }} className={classes.inputWrapper}>
           <Stack direction="row" alignItems="center">
             <Typography className={classes.label}>{getLabel("lMyNameIs")}</Typography>
             <input

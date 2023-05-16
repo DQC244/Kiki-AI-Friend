@@ -15,6 +15,7 @@ import {
   FOOTER_HEIGHT_IN_PX,
   FOOTER_HEIGHT_MOBILE_IN_PX,
   FOOTER_HEIGHT_TABLET_IN_PX,
+  FOOTER_HEIGHT_TABLET_MD_IN_PX,
 } from "layouts/MainLayout/components/Footer";
 
 const DailyTarot = () => {
@@ -52,6 +53,9 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     [theme.breakpoints.down("lg")]: {
       minHeight: `calc(100vh - ${HEADER_HEIGHT_TABLET_IN_PX + FOOTER_HEIGHT_TABLET_IN_PX}px)`,
       padding: "80px 0",
+    },
+    [theme.breakpoints.down("md")]: {
+      minHeight: `calc(100vh - ${HEADER_HEIGHT_TABLET_IN_PX + FOOTER_HEIGHT_TABLET_MD_IN_PX}px)`,
     },
     [theme.breakpoints.down("sm")]: {
       minHeight: `calc(100vh - ${HEADER_HEIGHT_MOBILE_IN_PX + FOOTER_HEIGHT_MOBILE_IN_PX}px)`,

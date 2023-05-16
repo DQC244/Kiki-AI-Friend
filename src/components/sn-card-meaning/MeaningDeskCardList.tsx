@@ -55,7 +55,7 @@ const MeaningDeskCardList = () => {
             mt={{ xs: 2, sm: 11.5 }}
             direction="row"
             justifyContent="center"
-            spacing={{ xs: 8.25, sm: 17 }}
+            spacing={{ xs: 8.25, sm: 13.75 }}
           >
             {firstCardList.map((item, index) => (
               <MeaningCard

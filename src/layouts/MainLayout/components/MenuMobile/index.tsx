@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import { Container, Drawer, IconButton, Stack } from "@mui/material";
+import { Box, Container, Drawer, IconButton, Stack } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { MenuIcon } from "components/icons";
 import { ThemeProps } from "models/types";
@@ -27,9 +27,11 @@ const MenuMobile = () => {
         onClose={() => setIsOpenDrawer(false)}
       >
         <Container className={classes.wrapper}>
-          <Stack alignItems="flex-end" spacing={1}>
+          <Stack alignItems="flex-end">
             <MenuListMobile onCloseMenu={() => setIsOpenDrawer(false)} />
-            <LanguageButton />
+            <Box className={classes.languageWrapper}>
+              <LanguageButton />
+            </Box>
           </Stack>
         </Container>
       </Drawer>
@@ -68,5 +70,10 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     alignItems: "flex-end",
     paddingTop: theme.spacing(0),
     paddingBottom: theme.spacing(3),
+  },
+  languageWrapper: {
+    height: 34,
+    display: "flex",
+    alignItems: "center",
   },
 }));
