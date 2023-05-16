@@ -75,7 +75,9 @@ const GenerateBirthChart = (props: StackProps) => {
 
         const placeArr = city?.split(", ");
 
-        const dateTimeString = `${date} ${time}`;
+        const dateTimeString = `${dayjs(date).format("DD/MM/YYYY")} ${dayjs(time).format(
+          AppConstant.FULL_TIME_FORMAT,
+        )}`;
         const parsedDate = dayjs.tz(
           dateTimeString,
           "DD/MM/YYYY HH:mm",
@@ -102,8 +104,9 @@ const GenerateBirthChart = (props: StackProps) => {
           date_of_birth: parsedDate.toJSON(),
         };
         dispatch(AppActions.getBirthChartImage(dataImage));
-
-        navigate(PathConstant.BIRTH_CHART, { state: { date, time, city } });
+        setTimeout(() => {
+          navigate(PathConstant.BIRTH_CHART);
+        }, 1000);
       } else {
         if (false === Boolean(city)) setIsErrorCity(true);
         if (!dayjs(date).isValid()) setIsErrorDate(true);

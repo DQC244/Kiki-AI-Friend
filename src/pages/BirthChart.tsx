@@ -15,7 +15,6 @@ import {
   FOOTER_HEIGHT_TABLET_IN_PX,
   FOOTER_HEIGHT_TABLET_MD_IN_PX,
 } from "layouts/MainLayout/components/Footer";
-import { useLocation } from "react-router-dom";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
@@ -32,7 +31,6 @@ dayjs.extend(timezone);
 const BirthChart = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const location = useLocation();
   const { i18n } = useTranslation();
 
   const [isViewBirthChart, setIsViewBirthChart] = useState(false);
@@ -84,10 +82,6 @@ const BirthChart = () => {
   }, [birthChartImage, birthChart]);
 
   useEffect(() => {
-    if (location.state) {
-      console.log(location.state);
-      setIsViewBirthChart(true);
-    }
     return () => {
       dispatch(AppActions.appReset());
     };
