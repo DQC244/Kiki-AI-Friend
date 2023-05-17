@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { AppConstant } from "const";
 
 type Props = {
@@ -22,4 +22,4 @@ const DelayMessage = ({
   return isShown ? <>{children}</> : <></>;
 };
 
-export default DelayMessage;
+export default memo(DelayMessage);

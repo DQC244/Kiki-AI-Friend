@@ -8,8 +8,8 @@ const useHandleGetAnswerSelf = () => {
 
       if (response.status === ApiConstant.STT_OK) {
         const responseData: any = response.data;
-        const newMessage = responseData.data?.map((item: any) => {
-          return { label: item?.answer_content };
+        const newMessage = responseData.data?.map((item: any, index: number) => {
+          return { label: item?.answer_content, isDelay: true, orderId: index };
         });
 
         return newMessage;

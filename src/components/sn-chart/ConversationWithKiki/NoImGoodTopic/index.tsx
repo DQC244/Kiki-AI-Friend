@@ -5,7 +5,7 @@ import { ImageAssets } from "assets";
 import { makeStyles } from "@mui/styles";
 import { AppConstant, LangConstant } from "const";
 import ChatBox from "../ChatBox";
-import DelayMessage from "../QuestionList/DelayMessage";
+import DelayMessage from "../DelayMessage";
 
 const NoImGoodTopic = () => {
   const classes = useStyles();

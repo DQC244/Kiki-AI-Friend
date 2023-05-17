@@ -17,6 +17,7 @@ import NoImGoodTopic from "./NoImGoodTopic";
 import { useSelector } from "react-redux";
 import { AppSelector } from "redux-store";
 import { useHandleGetAnswerSelf } from "./hooks";
+import DelayMessage from "./DelayMessage";
 
 const ChartConversationKiki = ({
   currentStep,
@@ -174,6 +175,20 @@ const ChartConversationKiki = ({
             if (item.contentHOC) {
               return item.contentHOC;
             }
+            if (item?.isDelay) {
+              return (
+                <DelayMessage
+                  key={index}
+                  waitBeforeShow={(item.orderId || 0) * AppConstant.DEBOUNCE_TIME_IN_MILLISECOND}
+                >
+                  <ChatBox
+                    imageSrc={item.isMyQuestion ? ImageAssets.UserLogo : ""}
+                    message={item.label}
+                    startIcon={item?.icon}
+                  />
+                </DelayMessage>
+              );
+            }
             return (
               <ChatBox
                 key={index}
@@ -231,6 +246,8 @@ export enum TOPIC_TYPE {
 type MessageType = {
   label: string;
   icon?: ReactNode;
+  isDelay?: boolean;
+  orderId?: number;
   isMyQuestion?: boolean;
   contentHOC?: ReactNode;
 };

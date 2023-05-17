@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ImageAssets } from "assets";
 import { AppConstant } from "const";
 import ChatBoxButton from "./ChatBoxButton";
-import DelayMessage from "../QuestionList/DelayMessage";
+import DelayMessage from "../DelayMessage";
 import StringFormat from "string-format";
 import { useSelector } from "react-redux";
 import { AppSelector } from "redux-store";
