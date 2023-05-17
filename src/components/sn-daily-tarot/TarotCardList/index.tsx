@@ -5,14 +5,14 @@ import { Box, BoxProps, Stack, Typography } from "@mui/material";
 import { ImageAssets } from "assets";
 import { SealBackGroundButton } from "components/common";
 import { useTranslation } from "react-i18next";
-import clsx from "clsx";
 import { ApiConstant, AppConstant, PathConstant } from "const";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AppSelector } from "redux-store";
-import StringFormat from "string-format";
 import { ThemeProps } from "models/types";
 import { useMobile, useResponsive } from "hooks";
+import clsx from "clsx";
+import StringFormat from "string-format";
 
 const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
   const classes = useStyles();
@@ -25,6 +25,7 @@ const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
 
   const [itemSelected, setItemSelected] = useState<any>({});
   const [isShowTarot, setIsShowTarot] = useState(false);
+  const [srcImage, setSrcImage] = useState("");
 
   const numberMargin = useMemo(() => {
     if (isTablet) return -140;
@@ -38,11 +39,20 @@ const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
     return;
   };
 
+  const handleClickCard = async (item: any) => {
+    const image = StringFormat(ApiConstant.URL_IMAGE_ID, { id: item?.id });
+    loadImage(image);
+
+    setSrcImage(image);
+
+    setItemSelected(item);
+  };
+
   useEffect(() => {
-    if (itemSelected) {
+    if (Object.keys(itemSelected).length) {
       setTimeout(() => {
         setIsShowTarot(true);
-      }, AppConstant.DEBOUNCE_TIME_IN_MILLISECOND * 3);
+      }, AppConstant.DEBOUNCE_TIME_IN_MILLISECOND * 2);
     } else setIsShowTarot(false);
   }, [itemSelected]);
 
@@ -60,7 +70,7 @@ const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
               <TarotCard
                 isShowFront={isShowTarot}
                 className={classes.cardSelected}
-                cardFront={StringFormat(ApiConstant.URL_IMAGE_ID, { id: itemSelected?.id })}
+                cardFront={srcImage}
               />
             </Stack>
             <Typography className={classes.cardInfo}>{itemSelected?.card_name}</Typography>
@@ -80,7 +90,7 @@ const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
                   zIndex: index + 1,
                   marginLeft: index && `${numberMargin}px`,
                 }}
-                onClick={() => setItemSelected(item)}
+                onClick={() => handleClickCard(item)}
               >
                 <TarotCard />
               </Box>
@@ -90,6 +100,15 @@ const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
       </Stack>
     </Box>
   );
+};
+
+export const loadImage = (url: string) => {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = resolve;
+    image.onerror = reject;
+    image.src = url;
+  });
 };
 
 export default memo(TarotCardList);

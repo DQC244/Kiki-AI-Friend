@@ -26,12 +26,7 @@ const TarotCard = ({
           />
         </Box>
         <Box className={classes.frontCard}>
-          <Box
-            component="img"
-            className={classes.img}
-            src={cardFront || ImageAssets.DemoDailyCard}
-            draggable="false"
-          />
+          <Box component="img" className={classes.img} src={cardFront} draggable="false" />
         </Box>
       </Box>
     </Box>
