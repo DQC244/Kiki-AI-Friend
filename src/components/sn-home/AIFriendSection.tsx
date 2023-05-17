@@ -1,4 +1,4 @@
-import React, { ReactNode, memo, useMemo } from "react";
+import React, { ReactNode, memo, useEffect, useMemo, useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { ImageAssets } from "assets";
@@ -7,6 +7,7 @@ import { LangConstant, PathConstant } from "const";
 import { AppTrans } from "components/common";
 import RedirectLinkButton from "./RedirectLinkButton";
 import { ThemeProps } from "models/types";
+import { isDesktop } from "react-device-detect";
 
 const AIFriendSection = ({ star, spaceship }: AIFriendSectionProps) => {
   const classes = useStyles();
@@ -32,6 +33,21 @@ const AIFriendSection = ({ star, spaceship }: AIFriendSectionProps) => {
     }
   }, [i18n.language]);
 
+  const [imageUrl, setImageUrl] = useState(imgSrc);
+
+  const handleClickImage = () => {
+    if (imageUrl === imgSrc) {
+      setImageUrl(imgSrcHover);
+    } else {
+      setImageUrl(imgSrc);
+    }
+  };
+
+  useEffect(() => {
+    if (isDesktop) return;
+    setImageUrl(imgSrc);
+  }, [imgSrc]);
+
   return (
     <Stack direction={{ xs: "column", sm: "row" }} spacing={{ xs: 4, sm: 27.5 }}>
       <Stack spacing={{ xs: 1, sm: 2.25 }} zIndex={1}>
@@ -44,15 +60,25 @@ const AIFriendSection = ({ star, spaceship }: AIFriendSectionProps) => {
       <Box className={classes.wrapperImage}>
         {star}
         {spaceship}
-        <Box
-          className={classes.image}
-          sx={{
-            background: `no-repeat top left / 100% 100% url(${imgSrc})`,
-            "&:hover": {
-              backgroundImage: `url(${imgSrcHover})`,
-            },
-          }}
-        />
+        {isDesktop ? (
+          <Box
+            className={classes.image}
+            sx={{
+              background: `no-repeat top left / 100% 100% url(${imgSrc})`,
+              "&:hover": {
+                backgroundImage: `url(${imgSrcHover})`,
+              },
+            }}
+          />
+        ) : (
+          <Box
+            onClick={handleClickImage}
+            className={classes.image}
+            component="img"
+            src={imageUrl}
+            draggable="false"
+          />
+        )}
       </Box>
     </Stack>
   );

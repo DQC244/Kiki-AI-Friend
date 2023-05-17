@@ -1,11 +1,12 @@
+import React, { ReactNode, memo, useEffect, useMemo, useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
-import React, { ReactNode, memo, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import RedirectLinkButton from "./RedirectLinkButton";
 import { LangConstant, PathConstant } from "const";
 import { ThemeProps } from "models/types";
+import { isDesktop } from "react-device-detect";
 
 const MysticZoneSection = ({ star, spaceship }: MysticZoneProps) => {
   const classes = useStyles();
@@ -28,20 +29,44 @@ const MysticZoneSection = ({ star, spaceship }: MysticZoneProps) => {
     }
   }, [i18n.language]);
 
+  const [imageUrl, setImageUrl] = useState(imgSrc);
+
+  const handleClickImage = () => {
+    if (imageUrl === imgSrc) {
+      setImageUrl(imgSrcHover);
+    } else {
+      setImageUrl(imgSrc);
+    }
+  };
+
+  useEffect(() => {
+    setImageUrl(imgSrc);
+  }, [imgSrc]);
+
   return (
     <Stack direction={{ xs: "column-reverse", sm: "row" }} spacing={{ xs: 4, sm: 27.5 }}>
       <Box className={classes.imageWrapper}>
         {star}
         {spaceship}
-        <Box
-          className={classes.image}
-          sx={{
-            background: `no-repeat top left / 100% 100% url(${imgSrc})`,
-            "&:hover": {
-              backgroundImage: `url(${imgSrcHover})`,
-            },
-          }}
-        />
+        {isDesktop ? (
+          <Box
+            className={classes.image}
+            sx={{
+              background: `no-repeat top left / 100% 100% url(${imgSrc})`,
+              "&:hover": {
+                backgroundImage: `url(${imgSrcHover})`,
+              },
+            }}
+          />
+        ) : (
+          <Box
+            onClick={handleClickImage}
+            className={classes.image}
+            component="img"
+            src={imageUrl}
+            draggable="false"
+          />
+        )}
       </Box>
       <Stack spacing={{ xs: 1, sm: 4.5 }} alignItems={{ xs: "flex-start", sm: "flex-end" }}>
         <Typography className={classes.title}>{getLabel("lMysticZone")}</Typography>
