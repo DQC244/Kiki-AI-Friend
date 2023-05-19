@@ -48,7 +48,7 @@ const SlideShow = () => {
   return (
     <Stack
       spacing={{ xs: 2, sm: 6.75, lg: 4.5 }}
-      alignItems="center"
+      alignItems={{ xs: "center", lg: "flex-start" }}
       direction={{ xs: "column", lg: "row" }}
     >
       <ImageSlide
@@ -63,11 +63,20 @@ const SlideShow = () => {
         zIndex={1}
         alignItems={{ xs: "flex-start", sm: "center", lg: "flex-start" }}
       >
-        <Typography className={classes.name}>{data?.name}</Typography>
+        <Typography className={classes.name}>{getLabel("lCardName")}</Typography>
         <Box className={classes.borderBox} />
-        <Typography className={classes.price}>{data?.price}</Typography>
-        <Typography fontWeight={500}>{getLabel("lDescription")}</Typography>
-        <Typography className={classes.desc}>{data?.desc}</Typography>
+        <Typography className={classes.price}>{PRICE}</Typography>
+        <Stack spacing={1}>
+          <Typography fontWeight={500}>{getLabel("lDescription")}</Typography>
+          <Typography className={classes.desc}>{getLabel("lCardDescription1")}</Typography>
+          <Typography className={classes.desc}>{getLabel("lCardDescription2")}</Typography>
+          <Stack>
+            <Typography className={classes.desc}>{getLabel("lCardDescription3")}</Typography>
+            <Typography className={classes.desc}>{getLabel("lCardDescription4")}</Typography>
+            <Typography className={classes.desc}>{getLabel("lCardDescription5")}</Typography>
+            <Typography className={classes.desc}>{getLabel("lCardDescription6")}</Typography>
+          </Stack>
+        </Stack>
         <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
           <Button
             className={classes.tiktokButton}
@@ -91,30 +100,30 @@ const SlideShow = () => {
   );
 };
 
+const PRICE = "249.000 VNĐ";
+
 const MOCK_DATA_LIST = [
   {
-    url: ImageAssets.ArrowButtonBackground,
-    name: "The Tarot Of Kiki Friends: A 78-Card Deck and guide book",
-    price: "249.000 VNĐ",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
+    id: 0,
+    url: ImageAssets.Shop1Image,
   },
   {
-    url: ImageAssets.AppDemoHomeBackground,
-    name: "The Tarot Of Kiki Friends: A 78-Card Deck and guide book",
-    price: "249.000 VNĐ",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
+    id: 1,
+
+    url: ImageAssets.Shop2Image,
   },
   {
-    url: ImageAssets.ViewSynastryChartBackground,
-    name: "The Tarot Of Kiki Friends: A 78-Card Deck and guide book",
-    price: "249.000 VNĐ",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
+    id: 2,
+
+    url: ImageAssets.Shop3Image,
   },
   {
-    url: ImageAssets.ViewSynastryChartBackground,
-    name: "The Tarot Of Kiki Friends: A 78-Card Deck and guide book",
-    price: "249.000 VNĐ",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis.",
+    id: 3,
+    url: ImageAssets.Shop4Image,
+  },
+  {
+    id: 4,
+    url: ImageAssets.Shop5Image,
   },
 ];
 

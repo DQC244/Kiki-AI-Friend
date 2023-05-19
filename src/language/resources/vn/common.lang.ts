@@ -132,6 +132,15 @@ export default {
   lJoinOurNewsLetters: "Tham gia bản tin của chúng tôi",
   lDoYouWantFirstPersonToExperience:
     "Bạn muốn là một trong những người đầu tiên trải nghiệm ứng dụng và cầm trên tay các sản phẩm mới nhất của Kiki chứ? Hãy để lại email bên dưới và chúng tôi sẽ thông báo cho bạn khi có thông tin mới!",
+  lCardName: "Bộ bài Kiki Friend: 78 lá cùng sách hướng dẫn",
+  lCardDescription1:
+    "Bộ bài KiKi Tarot lấy cảm hứng từ bộ bài Rider-Waite Tarot truyền thống, được tô vẽ và phối màu theo phong cách nhân vật biểu tượng của Kiki Friend App. Hệ thống hình ảnh đơn giản, dễ hiểu, sẽ phù hợp với mọi đối đượng sử dụng bài Tarot, đặc biệt là những người mới tìm hiểu.",
+  lCardDescription2:
+    "Nét vẽ tươi sáng, phong cách tích cực, bộ bài bao gồm 78 lá bài được in sắc nét, chất lượng bìa in tuyệt hảo, cán bóng, bo góc.",
+  lCardDescription3: "Bộ bài kích thước 7x12cm",
+  lCardDescription4: "+ Giấy C300 - 2 mặt",
+  lCardDescription5: "+ Cán bóng 2 mặt",
+  lCardDescription6: "+ Bo 4 góc CNC",
 
   // No EN
   lImSorryITryImprove: "Tôi xin lỗi, tôi sẽ cố gắng cải thiện hơn trong tương lai.",

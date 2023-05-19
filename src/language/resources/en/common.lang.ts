@@ -147,6 +147,15 @@ export default {
   lJoinOurNewsLetters: "Join Our News Letters",
   lDoYouWantFirstPersonToExperience:
     "Do you want to be the first person to experience our app and buy our latest product about Kiki? Leave your email below and we will notify you when there’s something new in town!",
+  lCardName: "The Tarot Of Kiki Friends: A 78-Card Deck and guide book",
+  lCardDescription1:
+    "The Kiki Tarot deck draws inspiration from the traditional Rider-Waite Tarot deck, featuring artwork and color schemes that reflect the iconic characters of the Kiki Friend App. The imagery is simple and easy to understand, making it suitable for users of all ages and especially appealing to those who are new to Tarot.",
+  lCardDescription2:
+    "The illustrations are vibrant with a positive style. The deck consists of 78 cards that are printed with sharpness and excellent print quality. The cards have a glossy finish, rounded corners, and are of high-quality construction.",
+  lCardDescription3: "Deck's dimension: 7x12cm",
+  lCardDescription4: "+ Paper type: C300 - double-sided",
+  lCardDescription5: "+ Glossy lamination on both sides",
+  lCardDescription6: "+ Rounded corners with CNC machining",
 
   // No EN
   lImSorryITryImprove: "I’m sorry buddy. I’ll try my best to improve.",

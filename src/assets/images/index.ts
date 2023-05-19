@@ -89,6 +89,11 @@ import SongTuImage from "./img-song-tu.png";
 import SuTuImage from "./img-su-tu.png";
 import ThienBinhImage from "./img-thien-binh.png";
 import XuNuImage from "./img-xu-nu.png";
+import Shop1Image from "./img-shop-1.png";
+import Shop2Image from "./img-shop-2.png";
+import Shop3Image from "./img-shop-3.png";
+import Shop4Image from "./img-shop-4.png";
+import Shop5Image from "./img-shop-5.png";
 
 export {
   LogoImage,
@@ -182,4 +187,9 @@ export {
   SuTuImage,
   ThienBinhImage,
   XuNuImage,
+  Shop1Image,
+  Shop2Image,
+  Shop3Image,
+  Shop4Image,
+  Shop5Image,
 };

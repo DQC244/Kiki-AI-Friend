@@ -18,14 +18,17 @@ const ImageSlide = ({ dataSelected, data, onNextImg, onPreImg, onChooseData }: I
       <Stack className={clsx("custom-scrollbar", classes.wrapperSmallImg)}>
         <Stack
           spacing={{ xs: 0, lg: 5 }}
-          justifyContent={{ xs: "space-between", lg: "flex-start" }}
+          justifyContent={{ xs: "space-between", lg: "space-between" }}
           direction={{ xs: "row", lg: "column" }}
+          height={{ xs: "unset", lg: "100%" }}
         >
-          {data?.map((item, index) => (
-            <Button key={index} onClick={() => onChooseData(index)} className={classes.button}>
-              <Box key={index} component="img" src={item?.url} className={classes.smallImg} />
-            </Button>
-          ))}
+          {data
+            ?.filter((item) => item.id !== dataSelected.id)
+            .map((item, index) => (
+              <Button key={index} onClick={() => onChooseData(item.id)} className={classes.button}>
+                <Box component="img" src={item?.url} className={classes.smallImg} />
+              </Button>
+            ))}
         </Stack>
       </Stack>
       <Box className={classes.previewImg}>
@@ -58,10 +61,12 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
 
     [theme.breakpoints.down("lg")]: {
       minWidth: 500,
+      width: 500,
     },
 
-    [theme.breakpoints.down("lg")]: {
+    [theme.breakpoints.down("sm")]: {
       minWidth: 275,
+      width: 275,
     },
   },
   button: {
@@ -86,15 +91,16 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   },
   wrapperSmallImg: {
     overflow: "hidden scroll",
-    maxHeight: 360,
+    maxHeight: 385,
   },
   previewImg: {
     position: "relative",
     background: "#D9D9D9",
     borderRadius: 30,
-    maxHeight: 360,
+    maxHeight: 385,
     maxWidth: 495,
     width: 495,
+    height: 385,
 
     [theme.breakpoints.down("lg")]: {
       width: 500,
