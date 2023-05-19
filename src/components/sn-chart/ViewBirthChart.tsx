@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
@@ -9,12 +9,21 @@ import { AppSelector } from "redux-store";
 import dayjs from "dayjs";
 import { ThemeProps } from "models/types";
 import { getZodiacSign } from "components/helper";
+import { useTranslation } from "react-i18next";
+import { LangConstant } from "const";
 
 const ViewBirthChart = () => {
   const classes = useStyles();
+  const { i18n } = useTranslation();
 
   const birthChart = useSelector(AppSelector.getBirthChart);
   const birthChartImage = useSelector(AppSelector.getBirthChartImage);
+
+  const data = useMemo(() => {
+    if (i18n.language === LangConstant.DEFAULT_LANG_CODE) {
+      return birthChart.en;
+    } else return birthChart.vi;
+  }, [i18n.language, birthChart]);
 
   return (
     <Stack spacing={{ xs: 4, sm: 9.625 }} width="100%">
@@ -31,12 +40,12 @@ const ViewBirthChart = () => {
             <Stack className={classes.formInfo} spacing={{ xs: 2, lg: 2.5 }}>
               <Stack direction="row" justifyContent="space-between">
                 <Box>
-                  <Typography className={classes.boldText}>{birthChart?.full_name}</Typography>
+                  <Typography className={classes.boldText}>{data?.full_name}</Typography>
                   <Typography
                     className={classes.infoUSer}
-                  >{`${birthChart?.city_of_birth}, ${birthChart?.nation_of_birth}`}</Typography>
+                  >{`${data?.city_of_birth}, ${data?.nation_of_birth}`}</Typography>
                   <Typography className={classes.infoUSer}>
-                    {dayjs(birthChart?.date_of_birth).format("DD/MM/YYYY, HH:mm a")}
+                    {dayjs(data?.date_of_birth).format("DD/MM/YYYY, HH:mm a")}
                   </Typography>
                 </Box>
                 <Stack alignItems="center">
@@ -47,21 +56,19 @@ const ViewBirthChart = () => {
                       src={ImageAssets.DotZodiacDemo}
                       className={classes.zodiacImage}
                     />
-                    <Typography className={classes.boldText}>
-                      {birthChart?.sun_sign_name}
-                    </Typography>
+                    <Typography className={classes.boldText}>{data?.sun_sign_name}</Typography>
                     <Box
                       component="img"
                       draggable="false"
-                      src={getZodiacSign(birthChart?.date_of_birth)}
+                      src={getZodiacSign(data?.date_of_birth)}
                       className={classes.zodiacImage2}
                       sx={{ objectFit: "contain" }}
                     />
                   </Stack>
-                  <Typography className={classes.location}>{birthChart?.sun_position}</Typography>
+                  <Typography className={classes.location}>{data?.sun_position}</Typography>
                 </Stack>
               </Stack>
-              <Typography className={classes.location}>{birthChart?.sun_content}</Typography>
+              <Typography className={classes.location}>{data?.sun_content}</Typography>
             </Stack>
             <WhaleImageChat />
           </Stack>
@@ -128,7 +135,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   zodiacImage: {
     width: 40,
     height: 40,
-    objectFit: "cover",
+    objectFit: "contain",
 
     [theme.breakpoints.down("lg")]: {
       width: 30,
@@ -138,7 +145,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   zodiacImage2: {
     width: 30,
     height: 30,
-    objectFit: "cover",
+    objectFit: "contain",
 
     [theme.breakpoints.down("lg")]: {
       width: 20,

@@ -55,6 +55,8 @@ export type OnClickQuestionProps = (
   isBackQuestion?: boolean,
   icon?: ReactNode,
   index?: number,
+  labelEn?: string,
+  labelVi?: string,
 ) => void;
 
 type QuestionListProps = {

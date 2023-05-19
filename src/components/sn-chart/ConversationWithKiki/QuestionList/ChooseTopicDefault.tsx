@@ -15,9 +15,10 @@ import {
   // PigIcon,
 } from "components/icons";
 import QuestionBoxButton from "./QuestionBoxButton";
+import { LangConstant } from "const";
 
 const ChooseTopicDefault = ({ onClickQuestion, lastMessage }: QuestionWorkProps) => {
-  const { t: getLabel } = useTranslation();
+  const { t: getLabel, i18n } = useTranslation();
 
   const topicList = useMemo(() => getListQuestion(getLabel), [getLabel]);
 
@@ -27,12 +28,21 @@ const ChooseTopicDefault = ({ onClickQuestion, lastMessage }: QuestionWorkProps)
         <Grid className={"center-root"} item key={index} xs={4}>
           <QuestionBoxButton
             onClickQuestionButton={() =>
-              onClickQuestion(item.label, item?.type, false, false, item.icon)
+              onClickQuestion(
+                item.label,
+                item?.type,
+                false,
+                false,
+                item.icon,
+                undefined,
+                item.labelEn,
+                item.labelVi,
+              )
             }
             startIcon={item?.icon}
             isActive={lastMessage === item.label}
           >
-            {item.label}
+            {i18n.language === LangConstant.DEFAULT_LANG_CODE ? item.labelEn : item.labelVi}
           </QuestionBoxButton>
         </Grid>
       ))}
@@ -43,7 +53,8 @@ const ChooseTopicDefault = ({ onClickQuestion, lastMessage }: QuestionWorkProps)
 export default memo(ChooseTopicDefault);
 
 const getListQuestion = (getLabel: (key: string, obj: object) => ObjectMultiLanguageProps) => {
-  const objContent = getLabel("objQuestionStep1", { returnObjects: true });
+  const objContentEn = getLabel("objQuestionStep1", { lng: "en", returnObjects: true });
+  const objContentVi = getLabel("objQuestionStep1", { lng: "vn", returnObjects: true });
 
   return [
     // {
@@ -61,7 +72,8 @@ const getListQuestion = (getLabel: (key: string, obj: object) => ObjectMultiLang
     //   type: TOPIC_TYPE.money,
     // },
     {
-      label: objContent.lSelf,
+      labelEn: objContentEn.lSelf,
+      labelVi: objContentVi.lSelf,
       icon: <CrownIcon />,
       activeIcon: <CrownIcon />,
       step: CHOOSE_QUESTION_STEP.topic,
@@ -75,14 +87,16 @@ const getListQuestion = (getLabel: (key: string, obj: object) => ObjectMultiLang
     //   type: TOPIC_TYPE.work,
     // },
     {
-      label: objContent.lPossibilities,
+      labelEn: objContentEn.lPossibilities,
+      labelVi: objContentVi.lPossibilities,
       icon: <BallIcon />,
       activeIcon: <BallIcon />,
       step: CHOOSE_QUESTION_STEP.topic,
       type: TOPIC_TYPE.possibilities,
     },
     {
-      label: objContent.lNoImGood,
+      labelEn: objContentEn.lNoImGood,
+      labelVi: objContentVi.lNoImGood,
       icon: <HandIcon />,
       activeIcon: <HandIcon />,
       step: CHOOSE_QUESTION_STEP.topic,

@@ -94,7 +94,7 @@ const TransitChart = () => {
     if (
       transitChartImage &&
       Object.keys(transitChartData).length &&
-      Object.keys(chartData).length
+      Object.keys(chartData.en).length
     ) {
       setIsViewTransitChart(true);
     }

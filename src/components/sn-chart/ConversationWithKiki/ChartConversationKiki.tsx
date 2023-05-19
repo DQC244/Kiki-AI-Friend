@@ -25,7 +25,7 @@ const ChartConversationKiki = ({
   onSetContentDolphin,
 }: ChartConversationKikiProps) => {
   const classes = useStyles();
-  const { t: getLabel, i18n } = useTranslation();
+  const { t: getLabel } = useTranslation();
 
   const handleGetAnswerSelf = useHandleGetAnswerSelf();
 
@@ -75,19 +75,27 @@ const ChartConversationKiki = ({
 
   const handleCallQuestion = async (index?: number) => {
     if (currentTopic === TOPIC_TYPE.self && index) {
-      const isEnglish = i18n.language === LangConstant.DEFAULT_LANG_CODE;
-
-      const data = {
-        city_of_birth: chartData?.city_of_birth,
-        date_of_birth: chartData?.date_of_birth,
-        full_name: chartData?.full_name,
-        nation_of_birth: chartData?.nation_of_birth,
-        language: isEnglish ? LangConstant.DEFAULT_LANG_CODE : "vi",
+      const dataEn = {
+        city_of_birth: chartData.en?.city_of_birth,
+        date_of_birth: chartData.en?.date_of_birth,
+        full_name: chartData.en?.full_name,
+        nation_of_birth: chartData.en?.nation_of_birth,
+        language: LangConstant.DEFAULT_LANG_CODE,
         // stupid api
-        question: isEnglish ? index : index + 3,
+        question: index,
+      };
+      const dataVi = {
+        city_of_birth: chartData.en?.city_of_birth,
+        date_of_birth: chartData.en?.date_of_birth,
+        full_name: chartData.en?.full_name,
+        nation_of_birth: chartData.en?.nation_of_birth,
+        language: "vi",
+        // stupid api
+        question: index + 3,
       };
 
-      const newMessage = await handleGetAnswerSelf(data);
+      const newMessage = await handleGetAnswerSelf(dataEn, dataVi);
+
       setMessage((preMessage) => [...preMessage, ...newMessage]);
     }
   };
@@ -107,8 +115,10 @@ const ChartConversationKiki = ({
     isBackQuestion?: boolean,
     icon?: ReactNode,
     index?: number,
+    labelEn?: string,
+    labelVi?: string,
   ) => {
-    let newMessageObj: MessageType = { label, isMyQuestion: true };
+    let newMessageObj: MessageType = { labelEn, labelVi, isMyQuestion: true };
     switch (currentStep) {
       case CHOOSE_QUESTION_STEP.topic:
         newMessageObj = { ...newMessageObj, icon };
@@ -118,7 +128,13 @@ const ChartConversationKiki = ({
           handleChoosePossibilityTopic();
         } else {
           setTimeout(() => {
-            setMessage((pre) => [...pre, { label: getLabel("lHereAreSomeTopicsThat") }]);
+            setMessage((pre) => [
+              ...pre,
+              {
+                labelEn: getLabel("lHereAreSomeTopicsThat", { lng: "en" }),
+                labelVi: getLabel("lHereAreSomeTopicsThat", { lng: "vn" }),
+              },
+            ]);
             scrollTopElement(10);
           }, 1000);
           setCurrentStep(CHOOSE_QUESTION_STEP.question);
@@ -183,7 +199,8 @@ const ChartConversationKiki = ({
                 >
                   <ChatBox
                     imageSrc={item.isMyQuestion ? ImageAssets.UserLogo : ""}
-                    message={item.label}
+                    messageEn={item.labelEn}
+                    messageVi={item.labelVi}
                     startIcon={item?.icon}
                   />
                 </DelayMessage>
@@ -193,8 +210,9 @@ const ChartConversationKiki = ({
               <ChatBox
                 key={index}
                 imageSrc={item.isMyQuestion ? ImageAssets.UserLogo : ""}
-                message={item.label}
                 startIcon={item?.icon}
+                messageEn={item?.labelEn}
+                messageVi={item?.labelVi}
               />
             );
           })}
@@ -244,7 +262,8 @@ export enum TOPIC_TYPE {
 }
 
 type MessageType = {
-  label: string;
+  labelEn?: string;
+  labelVi?: string;
   icon?: ReactNode;
   isDelay?: boolean;
   orderId?: number;

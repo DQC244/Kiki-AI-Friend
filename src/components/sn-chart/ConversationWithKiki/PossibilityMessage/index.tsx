@@ -15,8 +15,15 @@ const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessagePr
   const chartData = useSelector(AppSelector.getBirthChart);
 
   const [chatList, setChatList] = useState<Array<ChatType>>([
-    { message: getLabel("lThinkAboutTheQuestionYouAsk") },
-    { message: getLabel("lWhenYouAreDone"), isAction: true },
+    {
+      messageEn: getLabel("lThinkAboutTheQuestionYouAsk", { lng: "en" }),
+      messageVi: getLabel("lThinkAboutTheQuestionYouAsk", { lng: "vn" }),
+    },
+    {
+      messageEn: getLabel("lWhenYouAreDone", { lng: "en" }),
+      messageVi: getLabel("lWhenYouAreDone", { lng: "vn" }),
+      isAction: true,
+    },
   ]);
 
   const contentList = useMemo(() => getPopupType(getLabel), [getLabel]);
@@ -27,7 +34,12 @@ const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessagePr
     setChatList((preChat) => [
       ...preChat,
       {
-        message: StringFormat(getLabel("lJustComeBackAnytimeWith"), { name: chartData?.full_name }),
+        messageEn: StringFormat(getLabel("lJustComeBackAnytimeWith", { lng: "en" }), {
+          name: chartData.en?.full_name,
+        }),
+        messageVi: StringFormat(getLabel("lJustComeBackAnytimeWith", { lng: "vn" }), {
+          name: chartData.en?.full_name,
+        }),
       },
     ]);
     scrollTopElement(100);
@@ -45,13 +57,23 @@ const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessagePr
   const handleClickAnother = () => {
     onSetContentDolphin(getLabel("lGreatClickOnTheButton"));
 
-    setChatList((preChat) => [...preChat, { message: getLabel("lKeepThinkingAboutAnother") }]);
+    setChatList((preChat) => [
+      ...preChat,
+      {
+        messageEn: getLabel("lKeepThinkingAboutAnother", { lng: "en" }),
+        messageVi: getLabel("lKeepThinkingAboutAnother", { lng: "vn" }),
+      },
+    ]);
     scrollTopElement(100);
 
     setTimeout(() => {
       setChatList((preChat) => [
         ...preChat,
-        { message: getLabel("lPingMeAgainWhenYouAreReady"), isAction: true },
+        {
+          messageEn: getLabel("lPingMeAgainWhenYouAreReady", { lng: "en" }),
+          messageVi: getLabel("lPingMeAgainWhenYouAreReady", { lng: "vn" }),
+          isAction: true,
+        },
       ]);
       scrollTopElement(100);
     }, AppConstant.DEBOUNCE_TIME_IN_MILLISECOND);
@@ -74,7 +96,8 @@ const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessagePr
                     randomIndex={randomIndex}
                     label={contentList[randomIndex].label}
                     imageSrc={contentList[randomIndex].image}
-                    message={item.message}
+                    messageEn={item.messageEn}
+                    messageVi={item.messageVi}
                     onClickAnother={handleClickAnother}
                     onClose={handleClose}
                     onReadyClick={handleReadyClick}
@@ -86,7 +109,7 @@ const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessagePr
         }
         return (
           <DelayMessage key={index} waitBeforeShow={0}>
-            <ChatBox key={index} message={item.message} />
+            <ChatBox key={index} messageEn={item.messageEn} messageVi={item.messageVi} />
           </DelayMessage>
         );
       })}
@@ -95,7 +118,8 @@ const PossibilityMessage = ({ refEl, onSetContentDolphin }: PossibilityMessagePr
 };
 
 type ChatType = {
-  message?: string;
+  messageEn?: string;
+  messageVi?: string;
   isAction?: boolean;
 };
 

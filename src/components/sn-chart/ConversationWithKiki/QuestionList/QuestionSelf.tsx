@@ -7,12 +7,13 @@ import { Grid } from "@mui/material";
 import { QuestionWorkProps } from "./QuestionWork";
 import QuestionBoxButton from "./QuestionBoxButton";
 import { makeStyles } from "@mui/styles";
+import { LangConstant } from "const";
 
 const QuestionSelf = ({ onClickQuestion, lastMessage }: QuestionWorkProps) => {
   const classes = useStyles();
-  const { t: getLabel } = useTranslation();
+  const { t: getLabel, i18n } = useTranslation();
 
-  const selfTopic = useMemo(() => getSelfTopic(getLabel), [getLabel]);
+  const selfTopic = useMemo(() => getSelfTopic(getLabel), []);
 
   return (
     <Grid container rowSpacing={2} columnSpacing={{ xs: 4, lg: 8.375 }}>
@@ -22,7 +23,16 @@ const QuestionSelf = ({ onClickQuestion, lastMessage }: QuestionWorkProps) => {
           <Grid className="center-root" item key={index} xs={6}>
             <QuestionBoxButton
               onClickQuestionButton={() =>
-                onClickQuestion(item.label, item?.type, isLastQuestion, false, undefined, index + 1)
+                onClickQuestion(
+                  item.label,
+                  item?.type,
+                  isLastQuestion,
+                  false,
+                  undefined,
+                  index + 1,
+                  item.labelEn,
+                  item.labelVi,
+                )
               }
               startIcon={item?.icon}
               isActive={lastMessage === item.label}
@@ -30,7 +40,7 @@ const QuestionSelf = ({ onClickQuestion, lastMessage }: QuestionWorkProps) => {
               isBlack={true}
               className={classes.button}
             >
-              {item.label}
+              {i18n.language === LangConstant.DEFAULT_LANG_CODE ? item.labelEn : item.labelVi}
             </QuestionBoxButton>
           </Grid>
         );
@@ -42,13 +52,32 @@ const QuestionSelf = ({ onClickQuestion, lastMessage }: QuestionWorkProps) => {
 export default memo(QuestionSelf);
 
 const getSelfTopic = (getLabel: (key: string, obj?: object) => ObjectMultiLanguageProps) => {
-  const selfTopicObj = getLabel("objSelfTopic", { returnObjects: true });
+  const selfTopicObjEn = getLabel("objSelfTopic", { lng: "en", returnObjects: true });
+  const selfTopicObjVi = getLabel("objSelfTopic", { lng: "vn", returnObjects: true });
+  const lIveChangedMyMindEn = getLabel("lIveChangedMyMind", { lng: "en" });
+  const lIveChangedMyMindVi = getLabel("lIveChangedMyMind", { lng: "vn" });
 
   return [
-    { label: selfTopicObj.lWhatIsMyNutritionalAdvice, step: CHOOSE_QUESTION_STEP.question },
-    { label: selfTopicObj.lWhatIsMyStressManagementTips, step: CHOOSE_QUESTION_STEP.question },
-    { label: selfTopicObj.lCanYouTellMyPersonality, step: CHOOSE_QUESTION_STEP.question },
-    { label: getLabel("lIveChangedMyMind"), step: CHOOSE_QUESTION_STEP.question },
+    {
+      labelVi: selfTopicObjVi.lWhatIsMyNutritionalAdvice,
+      labelEn: selfTopicObjEn.lWhatIsMyNutritionalAdvice,
+      step: CHOOSE_QUESTION_STEP.question,
+    },
+    {
+      labelVi: selfTopicObjVi.lWhatIsMyStressManagementTips,
+      labelEn: selfTopicObjEn.lWhatIsMyStressManagementTips,
+      step: CHOOSE_QUESTION_STEP.question,
+    },
+    {
+      labelVi: selfTopicObjVi.lCanYouTellMyPersonality,
+      labelEn: selfTopicObjEn.lCanYouTellMyPersonality,
+      step: CHOOSE_QUESTION_STEP.question,
+    },
+    {
+      labelVi: lIveChangedMyMindVi,
+      labelEn: lIveChangedMyMindEn,
+      step: CHOOSE_QUESTION_STEP.question,
+    },
   ];
 };
 

@@ -5,17 +5,19 @@ import { ThemeProps } from "models/types";
 import { makeStyles } from "@mui/styles";
 import { useTranslation } from "react-i18next";
 import { useHandleGetAnswerPossibility } from "../hooks";
+import { LangConstant } from "const";
 
 const ChatBoxButton = ({
   imageSrc,
-  message,
+  messageEn,
+  messageVi,
   randomIndex,
   onClickAnother,
   onReadyClick,
   onClose,
 }: ChatBoxButtonProps) => {
   const classes = useStyles();
-  const { t: getLabel } = useTranslation();
+  const { t: getLabel, i18n } = useTranslation();
 
   const handleGetAnswerPossibility = useHandleGetAnswerPossibility();
 
@@ -51,7 +53,9 @@ const ChatBoxButton = ({
         />
       )}
       <Stack spacing={1} justifyContent="flex-start">
-        <Typography className={classes.text}>{message}</Typography>
+        <Typography className={classes.text}>
+          {i18n.language === LangConstant.DEFAULT_LANG_CODE ? messageEn : messageVi}
+        </Typography>
         <Box>
           <Button onClick={handleReadyClick} className={classes.button}>
             {getLabel("lImReady")}
@@ -65,7 +69,8 @@ const ChatBoxButton = ({
 type ChatBoxButtonProps = {
   label: string;
   imageSrc: string;
-  message?: string;
+  messageEn?: string;
+  messageVi?: string;
   randomIndex: number;
 
   onClickAnother: () => void;

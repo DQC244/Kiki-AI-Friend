@@ -76,7 +76,7 @@ const BirthChart = () => {
   };
 
   useEffect(() => {
-    if (birthChartImage && birthChart) {
+    if (birthChartImage && Object.keys(birthChart.en).length) {
       setIsViewBirthChart(true);
     }
   }, [birthChartImage, birthChart]);

@@ -58,19 +58,28 @@ export function* getCardRandomSaga(action: { type: string; data: number }) {
 export function* getBirthChartSaga(action: { type: string; data: any }) {
   try {
     const data = action.data;
-    const response: ApiResponse<any> = yield call(AppService.getBirthChart, data);
-    const responseData = response.data;
+    const [responseEng, responseVi]: Array<ApiResponse<any>> = yield all([
+      call(AppService.getBirthChart, { ...data, language: "en" }),
+      call(AppService.getBirthChart, { ...data, language: "vi" }),
+    ]);
+    const responseDataEng = responseEng.data;
+    const responseDataVi = responseVi.data;
 
-    if (response.status === ApiConstant.STT_OK) {
-      yield put(AppActions.appSuccess({ birthChart: responseData.data }));
+    if (responseEng.status === ApiConstant.STT_OK && responseVi.status === ApiConstant.STT_OK) {
+      yield put(
+        AppActions.appSuccess({
+          birthChart: { en: responseDataEng.data, vi: responseDataVi.data },
+        }),
+      );
     } else {
-      yield put(AppActions.appFailure(responseData));
+      yield put(AppActions.appFailure(responseDataEng));
     }
   } catch (error) {
     EnvConstant.IS_DEV && console.log(error);
     yield put(AppActions.appFailure(error));
   }
 }
+
 export function* getBirthChartImageSaga(action: { type: string; data: any }) {
   try {
     const data = action.data;

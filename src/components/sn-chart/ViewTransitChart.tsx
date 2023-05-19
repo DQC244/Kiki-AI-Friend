@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
@@ -8,16 +8,22 @@ import WhaleImageChat from "./WhaleImageChat";
 import { useSelector } from "react-redux";
 import { AppSelector } from "redux-store";
 import dayjs from "dayjs";
-import { AppConstant } from "const";
+import { AppConstant, LangConstant } from "const";
 import { ThemeProps } from "models/types";
 import { getZodiacSign } from "components/helper";
 
 const ViewTransitChart = () => {
   const classes = useStyles();
-  const { t: getLabel } = useTranslation();
+  const { t: getLabel, i18n } = useTranslation();
   const transitChartImage = useSelector(AppSelector.getTransitChartImage);
   const transitChartData = useSelector(AppSelector.getTransitChartData);
   const chartData = useSelector(AppSelector.getBirthChart);
+
+  const data = useMemo(() => {
+    if (i18n.language === LangConstant.DEFAULT_LANG_CODE) {
+      return chartData.en;
+    } else return chartData.vi;
+  }, [i18n.language, chartData]);
 
   return (
     <Stack spacing={{ xs: 4, sm: 9.625 }}>
@@ -40,11 +46,9 @@ const ViewTransitChart = () => {
                       className={classes.imageZodiac}
                       draggable="false"
                       component="img"
-                      src={getZodiacSign(chartData?.date_of_birth)}
+                      src={getZodiacSign(data?.date_of_birth)}
                     />
-                    <Typography className={classes.zodiacText}>
-                      {chartData?.sun_sign_name}
-                    </Typography>
+                    <Typography className={classes.zodiacText}>{data?.sun_sign_name}</Typography>
                   </Stack>
                   {/* <Stack direction="row" alignItems="center">
                     <Box
@@ -59,13 +63,11 @@ const ViewTransitChart = () => {
                 <Box>
                   <RowInfo
                     label={getLabel("lLocalTime")}
-                    content={dayjs(chartData.date_of_birth).format(
-                      AppConstant.FULL_DATE_CHART_FORMAT,
-                    )}
+                    content={dayjs(data.date_of_birth).format(AppConstant.FULL_DATE_CHART_FORMAT)}
                   />
                   <RowInfo
                     label={getLabel("lUniversalTime")}
-                    content={dayjs(chartData.date_of_birth)
+                    content={dayjs(data.date_of_birth)
                       .subtract(7, "hour")
                       .format(AppConstant.FULL_DATE_CHART_FORMAT)}
                   />

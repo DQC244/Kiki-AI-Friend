@@ -1,19 +1,40 @@
-import React, { ReactNode, memo, useEffect, useState } from "react";
+import React, { ReactNode, memo, useEffect, useMemo, useState } from "react";
 import { Box, Stack, StackProps, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import { ThemeProps } from "models/types";
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
+import { LangConstant } from "const";
 
 const ChatBox = ({
   message,
+  messageEn,
+  messageVi,
   messageCustom,
   startIcon,
   imageSrc,
   contentCustom,
+  contentCustomEn,
+  contentCustomVi,
   ...otherProps
 }: ChatBoxProps) => {
   const classes = useStyles();
+  const { i18n } = useTranslation();
+
+  const messageLanguage = useMemo(() => {
+    if (i18n.language === LangConstant.DEFAULT_LANG_CODE) {
+      return messageEn;
+    }
+    return messageVi;
+  }, [i18n.language, messageEn, messageVi]);
+
+  const contentCustomLanguage = useMemo(() => {
+    if (i18n.language === LangConstant.DEFAULT_LANG_CODE) {
+      return contentCustomEn;
+    }
+    return contentCustomVi;
+  }, [i18n.language, contentCustomEn, contentCustomVi]);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,10 +56,12 @@ const ChatBox = ({
         <LoadingAnimation />
       ) : (
         <>
-          {contentCustom ?? (
+          {(contentCustom || contentCustomLanguage) ?? (
             <Box className={clsx(classes.textBox, imageSrc && classes.borderLight)}>
               {startIcon}
-              {messageCustom || <Typography className={classes.message}>{message}</Typography>}
+              {messageCustom || (
+                <Typography className={classes.message}>{message || messageLanguage}</Typography>
+              )}
             </Box>
           )}
         </>
@@ -49,10 +72,14 @@ const ChatBox = ({
 
 type ChatBoxProps = StackProps & {
   message?: string;
+  messageEn?: string;
+  messageVi?: string;
   messageCustom?: ReactNode;
   imageSrc?: string;
   startIcon?: ReactNode;
   contentCustom?: ReactNode;
+  contentCustomEn?: ReactNode;
+  contentCustomVi?: ReactNode;
 };
 
 const LoadingAnimation = () => {

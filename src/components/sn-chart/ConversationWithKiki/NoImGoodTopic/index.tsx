@@ -3,45 +3,50 @@ import { useTranslation } from "react-i18next";
 import { Box } from "@mui/material";
 import { ImageAssets } from "assets";
 import { makeStyles } from "@mui/styles";
-import { AppConstant, LangConstant } from "const";
+import { AppConstant } from "const";
 import ChatBox from "../ChatBox";
 import DelayMessage from "../DelayMessage";
 
 const NoImGoodTopic = () => {
   const classes = useStyles();
-  const { t: getLabel, i18n } = useTranslation();
+  const { t: getLabel } = useTranslation();
 
   const [chatList, setChatList] = useState<Array<ChatType>>([]);
 
   useEffect(() => {
     setChatList([
-      { label: getLabel("lImSorryITryImprove") },
       {
-        imageContent: (
-          <Box
-            className={classes.image}
-            component="img"
-            src={
-              i18n.language === LangConstant.DEFAULT_LANG_CODE
-                ? ImageAssets.ImSorryImageEN
-                : ImageAssets.ImSorryImage
-            }
-          />
+        labelEn: getLabel("lImSorryITryImprove", { lng: "en" }),
+        labelVi: getLabel("lImSorryITryImprove", { lng: "vn" }),
+      },
+      {
+        imageContentEn: (
+          <Box className={classes.image} component="img" src={ImageAssets.ImSorryImageEN} />
+        ),
+        imageContentVi: (
+          <Box className={classes.image} component="img" src={ImageAssets.ImSorryImage} />
         ),
       },
-      { label: getLabel("lInsteadDoYouWantToTryOut") },
+      {
+        labelEn: getLabel("lInsteadDoYouWantToTryOut", { lng: "en" }),
+        labelVi: getLabel("lInsteadDoYouWantToTryOut", { lng: "vn" }),
+      },
     ]);
   }, []);
   return (
     <>
       {chatList.map((item, index) => {
-        if (item.imageContent) {
+        if (item.imageContentEn) {
           return (
             <DelayMessage
               key={index}
               waitBeforeShow={AppConstant.DEBOUNCE_TIME_IN_MILLISECOND * index}
             >
-              <ChatBox key={index} contentCustom={item.imageContent} />
+              <ChatBox
+                key={index}
+                contentCustomEn={item.imageContentEn}
+                contentCustomVi={item.imageContentVi}
+              />
             </DelayMessage>
           );
         }
@@ -50,7 +55,7 @@ const NoImGoodTopic = () => {
             key={index}
             waitBeforeShow={AppConstant.DEBOUNCE_TIME_IN_MILLISECOND * index}
           >
-            <ChatBox key={index} message={item.label} />
+            <ChatBox key={index} messageEn={item.labelEn} messageVi={item.labelVi} />
           </DelayMessage>
         );
       })}
@@ -59,8 +64,10 @@ const NoImGoodTopic = () => {
 };
 
 type ChatType = {
-  label?: string;
-  imageContent?: ReactNode;
+  labelEn?: string;
+  labelVi?: string;
+  imageContentEn?: ReactNode;
+  imageContentVi?: ReactNode;
 };
 
 export default memo(NoImGoodTopic);

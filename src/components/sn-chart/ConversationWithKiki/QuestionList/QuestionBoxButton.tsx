@@ -7,9 +7,7 @@ import clsx from "clsx";
 
 const QuestionBoxButton = ({
   children,
-  isActive,
   isItalic,
-  isBlack,
   onClickQuestionButton,
   ...otherProps
 }: QuestionBoxButton) => {
@@ -23,21 +21,13 @@ const QuestionBoxButton = ({
     <Button
       onClick={handleClick}
       classes={{
-        root: clsx(
-          defaultClasses.root,
-          isActive && defaultClasses.activeRoot,
-          isItalic && defaultClasses.italic,
-        ),
+        root: clsx(defaultClasses.root, isItalic && defaultClasses.italic),
         startIcon: defaultClasses.startIcon,
       }}
       variant="contained"
       {...otherProps}
     >
-      <Typography
-        className={clsx(defaultClasses.text, isBlack && !isActive && defaultClasses.black)}
-      >
-        {children}
-      </Typography>
+      <Typography className={clsx(defaultClasses.text)}>{children}</Typography>
     </Button>
   );
 };

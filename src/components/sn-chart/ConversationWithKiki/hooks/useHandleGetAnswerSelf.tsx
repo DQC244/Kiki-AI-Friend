@@ -2,14 +2,23 @@ import { ApiConstant, EnvConstant } from "const";
 import { AppService } from "services";
 
 const useHandleGetAnswerSelf = () => {
-  const handleGetAnswerSelf = async (data: any) => {
+  const handleGetAnswerSelf = async (dataEn: any, dataVi: any) => {
     try {
-      const response = await AppService.getSelf(data);
+      const [responseEn, responseVi] = await Promise.all([
+        AppService.getSelf(dataEn),
+        AppService.getSelf(dataVi),
+      ]);
 
-      if (response.status === ApiConstant.STT_OK) {
-        const responseData: any = response.data;
-        const newMessage = responseData.data?.map((item: any, index: number) => {
-          return { label: item?.answer_content, isDelay: true, orderId: index };
+      if (responseEn.status === ApiConstant.STT_OK && responseVi.status === ApiConstant.STT_OK) {
+        const responseDataEn: any = responseEn.data;
+        const responseDataVi: any = responseVi.data;
+        const newMessage = responseDataEn.data?.map((item: any, index: number) => {
+          return {
+            labelEn: item?.answer_content,
+            isDelay: true,
+            orderId: index,
+            labelVi: responseDataVi.data[index]?.answer_content,
+          };
         });
 
         return newMessage;

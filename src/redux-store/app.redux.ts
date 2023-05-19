@@ -40,7 +40,10 @@ export interface IAppRedux extends IReduxStateCommon {
   cardDetail: any;
 
   // birth Chart
-  birthChart: any;
+  birthChart: {
+    en: any;
+    vi: any;
+  };
   birthChartImage: any;
 
   transitChartImage: any;
@@ -58,7 +61,10 @@ export const INITIAL_STATE: IAppRedux = {
   cardListSuit: [],
   cardDetail: {},
 
-  birthChart: {},
+  birthChart: {
+    en: {},
+    vi: {},
+  },
   birthChartImage: "",
 
   transitChartImage: "",

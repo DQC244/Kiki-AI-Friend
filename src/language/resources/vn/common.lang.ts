@@ -96,6 +96,7 @@ export default {
     "Tuyệt vời! Hãy ấn nút bên dưới khi bạn đã sẵn sàng để nghe thông điệp nhé!",
   lInsteadDoYouWantToTryOut:
     "Thay vào đó, bạn có muốn tải ứng dụng để khám phá thêm những điều mới lạ khác không?",
+  lHereAreSomeTopicsThat: "Đây là một vài chủ đề tôi có, hy vọng sẽ hữu ích với bạn!",
 
   // Daily tarot, meaning
   lOneCardTarotReading: "Trải bài một lá",
