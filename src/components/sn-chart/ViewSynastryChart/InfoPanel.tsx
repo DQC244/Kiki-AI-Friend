@@ -4,6 +4,7 @@ import { ImageAssets } from "assets";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "@mui/styles";
 import { ThemeProps } from "models/types";
+import { getZodiacSign } from "components/helper";
 
 const InfoPanel = ({
   name,
@@ -12,6 +13,7 @@ const InfoPanel = ({
   localTime,
   universalTime,
   place,
+  image,
 }: InfoPanelProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
@@ -20,12 +22,12 @@ const InfoPanel = ({
     <Stack alignItems="center" spacing={1.25} p={1.25}>
       <Typography className={classes.title}>{name}</Typography>
       <Stack direction="row" spacing={1.5}>
-        <Stack direction="row" alignItems="center">
+        <Stack direction="row" alignItems="center" spacing={1}>
           <Box
             className={classes.imgDot}
             draggable="false"
             component="img"
-            src={ImageAssets.DotZodiacDemo}
+            src={getZodiacSign(image)}
           />
           <Typography className={classes.zodiac}>{zodiac}</Typography>
         </Stack>
@@ -64,6 +66,7 @@ type InfoPanelProps = {
   localTime?: string;
   universalTime?: string;
   place?: string;
+  image: string;
 };
 
 export default memo(InfoPanel);
@@ -103,6 +106,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   imgDot: {
     width: 32,
     height: 32,
+    objectFit: "contain",
 
     [theme.breakpoints.down("sm")]: {
       width: 22,

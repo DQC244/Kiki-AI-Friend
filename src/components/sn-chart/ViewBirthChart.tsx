@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { AppSelector } from "redux-store";
 import dayjs from "dayjs";
 import { ThemeProps } from "models/types";
+import { getZodiacSign } from "components/helper";
 
 const ViewBirthChart = () => {
   const classes = useStyles();
@@ -52,8 +53,9 @@ const ViewBirthChart = () => {
                     <Box
                       component="img"
                       draggable="false"
-                      src={ImageAssets.ZodiacDemo}
-                      className={classes.zodiacImage}
+                      src={getZodiacSign(birthChart?.date_of_birth)}
+                      className={classes.zodiacImage2}
+                      sx={{ objectFit: "contain" }}
                     />
                   </Stack>
                   <Typography className={classes.location}>{birthChart?.sun_position}</Typography>
@@ -131,6 +133,16 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     [theme.breakpoints.down("lg")]: {
       width: 30,
       height: 30,
+    },
+  },
+  zodiacImage2: {
+    width: 30,
+    height: 30,
+    objectFit: "cover",
+
+    [theme.breakpoints.down("lg")]: {
+      width: 20,
+      height: 20,
     },
   },
   boldText: {

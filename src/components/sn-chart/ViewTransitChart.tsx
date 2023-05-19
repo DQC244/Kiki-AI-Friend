@@ -10,6 +10,7 @@ import { AppSelector } from "redux-store";
 import dayjs from "dayjs";
 import { AppConstant } from "const";
 import { ThemeProps } from "models/types";
+import { getZodiacSign } from "components/helper";
 
 const ViewTransitChart = () => {
   const classes = useStyles();
@@ -34,26 +35,26 @@ const ViewTransitChart = () => {
               <Stack spacing={1.25}>
                 <Typography className={classes.label}>{getLabel("lBirth")}</Typography>
                 <Stack direction="row" spacing={1.25}>
-                  <Stack direction="row" alignItems="center">
+                  <Stack direction="row" alignItems="center" spacing={0.5}>
                     <Box
                       className={classes.imageZodiac}
                       draggable="false"
                       component="img"
-                      src={ImageAssets.DotZodiacDemo}
+                      src={getZodiacSign(chartData?.date_of_birth)}
                     />
                     <Typography className={classes.zodiacText}>
                       {chartData?.sun_sign_name}
                     </Typography>
                   </Stack>
-                  <Stack direction="row" alignItems="center">
+                  {/* <Stack direction="row" alignItems="center">
                     <Box
                       className={classes.imageMoon}
                       draggable="false"
                       component="img"
                       src={ImageAssets.MoonTransitImage}
                     />
-                    {/* <Typography className={classes.zodiacText}>Scorpio</Typography> */}
-                  </Stack>
+                    <Typography className={classes.zodiacText}>Scorpio</Typography>
+                  </Stack> */}
                 </Stack>
                 <Box>
                   <RowInfo
@@ -174,6 +175,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
   imageZodiac: {
     width: 32,
     height: 32,
+    objectFit: "contain",
 
     [theme.breakpoints.down("sm")]: {
       width: 27,

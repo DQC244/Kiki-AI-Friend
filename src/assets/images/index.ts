@@ -77,6 +77,18 @@ import YoutubeLogo from "./img-logo-youtube.png";
 import TitleHome from "./img-title-home.png";
 import RightShopBackground from "./img-right-shop-background.png";
 import LeftShopBackground from "./img-left-shop-background.png";
+import BachDuongImage from "./img-bach-duong.png";
+import BaoBinhImage from "./img-bao-binh.png";
+import BoCapImage from "./img-bo-cap.png";
+import CuGiaiImage from "./img-cu-giai.png";
+import KimNguuImage from "./img-kim-nguu.png";
+import MaKetImage from "./img-ma-ket.png";
+import NhanMaImage from "./img-nhan-ma.png";
+import SongNguImage from "./img-song-ngu.png";
+import SongTuImage from "./img-song-tu.png";
+import SuTuImage from "./img-su-tu.png";
+import ThienBinhImage from "./img-thien-binh.png";
+import XuNuImage from "./img-xu-nu.png";
 
 export {
   LogoImage,
@@ -158,4 +170,16 @@ export {
   PhoneHarmonyHomeBackgroundHover,
   RightShopBackground,
   LeftShopBackground,
+  BachDuongImage,
+  BaoBinhImage,
+  BoCapImage,
+  CuGiaiImage,
+  KimNguuImage,
+  MaKetImage,
+  NhanMaImage,
+  SongNguImage,
+  SongTuImage,
+  SuTuImage,
+  ThienBinhImage,
+  XuNuImage,
 };

@@ -42,6 +42,7 @@ const ViewSynastryChart = () => {
             synastryChartData.myInfo?.nation_of_birth
           }
           zodiac={synastryChartData.myInfo?.sun_sign_name}
+          image={synastryChartData.myInfo?.date_of_birth}
         />
         {synastryChartImage && !isMobile && (
           <Box className={classes.img} component="img" src={synastryChartImage} draggable="false" />
@@ -60,6 +61,7 @@ const ViewSynastryChart = () => {
             synastryChartData.partnerInfo?.nation_of_birth
           }
           zodiac={synastryChartData.partnerInfo?.sun_sign_name}
+          image={synastryChartData.partnerInfo?.date_of_birth}
         />
       </Stack>
       <Box
