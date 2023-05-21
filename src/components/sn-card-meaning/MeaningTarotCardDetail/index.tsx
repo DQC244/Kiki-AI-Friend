@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { Box, Stack } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "@mui/styles";
@@ -9,14 +9,21 @@ import TarotCardFan from "./TarotCardFan";
 import { useSelector } from "react-redux";
 import { AppSelector } from "redux-store";
 import StringFormat from "string-format";
-import { ApiConstant } from "const";
+import { ApiConstant, LangConstant } from "const";
 import { ThemeProps } from "models/types";
 
 const MeaningTarotCardDetail = () => {
   const classes = useStyles();
-  const { t: getLabel } = useTranslation();
+  const { t: getLabel, i18n } = useTranslation();
 
-  const cardDetail = useSelector(AppSelector.getCardDetail);
+  const { en: cardDetailEn, vi: cardDetailVi } = useSelector(AppSelector.getCardDetail);
+
+  const cardDetail = useMemo(() => {
+    if (i18n.language === LangConstant.DEFAULT_LANG_CODE) {
+      return cardDetailEn;
+    }
+    return cardDetailVi;
+  }, [i18n.language, cardDetailEn, cardDetailVi]);
 
   return (
     <Stack alignItems="center" width="100%">

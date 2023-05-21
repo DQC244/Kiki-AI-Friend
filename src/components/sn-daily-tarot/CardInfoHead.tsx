@@ -1,11 +1,11 @@
 import { Stack, Typography } from "@mui/material";
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import TarotCard from "./TarotCardList/TarotCard";
 import { AppGradientButton } from "components/common";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "@mui/styles";
 import { StackProps } from "@mui/system";
-import { ApiConstant, PathConstant } from "const";
+import { ApiConstant, LangConstant, PathConstant } from "const";
 import { useSelector } from "react-redux";
 import { AppSelector } from "redux-store";
 import StringFormat from "string-format";
@@ -13,9 +13,16 @@ import { ThemeProps } from "models/types";
 
 const CardInfoHead = (props: StackProps) => {
   const classes = useStyles();
-  const { t: getLabel } = useTranslation();
+  const { t: getLabel, i18n } = useTranslation();
 
-  const cardDetail = useSelector(AppSelector.getCardDetail);
+  const { en: cardDetailEn, vi: cardDetailVi } = useSelector(AppSelector.getCardDetail);
+
+  const cardDetail = useMemo(() => {
+    if (i18n.language === LangConstant.DEFAULT_LANG_CODE) {
+      return cardDetailEn;
+    }
+    return cardDetailVi;
+  }, [i18n.language, cardDetailEn, cardDetailVi]);
 
   return (
     <Stack

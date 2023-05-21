@@ -37,7 +37,10 @@ export const { Types, Creators } = createActions({
 export interface IAppRedux extends IReduxStateCommon {
   // tarot
   cardListSuit: Array<any>;
-  cardDetail: any;
+  cardDetail: {
+    en: any;
+    vi: any;
+  };
 
   // birth Chart
   birthChart: {
@@ -59,7 +62,10 @@ export const INITIAL_STATE: IAppRedux = {
   ...REDUX_STATE,
 
   cardListSuit: [],
-  cardDetail: {},
+  cardDetail: {
+    en: {},
+    vi: {},
+  },
 
   birthChart: {
     en: {},

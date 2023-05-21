@@ -24,13 +24,24 @@ export function* getCardListSaga(action: { type: string; data: AppConstant.SUIT_
 export function* getCardDetailSaga(action: { type: string; data: number }) {
   try {
     const id = action.data;
-    const response: ApiResponse<any> = yield call(AppService.getCardDetailService, id);
-    const responseData = response.data;
+    const [responseEn, responseVi]: Array<ApiResponse<any>> = yield all([
+      call(AppService.getCardDetailService, id),
+      call(AppService.getCardDetailService, Number(id) + 78),
+    ]);
+    const responseEnData = responseEn.data;
+    const responseViData = responseVi.data;
 
-    if (response.status === ApiConstant.STT_OK) {
-      yield put(AppActions.appSuccess({ cardDetail: responseData.data }));
+    if (responseEn.status === ApiConstant.STT_OK && responseVi.status === ApiConstant.STT_OK) {
+      yield put(
+        AppActions.appSuccess({
+          cardDetail: {
+            en: responseEnData.data,
+            vi: responseViData.data,
+          },
+        }),
+      );
     } else {
-      yield put(AppActions.appFailure(responseData));
+      yield put(AppActions.appFailure(responseEnData));
     }
   } catch (error) {
     EnvConstant.IS_DEV && console.log(error);

@@ -117,7 +117,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
       padding: "29px 260px",
     },
 
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("md")]: {
       padding: 16,
       maxHeight: "100%",
     },

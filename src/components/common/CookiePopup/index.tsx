@@ -5,14 +5,14 @@ import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import { ThemeProps } from "models/types";
 import { AppConstant } from "const";
-import { useMobile } from "hooks";
+import { useResponsive } from "hooks";
 import AppGradientButton from "../AppGradientButton";
 import Setting from "./Setting";
 
 const CookiePopup = ({ onClose, isUSA, isOpen }: CookiePopupProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
-  const isMobile = useMobile();
+  const isMobile = useResponsive("down", "md");
 
   const [isSetting, setIsSetting] = useState(false);
   const [options, setOptions] = useState<OptionProps>(OPTIONS);
@@ -165,7 +165,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     [theme.breakpoints.down("lg")]: {
       padding: "34px 260px",
     },
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("md")]: {
       padding: 16,
       borderRadius: 30,
     },
