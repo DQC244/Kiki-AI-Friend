@@ -1,12 +1,13 @@
 import { JSXElementConstructor, ReactElement } from "react";
 import { useLottie, useLottieInteractivity } from "lottie-react";
-import { StarsAnimation } from "assets/animations";
-
-const options = {
-  animationData: StarsAnimation,
-};
+import { StarsAnimation, StarsRightToLeftMobileAnimation } from "assets/animations";
+import { useMobile } from "hooks";
 
 const AnimationRightToLeft = () => {
+  const isMobile = useMobile();
+  const options = {
+    animationData: !isMobile ? StarsAnimation : StarsRightToLeftMobileAnimation,
+  };
   const lottieObj = useLottie(options);
   const Animation: ReactElement<any, string | JSXElementConstructor<any>> = useLottieInteractivity({
     lottieObj,

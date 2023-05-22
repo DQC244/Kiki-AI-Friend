@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     },
     [theme.breakpoints.down("sm")]: {
       width: 400,
-      bottom: 0,
+      bottom: -60,
       left: "50%",
       transform: "translateX(-50%) scaleX(-1)",
     },
@@ -130,7 +130,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     },
     [theme.breakpoints.down("sm")]: {
       width: 400,
-      bottom: 0,
+      bottom: -60,
       left: "50%",
       transform: "translateX(-50%) scaleX(-1)",
     },
