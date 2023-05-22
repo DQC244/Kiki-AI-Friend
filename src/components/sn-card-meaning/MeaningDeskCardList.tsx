@@ -32,17 +32,14 @@ const MeaningDeskCardList = () => {
         }
       } else {
         if (i18n.language === LangConstant.DEFAULT_LANG_CODE) {
-          return [cardList.vi.slice(0, 2), cardList.vi.slice(2)];
+          return [cardList.en.slice(0, 2), cardList.en.slice(2)];
         } else {
           return [cardList.vi.slice(0, 2), cardList.vi.slice(2)];
         }
       }
     }
-
     return [[], []];
   }, [cardList.en, isTablet, i18n.language]);
-
-  console.log(firstCardList, cardList);
 
   const title = useMemo(() => {
     const contentObj: ObjectMultiLanguageProps = getLabel("objCardName", { returnObjects: true });

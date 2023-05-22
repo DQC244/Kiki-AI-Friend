@@ -14,8 +14,6 @@ export function* getCardListSaga(action: { type: string; data: AppConstant.SUIT_
     const responseEnData = responseEn.data;
     const responseViData = responseVi.data;
 
-    console.log({ responseEnData, responseViData });
-
     if (responseEnData.success && responseViData.success) {
       yield put(
         AppActions.appSuccess({
