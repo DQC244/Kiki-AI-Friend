@@ -21,7 +21,7 @@ const TarotCardList = ({ className, ...otherProps }: BoxProps) => {
   const isTablet = useResponsive("between", "sm", "lg");
   const isMobile = useMobile();
 
-  const cardList = useSelector(AppSelector.getSuitList);
+  const cardList = useSelector(AppSelector.getRandomList);
 
   const [itemSelected, setItemSelected] = useState<any>({});
   const [isShowTarot, setIsShowTarot] = useState(false);

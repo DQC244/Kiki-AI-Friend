@@ -36,11 +36,16 @@ export const { Types, Creators } = createActions({
 /* ------------- Initial State ------------- */
 export interface IAppRedux extends IReduxStateCommon {
   // tarot
-  cardListSuit: Array<any>;
+  cardListSuit: {
+    en: Array<any>;
+    vi: Array<any>;
+  };
   cardDetail: {
     en: any;
     vi: any;
   };
+
+  cardListRandom: Array<any>;
 
   // birth Chart
   birthChart: {
@@ -61,7 +66,12 @@ export interface IAppRedux extends IReduxStateCommon {
 export const INITIAL_STATE: IAppRedux = {
   ...REDUX_STATE,
 
-  cardListSuit: [],
+  cardListRandom: [],
+
+  cardListSuit: {
+    en: [],
+    vi: [],
+  },
   cardDetail: {
     en: {},
     vi: {},
@@ -87,6 +97,7 @@ export const INITIAL_STATE: IAppRedux = {
 export const Selector = {
   // Get suit info
   getSuitList: (state: IAppReduxState) => state.appRedux.cardListSuit,
+  getRandomList: (state: IAppReduxState) => state.appRedux.cardListRandom,
   getCardDetail: (state: IAppReduxState) => state.appRedux.cardDetail,
 
   // get birth

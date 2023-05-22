@@ -19,7 +19,7 @@ const TarotCardFan = () => {
   const [order, setOrder] = useState(1);
   const [idCard, setIdCard] = useState<Array<number>>([]);
 
-  const cardList = useSelector(AppSelector.getSuitList);
+  const cardList = useSelector(AppSelector.getRandomList);
 
   useEffect(() => {
     const idCardClone = [...idCard];

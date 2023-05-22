@@ -7,13 +7,23 @@ import { AppActions } from "redux-store";
 export function* getCardListSaga(action: { type: string; data: AppConstant.SUIT_TYPE }) {
   try {
     const id = action.data;
-    const response: ApiResponse<any> = yield call(AppService.getSuitWithTypeService, id);
-    const responseData = response.data;
+    const [responseEn, responseVi]: Array<ApiResponse<any>> = yield all([
+      call(AppService.getSuitWithTypeService, id, "en"),
+      call(AppService.getSuitWithTypeService, id, "vi"),
+    ]);
+    const responseEnData = responseEn.data;
+    const responseViData = responseVi.data;
 
-    if (response.status === ApiConstant.STT_OK) {
-      yield put(AppActions.appSuccess({ cardListSuit: responseData.data }));
+    console.log({ responseEnData, responseViData });
+
+    if (responseEnData.success && responseViData.success) {
+      yield put(
+        AppActions.appSuccess({
+          cardListSuit: { en: responseEnData.data, vi: responseViData.data },
+        }),
+      );
     } else {
-      yield put(AppActions.appFailure(responseData));
+      yield put(AppActions.appFailure(responseEnData));
     }
   } catch (error) {
     EnvConstant.IS_DEV && console.log(error);
@@ -56,7 +66,7 @@ export function* getCardRandomSaga(action: { type: string; data: number }) {
     const responseData = response.data;
 
     if (response.status === ApiConstant.STT_OK) {
-      yield put(AppActions.appSuccess({ cardListSuit: responseData.data }));
+      yield put(AppActions.appSuccess({ cardListRandom: responseData.data }));
     } else {
       yield put(AppActions.appFailure(responseData));
     }

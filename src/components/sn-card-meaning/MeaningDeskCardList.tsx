@@ -4,7 +4,7 @@ import { Box, Stack } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import MeaningDeskCardListTitle from "./MeaningDeskCardListTitle";
 import { useNavigate, useParams } from "react-router-dom";
-import { ApiConstant, PathConstant } from "const";
+import { ApiConstant, LangConstant, PathConstant } from "const";
 import { useTranslation } from "react-i18next";
 import { ObjectMultiLanguageProps } from "models";
 import { useSelector } from "react-redux";
@@ -17,21 +17,32 @@ const MeaningDeskCardList = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const params = useParams();
-  const { t: getLabel } = useTranslation();
+  const { t: getLabel, i18n } = useTranslation();
   const isTablet = useResponsive("between", "md", "lg");
 
   const cardList = useSelector(AppSelector.getSuitList);
 
   const [firstCardList, secondCardList] = useMemo(() => {
-    if (cardList.length) {
+    if (cardList.en.length) {
       if (isTablet) {
-        return [cardList.slice(0, 1), cardList.slice(1)];
+        if (i18n.language === LangConstant.DEFAULT_LANG_CODE) {
+          return [cardList.en.slice(0, 1), cardList.en.slice(1)];
+        } else {
+          return [cardList.vi.slice(0, 1), cardList.vi.slice(1)];
+        }
+      } else {
+        if (i18n.language === LangConstant.DEFAULT_LANG_CODE) {
+          return [cardList.vi.slice(0, 2), cardList.vi.slice(2)];
+        } else {
+          return [cardList.vi.slice(0, 2), cardList.vi.slice(2)];
+        }
       }
-      return [cardList.slice(0, 2), cardList.slice(2)];
     }
 
     return [[], []];
-  }, [cardList, isTablet]);
+  }, [cardList.en, isTablet, i18n.language]);
+
+  console.log(firstCardList, cardList);
 
   const title = useMemo(() => {
     const contentObj: ObjectMultiLanguageProps = getLabel("objCardName", { returnObjects: true });
@@ -49,7 +60,7 @@ const MeaningDeskCardList = () => {
   return (
     <Stack alignItems="center">
       <MeaningDeskCardListTitle title={title} />
-      {cardList.length > 2 && (
+      {cardList.en.length > 2 && (
         <>
           <Stack
             mt={{ xs: 2, sm: 11.5 }}

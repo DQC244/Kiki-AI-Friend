@@ -7,8 +7,8 @@ export const getCityList = (cityName: string) => {
   return createNinjasApi(key as string).get(ApiConstant.GET_CITY, { name: cityName, limit: 10 });
 };
 
-export const getSuitWithTypeService = (suit?: AppConstant.SUIT_TYPE) => {
-  return Api.get(ApiConstant.TAROT_CARD_FILTER, { suit });
+export const getSuitWithTypeService = (suit?: AppConstant.SUIT_TYPE, language?: string) => {
+  return Api.get(ApiConstant.TAROT_CARD_FILTER, { suit, language });
 };
 
 export const getCardDetailService = (id: number) => {
