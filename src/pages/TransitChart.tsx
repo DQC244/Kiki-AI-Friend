@@ -45,10 +45,10 @@ const TransitChart = () => {
 
       const currentPlaceArr = data?.currentCity?.split(", ");
 
-      const dateTimeString = `${data.newDate} ${data.newTime} ${data.timeFormat.charAt(0)}`;
+      const dateTimeString = `${data.newDate} ${data.newTime} ${data.timeFormat}`;
       const parsedDate = dayjs.tz(
         dateTimeString,
-        "DD/MM/YYYY h:mm A",
+        "DD/MM/YYYY hh:mm A",
         Intl.DateTimeFormat().resolvedOptions().timeZone,
       );
 

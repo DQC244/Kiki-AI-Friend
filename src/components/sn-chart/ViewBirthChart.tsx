@@ -45,7 +45,7 @@ const ViewBirthChart = () => {
                     className={classes.infoUSer}
                   >{`${data?.city_of_birth}, ${data?.nation_of_birth}`}</Typography>
                   <Typography className={classes.infoUSer}>
-                    {dayjs(data?.date_of_birth).format("DD/MM/YYYY, HH:mm a")}
+                    {dayjs(data?.date_of_birth).format("DD/MM/YYYY, hh:mm a")}
                   </Typography>
                 </Box>
                 <Stack alignItems="center">

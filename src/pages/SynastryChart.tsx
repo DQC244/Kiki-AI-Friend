@@ -38,17 +38,17 @@ const SynastryChart = () => {
     const placeArr = data?.myCity?.split(", ");
     const placeArrB = data?.city?.split(", ");
 
-    const dateTimeString = `${data.myDate} ${data.myTime} ${data.myTimeFormat.charAt(0)}`;
+    const dateTimeString = `${data.myDate} ${data.myTime} ${data.myTimeFormat}`;
     const parsedDate = dayjs.tz(
       dateTimeString,
-      "DD/MM/YYYY h:mm A",
+      "DD/MM/YYYY hh:mm A",
       Intl.DateTimeFormat().resolvedOptions().timeZone,
     );
 
-    const dateTimeStringB = `${data.date} ${data.time} ${data.timeFormat.charAt(0)}`;
+    const dateTimeStringB = `${data.date} ${data.time} ${data.timeFormat}`;
     const parsedDateB = dayjs.tz(
       dateTimeStringB,
-      "DD/MM/YYYY h:mm A",
+      "DD/MM/YYYY hh:mm A",
       Intl.DateTimeFormat().resolvedOptions().timeZone,
     );
 
