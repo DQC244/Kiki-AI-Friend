@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppActions, AppSelector } from "redux-store";
 import { LangConstant } from "const";
 import { ThemeProps } from "models/types";
+import { isIOS, isMobile } from "react-device-detect";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -66,6 +67,7 @@ const BirthChart = () => {
         city_of_birth: placeArr[0],
         nation_of_birth: placeArr[1],
         date_of_birth: parsedDate.toJSON(),
+        apple_device: isMobile && isIOS,
       };
       dispatch(AppActions.getBirthChartImage(dataImage));
 

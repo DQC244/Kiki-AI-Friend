@@ -14,6 +14,7 @@ import clsx from "clsx";
 import { ThemeProps } from "models/types";
 import { useDispatch } from "react-redux";
 import { AppActions } from "redux-store";
+import { isMobile, isIOS } from "react-device-detect";
 
 const GenerateBirthChart = (props: StackProps) => {
   const classes = useStyles();
@@ -102,6 +103,7 @@ const GenerateBirthChart = (props: StackProps) => {
           city_of_birth: placeArr[0],
           nation_of_birth: placeArr[1],
           date_of_birth: parsedDate.toJSON(),
+          apple_device: isMobile && isIOS,
         };
         dispatch(AppActions.getBirthChartImage(dataImage));
         setTimeout(() => {
