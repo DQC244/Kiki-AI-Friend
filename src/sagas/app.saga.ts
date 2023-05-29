@@ -1,8 +1,10 @@
+/* eslint-disable camelcase */
 import { ApiResponse } from "apisauce";
 import { put, call, all } from "redux-saga/effects";
 import { AppService } from "services";
 import { ApiConstant, AppConstant, EnvConstant } from "const";
 import { AppActions } from "redux-store";
+import { isMobile, isIOS } from "react-device-detect";
 
 export function* getCardListSaga(action: { type: string; data: AppConstant.SUIT_TYPE }) {
   try {
@@ -101,7 +103,7 @@ export function* getBirthChartSaga(action: { type: string; data: any }) {
 
 export function* getBirthChartImageSaga(action: { type: string; data: any }) {
   try {
-    const data = action.data;
+    const data = { ...action.data, apple_device: isMobile && isIOS };
     const response: ApiResponse<any> = yield call(AppService.getBirthChartImage, data);
 
     if (response.status === ApiConstant.STT_OK) {
@@ -120,7 +122,8 @@ export function* getBirthChartImageSaga(action: { type: string; data: any }) {
 }
 export function* getTransitChartImageSaga(action: { type: string; data: any }) {
   try {
-    const data = action.data;
+    const data = { ...action.data, apple_device: isMobile && isIOS };
+
     const response: ApiResponse<any> = yield call(AppService.getTransitChartImage, data);
 
     if (response.status === ApiConstant.STT_OK) {
@@ -139,7 +142,8 @@ export function* getTransitChartImageSaga(action: { type: string; data: any }) {
 }
 export function* getSynastryChartImageSaga(action: { type: string; data: any }) {
   try {
-    const data = action.data;
+    const data = { ...action.data, apple_device: isMobile && isIOS };
+
     const response: ApiResponse<any> = yield call(AppService.getSynastryChartImage, data);
 
     if (response.status === ApiConstant.STT_OK) {

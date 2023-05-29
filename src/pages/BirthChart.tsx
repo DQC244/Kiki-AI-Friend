@@ -22,9 +22,8 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { useDispatch, useSelector } from "react-redux";
 import { AppActions, AppSelector } from "redux-store";
-import { LangConstant } from "const";
+import { AppConstant, LangConstant } from "const";
 import { ThemeProps } from "models/types";
-import { isIOS, isMobile } from "react-device-detect";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -45,11 +44,9 @@ const BirthChart = () => {
       const placeArr = data?.city?.split(", ");
 
       const dateTimeString = `${data.newDate} ${data.newTime} ${data.timeFormat}`;
-      const parsedDate = dayjs.tz(
-        dateTimeString,
-        "DD/MM/YYYY hh:mm A",
-        Intl.DateTimeFormat().resolvedOptions().timeZone,
-      );
+      const parsedDate = dayjs
+        .tz(dateTimeString, "DD/MM/YYYY hh:mm A", Intl.DateTimeFormat().resolvedOptions().timeZone)
+        .format(AppConstant.DATE_FORMAT_PAYLOAD);
 
       const newData = {
         full_name: data.name,
@@ -57,7 +54,7 @@ const BirthChart = () => {
           i18n.language === LangConstant.DEFAULT_LANG_CODE ? LangConstant.DEFAULT_LANG_CODE : "vi",
         city_of_birth: placeArr[0],
         nation_of_birth: placeArr[1],
-        date_of_birth: parsedDate.toJSON(),
+        date_of_birth: parsedDate,
       };
 
       dispatch(AppActions.getBirthChart(newData));
@@ -66,8 +63,7 @@ const BirthChart = () => {
         full_name: data.name,
         city_of_birth: placeArr[0],
         nation_of_birth: placeArr[1],
-        date_of_birth: parsedDate.toJSON(),
-        apple_device: isMobile && isIOS,
+        date_of_birth: parsedDate,
       };
       dispatch(AppActions.getBirthChartImage(dataImage));
 

@@ -14,7 +14,6 @@ import clsx from "clsx";
 import { ThemeProps } from "models/types";
 import { useDispatch } from "react-redux";
 import { AppActions } from "redux-store";
-import { isMobile, isIOS } from "react-device-detect";
 
 const GenerateBirthChart = (props: StackProps) => {
   const classes = useStyles();
@@ -79,11 +78,9 @@ const GenerateBirthChart = (props: StackProps) => {
         const dateTimeString = `${dayjs(date).format("DD/MM/YYYY")} ${dayjs(time).format(
           AppConstant.FULL_TIME_FORMAT,
         )}`;
-        const parsedDate = dayjs.tz(
-          dateTimeString,
-          "DD/MM/YYYY HH:mm",
-          Intl.DateTimeFormat().resolvedOptions().timeZone,
-        );
+        const parsedDate = dayjs
+          .tz(dateTimeString, "DD/MM/YYYY HH:mm", Intl.DateTimeFormat().resolvedOptions().timeZone)
+          .format(AppConstant.DATE_FORMAT_PAYLOAD);
 
         const newData = {
           full_name: name,
@@ -93,7 +90,7 @@ const GenerateBirthChart = (props: StackProps) => {
               : "vi",
           city_of_birth: placeArr[0],
           nation_of_birth: placeArr[1],
-          date_of_birth: parsedDate.toJSON(),
+          date_of_birth: parsedDate,
         };
 
         dispatch(AppActions.getBirthChart(newData));
@@ -102,8 +99,7 @@ const GenerateBirthChart = (props: StackProps) => {
           full_name: name,
           city_of_birth: placeArr[0],
           nation_of_birth: placeArr[1],
-          date_of_birth: parsedDate.toJSON(),
-          apple_device: isMobile && isIOS,
+          date_of_birth: parsedDate,
         };
         dispatch(AppActions.getBirthChartImage(dataImage));
         setTimeout(() => {

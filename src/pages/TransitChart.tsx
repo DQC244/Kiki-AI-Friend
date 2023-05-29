@@ -22,7 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { AppActions, AppSelector } from "redux-store";
 import { useTranslation } from "react-i18next";
-import { LangConstant } from "const";
+import { AppConstant, LangConstant } from "const";
 import { ThemeProps } from "models/types";
 
 const TransitChart = () => {
@@ -46,11 +46,9 @@ const TransitChart = () => {
       const currentPlaceArr = data?.currentCity?.split(", ");
 
       const dateTimeString = `${data.newDate} ${data.newTime} ${data.timeFormat}`;
-      const parsedDate = dayjs.tz(
-        dateTimeString,
-        "DD/MM/YYYY hh:mm A",
-        Intl.DateTimeFormat().resolvedOptions().timeZone,
-      );
+      const parsedDate = dayjs
+        .tz(dateTimeString, "DD/MM/YYYY hh:mm A", Intl.DateTimeFormat().resolvedOptions().timeZone)
+        .format(AppConstant.DATE_FORMAT_PAYLOAD);
 
       const newData = {
         full_name: data.name,
@@ -58,7 +56,7 @@ const TransitChart = () => {
           i18n.language === LangConstant.DEFAULT_LANG_CODE ? LangConstant.DEFAULT_LANG_CODE : "vi",
         city_of_birth: placeArr[0],
         nation_of_birth: placeArr[1],
-        date_of_birth: parsedDate.toJSON(),
+        date_of_birth: parsedDate,
       };
 
       dispatch(AppActions.getBirthChart(newData));
@@ -67,8 +65,8 @@ const TransitChart = () => {
         full_name: data.name,
         city_of_birth: placeArr[0],
         nation_of_birth: placeArr[1],
-        date_of_birth: parsedDate.toJSON(),
-        current_date: dayjs.tz(Date.now()).toJSON(),
+        date_of_birth: parsedDate,
+        current_date: dayjs.tz(Date.now()).format(AppConstant.DATE_FORMAT_PAYLOAD),
         current_city: currentPlaceArr[0],
         current_nation: currentPlaceArr[1],
       };
