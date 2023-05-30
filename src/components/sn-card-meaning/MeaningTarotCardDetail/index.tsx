@@ -38,8 +38,14 @@ const MeaningTarotCardDetail = () => {
       )}
       <Stack spacing={2} mt={{ xs: 2, sm: 4 }} mb={{ xs: 2, sm: 5 }} width="100%">
         <KeyMeaning data={cardDetail} />
-        <OverView title={getLabel("lTheFoolOverview")} description={cardDetail?.overview} />
-        <OverView title={getLabel("lMessageFromTheFool")} description={cardDetail?.meaning} />
+        <OverView
+          title={`${cardDetail?.card_name} ${getLabel("lTheFoolOverview")}`}
+          description={cardDetail?.overview}
+        />
+        <OverView
+          title={`${getLabel("lMessageFromTheFool")} ${cardDetail?.card_name}:`}
+          description={cardDetail?.meaning}
+        />
       </Stack>
       <TarotCardFan />
     </Stack>

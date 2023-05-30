@@ -127,8 +127,8 @@ export default {
   lAquarius: "Aquarius",
   lUranus: "Uranus",
   lAir: "Air",
-  lTheFoolOverview: "The Fool Overview:",
-  lMessageFromTheFool: "Message from The Fool:",
+  lTheFoolOverview: "Overview:",
+  lMessageFromTheFool: "Message from",
   lPickTodayTarotCard: "Pick Today's Tarot Card",
   lOrderNow: "Order Now",
 
