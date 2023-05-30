@@ -1,21 +1,14 @@
-import React, { memo, useMemo } from "react";
-import { Box, BoxProps, Link, Typography } from "@mui/material";
+import React, { memo } from "react";
+import { Box, BoxProps, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { ImageAssets } from "assets";
 import { useTranslation } from "react-i18next";
-import { isIOS } from "react-device-detect";
-import { LinkConstant } from "const";
 import { ThemeProps } from "models/types";
 import clsx from "clsx";
 
 const WhaleChat = (props: BoxProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
-
-  const link = useMemo(
-    () => (isIOS ? LinkConstant.APP_STORE : LinkConstant.APP_GOOGLE_PLAY),
-    [isIOS],
-  );
 
   return (
     <Box className={classes.imageWrapper} {...props}>
@@ -26,15 +19,7 @@ const WhaleChat = (props: BoxProps) => {
         draggable="false"
       />
       <Box className={clsx("center-root", classes.textHeyImHere)}>
-        <Typography
-          className={classes.link}
-          component={Link}
-          href={link}
-          target="_blank"
-          underline="hover"
-        >
-          {getLabel("lLetSeeYourHarmony")}
-        </Typography>
+        <Typography className={classes.link}>{getLabel("lLetSeeYourHarmony")}</Typography>
       </Box>
     </Box>
   );
