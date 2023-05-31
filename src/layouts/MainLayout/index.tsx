@@ -12,10 +12,15 @@ import MLHeader, {
 } from "./components/MLHeader";
 import { makeStyles } from "@mui/styles";
 import Footer, { FOOTER_HEIGHT_IN_PX } from "./components/Footer";
-import { AppConstant, PathConstant } from "const";
+import { AppConstant, LangConstant, PathConstant } from "const";
+import Cookies from "js-cookie";
+import { useTranslation } from "react-i18next";
 
 const MainLayout = ({ className, ...otherProps }: MainLayoutProps): JSX.Element => {
   const classesDefault = useStyles();
+  const { i18n } = useTranslation();
+
+  const currentLang = Cookies.get(LangConstant.KEY_LANG);
 
   const location = useLocation();
 
@@ -54,6 +59,12 @@ const MainLayout = ({ className, ...otherProps }: MainLayoutProps): JSX.Element 
   useEffect(() => {
     handleToggleScroll();
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (currentLang) {
+      i18n.changeLanguage(currentLang);
+    }
+  }, [currentLang]);
 
   return (
     <>

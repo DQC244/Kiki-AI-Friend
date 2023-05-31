@@ -11,7 +11,7 @@ i18next.use(initReactI18next).init(
       en: enLang,
       vn: vnLang,
     },
-    // lng: LangConstant.DEFAULT_LANG_CODE,
+    lng: LangConstant.DEFAULT_LANG_CODE,
     fallbackLng: LangConstant.DEFAULT_LANG_CODE,
     defaultNS: LangConstant.NS_COMMON,
     fallbackNS: LangConstant.NS_COMMON,
