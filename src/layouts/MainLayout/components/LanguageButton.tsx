@@ -3,7 +3,6 @@ import { makeStyles } from "@mui/styles";
 import { Box, BoxProps, Typography, TypographyProps } from "@mui/material";
 import { ThemeProps } from "models/types";
 import { LangConstant } from "const";
-import i18next from "i18next";
 import Cookies from "js-cookie";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
@@ -21,8 +20,9 @@ const LanguageButton = ({
     ...otherToggleButtonProps
   } = toggleButtonProps;
   const { className: textClassName, ...otherTextProps } = textProps;
+  const currentLang = Cookies.get(LangConstant.KEY_LANG);
 
-  const { t: getLabel } = useTranslation();
+  const { t: getLabel, i18n } = useTranslation();
 
   const [isEn, setIsEn] = useState(true);
 
@@ -32,18 +32,16 @@ const LanguageButton = ({
       : LangConstant.ARR_LANGUAGE[0]?.code;
 
     Cookies.set(LangConstant.KEY_LANG, currentLang);
-    i18next.changeLanguage(currentLang);
+    i18n.changeLanguage(currentLang);
 
     setIsEn(!isEn);
   };
 
   useEffect(() => {
-    const currentLang = Cookies.get(LangConstant.KEY_LANG);
     if (currentLang) {
-      i18next.changeLanguage(currentLang);
       currentLang !== LangConstant.DEFAULT_LANG_CODE && setIsEn(false);
     }
-  }, []);
+  }, [currentLang]);
 
   return (
     <Box className={clsx(classes.root, className)} onClick={handleChangeLAnguage} {...otherProps}>

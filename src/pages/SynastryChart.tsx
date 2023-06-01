@@ -21,7 +21,7 @@ import dayjs from "dayjs";
 import { AppActions, AppSelector } from "redux-store";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { LangConstant } from "const";
+import { AppConstant, LangConstant } from "const";
 import { ThemeProps } from "models/types";
 
 const SynastryChart = () => {
@@ -39,18 +39,14 @@ const SynastryChart = () => {
     const placeArrB = data?.city?.split(", ");
 
     const dateTimeString = `${data.myDate} ${data.myTime} ${data.myTimeFormat}`;
-    const parsedDate = dayjs.tz(
-      dateTimeString,
-      "DD/MM/YYYY hh:mm A",
-      Intl.DateTimeFormat().resolvedOptions().timeZone,
-    );
+    const parsedDate = dayjs
+      .tz(dateTimeString, "DD/MM/YYYY hh:mm A", Intl.DateTimeFormat().resolvedOptions().timeZone)
+      .format(AppConstant.DATE_FORMAT_PAYLOAD);
 
     const dateTimeStringB = `${data.date} ${data.time} ${data.timeFormat}`;
-    const parsedDateB = dayjs.tz(
-      dateTimeStringB,
-      "DD/MM/YYYY hh:mm A",
-      Intl.DateTimeFormat().resolvedOptions().timeZone,
-    );
+    const parsedDateB = dayjs
+      .tz(dateTimeStringB, "DD/MM/YYYY hh:mm A", Intl.DateTimeFormat().resolvedOptions().timeZone)
+      .format(AppConstant.DATE_FORMAT_PAYLOAD);
 
     const language =
       i18n.language === LangConstant.DEFAULT_LANG_CODE ? LangConstant.DEFAULT_LANG_CODE : "vi";
@@ -60,7 +56,7 @@ const SynastryChart = () => {
       language,
       city_of_birth: placeArr[0],
       nation_of_birth: placeArr[1],
-      date_of_birth: parsedDate.toJSON(),
+      date_of_birth: parsedDate,
     };
 
     const partnerInfo = {
@@ -68,7 +64,7 @@ const SynastryChart = () => {
       language,
       city_of_birth: placeArrB[0],
       nation_of_birth: placeArrB[1],
-      date_of_birth: parsedDateB.toJSON(),
+      date_of_birth: parsedDateB,
     };
 
     dispatch(AppActions.getSynastryChart({ myInfo, partnerInfo }));
@@ -76,10 +72,10 @@ const SynastryChart = () => {
     const imageData = {
       partner_a_city_of_birth: placeArr[0],
       partner_a_nation_of_birth: placeArr[1],
-      partner_a_date_of_birth: parsedDate.toJSON(),
+      partner_a_date_of_birth: parsedDate,
       partner_b_city_of_birth: placeArrB[0],
       partner_b_nation_of_birth: placeArrB[1],
-      partner_b_date_of_birth: parsedDateB.toJSON(),
+      partner_b_date_of_birth: parsedDateB,
     };
 
     dispatch(AppActions.getSynastryChartImage(imageData));

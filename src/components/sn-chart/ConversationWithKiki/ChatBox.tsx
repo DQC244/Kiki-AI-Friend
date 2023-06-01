@@ -45,28 +45,34 @@ const ChatBox = ({
   }, []);
 
   return (
-    <Stack spacing={1.75} direction={imageSrc ? "row-reverse" : "row"} {...otherProps}>
-      <Box
-        component="img"
-        src={imageSrc || ImageAssets.LogoImage}
-        className={classes.img}
-        draggable="false"
-      />
-      {!imageSrc && isLoading ? (
-        <LoadingAnimation />
-      ) : (
-        <>
-          {(contentCustom || contentCustomLanguage) ?? (
-            <Box className={clsx(classes.textBox, imageSrc && classes.borderLight)}>
-              {startIcon}
-              {messageCustom || (
-                <Typography className={classes.message}>{message || messageLanguage}</Typography>
+    <>
+      {(messageCustom || message || messageLanguage || contentCustomLanguage || contentCustom) && (
+        <Stack spacing={1.75} direction={imageSrc ? "row-reverse" : "row"} {...otherProps}>
+          <Box
+            component="img"
+            src={imageSrc || ImageAssets.LogoImage}
+            className={classes.img}
+            draggable="false"
+          />
+          {!imageSrc && isLoading ? (
+            <LoadingAnimation />
+          ) : (
+            <>
+              {(contentCustom || contentCustomLanguage) ?? (
+                <Box className={clsx(classes.textBox, imageSrc && classes.borderLight)}>
+                  {startIcon}
+                  {messageCustom || (
+                    <Typography className={classes.message}>
+                      {message || messageLanguage}
+                    </Typography>
+                  )}
+                </Box>
               )}
-            </Box>
+            </>
           )}
-        </>
+        </Stack>
       )}
-    </Stack>
+    </>
   );
 };
 

@@ -12,14 +12,16 @@ const useHandleGetAnswerSelf = () => {
       if (responseEn.status === ApiConstant.STT_OK && responseVi.status === ApiConstant.STT_OK) {
         const responseDataEn: any = responseEn.data;
         const responseDataVi: any = responseVi.data;
-        const newMessage = responseDataEn.data?.map((item: any, index: number) => {
-          return {
-            labelEn: item?.answer_content,
-            isDelay: true,
-            orderId: index,
-            labelVi: responseDataVi.data[index]?.answer_content,
-          };
-        });
+        const newMessage = responseDataEn.data
+          ?.filter((message: any) => message?.answer_content != null)
+          ?.map((item: any, index: number) => {
+            return {
+              labelEn: item?.answer_content,
+              isDelay: true,
+              orderId: index,
+              labelVi: responseDataVi.data[index]?.answer_content,
+            };
+          });
 
         return newMessage;
       }

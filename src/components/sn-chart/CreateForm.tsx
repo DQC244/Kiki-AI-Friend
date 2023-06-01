@@ -291,13 +291,15 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     width: 15,
     height: 15,
     cursor: "pointer",
+    position: "relative",
+
     "&:after": {
       width: 15,
       height: 15,
-      borderRadius: 15,
+      borderRadius: "50%",
       top: 0,
       left: 0,
-      position: "relative",
+      position: "absolute",
       backgroundColor: "white",
       content: '""',
       display: "inline-block",
@@ -307,7 +309,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     "&:checked:after": {
       width: 15,
       height: 15,
-      borderRadius: 15,
+      borderRadius: "50%",
       top: 0,
       left: 0,
       position: "relative",
