@@ -41,7 +41,7 @@ const SliderDemo = () => {
   }, [i18n.language]);
 
   return (
-    <div className="container">
+    <div className="container" style={{ position: "relative", zIndex: 2 }}>
       <input
         type="radio"
         name="slider"
