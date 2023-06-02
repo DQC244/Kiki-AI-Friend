@@ -50,7 +50,8 @@ export default {
 
   // Chart
   lCreateYourOwnBirth: "Tạo Bản đồ sao miễn phí của riêng bạn!",
-  lTellUsALittle: "Hãy cho chúng tôi biết đôi điều về bạn nhé!",
+  lTellUsALittle: "Hãy cho chúng tôi biết đôi điều về bạn",
+  lAndAboutYourPersonOfInterest: "Và người ấy nhé!",
   lMyNameIs: "Tên tôi là:",
   lIWasBornOn: "Tôi sinh ra vào:",
   lAt: "lúc",
