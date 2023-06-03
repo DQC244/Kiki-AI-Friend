@@ -8,9 +8,13 @@ import { AppTrans } from "components/common";
 import RedirectLinkButton from "./RedirectLinkButton";
 import { ThemeProps } from "models/types";
 import { isDesktop } from "react-device-detect";
+import AnimationRightToLeft from "./AnimationRightToLeft";
+import { useMobile } from "hooks";
 
 const SeeHarmonySection = () => {
   const classes = useStyles();
+  const isMobile = useMobile();
+
   const { t: getLabel, i18n } = useTranslation();
 
   const [imgSrc, imgSrcHover] = useMemo(() => {
@@ -49,7 +53,16 @@ const SeeHarmonySection = () => {
   }, [imgSrc]);
 
   return (
-    <Stack direction={{ xs: "column", sm: "row" }} spacing={{ xs: 4, sm: 27.5 }}>
+    <Stack
+      direction={{ xs: "column", sm: "row" }}
+      position="relative"
+      spacing={{ xs: 4, sm: 27.5 }}
+    >
+      {isMobile && (
+        <Box className={classes.animation}>
+          <AnimationRightToLeft />
+        </Box>
+      )}
       <Stack spacing={{ xs: 1, sm: 4.5 }}>
         <Typography className={classes.title}>{getLabel("lSeeHarmony")}</Typography>
         <Typography className={classes.text}>
@@ -126,6 +139,24 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     [theme.breakpoints.down("sm")]: {
       width: 158,
       height: 341,
+    },
+  },
+  animation: {
+    position: "absolute",
+    width: 680,
+    bottom: -243,
+    left: 40,
+    transform: "translateX(-100%)",
+
+    [theme.breakpoints.down("lg")]: {
+      width: 420,
+      bottom: -180,
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: 400,
+      bottom: -60,
+      left: "50%",
+      transform: "translateX(-50%) scaleX(-1)",
     },
   },
 }));

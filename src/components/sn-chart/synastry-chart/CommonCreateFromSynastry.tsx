@@ -194,7 +194,7 @@ const useStyles = makeStyles((theme: ThemeProps) => ({
     borderRadius: 20,
     border: "0.5px solid #a1a4fe",
     background: "linear-gradient(302.01deg, #FFFFFF 5.23%, rgba(255, 255, 255, 0) 115.76%)",
-    zIndex: 1,
+    zIndex: 6,
 
     [theme.breakpoints.down("sm")]: {
       padding: "16px 32px",

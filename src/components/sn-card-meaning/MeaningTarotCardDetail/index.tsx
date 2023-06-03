@@ -9,7 +9,7 @@ import TarotCardFan from "./TarotCardFan";
 import { useSelector } from "react-redux";
 import { AppSelector } from "redux-store";
 import StringFormat from "string-format";
-import { ApiConstant, LangConstant } from "const";
+import { ApiConstant, AppConstant, LangConstant } from "const";
 import { ThemeProps } from "models/types";
 
 const MeaningTarotCardDetail = () => {
@@ -39,11 +39,15 @@ const MeaningTarotCardDetail = () => {
       <Stack spacing={2} mt={{ xs: 2, sm: 4 }} mb={{ xs: 2, sm: 5 }} width="100%">
         <KeyMeaning data={cardDetail} />
         <OverView
-          title={`${cardDetail?.card_name} ${getLabel("lTheFoolOverview")}`}
+          title={`${cardDetail?.card_name || AppConstant.NOT_HAVE_VALUE_LABEL} ${getLabel(
+            "lTheFoolOverview",
+          )}`}
           description={cardDetail?.overview}
         />
         <OverView
-          title={`${getLabel("lMessageFromTheFool")} ${cardDetail?.card_name}:`}
+          title={`${getLabel("lMessageFromTheFool")} ${
+            cardDetail?.card_name || AppConstant.NOT_HAVE_VALUE_LABEL
+          }:`}
           description={cardDetail?.meaning}
         />
       </Stack>
