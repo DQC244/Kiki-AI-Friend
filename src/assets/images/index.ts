@@ -94,6 +94,7 @@ import Shop2Image from "./img-shop-2.png";
 import Shop3Image from "./img-shop-3.png";
 import Shop4Image from "./img-shop-4.png";
 import Shop5Image from "./img-shop-5.png";
+import Sunsign from "./sunsign.png";
 
 export {
   LogoImage,
@@ -192,4 +193,5 @@ export {
   Shop3Image,
   Shop4Image,
   Shop5Image,
+  Sunsign
 };
