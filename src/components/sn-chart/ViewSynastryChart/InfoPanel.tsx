@@ -4,16 +4,14 @@ import { ImageAssets } from "assets";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "@mui/styles";
 import { ThemeProps } from "models/types";
-import { getZodiacSign } from "components/helper";
 
 const InfoPanel = ({
   name,
   zodiac,
-  zodiacSecond,
+  // zodiacSecond,
   localTime,
   universalTime,
-  place,
-  image,
+  place
 }: InfoPanelProps) => {
   const classes = useStyles();
   const { t: getLabel } = useTranslation();
@@ -22,16 +20,16 @@ const InfoPanel = ({
     <Stack alignItems="center" spacing={1.25} p={1.25}>
       <Typography className={classes.title}>{name}</Typography>
       <Stack direction="row" spacing={1.5}>
-        <Stack direction="row" alignItems="center" spacing={1}>
+        <Stack direction="row" alignItems="center">
           <Box
             className={classes.imgDot}
             draggable="false"
             component="img"
-            src={getZodiacSign(image)}
+            src={ImageAssets.Sunsign}
           />
           <Typography className={classes.zodiac}>{zodiac}</Typography>
         </Stack>
-        <Stack direction="row" alignItems="center">
+        {/* <Stack direction="row" alignItems="center">
           <Box
             className={classes.imgMoon}
             draggable="false"
@@ -39,7 +37,7 @@ const InfoPanel = ({
             src={ImageAssets.MoonTransitImage}
           />
           <Typography className={classes.zodiac}>{zodiacSecond}</Typography>
-        </Stack>
+        </Stack> */}
       </Stack>
       <Stack>
         <Stack direction="row" spacing={0.5}>

@@ -50,7 +50,8 @@ const MeaningDeskCardList = () => {
   }, [getLabel, params]);
 
   const handleReadMeaning = (id: string | number) => {
-    const path = PathConstant.TAROT_CARD_MEANING + "/" + params.id + "/" + id;
+    const newId = i18n.language === LangConstant.DEFAULT_LANG_VN_CODE ? Number(id) - 78 : id;
+    const path = PathConstant.TAROT_CARD_MEANING + "/" + params.id + "/" + newId;
     navigate(path);
   };
 

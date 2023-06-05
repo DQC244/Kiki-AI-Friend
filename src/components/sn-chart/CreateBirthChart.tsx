@@ -40,7 +40,7 @@ const CreateBirthChart = ({ onCreateChart }: CreateFormProps) => {
       direction={{ xs: "column", lg: "row" }}
       width="100%"
     >
-      <Stack flex={1} spacing={{ xs: 4, sm: 3 }}>
+      <Stack flex={1} spacing={{ xs: 4, sm: 3 }} sx={{ position: "relative", zIndex: 2 }}>
         <Stack spacing={2}>
           <TitleChart
             title={getLabel("lCreateYourOwnBirth", { count: isMobile ? 0 : 1 })}

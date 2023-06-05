@@ -130,7 +130,6 @@ const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) 
         width={{ xs: "100%", sm: "unset" }}
       >
         <CommonCreateFromSynastry
-          zIndex={1}
           className={classes.form}
           onChangeValue={handleChangeMyValue}
           error={{
@@ -141,7 +140,6 @@ const CreateSynastryChart = ({ onViewSynastryChart }: CreateSynastryChartProps) 
           }}
         />
         <CommonCreateFromSynastry
-          zIndex={1}
           onChangeValue={handleChangeValue}
           title={getLabel("lAndAboutYourPersonOfInterest")}
           nameLabel={getLabel("lName")}
